@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/home.css">
+    <title>Music Store App - Home</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo-container">
+                <a href="/" class="logo">
+                    <h1>Music Store App</h1>
+                </a>
+            </div>
+            <nav class="nav">
+                <a href="/" class="nav-link active">Home</a>
+                <a href="/catalog" class="nav-link">Catalog</a>
+                <a href="/cart" class="nav-link">Cart</a>
+                <a href="/profile" class="nav-link">Profile</a>
+                <a href="/login" class="button login">Login</a>
+                <a href="/register" class="button register">Register</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Discover Your Next Favorite Song</h1>
+                    <p class="hero-subtitle">Explore thousands of albums and singles from your favorite artists</p>
+                    <div class="hero-actions">
+                        <a href="/catalog" class="button primary">Browse Catalog</a>
+                        <a href="/register" class="button">Join Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="featured-section">
+            <div class="container">
+                <h2 class="section-title">Featured Albums</h2>
+                <div class="album-grid grid grid-4">
+                    <div class="album-card card">
+                        <div class="album-image">
+                            <img src="https://via.placeholder.com/300x300/746ab0/ffffff?text=Album+1" alt="Featured Album 1">
+                            <div class="album-overlay">
+                                <button class="play-button">▶</button>
+                            </div>
+                        </div>
+                        <div class="album-info">
+                            <h3 class="album-title">Midnight Dreams</h3>
+                            <p class="album-artist">The Night Owls</p>
+                            <div class="album-price">
+                                <span class="price">$12.99</span>
+                                <span class="price old">$15.99</span>
+                            </div>
+                            <a href="/album/1" class="button primary">View Details</a>
+                        </div>
+                    </div>
+
+                    <div class="album-card card">
+                        <div class="album-image">
+                            <img src="https://via.placeholder.com/300x300/6a61a4/ffffff?text=Album+2" alt="Featured Album 2">
+                            <div class="album-overlay">
+                                <button class="play-button">▶</button>
+                            </div>
+                        </div>
+                        <div class="album-info">
+                            <h3 class="album-title">Electric Pulse</h3>
+                            <p class="album-artist">Digital Waves</p>
+                            <div class="album-price">
+                                <span class="price">$9.99</span>
+                            </div>
+                            <a href="/album/2" class="button primary">View Details</a>
+                        </div>
+                    </div>
+
+                    <div class="album-card card">
+                        <div class="album-image">
+                            <img src="https://via.placeholder.com/300x300/605899/ffffff?text=Album+3" alt="Featured Album 3">
+                            <div class="album-overlay">
+                                <button class="play-button">▶</button>
+                            </div>
+                        </div>
+                        <div class="album-info">
+                            <h3 class="album-title">Acoustic Stories</h3>
+                            <p class="album-artist">Folk Masters</p>
+                            <div class="album-price">
+                                <span class="price">$14.99</span>
+                                <span class="price old">$18.99</span>
+                            </div>
+                            <a href="/album/3" class="button primary">View Details</a>
+                        </div>
+                    </div>
+
+                    <div class="album-card card">
+                        <div class="album-image">
+                            <img src="https://via.placeholder.com/300x300/56508d/ffffff?text=Album+4" alt="Featured Album 4">
+                            <div class="album-overlay">
+                                <button class="play-button">▶</button>
+                            </div>
+                        </div>
+                        <div class="album-info">
+                            <h3 class="album-title">Jazz Fusion</h3>
+                            <p class="album-artist">Modern Jazz Collective</p>
+                            <div class="album-price">
+                                <span class="price">$16.99</span>
+                            </div>
+                            <a href="/album/4" class="button primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="categories-section">
+            <div class="container">
+                <h2 class="section-title">Browse by Genre</h2>
+                <div class="category-grid grid grid-4">
+                    <div class="category-card card">
+                        <div class="category-icon">🎵</div>
+                        <h3>Pop</h3>
+                        <p>Latest pop hits and classics</p>
+                        <a href="/catalog?genre=pop" class="button">Explore</a>
+                    </div>
+                    <div class="category-card card">
+                        <div class="category-icon">🎸</div>
+                        <h3>Rock</h3>
+                        <p>Classic and alternative rock</p>
+                        <a href="/catalog?genre=rock" class="button">Explore</a>
+                    </div>
+                    <div class="category-card card">
+                        <div class="category-icon">🎹</div>
+                        <h3>Electronic</h3>
+                        <p>EDM and electronic music</p>
+                        <a href="/catalog?genre=electronic" class="button">Explore</a>
+                    </div>
+                    <div class="category-card card">
+                        <div class="category-icon">🎺</div>
+                        <h3>Jazz</h3>
+                        <p>Smooth jazz and classics</p>
+                        <a href="/catalog?genre=jazz" class="button">Explore</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="new-releases-section">
+            <div class="container">
+                <h2 class="section-title">New Releases</h2>
+                <div class="album-grid grid grid-3">
+                    <div class="album-card card">
+                        <div class="album-image">
+                            <img src="https://via.placeholder.com/300x300/4c477f/ffffff?text=New+1" alt="New Release 1">
+                            <div class="new-badge">NEW</div>
+                        </div>
+                        <div class="album-info">
+                            <h3 class="album-title">Summer Vibes</h3>
+                            <p class="album-artist">Beach Boys Revival</p>
+                            <div class="album-price">
+                                <span class="price">$11.99</span>
+                            </div>
+                            <a href="/album/5" class="button primary">View Details</a>
+                        </div>
+                    </div>
+
+                    <div class="album-card card">
+                        <div class="album-image">
+                            <img src="https://via.placeholder.com/300x300/423f73/ffffff?text=New+2" alt="New Release 2">
+                            <div class="new-badge">NEW</div>
+                        </div>
+                        <div class="album-info">
+                            <h3 class="album-title">Urban Legends</h3>
+                            <p class="album-artist">City Beats</p>
+                            <div class="album-price">
+                                <span class="price">$13.99</span>
+                            </div>
+                            <a href="/album/6" class="button primary">View Details</a>
+                        </div>
+                    </div>
+
+                    <div class="album-card card">
+                        <div class="album-image">
+                            <img src="https://via.placeholder.com/300x300/383666/ffffff?text=New+3" alt="New Release 3">
+                            <div class="new-badge">NEW</div>
+                        </div>
+                        <div class="album-info">
+                            <h3 class="album-title">Indie Dreams</h3>
+                            <p class="album-artist">Underground Sounds</p>
+                            <div class="album-price">
+                                <span class="price">$10.99</span>
+                            </div>
+                            <a href="/album/7" class="button primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Music Store App</h3>
+                <p>Your ultimate destination for digital music</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/catalog">Catalog</a></li>
+                    <li><a href="/cart">Shopping Cart</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="/contact">Contact Us</a></li>
+                    <li><a href="/help">Help Center</a></li>
+                    <li><a href="/terms">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="#" class="social-link">Facebook</a>
+                    <a href="#" class="social-link">Twitter</a>
+                    <a href="#" class="social-link">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Music Store App. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

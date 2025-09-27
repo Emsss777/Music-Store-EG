@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/auth/register.css">
+    <title>Register | Music Store App</title>
+</head>
+<body>
+    <main class="auth-container">
+        <div class="auth-image">
+            <div class="image-content">
+                <div class="floating-album album-1">
+                    <img src="https://via.placeholder.com/120x120/746ab0/ffffff?text=Album" alt="Music Album">
+                </div>
+                <div class="floating-album album-2">
+                    <img src="https://via.placeholder.com/100x100/6a61a4/ffffff?text=Song" alt="Music Album">
+                </div>
+                <div class="floating-album album-3">
+                    <img src="https://via.placeholder.com/140x140/605899/ffffff?text=Track" alt="Music Album">
+                </div>
+                <div class="floating-album album-4">
+                    <img src="https://via.placeholder.com/110x110/56508d/ffffff?text=Music" alt="Music Album">
+                </div>
+                <h2 class="image-title">Join Our Community</h2>
+                <p class="image-subtitle">Create your account and start your musical journey with access to thousands of albums and exclusive content.</p>
+            </div>
+        </div>
+
+        <section class="auth-section">
+            <div class="auth-header">
+                <a href="/" class="logo-link">
+                    <h1 class="auth-logo">Music Store App</h1>
+                </a>
+                <p class="auth-subtitle">Create your account to get started</p>
+            </div>
+
+            <form class="auth-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Choose a username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Create a strong password" required>
+                    <div class="password-strength">
+                        <div class="strength-bar">
+                            <div class="strength-fill"></div>
+                        </div>
+                        <span class="strength-text">Password strength</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="birthDate">Date of Birth</label>
+                    <input type="date" id="birthDate" name="birthDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <select id="country" name="country" required>
+                        <option value="">Select your country</option>
+                        <option value="US">United States</option>
+                        <option value="CA">Canada</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="DE">Germany</option>
+                        <option value="FR">France</option>
+                        <option value="IT">Italy</option>
+                        <option value="ES">Spain</option>
+                        <option value="AU">Australia</option>
+                        <option value="JP">Japan</option>
+                        <option value="BR">Brazil</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <span class="checkmark"></span>
+                        I agree to the <a href="/terms" class="terms-link">Terms of Service</a> and <a href="/privacy" class="terms-link">Privacy Policy</a>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="newsletter" name="newsletter">
+                        <span class="checkmark"></span>
+                        Subscribe to our newsletter for music updates and exclusive offers
+                    </label>
+                </div>
+
+                <button type="submit" class="auth-button primary">
+                    Create Account
+                </button>
+
+                <div class="auth-divider">
+                    <span>or</span>
+                </div>
+
+                <div class="social-login">
+                    <button type="button" class="social-button google">
+                        <span class="social-icon">🔍</span>
+                        Continue with Google
+                    </button>
+                    <button type="button" class="social-button facebook">
+                        <span class="social-icon">📘</span>
+                        Continue with Facebook
+                    </button>
+                    <button type="button" class="social-button apple">
+                        <span class="social-icon">🍎</span>
+                        Continue with Apple
+                    </button>
+                </div>
+
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="/login" class="auth-link">Sign in here</a></p>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Music Store App</h3>
+                <p>Your ultimate destination for digital music</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/catalog">Catalog</a></li>
+                    <li><a href="/cart">Shopping Cart</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="/contact">Contact Us</a></li>
+                    <li><a href="/help">Help Center</a></li>
+                    <li><a href="/terms">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="#" class="social-link">Facebook</a>
+                    <a href="#" class="social-link">Twitter</a>
+                    <a href="#" class="social-link">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Music Store App. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

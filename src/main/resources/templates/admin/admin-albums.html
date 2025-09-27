@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/admin/admin-albums.css">
+    <title>Manage Albums | Music Store App Admin</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo-container">
+                <a href="/" class="logo">
+                    <h1>Music Store App</h1>
+                </a>
+            </div>
+            <nav class="nav">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/catalog" class="nav-link">Catalog</a>
+                <a href="/admin" class="nav-link">Admin</a>
+                <a href="/admin/albums" class="nav-link active">Albums</a>
+                <a href="/logout" class="button login">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="admin-header">
+            <div class="container">
+                <h1 class="page-title">Manage Albums</h1>
+                <p class="page-subtitle">Add, edit, and manage your music catalog</p>
+            </div>
+        </div>
+
+        <section class="albums-section">
+            <div class="container">
+                <!-- Albums Management Toolbar -->
+                <div class="albums-toolbar">
+                    <div class="toolbar-left">
+                        <div class="search-box">
+                            <input type="text" placeholder="Search albums..." class="search-input">
+                            <button class="search-btn">🔍</button>
+                        </div>
+                        <div class="filter-dropdown">
+                            <select class="filter-select">
+                                <option value="">All Genres</option>
+                                <option value="pop">Pop</option>
+                                <option value="rock">Rock</option>
+                                <option value="electronic">Electronic</option>
+                                <option value="jazz">Jazz</option>
+                                <option value="classical">Classical</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="toolbar-right">
+                        <button class="add-album-btn button primary">
+                            <span class="btn-icon">+</span>
+                            Add New Album
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Albums Grid -->
+                <div class="albums-grid">
+                    <div class="album-management-card card">
+                        <div class="album-image">
+                            <img src="https://via.placeholder.com/200x200/746ab0/ffffff?text=Midnight+Dreams" alt="Midnight Dreams">
+                            <div class="album-overlay">
+                                <button class="edit-btn" title="Edit Album">✏️</button>
+                                <button class="delete-btn" title="Delete Album">🗑️</button>
+                            </div>
+                        </div>
+                        <div class="album-info">
+                            <h3 class="album-title">Midnight Dreams</h3>
+                            <p class="album-artist">The Night Owls</p>
+                            <div class="album-meta">
+                                <span class="album-genre">Pop Rock</span>
+                                <span class="album-year">2024</span>
+                            </div>
+                            <div class="album-price">$12.99</div>
+                            <div class="album-stats">
+                                <span class="sales-count">234 sales</span>
+                                <span class="status-badge active">Active</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="album-management-card card">
+                        <div class="album-image">
+                            <img src="https://via.placeholder.com/200x200/6a61a4/ffffff?text=Electric+Pulse" alt="Electric Pulse">
+                            <div class="album-overlay">
+                                <button class="edit-btn" title="Edit Album">✏️</button>
+                                <button class="delete-btn" title="Delete Album">🗑️</button>
+                            </div>
+                        </div>
+                        <div class="album-info">
+                            <h3 class="album-title">Electric Pulse</h3>
+                            <p class="album-artist">Digital Waves</p>
+                            <div class="album-meta">
+                                <span class="album-genre">Electronic</span>
+                                <span class="album-year">2024</span>
+                            </div>
+                            <div class="album-price">$9.99</div>
+                            <div class="album-stats">
+                                <span class="sales-count">189 sales</span>
+                                <span class="status-badge active">Active</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="album-management-card card">
+                        <div class="album-image">
+                            <img src="https://via.placeholder.com/200x200/605899/ffffff?text=Acoustic+Stories" alt="Acoustic Stories">
+                            <div class="album-overlay">
+                                <button class="edit-btn" title="Edit Album">✏️</button>
+                                <button class="delete-btn" title="Delete Album">🗑️</button>
+                            </div>
+                        </div>
+                        <div class="album-info">
+                            <h3 class="album-title">Acoustic Stories</h3>
+                            <p class="album-artist">Folk Masters</p>
+                            <div class="album-meta">
+                                <span class="album-genre">Folk</span>
+                                <span class="album-year">2023</span>
+                            </div>
+                            <div class="album-price">$14.99</div>
+                            <div class="album-stats">
+                                <span class="sales-count">156 sales</span>
+                                <span class="status-badge active">Active</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="album-management-card card">
+                        <div class="album-image">
+                            <img src="https://via.placeholder.com/200x200/56508d/ffffff?text=Jazz+Fusion" alt="Jazz Fusion">
+                            <div class="album-overlay">
+                                <button class="edit-btn" title="Edit Album">✏️</button>
+                                <button class="delete-btn" title="Delete Album">🗑️</button>
+                            </div>
+                        </div>
+                        <div class="album-info">
+                            <h3 class="album-title">Jazz Fusion</h3>
+                            <p class="album-artist">Modern Jazz Collective</p>
+                            <div class="album-meta">
+                                <span class="album-genre">Jazz</span>
+                                <span class="album-year">2023</span>
+                            </div>
+                            <div class="album-price">$16.99</div>
+                            <div class="album-stats">
+                                <span class="sales-count">142 sales</span>
+                                <span class="status-badge active">Active</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="album-management-card card">
+                        <div class="album-image">
+                            <img src="https://via.placeholder.com/200x200/4c477f/ffffff?text=Summer+Vibes" alt="Summer Vibes">
+                            <div class="album-overlay">
+                                <button class="edit-btn" title="Edit Album">✏️</button>
+                                <button class="delete-btn" title="Delete Album">🗑️</button>
+                            </div>
+                        </div>
+                        <div class="album-info">
+                            <h3 class="album-title">Summer Vibes</h3>
+                            <p class="album-artist">Beach Boys Revival</p>
+                            <div class="album-meta">
+                                <span class="album-genre">Pop</span>
+                                <span class="album-year">2024</span>
+                            </div>
+                            <div class="album-price">$11.99</div>
+                            <div class="album-stats">
+                                <span class="sales-count">128 sales</span>
+                                <span class="status-badge active">Active</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="album-management-card card">
+                        <div class="album-image">
+                            <img src="https://via.placeholder.com/200x200/423f73/ffffff?text=Urban+Legends" alt="Urban Legends">
+                            <div class="album-overlay">
+                                <button class="edit-btn" title="Edit Album">✏️</button>
+                                <button class="delete-btn" title="Delete Album">🗑️</button>
+                            </div>
+                        </div>
+                        <div class="album-info">
+                            <h3 class="album-title">Urban Legends</h3>
+                            <p class="album-artist">City Beats</p>
+                            <div class="album-meta">
+                                <span class="album-genre">Hip-Hop</span>
+                                <span class="album-year">2024</span>
+                            </div>
+                            <div class="album-price">$13.99</div>
+                            <div class="album-stats">
+                                <span class="sales-count">115 sales</span>
+                                <span class="status-badge inactive">Inactive</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="pagination-btn prev" disabled>Previous</button>
+                    <div class="pagination-pages">
+                        <button class="pagination-btn active">1</button>
+                        <button class="pagination-btn">2</button>
+                        <button class="pagination-btn">3</button>
+                        <span class="pagination-ellipsis">...</span>
+                        <button class="pagination-btn">12</button>
+                    </div>
+                    <button class="pagination-btn next">Next</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Music Store App</h3>
+                <p>Your ultimate destination for digital music</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/catalog">Catalog</a></li>
+                    <li><a href="/cart">Shopping Cart</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="/contact">Contact Us</a></li>
+                    <li><a href="/help">Help Center</a></li>
+                    <li><a href="/terms">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="#" class="social-link">Facebook</a>
+                    <a href="#" class="social-link">Twitter</a>
+                    <a href="#" class="social-link">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Music Store App. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

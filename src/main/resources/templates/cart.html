@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/cart.css">
+    <title>Shopping Cart | Music Store App</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo-container">
+                <a href="/" class="logo">
+                    <h1>Music Store App</h1>
+                </a>
+            </div>
+            <nav class="nav">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/catalog" class="nav-link">Catalog</a>
+                <a href="/cart" class="nav-link active">Cart (3)</a>
+                <a href="/profile" class="nav-link">Profile</a>
+                <a href="/login" class="button login">Login</a>
+                <a href="/register" class="button register">Register</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="cart-header">
+            <div class="container">
+                <h1 class="page-title">Shopping Cart</h1>
+                <p class="page-subtitle">Review your selected items before checkout</p>
+            </div>
+        </div>
+
+        <section class="cart-section">
+            <div class="container">
+                <div class="cart-layout">
+                    <div class="cart-items">
+                        <div class="cart-item">
+                            <div class="item-image">
+                                <img src="https://via.placeholder.com/120x120/746ab0/ffffff?text=Album+1" alt="Midnight Dreams">
+                            </div>
+                            <div class="item-details">
+                                <h3 class="item-title">Midnight Dreams</h3>
+                                <p class="item-artist">The Night Owls</p>
+                                <div class="item-format">
+                                    <span class="format-badge">Digital Download</span>
+                                    <span class="quality-badge">320 kbps MP3</span>
+                                </div>
+                            </div>
+                            <div class="item-price">
+                                <span class="price">$12.99</span>
+                                <span class="price-old">$15.99</span>
+                            </div>
+                            <div class="item-quantity">
+                                <button class="quantity-btn minus">-</button>
+                                <span class="quantity">1</span>
+                                <button class="quantity-btn plus">+</button>
+                            </div>
+                            <div class="item-total">
+                                <span class="total-price">$12.99</span>
+                            </div>
+                            <div class="item-actions">
+                                <button class="remove-btn" title="Remove item">🗑️</button>
+                                <button class="wishlist-btn" title="Add to wishlist">❤️</button>
+                            </div>
+                        </div>
+
+                        <div class="cart-item">
+                            <div class="item-image">
+                                <img src="https://via.placeholder.com/120x120/6a61a4/ffffff?text=Album+2" alt="Electric Pulse">
+                            </div>
+                            <div class="item-details">
+                                <h3 class="item-title">Electric Pulse</h3>
+                                <p class="item-artist">Digital Waves</p>
+                                <div class="item-format">
+                                    <span class="format-badge">Digital Download</span>
+                                    <span class="quality-badge">320 kbps MP3</span>
+                                </div>
+                            </div>
+                            <div class="item-price">
+                                <span class="price">$9.99</span>
+                            </div>
+                            <div class="item-quantity">
+                                <button class="quantity-btn minus">-</button>
+                                <span class="quantity">1</span>
+                                <button class="quantity-btn plus">+</button>
+                            </div>
+                            <div class="item-total">
+                                <span class="total-price">$9.99</span>
+                            </div>
+                            <div class="item-actions">
+                                <button class="remove-btn" title="Remove item">🗑️</button>
+                                <button class="wishlist-btn" title="Add to wishlist">❤️</button>
+                            </div>
+                        </div>
+
+                        <div class="cart-item">
+                            <div class="item-image">
+                                <img src="https://via.placeholder.com/120x120/605899/ffffff?text=Album+3" alt="Acoustic Stories">
+                            </div>
+                            <div class="item-details">
+                                <h3 class="item-title">Acoustic Stories</h3>
+                                <p class="item-artist">Folk Masters</p>
+                                <div class="item-format">
+                                    <span class="format-badge">Digital Download</span>
+                                    <span class="quality-badge">320 kbps MP3</span>
+                                </div>
+                            </div>
+                            <div class="item-price">
+                                <span class="price">$14.99</span>
+                                <span class="price-old">$18.99</span>
+                            </div>
+                            <div class="item-quantity">
+                                <button class="quantity-btn minus">-</button>
+                                <span class="quantity">1</span>
+                                <button class="quantity-btn plus">+</button>
+                            </div>
+                            <div class="item-total">
+                                <span class="total-price">$14.99</span>
+                            </div>
+                            <div class="item-actions">
+                                <button class="remove-btn" title="Remove item">🗑️</button>
+                                <button class="wishlist-btn" title="Add to wishlist">❤️</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cart-summary">
+                        <div class="summary-card card">
+                            <h2 class="summary-title">Order Summary</h2>
+                            
+                            <div class="summary-row">
+                                <span class="summary-label">Subtotal (3 items)</span>
+                                <span class="summary-value">$37.97</span>
+                            </div>
+                            
+                            <div class="summary-row">
+                                <span class="summary-label">Discount</span>
+                                <span class="summary-value discount">-$6.00</span>
+                            </div>
+                            
+                            <div class="summary-row">
+                                <span class="summary-label">Tax</span>
+                                <span class="summary-value">$2.56</span>
+                            </div>
+                            
+                            <div class="summary-divider"></div>
+                            
+                            <div class="summary-row total-row">
+                                <span class="summary-label">Total</span>
+                                <span class="summary-value total">$34.53</span>
+                            </div>
+
+                            <div class="promo-code">
+                                <h3>Promo Code</h3>
+                                <div class="promo-input-group">
+                                    <input type="text" placeholder="Enter promo code" class="promo-input">
+                                    <button class="promo-btn">Apply</button>
+                                </div>
+                                <p class="promo-note">You saved $6.00 with current discounts!</p>
+                            </div>
+
+                            <button class="checkout-btn button primary">
+                                Proceed to Checkout
+                            </button>
+
+                            <div class="payment-methods">
+                                <h4>We Accept</h4>
+                                <div class="payment-icons">
+                                    <span class="payment-icon">💳</span>
+                                    <span class="payment-icon">🏦</span>
+                                    <span class="payment-icon">📱</span>
+                                    <span class="payment-icon">💰</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="security-info card">
+                            <h3>🛡️ Secure Checkout</h3>
+                            <ul>
+                                <li>✅ SSL Encrypted</li>
+                                <li>✅ Secure Payment Processing</li>
+                                <li>✅ 30-Day Money Back Guarantee</li>
+                                <li>✅ Instant Download</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="recommendations-section">
+            <div class="container">
+                <h2 class="section-title">You Might Also Like</h2>
+                <div class="recommendations-grid grid grid-4">
+                    <div class="album-card card">
+                        <div class="album-image">
+                            <img src="https://via.placeholder.com/200x200/56508d/ffffff?text=Jazz+Fusion" alt="Jazz Fusion">
+                            <div class="album-overlay">
+                                <button class="play-button">▶</button>
+                            </div>
+                        </div>
+                        <div class="album-info">
+                            <h3 class="album-title">Jazz Fusion</h3>
+                            <p class="album-artist">Modern Jazz Collective</p>
+                            <div class="album-price">
+                                <span class="price">$16.99</span>
+                            </div>
+                            <button class="button primary">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="album-card card">
+                        <div class="album-image">
+                            <img src="https://via.placeholder.com/200x200/4c477f/ffffff?text=Summer+Vibes" alt="Summer Vibes">
+                            <div class="album-overlay">
+                                <button class="play-button">▶</button>
+                            </div>
+                        </div>
+                        <div class="album-info">
+                            <h3 class="album-title">Summer Vibes</h3>
+                            <p class="album-artist">Beach Boys Revival</p>
+                            <div class="album-price">
+                                <span class="price">$11.99</span>
+                            </div>
+                            <button class="button primary">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="album-card card">
+                        <div class="album-image">
+                            <img src="https://via.placeholder.com/200x200/423f73/ffffff?text=Urban+Legends" alt="Urban Legends">
+                            <div class="album-overlay">
+                                <button class="play-button">▶</button>
+                            </div>
+                        </div>
+                        <div class="album-info">
+                            <h3 class="album-title">Urban Legends</h3>
+                            <p class="album-artist">City Beats</p>
+                            <div class="album-price">
+                                <span class="price">$13.99</span>
+                            </div>
+                            <button class="button primary">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="album-card card">
+                        <div class="album-image">
+                            <img src="https://via.placeholder.com/200x200/383666/ffffff?text=Indie+Dreams" alt="Indie Dreams">
+                            <div class="album-overlay">
+                                <button class="play-button">▶</button>
+                            </div>
+                        </div>
+                        <div class="album-info">
+                            <h3 class="album-title">Indie Dreams</h3>
+                            <p class="album-artist">Underground Sounds</p>
+                            <div class="album-price">
+                                <span class="price">$10.99</span>
+                            </div>
+                            <button class="button primary">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Music Store App</h3>
+                <p>Your ultimate destination for digital music</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/catalog">Catalog</a></li>
+                    <li><a href="/cart">Shopping Cart</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="/contact">Contact Us</a></li>
+                    <li><a href="/help">Help Center</a></li>
+                    <li><a href="/terms">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="#" class="social-link">Facebook</a>
+                    <a href="#" class="social-link">Twitter</a>
+                    <a href="#" class="social-link">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Music Store App. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
