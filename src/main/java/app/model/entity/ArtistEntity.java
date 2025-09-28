@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.Accessors;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -34,4 +37,7 @@ public class ArtistEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "primary_genre", nullable = false)
     private PrimaryGenre primaryGenre;
+
+    @OneToMany(mappedBy = "artist", fetch = FetchType.EAGER)
+    private List<AlbumEntity> albums = new ArrayList<>();
 }
