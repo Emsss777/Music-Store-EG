@@ -20,8 +20,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .authorizeHttpRequests(matchers -> matchers
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers("/", "/register").permitAll()
-                        .anyRequest().authenticated()
+                        //.anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
+
                 .formLogin(form -> form
                         .loginPage("/login")
 //                        .usernameParameter("username")
