@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.Accessors;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,31 +22,31 @@ import java.util.List;
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
 
-    @Column(name = "username", nullable = false, unique = true)
-    private String username;
-
     @Column(name = "firstName")
     private String firstName;
 
     @Column(name = "lastName")
     private String lastName;
 
-    @Column(name = "profilePicture")
-    private String profilePicture;
-
     @Column(name = "email", unique = true)
     private String email;
+
+    @Column(name = "username", nullable = false, unique = true)
+    private String username;
 
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role", nullable = false)
-    private UserRole role;
+    @Column(name = "date_of_birth", nullable = false)
+    private LocalDate dateOfBirth;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "country", nullable = false)
     private Country country;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
+    private UserRole role;
 
     @Column(name = "is_active")
     private boolean isActive;

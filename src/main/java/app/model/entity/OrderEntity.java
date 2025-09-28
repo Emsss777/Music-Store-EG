@@ -1,5 +1,6 @@
 package app.model.entity;
 
+import app.model.enums.PaymentMethod;
 import app.model.enums.Status;
 import jakarta.persistence.*;
 import lombok.*;
@@ -19,21 +20,22 @@ import java.time.LocalDateTime;
 @Table(name = "orders")
 public class OrderEntity extends BaseEntity {
 
-    @Column(name = "order_number", nullable = false, unique = true)
-    private String orderNumber;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private Status status;
 
-    @Column(name = "total_price", nullable = false)
-    private BigDecimal totalPrice;
+    @Column(name = "order_number", nullable = false, unique = true)
+    private String orderNumber;
 
     @Column(name = "created_on", nullable = false)
     private LocalDateTime createdOn;
 
-    @Column(name = "completed_on", nullable = false)
-    private LocalDateTime completedOn;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "payment_method", nullable = false)
+    private PaymentMethod paymentMethod;
+
+    @Column(name = "total_amount", nullable = false)
+    private BigDecimal totalAmount;
 
     @ManyToOne
     @JoinColumn(name = "owner_id", nullable = false)
