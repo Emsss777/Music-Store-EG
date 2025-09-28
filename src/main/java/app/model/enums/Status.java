@@ -1,4 +1,4 @@
-package app.order.model;
+package app.model.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-/* Order Details Page Styles */
+/* OrderEntity Details Page Styles */
 
 .order-details-header {
   background: linear-gradient(135deg, rgba(116, 106, 176, 0.2) 0%, rgba(106, 97, 164, 0.1) 100%);
@@ -34,7 +34,7 @@
   margin: 0;
 }
 
-/* Order Details Section */
+/* OrderEntity Details Section */
 .order-details-section {
   padding: 60px 0;
 }
@@ -111,7 +111,7 @@
   transform: translateY(-1px);
 }
 
-/* Order Summary */
+/* OrderEntity Summary */
 .order-info {
   display: flex;
   flex-direction: column;
@@ -146,7 +146,7 @@
   color: #4caf50;
 }
 
-/* Order Items */
+/* OrderEntity Items */
 .items-list {
   display: flex;
   flex-direction: column;
@@ -290,7 +290,7 @@
   margin: 4px 0;
 }
 
-/* Order Timeline */
+/* OrderEntity Timeline */
 .timeline {
   position: relative;
   padding-left: 24px;
@@ -350,7 +350,7 @@
   font-weight: 300;
 }
 
-/* Order Actions */
+/* OrderEntity Actions */
 .order-actions {
   display: flex;
   justify-content: center;

@@ -1,8 +1,6 @@
-package app.order.model.entity;
+package app.model.entity;
 
-import app.common.model.entity.BaseEntity;
-import app.order.model.Status;
-import app.user.model.entity.User;
+import app.model.enums.Status;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.Accessors;
@@ -19,7 +17,7 @@ import java.time.LocalDateTime;
 @Accessors(chain = true)
 @Access(AccessType.FIELD)
 @Table(name = "orders")
-public class Order extends BaseEntity {
+public class OrderEntity extends BaseEntity {
 
     @Column(name = "order_number", nullable = false, unique = true)
     private String orderNumber;
@@ -39,5 +37,5 @@ public class Order extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "owner_id", nullable = false)
-    private User owner;
+    private UserEntity owner;
 }

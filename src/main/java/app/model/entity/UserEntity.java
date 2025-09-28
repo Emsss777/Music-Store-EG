@@ -1,9 +1,7 @@
-package app.user.model.entity;
+package app.model.entity;
 
-import app.common.model.entity.BaseEntity;
-import app.order.model.entity.Order;
-import app.user.model.enums.Country;
-import app.user.model.enums.UserRole;
+import app.model.enums.Country;
+import app.model.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.Accessors;
@@ -21,7 +19,7 @@ import java.util.List;
 @Accessors(chain = true)
 @Access(AccessType.FIELD)
 @Table(name = "users")
-public class User extends BaseEntity {
+public class UserEntity extends BaseEntity {
 
     @Column(name = "username", nullable = false, unique = true)
     private String username;
@@ -60,5 +58,5 @@ public class User extends BaseEntity {
 
     @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     @OrderBy("createdOn DESC")
-    private List<Order> orders = new ArrayList<>();
+    private List<OrderEntity> orders = new ArrayList<>();
 }

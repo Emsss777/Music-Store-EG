@@ -1,4 +1,4 @@
-package app.common.model.entity;
+package app.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
