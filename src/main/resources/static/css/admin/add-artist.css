@@ -1,0 +1,478 @@
+/* Add Artist Page Styles */
+
+.admin-header {
+  background: linear-gradient(135deg, rgba(116, 106, 176, 0.2) 0%, rgba(106, 97, 164, 0.1) 100%);
+  padding: 60px 0;
+}
+
+.breadcrumb {
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.breadcrumb a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.breadcrumb a:hover {
+  color: #746ab0;
+}
+
+.page-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #ffffff;
+}
+
+.page-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+/* Add Artist Section */
+.add-artist-section {
+  padding: 60px 0;
+}
+
+.form-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* Form Container */
+.form-container {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.artist-form {
+  padding: 40px;
+}
+
+.form-section {
+  margin-bottom: 40px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-section:last-of-type {
+  border-bottom: none;
+  margin-bottom: 32px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid rgba(116, 106, 176, 0.3);
+}
+
+/* Form Elements */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #746ab0;
+  box-shadow: 0 0 0 3px rgba(116, 106, 176, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.form-group select option {
+  background: #1a1934;
+  color: #ffffff;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Checkbox Styles */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+}
+
+.checkbox-container input[type="checkbox"] {
+  display: none;
+}
+
+.checkmark {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  margin-right: 12px;
+  position: relative;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.checkbox-container input[type="checkbox"]:checked + .checkmark {
+  background: #746ab0;
+  border-color: #746ab0;
+}
+
+.checkbox-container input[type="checkbox"]:checked + .checkmark::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-actions .button {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.form-actions .button.primary {
+  background: radial-gradient(circle at 90% top, #746ab0 0%, #6a61a4 10%, #605899 20%, #56508d 30%, #4c477f 40%, #423f73 50%, #383666 60%, #2e2d5a 70%, #24244d 80%, #1a1a41 90%, #101035 100%);
+  color: white;
+}
+
+.form-actions .button.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(116, 106, 176, 0.4);
+}
+
+.form-actions .button:not(.primary) {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.form-actions .button:not(.primary):hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Form Sidebar */
+.form-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Preview Card */
+.preview-card {
+  padding: 24px;
+}
+
+.preview-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.artist-preview {
+  text-align: center;
+}
+
+.preview-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 16px;
+  border: 4px solid rgba(116, 106, 176, 0.3);
+  box-shadow: 0 8px 32px rgba(116, 106, 176, 0.2);
+}
+
+.preview-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.preview-info h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+}
+
+.preview-info p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  margin: 0 0 12px 0;
+}
+
+.preview-info p:last-child {
+  font-size: 12px;
+  line-height: 1.5;
+  max-height: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Help Card */
+.help-card {
+  padding: 24px;
+}
+
+.help-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.help-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.help-list li {
+  padding: 8px 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  position: relative;
+  padding-left: 20px;
+  line-height: 1.5;
+}
+
+.help-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #746ab0;
+  font-size: 16px;
+}
+
+/* Recent Artists Card */
+.recent-artists-card {
+  padding: 24px;
+}
+
+.recent-artists-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.recent-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.recent-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.recent-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateX(4px);
+}
+
+.recent-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.recent-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recent-info h5 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 2px 0;
+}
+
+.recent-info p {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .form-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .form-sidebar {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-header {
+    padding: 40px 0;
+  }
+  
+  .page-title {
+    font-size: 2.5rem;
+  }
+  
+  .add-artist-section {
+    padding: 40px 0;
+  }
+  
+  .artist-form {
+    padding: 24px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .form-actions .button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 2rem;
+  }
+  
+  .artist-form {
+    padding: 20px;
+  }
+  
+  .form-section {
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+  }
+  
+  .preview-photo {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+/* Animation */
+.form-container {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Form validation styles */
+.form-group input:invalid,
+.form-group select:invalid,
+.form-group textarea:invalid {
+  border-color: rgba(244, 67, 54, 0.5);
+}
+
+.form-group input:valid,
+.form-group select:valid,
+.form-group textarea:valid {
+  border-color: rgba(76, 175, 80, 0.5);
+}
+
+/* Navigation active state */
+.nav-link.active {
+  background: radial-gradient(circle at 90% top, #746ab0 0%, #6a61a4 10%, #605899 20%, #56508d 30%, #4c477f 40%, #423f73 50%, #383666 60%, #2e2d5a 70%, #24244d 80%, #1a1a41 90%, #101035 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}

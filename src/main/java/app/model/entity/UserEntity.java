@@ -22,10 +22,10 @@ import java.util.List;
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
 
-    @Column(name = "firstName")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "lastName")
+    @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "email", unique = true)
