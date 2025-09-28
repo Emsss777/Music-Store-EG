@@ -25,4 +25,14 @@ public class IndexController {
 
         return modelAndView;
     }
+
+    @GetMapping(URL_REGISTER)
+    public ModelAndView getRegisterPage() {
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName(VIEW_REGISTER);
+        //modelAndView.addObject(MODEL_REGISTER_DTO, new RegisterDTO());
+
+        return modelAndView;
+    }
 }
