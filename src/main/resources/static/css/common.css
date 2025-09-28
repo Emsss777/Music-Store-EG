@@ -288,6 +288,10 @@ p {
   color: #746ab0;
 }
 
+.footer-section p {
+    max-width: 240px;
+}
+
 .social-links {
   display: flex;
   gap: 16px;
