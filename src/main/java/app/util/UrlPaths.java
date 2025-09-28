@@ -10,4 +10,5 @@ public final class UrlPaths {
     public static final String URL_REGISTER = "/register";
     public static final String URL_CATALOG = "/catalog";
     public static final String URL_CART = "/cart";
+    public static final String URL_PROFILE = "/profile";
 }
