@@ -17,7 +17,7 @@
 
 <body>
 
-<div th:insert = "~{fragments/header :: header}"></div>
+<div th:replace = "fragments/header :: site-header"></div>
 
 <main class = "main-content">
     <section class = "order-confirmation-section">
@@ -69,11 +69,11 @@
                     </div>
                     <div class = "shipping-method">
                         <span class = "shipping-label">Shipping Method:</span>
-                        <span class = "shipping-value">Standard Shipping (5-7 business days)</span>
+                        <span class = "shipping-value">Standard Shipping (5–7 business days)</span>
                     </div>
                     <div class = "estimated-delivery">
                         <span class = "delivery-label">Estimated Delivery:</span>
-                        <span class = "delivery-value">January 22-24, 2025</span>
+                        <span class = "delivery-value">January 22–24, 2025</span>
                     </div>
                 </div>
             </div>
@@ -154,7 +154,7 @@
                         <div class = "timeline-content">
                             <h4>Order Placed</h4>
                             <p>Your order has been successfully placed</p>
-                            <span class = "timeline-date">January 15, 2025 - 2:30 PM</span>
+                            <span class = "timeline-date">January 15, 2025–2:30 PM</span>
                         </div>
                     </div>
 
@@ -165,7 +165,7 @@
                         <div class = "timeline-content">
                             <h4>Payment Processed</h4>
                             <p>Payment has been successfully processed</p>
-                            <span class = "timeline-date">January 15, 2025 - 2:31 PM</span>
+                            <span class = "timeline-date">January 15, 2025–2:31 PM</span>
                         </div>
                     </div>
 
@@ -198,7 +198,7 @@
                         <div class = "timeline-content">
                             <h4>Delivered</h4>
                             <p>Your order has been delivered</p>
-                            <span class = "timeline-date">Estimated: January 22-24, 2025</span>
+                            <span class = "timeline-date">Estimated: January 22–24, 2025</span>
                         </div>
                     </div>
                 </div>
@@ -218,7 +218,7 @@
     </section>
 </main>
 
-<div th:insert = "~{fragments/footer :: footer}"></div>
+<div th:replace = "fragments/footer :: site-footer"></div>
 
 <script>
     function downloadReceipt() {
