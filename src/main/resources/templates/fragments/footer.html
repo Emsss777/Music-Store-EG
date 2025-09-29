@@ -1,4 +1,4 @@
-<footer class = "footer">
+<footer th:fragment = "site-footer" class = "footer">
     <div class = "footer-content">
         <div class = "footer-section">
             <h3>Music Store</h3>
@@ -7,7 +7,7 @@
         <div class = "footer-section">
             <h4>Quick Links</h4>
             <ul>
-                <li><a href = "/">Home</a></li>
+                <li><a th:href = "@{/home}">Home</a></li>
                 <li><a th:href = "@{/catalog}">Catalog</a></li>
                 <li><a th:href = "@{/cart}">Shopping Cart</a></li>
             </ul>
