@@ -17,7 +17,7 @@
 
 <body>
 
-<div th:replace = "fragments/header :: site-header"></div>
+<th:block th:replace = "fragments/header :: site-header"></th:block>
 
 <main class = "main-content">
     <section class = "order-confirmation-section">
@@ -218,7 +218,7 @@
     </section>
 </main>
 
-<div th:replace = "fragments/footer :: site-footer"></div>
+<th:block th:replace = "fragments/footer :: site-footer"></th:block>
 
 <script>
     function downloadReceipt() {

@@ -15,7 +15,7 @@
 
 <body>
 
-<div th:replace = "fragments/header :: site-header"></div>
+<th:block th:replace = "fragments/header :: site-header"></th:block>
 
 <main>
     <div class = "admin-header">
@@ -289,7 +289,7 @@
     </section>
 </main>
 
-<div th:replace = "fragments/footer :: site-footer"></div>
+<th:block th:replace = "fragments/footer :: site-footer"></th:block>
 
 <script>
     // Form preview functionality
