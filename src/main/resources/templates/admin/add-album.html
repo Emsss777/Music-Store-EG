@@ -1,377 +1,437 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang = "en">
+
 <head>
-    <meta charset="UTF-8">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/static/css/common.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/admin/add-album.css">
-    <title>Add New Album | Music Store App Admin</title>
+    <meta charset = "UTF-8">
+    <link rel = "preconnect" href = "https://fonts.googleapis.com">
+    <link rel = "preconnect" href = "https://fonts.gstatic.com" crossorigin>
+    <link href = "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel = "stylesheet">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" type = "text/css" href = "/css/common.css">
+    <link rel = "stylesheet" type = "text/css" href = "/css/admin/add-album.css">
+    <title>Add New Album | Music Store Admin</title>
 </head>
+
 <body>
-    <header class="header">
-        <div class="header-inner">
-            <div class="logo-container">
-                <a href="/" class="logo">
-                    <h1>Music Store App</h1>
-                </a>
-            </div>
-            <nav class="nav">
-                <a href="/" class="nav-link">Home</a>
-                <a href="/catalog" class="nav-link">Catalog</a>
-                <a href="/admin" class="nav-link">Admin</a>
-                <a href="/admin/albums" class="nav-link">Albums</a>
-                <a href="/admin/add-new-album" class="nav-link active">Add Album</a>
-                <a href="/logout" class="button login">Logout</a>
-            </nav>
-        </div>
-    </header>
 
-    <main>
-        <div class="admin-header">
-            <div class="container">
-                <div class="breadcrumb">
-                    <a href="/admin">Admin Dashboard</a> / <a href="/admin/albums">Albums</a> / <span>Add New Album</span>
+<header class = "header">
+    <div class = "header-inner">
+        <div class = "logo-container">
+            <a href = "/" class = "logo">
+                <h1>Music Store</h1>
+            </a>
+        </div>
+        <nav class = "nav">
+            <a href = "/" class = "nav-link">Home</a>
+            <a href = "/catalog" class = "nav-link">Catalog</a>
+            <a href = "/admin" class = "nav-link">Admin</a>
+            <a href = "/admin/albums" class = "nav-link">Albums</a>
+            <a href = "/admin/add-new-album" class = "nav-link active">Add Album</a>
+            <a href = "/logout" class = "button login">Logout</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class = "admin-header">
+        <div class = "container">
+            <div class = "breadcrumb">
+                <a href = "/admin">Admin Dashboard</a> / <a href = "/admin/albums">Albums</a> /
+                <span>Add New Album</span>
+            </div>
+            <h1 class = "page-title">Add New Album</h1>
+            <p class = "page-subtitle">Create a new album entry for the music catalog</p>
+        </div>
+    </div>
+
+    <section class = "add-album-section">
+        <div class = "container">
+            <div class = "form-layout">
+                <div class = "form-container">
+                    <form class = "album-form" id = "albumForm">
+                        <div class = "form-section">
+                            <h2 class = "section-title">Album Information</h2>
+
+                            <div class = "form-row">
+                                <div class = "form-group">
+                                    <label for = "albumTitle">Album Title *</label>
+                                    <input type = "text"
+                                           id = "albumTitle"
+                                           name = "albumTitle"
+                                           placeholder = "Enter album title"
+                                           required>
+                                </div>
+                                <div class = "form-group">
+                                    <label for = "albumArtist">Artist *</label>
+                                    <select id = "albumArtist" name = "albumArtist" required>
+                                        <option value = "">Select artist</option>
+                                        <option value = "the-night-owls">The Night Owls</option>
+                                        <option value = "digital-waves">Digital Waves</option>
+                                        <option value = "folk-masters">Folk Masters</option>
+                                        <option value = "modern-jazz-collective">Modern Jazz Collective</option>
+                                        <option value = "beach-boys-revival">Beach Boys Revival</option>
+                                        <option value = "city-beats">City Beats</option>
+                                        <option value = "underground-sounds">Underground Sounds</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class = "form-row">
+                                <div class = "form-group">
+                                    <label for = "albumGenre">Genre *</label>
+                                    <select id = "albumGenre" name = "albumGenre" required>
+                                        <option value = "">Select genre</option>
+                                        <option value = "pop">Pop</option>
+                                        <option value = "rock">Rock</option>
+                                        <option value = "electronic">Electronic</option>
+                                        <option value = "jazz">Jazz</option>
+                                        <option value = "classical">Classical</option>
+                                        <option value = "hip-hop">Hip-Hop</option>
+                                        <option value = "folk">Folk</option>
+                                        <option value = "country">Country</option>
+                                        <option value = "blues">Blues</option>
+                                    </select>
+                                </div>
+                                <div class = "form-group">
+                                    <label for = "albumYear">Release Year *</label>
+                                    <input type = "number"
+                                           id = "albumYear"
+                                           name = "albumYear"
+                                           min = "1900"
+                                           max = "2025"
+                                           placeholder = "2024"
+                                           required>
+                                </div>
+                            </div>
+
+                            <div class = "form-group">
+                                <label for = "albumDescription">Album Description</label>
+                                <textarea id = "albumDescription"
+                                          name = "albumDescription"
+                                          rows = "4"
+                                          placeholder = "Describe the album's concept, themes, and musical style..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class = "form-section">
+                            <h2 class = "section-title">Media & Artwork</h2>
+
+                            <div class = "form-group">
+                                <label for = "albumCover">Album Cover URL *</label>
+                                <input type = "url"
+                                       id = "albumCover"
+                                       name = "albumCover"
+                                       placeholder = "https://example.com/album-cover.jpg"
+                                       required>
+                            </div>
+
+                            <div class = "form-row">
+                                <div class = "form-group">
+                                    <label for = "albumDuration">Duration (minutes)</label>
+                                    <input type = "number"
+                                           id = "albumDuration"
+                                           name = "albumDuration"
+                                           min = "1"
+                                           max = "300"
+                                           placeholder = "45">
+                                </div>
+                                <div class = "form-group">
+                                    <label for = "trackCount">Number of Tracks</label>
+                                    <input type = "number"
+                                           id = "trackCount"
+                                           name = "trackCount"
+                                           min = "1"
+                                           max = "50"
+                                           placeholder = "12">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class = "form-section">
+                            <h2 class = "section-title">Pricing & Availability</h2>
+
+                            <div class = "form-row">
+                                <div class = "form-group">
+                                    <label for = "albumPrice">Price (USD) *</label>
+                                    <input type = "number"
+                                           id = "albumPrice"
+                                           name = "albumPrice"
+                                           step = "0.01"
+                                           min = "0"
+                                           placeholder = "12.99"
+                                           required>
+                                </div>
+                                <div class = "form-group">
+                                    <label for = "originalPrice">Original Price (if on sale)</label>
+                                    <input type = "number"
+                                           id = "originalPrice"
+                                           name = "originalPrice"
+                                           step = "0.01"
+                                           min = "0"
+                                           placeholder = "15.99">
+                                </div>
+                            </div>
+
+                            <div class = "form-row">
+                                <div class = "form-group">
+                                    <label for = "albumStatus">Status</label>
+                                    <select id = "albumStatus" name = "albumStatus">
+                                        <option value = "active">Active</option>
+                                        <option value = "inactive">Inactive</option>
+                                        <option value = "coming-soon">Coming Soon</option>
+                                        <option value = "pre-order">Pre-order</option>
+                                    </select>
+                                </div>
+                                <div class = "form-group">
+                                    <label for = "featured">Featured Album</label>
+                                    <select id = "featured" name = "featured">
+                                        <option value = "no">No</option>
+                                        <option value = "yes">Yes</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class = "form-group">
+                                <label class = "checkbox-container">
+                                    <input type = "checkbox" id = "newRelease" name = "newRelease">
+                                    <span class = "checkmark"></span>
+                                    Mark as New Release
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class = "form-section">
+                            <h2 class = "section-title">Track Listing</h2>
+
+                            <div class = "track-list" id = "trackList">
+                                <div class = "track-item">
+                                    <div class = "track-number">1</div>
+                                    <input type = "text"
+                                           name = "trackTitles[]"
+                                           placeholder = "Track title"
+                                           class = "track-title-input">
+                                    <input type = "text"
+                                           name = "trackDurations[]"
+                                           placeholder = "3:45"
+                                           class = "track-duration-input">
+                                    <button type = "button" class = "remove-track-btn" onclick = "removeTrack(this)">×
+                                    </button>
+                                </div>
+                            </div>
+
+                            <button type = "button" class = "add-track-btn" onclick = "addTrack()">+ Add Track</button>
+                        </div>
+
+                        <div class = "form-section">
+                            <h2 class = "section-title">Additional Information</h2>
+
+                            <div class = "form-row">
+                                <div class = "form-group">
+                                    <label for = "label">Record Label</label>
+                                    <input type = "text" id = "label" name = "label" placeholder = "Enter record label">
+                                </div>
+                                <div class = "form-group">
+                                    <label for = "producer">Producer</label>
+                                    <input type = "text"
+                                           id = "producer"
+                                           name = "producer"
+                                           placeholder = "Enter producer name">
+                                </div>
+                            </div>
+
+                            <div class = "form-group">
+                                <label for = "tags">Tags (comma-separated)</label>
+                                <input type = "text"
+                                       id = "tags"
+                                       name = "tags"
+                                       placeholder = "indie, alternative, acoustic">
+                            </div>
+                        </div>
+
+                        <div class = "form-actions">
+                            <button type = "button" class = "button secondary" onclick = "resetForm()">Reset Form
+                            </button>
+                            <button type = "button" class = "button" onclick = "saveDraft()">Save Draft</button>
+                            <button type = "submit" class = "button primary">Create Album</button>
+                        </div>
+                    </form>
                 </div>
-                <h1 class="page-title">Add New Album</h1>
-                <p class="page-subtitle">Create a new album entry for the music catalog</p>
-            </div>
-        </div>
 
-        <section class="add-album-section">
-            <div class="container">
-                <div class="form-layout">
-                    <div class="form-container">
-                        <form class="album-form" id="albumForm">
-                            <div class="form-section">
-                                <h2 class="section-title">Album Information</h2>
-                                
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="albumTitle">Album Title *</label>
-                                        <input type="text" id="albumTitle" name="albumTitle" placeholder="Enter album title" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="albumArtist">Artist *</label>
-                                        <select id="albumArtist" name="albumArtist" required>
-                                            <option value="">Select artist</option>
-                                            <option value="the-night-owls">The Night Owls</option>
-                                            <option value="digital-waves">Digital Waves</option>
-                                            <option value="folk-masters">Folk Masters</option>
-                                            <option value="modern-jazz-collective">Modern Jazz Collective</option>
-                                            <option value="beach-boys-revival">Beach Boys Revival</option>
-                                            <option value="city-beats">City Beats</option>
-                                            <option value="underground-sounds">Underground Sounds</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="albumGenre">Genre *</label>
-                                        <select id="albumGenre" name="albumGenre" required>
-                                            <option value="">Select genre</option>
-                                            <option value="pop">Pop</option>
-                                            <option value="rock">Rock</option>
-                                            <option value="electronic">Electronic</option>
-                                            <option value="jazz">Jazz</option>
-                                            <option value="classical">Classical</option>
-                                            <option value="hip-hop">Hip-Hop</option>
-                                            <option value="folk">Folk</option>
-                                            <option value="country">Country</option>
-                                            <option value="blues">Blues</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="albumYear">Release Year *</label>
-                                        <input type="number" id="albumYear" name="albumYear" min="1900" max="2025" placeholder="2024" required>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="albumDescription">Album Description</label>
-                                    <textarea id="albumDescription" name="albumDescription" rows="4" placeholder="Describe the album's concept, themes, and musical style..."></textarea>
+                <div class = "form-sidebar">
+                    <div class = "preview-card card">
+                        <h3>Album Preview</h3>
+                        <div class = "album-preview">
+                            <div class = "preview-cover">
+                                <img id = "previewCover"
+                                     src = "https://via.placeholder.com/200x200/746ab0/ffffff?text=Album+Cover"
+                                     alt = "Album Preview">
+                                <div class = "new-release-badge" id = "newReleaseBadge" style = "display: none;">NEW
                                 </div>
                             </div>
-
-                            <div class="form-section">
-                                <h2 class="section-title">Media & Artwork</h2>
-                                
-                                <div class="form-group">
-                                    <label for="albumCover">Album Cover URL *</label>
-                                    <input type="url" id="albumCover" name="albumCover" placeholder="https://example.com/album-cover.jpg" required>
-                                </div>
-
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="albumDuration">Duration (minutes)</label>
-                                        <input type="number" id="albumDuration" name="albumDuration" min="1" max="300" placeholder="45">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="trackCount">Number of Tracks</label>
-                                        <input type="number" id="trackCount" name="trackCount" min="1" max="50" placeholder="12">
-                                    </div>
+                            <div class = "preview-info">
+                                <h4 id = "previewTitle">Album Title</h4>
+                                <p id = "previewArtist">Artist Name</p>
+                                <p id = "previewGenre">Genre • 2024</p>
+                                <div class = "preview-price">
+                                    <span id = "previewPrice">$12.99</span>
+                                    <span id = "previewOriginalPrice" style = "display: none;"></span>
                                 </div>
                             </div>
-
-                            <div class="form-section">
-                                <h2 class="section-title">Pricing & Availability</h2>
-                                
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="albumPrice">Price (USD) *</label>
-                                        <input type="number" id="albumPrice" name="albumPrice" step="0.01" min="0" placeholder="12.99" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="originalPrice">Original Price (if on sale)</label>
-                                        <input type="number" id="originalPrice" name="originalPrice" step="0.01" min="0" placeholder="15.99">
-                                    </div>
-                                </div>
-
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="albumStatus">Status</label>
-                                        <select id="albumStatus" name="albumStatus">
-                                            <option value="active">Active</option>
-                                            <option value="inactive">Inactive</option>
-                                            <option value="coming-soon">Coming Soon</option>
-                                            <option value="pre-order">Pre-order</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="featured">Featured Album</label>
-                                        <select id="featured" name="featured">
-                                            <option value="no">No</option>
-                                            <option value="yes">Yes</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="checkbox-container">
-                                        <input type="checkbox" id="newRelease" name="newRelease">
-                                        <span class="checkmark"></span>
-                                        Mark as New Release
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="form-section">
-                                <h2 class="section-title">Track Listing</h2>
-                                
-                                <div class="track-list" id="trackList">
-                                    <div class="track-item">
-                                        <div class="track-number">1</div>
-                                        <input type="text" name="trackTitles[]" placeholder="Track title" class="track-title-input">
-                                        <input type="text" name="trackDurations[]" placeholder="3:45" class="track-duration-input">
-                                        <button type="button" class="remove-track-btn" onclick="removeTrack(this)">×</button>
-                                    </div>
-                                </div>
-                                
-                                <button type="button" class="add-track-btn" onclick="addTrack()">+ Add Track</button>
-                            </div>
-
-                            <div class="form-section">
-                                <h2 class="section-title">Additional Information</h2>
-                                
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="label">Record Label</label>
-                                        <input type="text" id="label" name="label" placeholder="Enter record label">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="producer">Producer</label>
-                                        <input type="text" id="producer" name="producer" placeholder="Enter producer name">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="tags">Tags (comma-separated)</label>
-                                    <input type="text" id="tags" name="tags" placeholder="indie, alternative, acoustic">
-                                </div>
-                            </div>
-
-                            <div class="form-actions">
-                                <button type="button" class="button secondary" onclick="resetForm()">Reset Form</button>
-                                <button type="button" class="button" onclick="saveDraft()">Save Draft</button>
-                                <button type="submit" class="button primary">Create Album</button>
-                            </div>
-                        </form>
+                        </div>
                     </div>
 
-                    <div class="form-sidebar">
-                        <div class="preview-card card">
-                            <h3>Album Preview</h3>
-                            <div class="album-preview">
-                                <div class="preview-cover">
-                                    <img id="previewCover" src="https://via.placeholder.com/200x200/746ab0/ffffff?text=Album+Cover" alt="Album Preview">
-                                    <div class="new-release-badge" id="newReleaseBadge" style="display: none;">NEW</div>
-                                </div>
-                                <div class="preview-info">
-                                    <h4 id="previewTitle">Album Title</h4>
-                                    <p id="previewArtist">Artist Name</p>
-                                    <p id="previewGenre">Genre • 2024</p>
-                                    <div class="preview-price">
-                                        <span id="previewPrice">$12.99</span>
-                                        <span id="previewOriginalPrice" style="display: none;"></span>
-                                    </div>
-                                </div>
+                    <div class = "help-card card">
+                        <h3>💡 Tips</h3>
+                        <ul class = "help-list">
+                            <li>Use high-resolution cover art (minimum 1000x1000px)</li>
+                            <li>Write compelling descriptions to attract listeners</li>
+                            <li>Set competitive pricing based on market research</li>
+                            <li>Add all tracks for complete album experience</li>
+                            <li>Use relevant tags for better discoverability</li>
+                        </ul>
+                    </div>
+
+                    <div class = "stats-card card">
+                        <h3>📊 Quick Stats</h3>
+                        <div class = "stats-grid">
+                            <div class = "stat-item">
+                                <span class = "stat-label">Total Albums</span>
+                                <span class = "stat-value">1,247</span>
                             </div>
-                        </div>
-
-                        <div class="help-card card">
-                            <h3>💡 Tips</h3>
-                            <ul class="help-list">
-                                <li>Use high-resolution cover art (minimum 1000x1000px)</li>
-                                <li>Write compelling descriptions to attract listeners</li>
-                                <li>Set competitive pricing based on market research</li>
-                                <li>Add all tracks for complete album experience</li>
-                                <li>Use relevant tags for better discoverability</li>
-                            </ul>
-                        </div>
-
-                        <div class="stats-card card">
-                            <h3>📊 Quick Stats</h3>
-                            <div class="stats-grid">
-                                <div class="stat-item">
-                                    <span class="stat-label">Total Albums</span>
-                                    <span class="stat-value">1,247</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-label">This Month</span>
-                                    <span class="stat-value">+23</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-label">Avg. Price</span>
-                                    <span class="stat-value">$13.45</span>
-                                </div>
+                            <div class = "stat-item">
+                                <span class = "stat-label">This Month</span>
+                                <span class = "stat-value">+23</span>
+                            </div>
+                            <div class = "stat-item">
+                                <span class = "stat-label">Avg. Price</span>
+                                <span class = "stat-value">$13.45</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+</main>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Music Store App</h3>
-                <p>Your ultimate destination for digital music</p>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/catalog">Catalog</a></li>
-                    <li><a href="/cart">Shopping Cart</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Support</h4>
-                <ul>
-                    <li><a href="/contact">Contact Us</a></li>
-                    <li><a href="/help">Help Center</a></li>
-                    <li><a href="/terms">Terms of Service</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Connect</h4>
-                <div class="social-links">
-                    <a href="#" class="social-link">Facebook</a>
-                    <a href="#" class="social-link">Twitter</a>
-                    <a href="#" class="social-link">Instagram</a>
-                </div>
+<footer class = "footer">
+    <div class = "footer-content">
+        <div class = "footer-section">
+            <h3>Music Store</h3>
+            <p>Your ultimate destination for digital music</p>
+        </div>
+        <div class = "footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href = "/">Home</a></li>
+                <li><a href = "/catalog">Catalog</a></li>
+                <li><a href = "/cart">Shopping Cart</a></li>
+            </ul>
+        </div>
+        <div class = "footer-section">
+            <h4>Support</h4>
+            <ul>
+                <li><a href = "/contact">Contact Us</a></li>
+                <li><a href = "/help">Help Center</a></li>
+                <li><a href = "/terms">Terms of Service</a></li>
+            </ul>
+        </div>
+        <div class = "footer-section">
+            <h4>Connect</h4>
+            <div class = "social-links">
+                <a href = "#" class = "social-link">Facebook</a>
+                <a href = "#" class = "social-link">Twitter</a>
+                <a href = "#" class = "social-link">Instagram</a>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Music Store App. All rights reserved.</p>
-        </div>
-    </footer>
+    </div>
+    <div class = "footer-bottom">
+        <p>&copy; 2025 Music Store. All rights reserved.</p>
+    </div>
+</footer>
 
-    <script>
-        let trackCount = 1;
+<script>
+    let trackCount = 1;
 
-        // Form preview functionality
-        function updatePreview() {
-            const title = document.getElementById('albumTitle').value || 'Album Title';
-            const artist = document.getElementById('albumArtist').selectedOptions[0]?.text || 'Artist Name';
-            const genre = document.getElementById('albumGenre').value || 'Genre';
-            const year = document.getElementById('albumYear').value || '2024';
-            const price = document.getElementById('albumPrice').value || '12.99';
-            const originalPrice = document.getElementById('originalPrice').value;
-            const cover = document.getElementById('albumCover').value || 'https://via.placeholder.com/200x200/746ab0/ffffff?text=Album+Cover';
-            const isNewRelease = document.getElementById('newRelease').checked;
+    // Form preview functionality
+    function updatePreview() {
+        const title = document.getElementById('albumTitle').value || 'Album Title';
+        const artist = document.getElementById('albumArtist').selectedOptions[0]?.text || 'Artist Name';
+        const genre = document.getElementById('albumGenre').value || 'Genre';
+        const year = document.getElementById('albumYear').value || '2024';
+        const price = document.getElementById('albumPrice').value || '12.99';
+        const originalPrice = document.getElementById('originalPrice').value;
+        const cover = document.getElementById('albumCover').value || 'https://via.placeholder.com/200x200/746ab0/ffffff?text=Album+Cover';
+        const isNewRelease = document.getElementById('newRelease').checked;
 
-            document.getElementById('previewTitle').textContent = title;
-            document.getElementById('previewArtist').textContent = artist;
-            document.getElementById('previewGenre').textContent = `${genre} • ${year}`;
-            document.getElementById('previewPrice').textContent = `$${price}`;
-            document.getElementById('previewCover').src = cover;
+        document.getElementById('previewTitle').textContent = title;
+        document.getElementById('previewArtist').textContent = artist;
+        document.getElementById('previewGenre').textContent = `${genre} • ${year}`;
+        document.getElementById('previewPrice').textContent = `$${price}`;
+        document.getElementById('previewCover').src = cover;
 
-            // Handle original price
-            const originalPriceElement = document.getElementById('previewOriginalPrice');
-            if (originalPrice) {
-                originalPriceElement.textContent = `$${originalPrice}`;
-                originalPriceElement.style.display = 'inline';
-                originalPriceElement.style.textDecoration = 'line-through';
-                originalPriceElement.style.color = 'rgba(255, 255, 255, 0.5)';
-                originalPriceElement.style.marginLeft = '8px';
-            } else {
-                originalPriceElement.style.display = 'none';
-            }
-
-            // Handle new release badge
-            const newReleaseBadge = document.getElementById('newReleaseBadge');
-            newReleaseBadge.style.display = isNewRelease ? 'block' : 'none';
+        // Handle original price
+        const originalPriceElement = document.getElementById('previewOriginalPrice');
+        if (originalPrice) {
+            originalPriceElement.textContent = `$${originalPrice}`;
+            originalPriceElement.style.display = 'inline';
+            originalPriceElement.style.textDecoration = 'line-through';
+            originalPriceElement.style.color = 'rgba(255, 255, 255, 0.5)';
+            originalPriceElement.style.marginLeft = '8px';
+        } else {
+            originalPriceElement.style.display = 'none';
         }
 
-        // Track management
-        function addTrack() {
-            trackCount++;
-            const trackList = document.getElementById('trackList');
-            const trackItem = document.createElement('div');
-            trackItem.className = 'track-item';
-            trackItem.innerHTML = `
+        // Handle new release badge
+        const newReleaseBadge = document.getElementById('newReleaseBadge');
+        newReleaseBadge.style.display = isNewRelease ? 'block' : 'none';
+    }
+
+    // Track management
+    function addTrack() {
+        trackCount++;
+        const trackList = document.getElementById('trackList');
+        const trackItem = document.createElement('div');
+        trackItem.className = 'track-item';
+        trackItem.innerHTML = `
                 <div class="track-number">${trackCount}</div>
                 <input type="text" name="trackTitles[]" placeholder="Track title" class="track-title-input">
                 <input type="text" name="trackDurations[]" placeholder="3:45" class="track-duration-input">
                 <button type="button" class="remove-track-btn" onclick="removeTrack(this)">×</button>
             `;
-            trackList.appendChild(trackItem);
-        }
+        trackList.appendChild(trackItem);
+    }
 
-        function removeTrack(button) {
-            const trackItem = button.parentElement;
-            trackItem.remove();
-            updateTrackNumbers();
-        }
+    function removeTrack(button) {
+        const trackItem = button.parentElement;
+        trackItem.remove();
+        updateTrackNumbers();
+    }
 
-        function updateTrackNumbers() {
-            const trackItems = document.querySelectorAll('.track-item');
-            trackItems.forEach((item, index) => {
-                item.querySelector('.track-number').textContent = index + 1;
-            });
-        }
-
-        // Add event listeners for live preview
-        document.addEventListener('DOMContentLoaded', function() {
-            const previewFields = ['albumTitle', 'albumArtist', 'albumGenre', 'albumYear', 'albumPrice', 'originalPrice', 'albumCover', 'newRelease'];
-            previewFields.forEach(field => {
-                document.getElementById(field).addEventListener('input', updatePreview);
-                document.getElementById(field).addEventListener('change', updatePreview);
-            });
+    function updateTrackNumbers() {
+        const trackItems = document.querySelectorAll('.track-item');
+        trackItems.forEach((item, index) => {
+            item.querySelector('.track-number').textContent = index + 1;
         });
+    }
 
-        function resetForm() {
-            if (confirm('Are you sure you want to reset the form? All data will be lost.')) {
-                document.getElementById('albumForm').reset();
-                updatePreview();
-                // Reset track list to default
-                const trackList = document.getElementById('trackList');
-                trackList.innerHTML = `
+    // Add event listeners for live preview
+    document.addEventListener('DOMContentLoaded', function () {
+        const previewFields = ['albumTitle', 'albumArtist', 'albumGenre', 'albumYear', 'albumPrice', 'originalPrice', 'albumCover', 'newRelease'];
+        previewFields.forEach(field => {
+            document.getElementById(field).addEventListener('input', updatePreview);
+            document.getElementById(field).addEventListener('change', updatePreview);
+        });
+    });
+
+    function resetForm() {
+        if (confirm('Are you sure you want to reset the form? All data will be lost.')) {
+            document.getElementById('albumForm').reset();
+            updatePreview();
+            // Reset track list to default
+            const trackList = document.getElementById('trackList');
+            trackList.innerHTML = `
                     <div class="track-item">
                         <div class="track-number">1</div>
                         <input type="text" name="trackTitles[]" placeholder="Track title" class="track-title-input">
@@ -379,13 +439,15 @@
                         <button type="button" class="remove-track-btn" onclick="removeTrack(this)">×</button>
                     </div>
                 `;
-                trackCount = 1;
-            }
+            trackCount = 1;
         }
+    }
 
-        function saveDraft() {
-            alert('Draft saved successfully!');
-        }
-    </script>
+    function saveDraft() {
+        alert('Draft saved successfully!');
+    }
+</script>
+
 </body>
+
 </html>

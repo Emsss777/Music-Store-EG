@@ -1,255 +1,264 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang = "en">
+
 <head>
-    <meta charset="UTF-8">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/static/css/common.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/order-details.css">
-    <title>Order Details #12345 | Music Store App</title>
+    <meta charset = "UTF-8">
+    <link rel = "preconnect" href = "https://fonts.googleapis.com">
+    <link rel = "preconnect" href = "https://fonts.gstatic.com" crossorigin>
+    <link href = "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel = "stylesheet">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" type = "text/css" href = "/css/common.css">
+    <link rel = "stylesheet" type = "text/css" href = "/css/order-details.css">
+    <title>Order Details #12345 | Music Store</title>
 </head>
+
 <body>
-    <header class="header">
-        <div class="header-inner">
-            <div class="logo-container">
-                <a href="/" class="logo">
-                    <h1>Music Store App</h1>
-                </a>
-            </div>
-            <nav class="nav">
-                <a href="/" class="nav-link">Home</a>
-                <a href="/catalog" class="nav-link">Catalog</a>
-                <a href="/cart" class="nav-link">Cart (3)</a>
-                <a href="/profile" class="nav-link">Profile</a>
-                <a href="/my-orders" class="nav-link">My Orders</a>
-                <a href="/logout" class="button login">Logout</a>
-            </nav>
-        </div>
-    </header>
 
-    <main>
-        <div class="order-details-header">
-            <div class="container">
-                <div class="breadcrumb">
-                    <a href="/my-orders">My Orders</a> / <span>Order #12345</span>
+<header class = "header">
+    <div class = "header-inner">
+        <div class = "logo-container">
+            <a href = "/" class = "logo">
+                <h1>Music Store</h1>
+            </a>
+        </div>
+        <nav class = "nav">
+            <a href = "/" class = "nav-link">Home</a>
+            <a href = "/catalog" class = "nav-link">Catalog</a>
+            <a href = "/cart" class = "nav-link">Cart (3)</a>
+            <a href = "/profile" class = "nav-link">Profile</a>
+            <a href = "/my-orders" class = "nav-link">My Orders</a>
+            <a href = "/logout" class = "button login">Logout</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class = "order-details-header">
+        <div class = "container">
+            <div class = "breadcrumb">
+                <a href = "/my-orders">My Orders</a> / <span>Order #12345</span>
+            </div>
+            <h1 class = "page-title">Order Details</h1>
+            <p class = "page-subtitle">Order #12345 • January 15, 2025</p>
+        </div>
+    </div>
+
+    <section class = "order-details-section">
+        <div class = "container">
+            <div class = "order-details-layout">
+                <div class = "order-summary-card card">
+                    <div class = "card-header">
+                        <h2>Order Summary</h2>
+                        <span class = "status-badge completed">Completed</span>
+                    </div>
+
+                    <div class = "order-info">
+                        <div class = "info-row">
+                            <span class = "info-label">Order Number</span>
+                            <span class = "info-value">#12345</span>
+                        </div>
+                        <div class = "info-row">
+                            <span class = "info-label">Order Date</span>
+                            <span class = "info-value">January 15, 2025</span>
+                        </div>
+                        <div class = "info-row">
+                            <span class = "info-label">Payment Method</span>
+                            <span class = "info-value">Credit Card ending in 4242</span>
+                        </div>
+                        <div class = "info-row">
+                            <span class = "info-label">Total Amount</span>
+                            <span class = "info-value total">$34.53</span>
+                        </div>
+                    </div>
                 </div>
-                <h1 class="page-title">Order Details</h1>
-                <p class="page-subtitle">Order #12345 • January 15, 2025</p>
-            </div>
-        </div>
 
-        <section class="order-details-section">
-            <div class="container">
-                <div class="order-details-layout">
-                    <div class="order-summary-card card">
-                        <div class="card-header">
-                            <h2>Order Summary</h2>
-                            <span class="status-badge completed">Completed</span>
-                        </div>
-                        
-                        <div class="order-info">
-                            <div class="info-row">
-                                <span class="info-label">Order Number</span>
-                                <span class="info-value">#12345</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="info-label">Order Date</span>
-                                <span class="info-value">January 15, 2025</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="info-label">Payment Method</span>
-                                <span class="info-value">Credit Card ending in 4242</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="info-label">Total Amount</span>
-                                <span class="info-value total">$34.53</span>
-                            </div>
-                        </div>
+                <div class = "order-items-card card">
+                    <div class = "card-header">
+                        <h2>Ordered Items</h2>
+                        <button class = "download-all-btn">Download All</button>
                     </div>
 
-                    <div class="order-items-card card">
-                        <div class="card-header">
-                            <h2>Ordered Items</h2>
-                            <button class="download-all-btn">Download All</button>
-                        </div>
-                        
-                        <div class="items-list">
-                            <div class="order-item">
-                                <div class="item-image">
-                                    <img src="https://via.placeholder.com/100x100/746ab0/ffffff?text=Album" alt="Midnight Dreams">
-                                </div>
-                                <div class="item-details">
-                                    <h3 class="item-title">Midnight Dreams</h3>
-                                    <p class="item-artist">The Night Owls</p>
-                                    <div class="item-meta">
-                                        <span class="item-genre">Pop Rock</span>
-                                        <span class="item-year">2024</span>
-                                    </div>
-                                    <div class="item-price">$12.99</div>
-                                </div>
-                                <div class="item-actions">
-                                    <button class="download-btn primary">Download</button>
-                                    <button class="view-btn">View Album</button>
-                                </div>
+                    <div class = "items-list">
+                        <div class = "order-item">
+                            <div class = "item-image">
+                                <img src = "https://via.placeholder.com/100x100/746ab0/ffffff?text=Album"
+                                     alt = "Midnight Dreams">
                             </div>
+                            <div class = "item-details">
+                                <h3 class = "item-title">Midnight Dreams</h3>
+                                <p class = "item-artist">The Night Owls</p>
+                                <div class = "item-meta">
+                                    <span class = "item-genre">Pop Rock</span>
+                                    <span class = "item-year">2024</span>
+                                </div>
+                                <div class = "item-price">$12.99</div>
+                            </div>
+                            <div class = "item-actions">
+                                <button class = "download-btn primary">Download</button>
+                                <button class = "view-btn">View Album</button>
+                            </div>
+                        </div>
 
-                            <div class="order-item">
-                                <div class="item-image">
-                                    <img src="https://via.placeholder.com/100x100/6a61a4/ffffff?text=Album" alt="Electric Pulse">
-                                </div>
-                                <div class="item-details">
-                                    <h3 class="item-title">Electric Pulse</h3>
-                                    <p class="item-artist">Digital Waves</p>
-                                    <div class="item-meta">
-                                        <span class="item-genre">Electronic</span>
-                                        <span class="item-year">2024</span>
-                                    </div>
-                                    <div class="item-price">$9.99</div>
-                                </div>
-                                <div class="item-actions">
-                                    <button class="download-btn primary">Download</button>
-                                    <button class="view-btn">View Album</button>
-                                </div>
+                        <div class = "order-item">
+                            <div class = "item-image">
+                                <img src = "https://via.placeholder.com/100x100/6a61a4/ffffff?text=Album"
+                                     alt = "Electric Pulse">
                             </div>
+                            <div class = "item-details">
+                                <h3 class = "item-title">Electric Pulse</h3>
+                                <p class = "item-artist">Digital Waves</p>
+                                <div class = "item-meta">
+                                    <span class = "item-genre">Electronic</span>
+                                    <span class = "item-year">2024</span>
+                                </div>
+                                <div class = "item-price">$9.99</div>
+                            </div>
+                            <div class = "item-actions">
+                                <button class = "download-btn primary">Download</button>
+                                <button class = "view-btn">View Album</button>
+                            </div>
+                        </div>
 
-                            <div class="order-item">
-                                <div class="item-image">
-                                    <img src="https://via.placeholder.com/100x100/605899/ffffff?text=Album" alt="Acoustic Stories">
-                                </div>
-                                <div class="item-details">
-                                    <h3 class="item-title">Acoustic Stories</h3>
-                                    <p class="item-artist">Folk Masters</p>
-                                    <div class="item-meta">
-                                        <span class="item-genre">Folk</span>
-                                        <span class="item-year">2023</span>
-                                    </div>
-                                    <div class="item-price">$14.99</div>
-                                </div>
-                                <div class="item-actions">
-                                    <button class="download-btn primary">Download</button>
-                                    <button class="view-btn">View Album</button>
-                                </div>
+                        <div class = "order-item">
+                            <div class = "item-image">
+                                <img src = "https://via.placeholder.com/100x100/605899/ffffff?text=Album"
+                                     alt = "Acoustic Stories">
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="billing-info-card card">
-                        <div class="card-header">
-                            <h2>Billing Information</h2>
-                        </div>
-                        
-                        <div class="billing-details">
-                            <div class="billing-section">
-                                <h3>Billing Address</h3>
-                                <div class="address-info">
-                                    <p>John Doe</p>
-                                    <p>123 Music Street</p>
-                                    <p>Apt 4B</p>
-                                    <p>New York, NY 10001</p>
-                                    <p>United States</p>
+                            <div class = "item-details">
+                                <h3 class = "item-title">Acoustic Stories</h3>
+                                <p class = "item-artist">Folk Masters</p>
+                                <div class = "item-meta">
+                                    <span class = "item-genre">Folk</span>
+                                    <span class = "item-year">2023</span>
                                 </div>
+                                <div class = "item-price">$14.99</div>
                             </div>
-                            
-                            <div class="billing-section">
-                                <h3>Payment Details</h3>
-                                <div class="payment-info">
-                                    <p>Visa ending in 4242</p>
-                                    <p>Expires 12/26</p>
-                                    <p>john.doe@example.com</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="order-timeline-card card">
-                        <div class="card-header">
-                            <h2>Order Timeline</h2>
-                        </div>
-                        
-                        <div class="timeline">
-                            <div class="timeline-item completed">
-                                <div class="timeline-marker"></div>
-                                <div class="timeline-content">
-                                    <h4>Order Placed</h4>
-                                    <p>Your order has been successfully placed</p>
-                                    <span class="timeline-date">January 15, 2025 at 2:30 PM</span>
-                                </div>
-                            </div>
-                            
-                            <div class="timeline-item completed">
-                                <div class="timeline-marker"></div>
-                                <div class="timeline-content">
-                                    <h4>Payment Processed</h4>
-                                    <p>Payment has been successfully processed</p>
-                                    <span class="timeline-date">January 15, 2025 at 2:31 PM</span>
-                                </div>
-                            </div>
-                            
-                            <div class="timeline-item completed">
-                                <div class="timeline-marker"></div>
-                                <div class="timeline-content">
-                                    <h4>Order Completed</h4>
-                                    <p>Your digital downloads are now available</p>
-                                    <span class="timeline-date">January 15, 2025 at 2:32 PM</span>
-                                </div>
-                            </div>
-                            
-                            <div class="timeline-item">
-                                <div class="timeline-marker"></div>
-                                <div class="timeline-content">
-                                    <h4>Download Completed</h4>
-                                    <p>All files have been downloaded</p>
-                                    <span class="timeline-date">Pending</span>
-                                </div>
+                            <div class = "item-actions">
+                                <button class = "download-btn primary">Download</button>
+                                <button class = "view-btn">View Album</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="order-actions">
-                    <button class="reorder-btn">Reorder Items</button>
-                    <a href="/my-orders" class="back-to-orders-btn">Back to Orders</a>
-                </div>
-            </div>
-        </section>
-    </main>
+                <div class = "billing-info-card card">
+                    <div class = "card-header">
+                        <h2>Billing Information</h2>
+                    </div>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Music Store App</h3>
-                <p>Your ultimate destination for digital music</p>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/catalog">Catalog</a></li>
-                    <li><a href="/cart">Shopping Cart</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Support</h4>
-                <ul>
-                    <li><a href="/contact">Contact Us</a></li>
-                    <li><a href="/help">Help Center</a></li>
-                    <li><a href="/terms">Terms of Service</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Connect</h4>
-                <div class="social-links">
-                    <a href="#" class="social-link">Facebook</a>
-                    <a href="#" class="social-link">Twitter</a>
-                    <a href="#" class="social-link">Instagram</a>
+                    <div class = "billing-details">
+                        <div class = "billing-section">
+                            <h3>Billing Address</h3>
+                            <div class = "address-info">
+                                <p>John Doe</p>
+                                <p>123 Music Street</p>
+                                <p>Apt 4B</p>
+                                <p>New York, NY 10001</p>
+                                <p>United States</p>
+                            </div>
+                        </div>
+
+                        <div class = "billing-section">
+                            <h3>Payment Details</h3>
+                            <div class = "payment-info">
+                                <p>Visa ending in 4242</p>
+                                <p>Expires 12/26</p>
+                                <p>john.doe@example.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class = "order-timeline-card card">
+                    <div class = "card-header">
+                        <h2>Order Timeline</h2>
+                    </div>
+
+                    <div class = "timeline">
+                        <div class = "timeline-item completed">
+                            <div class = "timeline-marker"></div>
+                            <div class = "timeline-content">
+                                <h4>Order Placed</h4>
+                                <p>Your order has been successfully placed</p>
+                                <span class = "timeline-date">January 15, 2025 at 2:30 PM</span>
+                            </div>
+                        </div>
+
+                        <div class = "timeline-item completed">
+                            <div class = "timeline-marker"></div>
+                            <div class = "timeline-content">
+                                <h4>Payment Processed</h4>
+                                <p>Payment has been successfully processed</p>
+                                <span class = "timeline-date">January 15, 2025 at 2:31 PM</span>
+                            </div>
+                        </div>
+
+                        <div class = "timeline-item completed">
+                            <div class = "timeline-marker"></div>
+                            <div class = "timeline-content">
+                                <h4>Order Completed</h4>
+                                <p>Your digital downloads are now available</p>
+                                <span class = "timeline-date">January 15, 2025 at 2:32 PM</span>
+                            </div>
+                        </div>
+
+                        <div class = "timeline-item">
+                            <div class = "timeline-marker"></div>
+                            <div class = "timeline-content">
+                                <h4>Download Completed</h4>
+                                <p>All files have been downloaded</p>
+                                <span class = "timeline-date">Pending</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <div class = "order-actions">
+                <button class = "reorder-btn">Reorder Items</button>
+                <a href = "/my-orders" class = "back-to-orders-btn">Back to Orders</a>
+            </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Music Store App. All rights reserved.</p>
+    </section>
+</main>
+
+<footer class = "footer">
+    <div class = "footer-content">
+        <div class = "footer-section">
+            <h3>Music Store</h3>
+            <p>Your ultimate destination for digital music</p>
         </div>
-    </footer>
+        <div class = "footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href = "/">Home</a></li>
+                <li><a href = "/catalog">Catalog</a></li>
+                <li><a href = "/cart">Shopping Cart</a></li>
+            </ul>
+        </div>
+        <div class = "footer-section">
+            <h4>Support</h4>
+            <ul>
+                <li><a href = "/contact">Contact Us</a></li>
+                <li><a href = "/help">Help Center</a></li>
+                <li><a href = "/terms">Terms of Service</a></li>
+            </ul>
+        </div>
+        <div class = "footer-section">
+            <h4>Connect</h4>
+            <div class = "social-links">
+                <a href = "#" class = "social-link">Facebook</a>
+                <a href = "#" class = "social-link">Twitter</a>
+                <a href = "#" class = "social-link">Instagram</a>
+            </div>
+        </div>
+    </div>
+    <div class = "footer-bottom">
+        <p>&copy; 2025 Music Store. All rights reserved.</p>
+    </div>
+</footer>
+
 </body>
+
 </html>

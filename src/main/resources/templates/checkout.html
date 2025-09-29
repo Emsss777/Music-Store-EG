@@ -1,237 +1,251 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang = "en">
+
 <head>
-    <meta charset="UTF-8">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/static/css/common.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/checkout.css">
-    <title>Checkout | Music Store App</title>
+    <meta charset = "UTF-8">
+    <link rel = "preconnect" href = "https://fonts.googleapis.com">
+    <link rel = "preconnect" href = "https://fonts.gstatic.com" crossorigin>
+    <link href = "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel = "stylesheet">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" type = "text/css" href = "/css/common.css">
+    <link rel = "stylesheet" type = "text/css" href = "/css/checkout.css">
+    <title>Checkout | Music Store</title>
 </head>
+
 <body>
-    <header class="header">
-        <div class="header-inner">
-            <div class="logo-container">
-                <a href="/" class="logo">
-                    <h1>Music Store App</h1>
-                </a>
-            </div>
-            <nav class="nav">
-                <a href="/" class="nav-link">Home</a>
-                <a href="/catalog" class="nav-link">Catalog</a>
-                <a href="/cart" class="nav-link">Cart (3)</a>
-                <a href="/profile" class="nav-link">Profile</a>
-                <a href="/login" class="button login">Login</a>
-                <a href="/register" class="button register">Register</a>
-            </nav>
+
+<header class = "header">
+    <div class = "header-inner">
+        <div class = "logo-container">
+            <a href = "/" class = "logo">
+                <h1>Music Store</h1>
+            </a>
         </div>
-    </header>
+        <nav class = "nav">
+            <a href = "/" class = "nav-link">Home</a>
+            <a href = "/catalog" class = "nav-link">Catalog</a>
+            <a href = "/cart" class = "nav-link">Cart (3)</a>
+            <a href = "/profile" class = "nav-link">Profile</a>
+            <a href = "/login" class = "button login">Login</a>
+            <a href = "/register" class = "button register">Register</a>
+        </nav>
+    </div>
+</header>
 
-    <main>
-        <div class="checkout-header">
-            <div class="container">
-                <h1 class="page-title">Secure Checkout</h1>
-                <p class="page-subtitle">Complete your purchase securely</p>
-            </div>
+<main>
+    <div class = "checkout-header">
+        <div class = "container">
+            <h1 class = "page-title">Secure Checkout</h1>
+            <p class = "page-subtitle">Complete your purchase securely</p>
         </div>
+    </div>
 
-        <section class="checkout-section">
-            <div class="container">
-                <div class="checkout-layout">
-                    <div class="checkout-form">
-                        <form class="checkout-form-content">
-                            <!-- Billing Information -->
-                            <div class="form-section">
-                                <h2 class="section-title">Billing Information</h2>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="firstName">First Name *</label>
-                                        <input type="text" id="firstName" name="firstName" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="lastName">Last Name *</label>
-                                        <input type="text" id="lastName" name="lastName" required>
-                                    </div>
+    <section class = "checkout-section">
+        <div class = "container">
+            <div class = "checkout-layout">
+                <div class = "checkout-form">
+                    <form class = "checkout-form-content">
+                        <!-- Billing Information -->
+                        <div class = "form-section">
+                            <h2 class = "section-title">Billing Information</h2>
+                            <div class = "form-row">
+                                <div class = "form-group">
+                                    <label for = "firstName">First Name *</label>
+                                    <input type = "text" id = "firstName" name = "firstName" required>
                                 </div>
-                                <div class="form-group">
-                                    <label for="email">Email Address *</label>
-                                    <input type="email" id="email" name="email" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="address">Street Address *</label>
-                                    <input type="text" id="address" name="address" required>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="city">City *</label>
-                                        <input type="text" id="city" name="city" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="state">State/Province *</label>
-                                        <input type="text" id="state" name="state" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="zipCode">ZIP/Postal Code *</label>
-                                        <input type="text" id="zipCode" name="zipCode" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="country">Country *</label>
-                                    <select id="country" name="country" required>
-                                        <option value="">Select Country</option>
-                                        <option value="US">United States</option>
-                                        <option value="CA">Canada</option>
-                                        <option value="UK">United Kingdom</option>
-                                        <option value="DE">Germany</option>
-                                        <option value="FR">France</option>
-                                        <option value="other">Other</option>
-                                    </select>
+                                <div class = "form-group">
+                                    <label for = "lastName">Last Name *</label>
+                                    <input type = "text" id = "lastName" name = "lastName" required>
                                 </div>
                             </div>
-
-                            <!-- Payment Information -->
-                            <div class="form-section">
-                                <h2 class="section-title">Payment Information</h2>
-                                <div class="form-group">
-                                    <label for="cardNumber">Card Number *</label>
-                                    <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" required>
+                            <div class = "form-group">
+                                <label for = "email">Email Address *</label>
+                                <input type = "email" id = "email" name = "email" required>
+                            </div>
+                            <div class = "form-group">
+                                <label for = "address">Street Address *</label>
+                                <input type = "text" id = "address" name = "address" required>
+                            </div>
+                            <div class = "form-row">
+                                <div class = "form-group">
+                                    <label for = "city">City *</label>
+                                    <input type = "text" id = "city" name = "city" required>
                                 </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="expiryDate">Expiry Date *</label>
-                                        <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="cvv">CVV *</label>
-                                        <input type="text" id="cvv" name="cvv" placeholder="123" required>
-                                    </div>
+                                <div class = "form-group">
+                                    <label for = "state">State/Province *</label>
+                                    <input type = "text" id = "state" name = "state" required>
                                 </div>
-                                <div class="form-group">
-                                    <label for="cardName">Name on Card *</label>
-                                    <input type="text" id="cardName" name="cardName" required>
+                                <div class = "form-group">
+                                    <label for = "zipCode">ZIP/Postal Code *</label>
+                                    <input type = "text" id = "zipCode" name = "zipCode" required>
                                 </div>
                             </div>
+                            <div class = "form-group">
+                                <label for = "country">Country *</label>
+                                <select id = "country" name = "country" required>
+                                    <option value = "">Select Country</option>
+                                    <option value = "US">United States</option>
+                                    <option value = "CA">Canada</option>
+                                    <option value = "UK">United Kingdom</option>
+                                    <option value = "DE">Germany</option>
+                                    <option value = "FR">France</option>
+                                    <option value = "other">Other</option>
+                                </select>
+                            </div>
+                        </div>
 
-                            <!-- OrderEntity Summary -->
-                            <div class="form-section">
-                                <h2 class="section-title">Order Summary</h2>
-                                <div class="order-items">
-                                    <div class="order-item">
-                                        <div class="item-info">
-                                            <h4>Midnight Dreams</h4>
-                                            <p>The Night Owls</p>
-                                        </div>
-                                        <div class="item-price">$12.99</div>
-                                    </div>
-                                    <div class="order-item">
-                                        <div class="item-info">
-                                            <h4>Electric Pulse</h4>
-                                            <p>Digital Waves</p>
-                                        </div>
-                                        <div class="item-price">$9.99</div>
-                                    </div>
-                                    <div class="order-item">
-                                        <div class="item-info">
-                                            <h4>Acoustic Stories</h4>
-                                            <p>Folk Masters</p>
-                                        </div>
-                                        <div class="item-price">$14.99</div>
-                                    </div>
+                        <!-- Payment Information -->
+                        <div class = "form-section">
+                            <h2 class = "section-title">Payment Information</h2>
+                            <div class = "form-group">
+                                <label for = "cardNumber">Card Number *</label>
+                                <input type = "text"
+                                       id = "cardNumber"
+                                       name = "cardNumber"
+                                       placeholder = "1234 5678 9012 3456"
+                                       required>
+                            </div>
+                            <div class = "form-row">
+                                <div class = "form-group">
+                                    <label for = "expiryDate">Expiry Date *</label>
+                                    <input type = "text"
+                                           id = "expiryDate"
+                                           name = "expiryDate"
+                                           placeholder = "MM/YY"
+                                           required>
                                 </div>
-                                <div class="order-totals">
-                                    <div class="total-row">
-                                        <span>Subtotal</span>
-                                        <span>$37.97</span>
-                                    </div>
-                                    <div class="total-row">
-                                        <span>Discount</span>
-                                        <span class="discount">-$6.00</span>
-                                    </div>
-                                    <div class="total-row">
-                                        <span>Tax</span>
-                                        <span>$2.56</span>
-                                    </div>
-                                    <div class="total-row final-total">
-                                        <span>Total</span>
-                                        <span>$34.53</span>
-                                    </div>
+                                <div class = "form-group">
+                                    <label for = "cvv">CVV *</label>
+                                    <input type = "text" id = "cvv" name = "cvv" placeholder = "123" required>
                                 </div>
                             </div>
+                            <div class = "form-group">
+                                <label for = "cardName">Name on Card *</label>
+                                <input type = "text" id = "cardName" name = "cardName" required>
+                            </div>
+                        </div>
 
-                            <button type="submit" class="checkout-button">
-                                Complete Purchase - $34.53
-                            </button>
-                        </form>
+                        <!-- OrderEntity Summary -->
+                        <div class = "form-section">
+                            <h2 class = "section-title">Order Summary</h2>
+                            <div class = "order-items">
+                                <div class = "order-item">
+                                    <div class = "item-info">
+                                        <h4>Midnight Dreams</h4>
+                                        <p>The Night Owls</p>
+                                    </div>
+                                    <div class = "item-price">$12.99</div>
+                                </div>
+                                <div class = "order-item">
+                                    <div class = "item-info">
+                                        <h4>Electric Pulse</h4>
+                                        <p>Digital Waves</p>
+                                    </div>
+                                    <div class = "item-price">$9.99</div>
+                                </div>
+                                <div class = "order-item">
+                                    <div class = "item-info">
+                                        <h4>Acoustic Stories</h4>
+                                        <p>Folk Masters</p>
+                                    </div>
+                                    <div class = "item-price">$14.99</div>
+                                </div>
+                            </div>
+                            <div class = "order-totals">
+                                <div class = "total-row">
+                                    <span>Subtotal</span>
+                                    <span>$37.97</span>
+                                </div>
+                                <div class = "total-row">
+                                    <span>Discount</span>
+                                    <span class = "discount">-$6.00</span>
+                                </div>
+                                <div class = "total-row">
+                                    <span>Tax</span>
+                                    <span>$2.56</span>
+                                </div>
+                                <div class = "total-row final-total">
+                                    <span>Total</span>
+                                    <span>$34.53</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type = "submit" class = "checkout-button">
+                            Complete Purchase - $34.53
+                        </button>
+                    </form>
+                </div>
+
+                <div class = "checkout-sidebar">
+                    <div class = "security-info card">
+                        <h3>🛡️ Secure Checkout</h3>
+                        <ul>
+                            <li>✅ SSL Encrypted</li>
+                            <li>✅ Secure Payment Processing</li>
+                            <li>✅ 30-Day Money Back Guarantee</li>
+                            <li>✅ Instant Download</li>
+                        </ul>
                     </div>
 
-                    <div class="checkout-sidebar">
-                        <div class="security-info card">
-                            <h3>🛡️ Secure Checkout</h3>
-                            <ul>
-                                <li>✅ SSL Encrypted</li>
-                                <li>✅ Secure Payment Processing</li>
-                                <li>✅ 30-Day Money Back Guarantee</li>
-                                <li>✅ Instant Download</li>
-                            </ul>
+                    <div class = "payment-methods-info card">
+                        <h3>💳 We Accept</h3>
+                        <div class = "payment-icons">
+                            <span class = "payment-icon">💳</span>
+                            <span class = "payment-icon">🏦</span>
+                            <span class = "payment-icon">📱</span>
+                            <span class = "payment-icon">💰</span>
                         </div>
+                    </div>
 
-                        <div class="payment-methods-info card">
-                            <h3>💳 We Accept</h3>
-                            <div class="payment-icons">
-                                <span class="payment-icon">💳</span>
-                                <span class="payment-icon">🏦</span>
-                                <span class="payment-icon">📱</span>
-                                <span class="payment-icon">💰</span>
-                            </div>
-                        </div>
-
-                        <div class="customer-support card">
-                            <h3>📞 Need Help?</h3>
-                            <p>Our customer support team is available 24/7 to assist you with your purchase.</p>
-                            <a href="/contact" class="support-link">Contact Support</a>
-                        </div>
+                    <div class = "customer-support card">
+                        <h3>📞 Need Help?</h3>
+                        <p>Our customer support team is available 24/7 to assist you with your purchase.</p>
+                        <a href = "/contact" class = "support-link">Contact Support</a>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+</main>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Music Store App</h3>
-                <p>Your ultimate destination for digital music</p>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/catalog">Catalog</a></li>
-                    <li><a href="/cart">Shopping Cart</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Support</h4>
-                <ul>
-                    <li><a href="/contact">Contact Us</a></li>
-                    <li><a href="/help">Help Center</a></li>
-                    <li><a href="/terms">Terms of Service</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Connect</h4>
-                <div class="social-links">
-                    <a href="#" class="social-link">Facebook</a>
-                    <a href="#" class="social-link">Twitter</a>
-                    <a href="#" class="social-link">Instagram</a>
-                </div>
+<footer class = "footer">
+    <div class = "footer-content">
+        <div class = "footer-section">
+            <h3>Music Store</h3>
+            <p>Your ultimate destination for digital music</p>
+        </div>
+        <div class = "footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href = "/">Home</a></li>
+                <li><a href = "/catalog">Catalog</a></li>
+                <li><a href = "/cart">Shopping Cart</a></li>
+            </ul>
+        </div>
+        <div class = "footer-section">
+            <h4>Support</h4>
+            <ul>
+                <li><a href = "/contact">Contact Us</a></li>
+                <li><a href = "/help">Help Center</a></li>
+                <li><a href = "/terms">Terms of Service</a></li>
+            </ul>
+        </div>
+        <div class = "footer-section">
+            <h4>Connect</h4>
+            <div class = "social-links">
+                <a href = "#" class = "social-link">Facebook</a>
+                <a href = "#" class = "social-link">Twitter</a>
+                <a href = "#" class = "social-link">Instagram</a>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Music Store App. All rights reserved.</p>
-        </div>
-    </footer>
+    </div>
+    <div class = "footer-bottom">
+        <p>&copy; 2025 Music Store. All rights reserved.</p>
+    </div>
+</footer>
+
 </body>
+
 </html>
