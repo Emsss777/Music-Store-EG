@@ -14,7 +14,7 @@ public class HomeController {
     public ModelAndView getHomePage() {
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(VIEW_HOME);
+        modelAndView.setViewName("album");
 
         return modelAndView;
     }
