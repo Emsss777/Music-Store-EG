@@ -1,277 +1,243 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
 
 <head>
-    <meta charset = "UTF-8">
-    <link rel = "preconnect" href = "https://fonts.googleapis.com">
-    <link rel = "preconnect" href = "https://fonts.gstatic.com" crossorigin>
-    <link href = "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel = "stylesheet">
-    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" type = "text/css" href = "/css/common.css">
-    <link rel = "stylesheet" type = "text/css" href = "/css/admin/add-album.css">
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/css/admin/add-album.css">
     <title>Add New Album | Music Store Admin</title>
 </head>
 
 <body>
 
-<th:block th:replace = "fragments/header :: site-header"></th:block>
+<th:block th:replace="fragments/header :: site-header"></th:block>
 
 <main>
-    <div class = "admin-header">
-        <div class = "container">
-            <div class = "breadcrumb">
-                <a href = "/admin">Admin Dashboard</a> / <a href = "/admin/albums">Albums</a> /
+    <div class="admin-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="/admin">Admin Dashboard</a> / <a href="/admin/albums">Albums</a> /
                 <span>Add New Album</span>
             </div>
-            <h1 class = "page-title">Add New Album</h1>
-            <p class = "page-subtitle">Create a new album entry for the music catalog</p>
+            <h1 class="page-title">Add New Album</h1>
+            <p class="page-subtitle">Create a new album entry for the music catalog</p>
         </div>
     </div>
 
-    <section class = "add-album-section">
-        <div class = "container">
-            <div class = "form-layout">
-                <div class = "form-container">
-                    <form class = "album-form" id = "albumForm">
-                        <div class = "form-section">
-                            <h2 class = "section-title">Album Information</h2>
+    <section class="add-album-section">
+        <div class="container">
+            <div class="form-layout">
+                <div class="form-container">
+                    <form class="album-form" id="albumForm">
+                        <div class="form-section">
+                            <h2 class="section-title">Album Information</h2>
 
-                            <div class = "form-row">
-                                <div class = "form-group">
-                                    <label for = "albumTitle">Album Title *</label>
-                                    <input type = "text"
-                                           id = "albumTitle"
-                                           name = "albumTitle"
-                                           placeholder = "Enter album title"
-                                           required>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="albumTitle">Album Title *</label>
+                                    <input type="text" id="albumTitle" name="albumTitle"
+                                           placeholder="Enter album title" required>
                                 </div>
-                                <div class = "form-group">
-                                    <label for = "albumArtist">Artist *</label>
-                                    <select id = "albumArtist" name = "albumArtist" required>
-                                        <option value = "">Select artist</option>
-                                        <option value = "the-night-owls">The Night Owls</option>
-                                        <option value = "digital-waves">Digital Waves</option>
-                                        <option value = "folk-masters">Folk Masters</option>
-                                        <option value = "modern-jazz-collective">Modern Jazz Collective</option>
-                                        <option value = "beach-boys-revival">Beach Boys Revival</option>
-                                        <option value = "city-beats">City Beats</option>
-                                        <option value = "underground-sounds">Underground Sounds</option>
+                                <div class="form-group">
+                                    <label for="albumArtist">Artist *</label>
+                                    <select id="albumArtist" name="albumArtist" required>
+                                        <option value="">Select artist</option>
+                                        <option value="the-night-owls">The Night Owls</option>
+                                        <option value="digital-waves">Digital Waves</option>
+                                        <option value="folk-masters">Folk Masters</option>
+                                        <option value="modern-jazz-collective">Modern Jazz Collective</option>
+                                        <option value="beach-boys-revival">Beach Boys Revival</option>
+                                        <option value="city-beats">City Beats</option>
+                                        <option value="underground-sounds">Underground Sounds</option>
                                     </select>
                                 </div>
                             </div>
 
-                            <div class = "form-row">
-                                <div class = "form-group">
-                                    <label for = "albumGenre">Genre *</label>
-                                    <select id = "albumGenre" name = "albumGenre" required>
-                                        <option value = "">Select genre</option>
-                                        <option value = "pop">Pop</option>
-                                        <option value = "rock">Rock</option>
-                                        <option value = "electronic">Electronic</option>
-                                        <option value = "jazz">Jazz</option>
-                                        <option value = "classical">Classical</option>
-                                        <option value = "hip-hop">Hip-Hop</option>
-                                        <option value = "folk">Folk</option>
-                                        <option value = "country">Country</option>
-                                        <option value = "blues">Blues</option>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="albumGenre">Genre *</label>
+                                    <select id="albumGenre" name="albumGenre" required>
+                                        <option value="">Select genre</option>
+                                        <option value="pop">Pop</option>
+                                        <option value="rock">Rock</option>
+                                        <option value="electronic">Electronic</option>
+                                        <option value="jazz">Jazz</option>
+                                        <option value="classical">Classical</option>
+                                        <option value="hip-hop">Hip-Hop</option>
+                                        <option value="folk">Folk</option>
+                                        <option value="country">Country</option>
+                                        <option value="blues">Blues</option>
                                     </select>
                                 </div>
-                                <div class = "form-group">
-                                    <label for = "albumYear">Release Year *</label>
-                                    <input type = "number"
-                                           id = "albumYear"
-                                           name = "albumYear"
-                                           min = "1900"
-                                           max = "2025"
-                                           placeholder = "2024"
-                                           required>
+                                <div class="form-group">
+                                    <label for="albumYear">Release Year *</label>
+                                    <input type="number" id="albumYear" name="albumYear"
+                                           min="1900" max="2025" placeholder="2024" required>
                                 </div>
                             </div>
 
-                            <div class = "form-group">
-                                <label for = "albumDescription">Album Description</label>
-                                <textarea id = "albumDescription"
-                                          name = "albumDescription"
-                                          rows = "4"
-                                          placeholder = "Describe the album's concept, themes, and musical style..."></textarea>
+                            <div class="form-group">
+                                <label for="albumDescription">Album Description</label>
+                                <textarea id="albumDescription"
+                                          name="albumDescription"
+                                          rows="4"
+                                          placeholder="Describe the album's concept, themes, and musical style..."></textarea>
                             </div>
                         </div>
 
-                        <div class = "form-section">
-                            <h2 class = "section-title">Media & Artwork</h2>
+                        <div class="form-section">
+                            <h2 class="section-title">Media & Artwork</h2>
 
-                            <div class = "form-group">
-                                <label for = "albumCover">Album Cover URL *</label>
-                                <input type = "url"
-                                       id = "albumCover"
-                                       name = "albumCover"
-                                       placeholder = "https://example.com/album-cover.jpg"
-                                       required>
+                            <div class="form-group">
+                                <label for="albumCover">Album Cover URL *</label>
+                                <input type="url" id="albumCover" name="albumCover"
+                                       placeholder="https://example.com/album-cover.jpg" required>
                             </div>
 
-                            <div class = "form-row">
-                                <div class = "form-group">
-                                    <label for = "albumDuration">Duration (minutes)</label>
-                                    <input type = "number"
-                                           id = "albumDuration"
-                                           name = "albumDuration"
-                                           min = "1"
-                                           max = "300"
-                                           placeholder = "45">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="albumDuration">Duration (minutes)</label>
+                                    <input type="number" id="albumDuration" name="albumDuration"
+                                           min="1" max="300" placeholder="45">
                                 </div>
-                                <div class = "form-group">
-                                    <label for = "trackCount">Number of Tracks</label>
-                                    <input type = "number"
-                                           id = "trackCount"
-                                           name = "trackCount"
-                                           min = "1"
-                                           max = "50"
-                                           placeholder = "12">
+                                <div class="form-group">
+                                    <label for="trackCount">Number of Tracks</label>
+                                    <input type="number" id="trackCount" name="trackCount"
+                                           min="1" max="50" placeholder="12">
                                 </div>
                             </div>
                         </div>
 
-                        <div class = "form-section">
-                            <h2 class = "section-title">Pricing & Availability</h2>
+                        <div class="form-section">
+                            <h2 class="section-title">Pricing & Availability</h2>
 
-                            <div class = "form-row">
-                                <div class = "form-group">
-                                    <label for = "albumPrice">Price (USD) *</label>
-                                    <input type = "number"
-                                           id = "albumPrice"
-                                           name = "albumPrice"
-                                           step = "0.01"
-                                           min = "0"
-                                           placeholder = "12.99"
-                                           required>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="albumPrice">Price (USD) *</label>
+                                    <input type="number" id="albumPrice" name="albumPrice"
+                                           step="0.01" min="0" placeholder="12.99" required>
                                 </div>
-                                <div class = "form-group">
-                                    <label for = "originalPrice">Original Price (if on sale)</label>
-                                    <input type = "number"
-                                           id = "originalPrice"
-                                           name = "originalPrice"
-                                           step = "0.01"
-                                           min = "0"
-                                           placeholder = "15.99">
+                                <div class="form-group">
+                                    <label for="originalPrice">Original Price (if on sale)</label>
+                                    <input type="number" id="originalPrice" name="originalPrice"
+                                           step="0.01" min="0" placeholder="15.99">
                                 </div>
                             </div>
 
-                            <div class = "form-row">
-                                <div class = "form-group">
-                                    <label for = "albumStatus">Status</label>
-                                    <select id = "albumStatus" name = "albumStatus">
-                                        <option value = "active">Active</option>
-                                        <option value = "inactive">Inactive</option>
-                                        <option value = "coming-soon">Coming Soon</option>
-                                        <option value = "pre-order">Pre-order</option>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="albumStatus">Status</label>
+                                    <select id="albumStatus" name="albumStatus">
+                                        <option value="active">Active</option>
+                                        <option value="inactive">Inactive</option>
+                                        <option value="coming-soon">Coming Soon</option>
+                                        <option value="pre-order">Pre-order</option>
                                     </select>
                                 </div>
-                                <div class = "form-group">
-                                    <label for = "featured">Featured Album</label>
-                                    <select id = "featured" name = "featured">
-                                        <option value = "no">No</option>
-                                        <option value = "yes">Yes</option>
+                                <div class="form-group">
+                                    <label for="featured">Featured Album</label>
+                                    <select id="featured" name="featured">
+                                        <option value="no">No</option>
+                                        <option value="yes">Yes</option>
                                     </select>
                                 </div>
                             </div>
 
-                            <div class = "form-group">
-                                <label class = "checkbox-container">
-                                    <input type = "checkbox" id = "newRelease" name = "newRelease">
-                                    <span class = "checkmark"></span>
+                            <div class="form-group">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" id="newRelease" name="newRelease">
+                                    <span class="checkmark"></span>
                                     Mark as New Release
                                 </label>
                             </div>
                         </div>
 
-                        <div class = "form-section">
-                            <h2 class = "section-title">Track Listing</h2>
+                        <div class="form-section">
+                            <h2 class="section-title">Track Listing</h2>
 
-                            <div class = "track-list" id = "trackList">
-                                <div class = "track-item">
-                                    <div class = "track-number">1</div>
-                                    <label>
-                                        <input type = "text"
-                                               name = "trackTitles[]"
-                                               placeholder = "Track title"
-                                               class = "track-title-input">
-                                    </label>
-                                    <label>
-                                        <input type = "text"
-                                               name = "trackDurations[]"
-                                               placeholder = "3:45"
-                                               class = "track-duration-input">
-                                    </label>
-                                    <button type = "button" class = "remove-track-btn" onclick = "removeTrack(this)">×
+                            <div class="track-list" id="trackList">
+                                <div class="track-item">
+                                    <div class="track-number">1</div>
+
+                                    <label for="trackTitle1" class="sr-only">Track title</label>
+                                    <input type="text" id="trackTitle1" name="trackTitles[]"
+                                           placeholder="Track title" class="track-title-input">
+
+                                    <label for="trackDuration1" class="sr-only">Track duration</label>
+                                    <input type="text" id="trackDuration1" name="trackDurations[]"
+                                           placeholder="3:45" class="track-duration-input">
+
+                                    <button type="button" class="remove-track-btn" onclick="removeTrack(this)">×
                                     </button>
                                 </div>
                             </div>
 
-                            <button type = "button" class = "add-track-btn" onclick = "addTrack()">+ Add Track</button>
+                            <button type="button" class="add-track-btn" onclick="addTrack()">+ Add Track</button>
                         </div>
 
-                        <div class = "form-section">
-                            <h2 class = "section-title">Additional Information</h2>
+                        <div class="form-section">
+                            <h2 class="section-title">Additional Information</h2>
 
-                            <div class = "form-row">
-                                <div class = "form-group">
-                                    <label for = "label">Record Label</label>
-                                    <input type = "text" id = "label" name = "label" placeholder = "Enter record label">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="label">Record Label</label>
+                                    <input type="text" id="label" name="label"
+                                           placeholder="Enter record label">
                                 </div>
-                                <div class = "form-group">
-                                    <label for = "producer">Producer</label>
-                                    <input type = "text"
-                                           id = "producer"
-                                           name = "producer"
-                                           placeholder = "Enter producer name">
+                                <div class="form-group">
+                                    <label for="producer">Producer</label>
+                                    <input type="text" id="producer" name="producer"
+                                           placeholder="Enter producer name">
                                 </div>
                             </div>
 
-                            <div class = "form-group">
-                                <label for = "tags">Tags (comma-separated)</label>
-                                <input type = "text"
-                                       id = "tags"
-                                       name = "tags"
-                                       placeholder = "indie, alternative, acoustic">
+                            <div class="form-group">
+                                <label for="tags">Tags (comma-separated)</label>
+                                <input type="text" id="tags" name="tags"
+                                       placeholder="indie, alternative, acoustic">
                             </div>
                         </div>
 
-                        <div class = "form-actions">
-                            <button type = "button" class = "button secondary" onclick = "resetForm()">Reset Form
+                        <div class="form-actions">
+                            <button type="button" class="button secondary" onclick="resetForm()">Reset Form
                             </button>
-                            <button type = "button" class = "button" onclick = "saveDraft()">Save Draft</button>
-                            <button type = "submit" class = "button primary">Create Album</button>
+                            <button type="button" class="button" onclick="saveDraft()">Save Draft</button>
+                            <button type="submit" class="button primary">Create Album</button>
                         </div>
                     </form>
                 </div>
 
-                <div class = "form-sidebar">
-                    <div class = "preview-card card">
+                <div class="form-sidebar">
+                    <div class="preview-card card">
                         <h3>Album Preview</h3>
-                        <div class = "album-preview">
-                            <div class = "preview-cover">
-                                <img id = "previewCover"
-                                     src = "https://via.placeholder.com/200x200/746ab0/ffffff?text=Album+Cover"
-                                     alt = "Album Preview">
-                                <div class = "new-release-badge" id = "newReleaseBadge" style = "display: none;">NEW
+                        <div class="album-preview">
+                            <div class="preview-cover">
+                                <img id="previewCover"
+                                     src="https://via.placeholder.com/200x200/746ab0/ffffff?text=Album+Cover"
+                                     alt="Album Preview">
+                                <div class="new-release-badge" id="newReleaseBadge" style="display: none;">NEW
                                 </div>
                             </div>
-                            <div class = "preview-info">
-                                <h4 id = "previewTitle">Album Title</h4>
-                                <p id = "previewArtist">Artist Name</p>
-                                <p id = "previewGenre">Genre • 2024</p>
-                                <div class = "preview-price">
-                                    <span id = "previewPrice">$12.99</span>
-                                    <span id = "previewOriginalPrice" style = "display: none;"></span>
+                            <div class="preview-info">
+                                <h4 id="previewTitle">Album Title</h4>
+                                <p id="previewArtist">Artist Name</p>
+                                <p id="previewGenre">Genre • 2024</p>
+                                <div class="preview-price">
+                                    <span id="previewPrice">$12.99</span>
+                                    <span id="previewOriginalPrice" style="display: none;"></span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class = "help-card card">
+                    <div class="help-card card">
                         <h3>💡 Tips</h3>
-                        <ul class = "help-list">
+                        <ul class="help-list">
                             <li>Use high-resolution cover art (minimum 1000x1000px)</li>
                             <li>Write compelling descriptions to attract listeners</li>
                             <li>Set competitive pricing based on market research</li>
@@ -280,20 +246,20 @@
                         </ul>
                     </div>
 
-                    <div class = "stats-card card">
+                    <div class="stats-card card">
                         <h3>📊 Quick Stats</h3>
-                        <div class = "stats-grid">
-                            <div class = "stat-item">
-                                <span class = "stat-label">Total Albums</span>
-                                <span class = "stat-value">1,247</span>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-label">Total Albums</span>
+                                <span class="stat-value">1,247</span>
                             </div>
-                            <div class = "stat-item">
-                                <span class = "stat-label">This Month</span>
-                                <span class = "stat-value">+23</span>
+                            <div class="stat-item">
+                                <span class="stat-label">This Month</span>
+                                <span class="stat-value">+23</span>
                             </div>
-                            <div class = "stat-item">
-                                <span class = "stat-label">Avg. Price</span>
-                                <span class = "stat-value">$13.45</span>
+                            <div class="stat-item">
+                                <span class="stat-label">Avg. Price</span>
+                                <span class="stat-value">$13.45</span>
                             </div>
                         </div>
                     </div>
@@ -303,7 +269,7 @@
     </section>
 </main>
 
-<th:block th:replace = "fragments/footer :: site-footer"></th:block>
+<th:block th:replace="fragments/footer :: site-footer"></th:block>
 
 <script>
     let trackCount = 1;

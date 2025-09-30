@@ -1,76 +1,76 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
 
 <head>
-    <meta charset = "UTF-8">
-    <link rel = "preconnect" href = "https://fonts.googleapis.com">
-    <link rel = "preconnect" href = "https://fonts.gstatic.com" crossorigin>
-    <link href = "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel = "stylesheet">
-    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" type = "text/css" href = "/css/common.css">
-    <link rel = "stylesheet" type = "text/css" href = "/css/admin/admin-dashboard.css">
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/css/admin/admin-dashboard.css">
     <title>Admin Dashboard | Music Store</title>
 </head>
 
 <body>
 
-<th:block th:replace = "fragments/header :: site-header"></th:block>
+<th:block th:replace="fragments/header :: site-header"></th:block>
 
 <main>
-    <div class = "admin-header">
-        <div class = "container">
-            <h1 class = "page-title">Admin Dashboard</h1>
-            <p class = "page-subtitle">Manage your music store</p>
+    <div class="admin-header">
+        <div class="container">
+            <h1 class="page-title">Admin Dashboard</h1>
+            <p class="page-subtitle">Manage your music store</p>
         </div>
     </div>
 
-    <section class = "dashboard-section">
-        <div class = "container">
+    <section class="dashboard-section">
+        <div class="container">
             <!-- Quick Stats -->
-            <div class = "stats-grid">
-                <div class = "stat-card card">
-                    <div class = "stat-icon">🎵</div>
-                    <div class = "stat-content">
+            <div class="stats-grid">
+                <div class="stat-card card">
+                    <div class="stat-icon">🎵</div>
+                    <div class="stat-content">
                         <h3>Total Albums</h3>
-                        <p class = "stat-number">1,247</p>
-                        <span class = "stat-change positive">+12% this month</span>
+                        <p class="stat-number">1,247</p>
+                        <span class="stat-change positive">+12% this month</span>
                     </div>
                 </div>
-                <div class = "stat-card card">
-                    <div class = "stat-icon">💰</div>
-                    <div class = "stat-content">
+                <div class="stat-card card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-content">
                         <h3>Total Revenue</h3>
-                        <p class = "stat-number">$45,678</p>
-                        <span class = "stat-change positive">+8% this month</span>
+                        <p class="stat-number">$45,678</p>
+                        <span class="stat-change positive">+8% this month</span>
                     </div>
                 </div>
-                <div class = "stat-card card">
-                    <div class = "stat-icon">👥</div>
-                    <div class = "stat-content">
+                <div class="stat-card card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-content">
                         <h3>Active Users</h3>
-                        <p class = "stat-number">2,891</p>
-                        <span class = "stat-change positive">+15% this month</span>
+                        <p class="stat-number">2,891</p>
+                        <span class="stat-change positive">+15% this month</span>
                     </div>
                 </div>
-                <div class = "stat-card card">
-                    <div class = "stat-icon">📦</div>
-                    <div class = "stat-content">
+                <div class="stat-card card">
+                    <div class="stat-icon">📦</div>
+                    <div class="stat-content">
                         <h3>Orders Today</h3>
-                        <p class = "stat-number">89</p>
-                        <span class = "stat-change positive">+5% from yesterday</span>
+                        <p class="stat-number">89</p>
+                        <span class="stat-change positive">+5% from yesterday</span>
                     </div>
                 </div>
             </div>
 
-            <div class = "dashboard-layout">
+            <div class="dashboard-layout">
                 <!-- Recent Orders -->
-                <div class = "recent-orders-card card">
-                    <div class = "card-header">
+                <div class="recent-orders-card card">
+                    <div class="card-header">
                         <h2>Recent Orders</h2>
-                        <a href = "/admin/orders" class = "view-all-link">View All</a>
+                        <a href="/admin/orders" class="view-all-link">View All</a>
                     </div>
-                    <div class = "orders-table">
+                    <div class="orders-table">
                         <table>
                             <thead>
                             <tr>
@@ -86,35 +86,35 @@
                                 <td>#12345</td>
                                 <td>John Doe</td>
                                 <td>$34.53</td>
-                                <td><span class = "status completed">Completed</span></td>
+                                <td><span class="status completed">Completed</span></td>
                                 <td>2025-01-15</td>
                             </tr>
                             <tr>
                                 <td>#12344</td>
                                 <td>Jane Smith</td>
                                 <td>$22.99</td>
-                                <td><span class = "status pending">Pending</span></td>
+                                <td><span class="status pending">Pending</span></td>
                                 <td>2025-01-15</td>
                             </tr>
                             <tr>
                                 <td>#12343</td>
                                 <td>Mike Johnson</td>
                                 <td>$45.67</td>
-                                <td><span class = "status completed">Completed</span></td>
+                                <td><span class="status completed">Completed</span></td>
                                 <td>2025-01-14</td>
                             </tr>
                             <tr>
                                 <td>#12342</td>
                                 <td>Sarah Wilson</td>
                                 <td>$18.99</td>
-                                <td><span class = "status processing">Processing</span></td>
+                                <td><span class="status processing">Processing</span></td>
                                 <td>2025-01-14</td>
                             </tr>
                             <tr>
                                 <td>#12341</td>
                                 <td>David Brown</td>
                                 <td>$67.45</td>
-                                <td><span class = "status completed">Completed</span></td>
+                                <td><span class="status completed">Completed</span></td>
                                 <td>2025-01-13</td>
                             </tr>
                             </tbody>
@@ -123,49 +123,49 @@
                 </div>
 
                 <!-- Quick Actions -->
-                <div class = "quick-actions-card card">
-                    <div class = "card-header">
+                <div class="quick-actions-card card">
+                    <div class="card-header">
                         <h2>Quick Actions</h2>
                     </div>
-                    <div class = "actions-grid">
-                        <a href = "/admin/albums" class = "action-item">
-                            <div class = "action-icon">🎵</div>
-                            <div class = "action-content">
+                    <div class="actions-grid">
+                        <a href="/admin/albums" class="action-item">
+                            <div class="action-icon">🎵</div>
+                            <div class="action-content">
                                 <h3>Manage Albums</h3>
                                 <p>Add, edit, or remove albums</p>
                             </div>
                         </a>
-                        <a href = "/admin/users" class = "action-item">
-                            <div class = "action-icon">👥</div>
-                            <div class = "action-content">
+                        <a href="/admin/users" class="action-item">
+                            <div class="action-icon">👥</div>
+                            <div class="action-content">
                                 <h3>Manage Users</h3>
                                 <p>View and manage user accounts</p>
                             </div>
                         </a>
-                        <a href = "/admin/orders" class = "action-item">
-                            <div class = "action-icon">📦</div>
-                            <div class = "action-content">
+                        <a href="/admin/orders" class="action-item">
+                            <div class="action-icon">📦</div>
+                            <div class="action-content">
                                 <h3>View Orders</h3>
                                 <p>Process and track orders</p>
                             </div>
                         </a>
-                        <a href = "/admin/reports" class = "action-item">
-                            <div class = "action-icon">📊</div>
-                            <div class = "action-content">
+                        <a href="/admin/reports" class="action-item">
+                            <div class="action-icon">📊</div>
+                            <div class="action-content">
                                 <h3>Reports</h3>
                                 <p>Sales and analytics reports</p>
                             </div>
                         </a>
-                        <a href = "/admin/settings" class = "action-item">
-                            <div class = "action-icon">⚙️</div>
-                            <div class = "action-content">
+                        <a href="/admin/settings" class="action-item">
+                            <div class="action-icon">⚙️</div>
+                            <div class="action-content">
                                 <h3>Settings</h3>
                                 <p>Store configuration</p>
                             </div>
                         </a>
-                        <a href = "/admin/promotions" class = "action-item">
-                            <div class = "action-icon">🎯</div>
-                            <div class = "action-content">
+                        <a href="/admin/promotions" class="action-item">
+                            <div class="action-icon">🎯</div>
+                            <div class="action-content">
                                 <h3>Promotions</h3>
                                 <p>Manage discounts and offers</p>
                             </div>
@@ -175,75 +175,75 @@
             </div>
 
             <!-- Top Albums -->
-            <div class = "top-albums-card card">
-                <div class = "card-header">
+            <div class="top-albums-card card">
+                <div class="card-header">
                     <h2>Top Selling Albums</h2>
-                    <a href = "/admin/albums" class = "view-all-link">View All</a>
+                    <a href="/admin/albums" class="view-all-link">View All</a>
                 </div>
-                <div class = "albums-list">
-                    <div class = "album-item">
-                        <div class = "album-image">
-                            <img src = "https://via.placeholder.com/60x60/746ab0/ffffff?text=1" alt = "Album">
+                <div class="albums-list">
+                    <div class="album-item">
+                        <div class="album-image">
+                            <img src="https://via.placeholder.com/60x60/746ab0/ffffff?text=1" alt="Album">
                         </div>
-                        <div class = "album-info">
+                        <div class="album-info">
                             <h4>Midnight Dreams</h4>
                             <p>The Night Owls</p>
                         </div>
-                        <div class = "album-stats">
-                            <span class = "sales-count">234 sales</span>
-                            <span class = "revenue">$3,042</span>
+                        <div class="album-stats">
+                            <span class="sales-count">234 sales</span>
+                            <span class="revenue">$3,042</span>
                         </div>
                     </div>
-                    <div class = "album-item">
-                        <div class = "album-image">
-                            <img src = "https://via.placeholder.com/60x60/6a61a4/ffffff?text=2" alt = "Album">
+                    <div class="album-item">
+                        <div class="album-image">
+                            <img src="https://via.placeholder.com/60x60/6a61a4/ffffff?text=2" alt="Album">
                         </div>
-                        <div class = "album-info">
+                        <div class="album-info">
                             <h4>Electric Pulse</h4>
                             <p>Digital Waves</p>
                         </div>
-                        <div class = "album-stats">
-                            <span class = "sales-count">189 sales</span>
-                            <span class = "revenue">$1,889</span>
+                        <div class="album-stats">
+                            <span class="sales-count">189 sales</span>
+                            <span class="revenue">$1,889</span>
                         </div>
                     </div>
-                    <div class = "album-item">
-                        <div class = "album-image">
-                            <img src = "https://via.placeholder.com/60x60/605899/ffffff?text=3" alt = "Album">
+                    <div class="album-item">
+                        <div class="album-image">
+                            <img src="https://via.placeholder.com/60x60/605899/ffffff?text=3" alt="Album">
                         </div>
-                        <div class = "album-info">
+                        <div class="album-info">
                             <h4>Acoustic Stories</h4>
                             <p>Folk Masters</p>
                         </div>
-                        <div class = "album-stats">
-                            <span class = "sales-count">156 sales</span>
-                            <span class = "revenue">$2,339</span>
+                        <div class="album-stats">
+                            <span class="sales-count">156 sales</span>
+                            <span class="revenue">$2,339</span>
                         </div>
                     </div>
-                    <div class = "album-item">
-                        <div class = "album-image">
-                            <img src = "https://via.placeholder.com/60x60/56508d/ffffff?text=4" alt = "Album">
+                    <div class="album-item">
+                        <div class="album-image">
+                            <img src="https://via.placeholder.com/60x60/56508d/ffffff?text=4" alt="Album">
                         </div>
-                        <div class = "album-info">
+                        <div class="album-info">
                             <h4>Jazz Fusion</h4>
                             <p>Modern Jazz Collective</p>
                         </div>
-                        <div class = "album-stats">
-                            <span class = "sales-count">142 sales</span>
-                            <span class = "revenue">$2,412</span>
+                        <div class="album-stats">
+                            <span class="sales-count">142 sales</span>
+                            <span class="revenue">$2,412</span>
                         </div>
                     </div>
-                    <div class = "album-item">
-                        <div class = "album-image">
-                            <img src = "https://via.placeholder.com/60x60/4c477f/ffffff?text=5" alt = "Album">
+                    <div class="album-item">
+                        <div class="album-image">
+                            <img src="https://via.placeholder.com/60x60/4c477f/ffffff?text=5" alt="Album">
                         </div>
-                        <div class = "album-info">
+                        <div class="album-info">
                             <h4>Summer Vibes</h4>
                             <p>Beach Boys Revival</p>
                         </div>
-                        <div class = "album-stats">
-                            <span class = "sales-count">128 sales</span>
-                            <span class = "revenue">$1,536</span>
+                        <div class="album-stats">
+                            <span class="sales-count">128 sales</span>
+                            <span class="revenue">$1,536</span>
                         </div>
                     </div>
                 </div>
@@ -252,7 +252,7 @@
     </section>
 </main>
 
-<th:block th:replace = "fragments/footer :: site-footer"></th:block>
+<th:block th:replace="fragments/footer :: site-footer"></th:block>
 
 </body>
 

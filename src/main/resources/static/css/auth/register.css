@@ -125,7 +125,7 @@
 
 .strength-fill {
     height: 100%;
-    width: 0%;
+    width: 0;
     background: linear-gradient(90deg, #f44336, #ff9800, #4caf50);
     border-radius: 2px;
     transition: width 0.3s ease;
@@ -188,21 +188,6 @@
     color: #746ab0;
 }
 
-/* Auth Button */
-.auth-button {
-    width: 100%;
-    padding: 16px;
-    background: radial-gradient(circle at 90% top, #746ab0 0%, #6a61a4 10%, #605899 20%, #56508d 30%, #4c477f 40%, #423f73 50%, #383666 60%, #2e2d5a 70%, #24244d 80%, #1a1a41 90%, #101035 100%);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-bottom: 24px;
-}
-
 .auth-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 32px rgba(116, 106, 176, 0.4);
@@ -238,23 +223,6 @@
     flex-direction: column;
     gap: 12px;
     margin-bottom: 24px;
-}
-
-.social-button {
-    width: 100%;
-    padding: 14px 16px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
 }
 
 .social-button:hover {
