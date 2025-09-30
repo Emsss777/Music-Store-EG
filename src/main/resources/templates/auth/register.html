@@ -31,9 +31,9 @@
                 <img src = "https://via.placeholder.com/110x110/56508d/ffffff?text=Music" alt = "Music Album">
             </div>
             <h2 class = "image-title">Join Our Community</h2>
-            <p class = "image-subtitle">Create your account and start your musical journey with access to thousands of
-                                        albums
-                                        and exclusive content.</p>
+            <p class = "image-subtitle">Create your account and start your musical journey
+                                        with access to thousands of albums and exclusive content.
+            </p>
         </div>
     </div>
 
@@ -45,74 +45,61 @@
             <p class = "auth-subtitle">Create your account to get started</p>
         </div>
 
-        <form class = "auth-form">
-            <div class = "form-row">
-                <div class = "form-group">
-                    <label for = "firstName">First Name</label>
-                    <input type = "text"
-                           id = "firstName"
-                           name = "firstName"
-                           placeholder = "Enter your first name"
-                           required>
-                </div>
-                <div class = "form-group">
-                    <label for = "lastName">Last Name</label>
-                    <input type = "text"
-                           id = "lastName"
-                           name = "lastName"
-                           placeholder = "Enter your last name"
-                           required>
-                </div>
+        <form th:method = "POST" th:action = "@{/register}" th:object = "${registerDTO}" class = "auth-form">
+
+            <div class = "form-group">
+                <label for = "username">Username</label>
+                <input type = "text" id = "username" name = "username" th:field = "*{username}"
+                       placeholder = "Choose a username" required>
+                <p class = "alert-warning" th:if = "${#fields.hasErrors('username')}" th:errors = "*{username}"></p>
+                <!--/*@thymesVar id="usernameAlreadyExistMessage" type="text"*/-->
+                <p class = "alert-warning" th:if = "${usernameAlreadyExistMessage}"
+                   th:text = "${usernameAlreadyExistMessage}"></p>
             </div>
 
             <div class = "form-group">
                 <label for = "email">Email Address</label>
-                <input type = "email" id = "email" name = "email" placeholder = "Enter your email address" required>
-            </div>
-
-            <div class = "form-group">
-                <label for = "username">Username</label>
-                <input type = "text" id = "username" name = "username" placeholder = "Choose a username" required>
+                <input type = "email" id = "email" name = "email" th:field = "*{email}"
+                       placeholder = "Enter your email address" required>
+                <p class = "alert-warning" th:if = "${#fields.hasErrors('email')}" th:errors = "*{email}"></p>
             </div>
 
             <div class = "form-group">
                 <label for = "password">Password</label>
-                <input type = "password"
-                       id = "password"
-                       name = "password"
-                       placeholder = "Create a strong password"
-                       required>
-                <div class = "password-strength">
-                    <div class = "strength-bar">
-                        <div class = "strength-fill"></div>
-                    </div>
-                    <span class = "strength-text">Password strength</span>
-                </div>
+                <input type = "password" id = "password"
+                       name = "password" th:field = "*{password}"
+                       placeholder = "Create a strong password" required>
+                <p class = "alert-warning" th:if = "${#fields.hasErrors('password')}" th:errors = "*{password}"></p>
+                <!--                <div class = "password-strength">-->
+                <!--                    <div class = "strength-bar">-->
+                <!--                        <div class = "strength-fill"></div>-->
+                <!--                    </div>-->
+                <!--                    <span class = "strength-text">Password strength</span>-->
+                <!--                </div>-->
             </div>
 
             <div class = "form-group">
                 <label for = "confirmPassword">Confirm Password</label>
-                <input type = "password"
-                       id = "confirmPassword"
-                       name = "confirmPassword"
-                       placeholder = "Confirm your password"
-                       required>
+                <input type = "password" id = "confirmPassword" name = "confirmPassword" th:field = "*{confirmPassword}"
+                       placeholder = "Confirm your password" required>
+                <p class = "alert-warning"
+                   th:if = "${#fields.hasErrors('confirmPassword')}" th:errors = "*{confirmPassword}"></p>
             </div>
 
-            <div class = "form-group">
-                <label for = "birthDate">Date of Birth</label>
-                <input type = "date" id = "birthDate" name = "birthDate" required>
-            </div>
+            <!--            <div class = "form-group">-->
+            <!--                <label for = "birthDate">Date of Birth</label>-->
+            <!--                <input type = "date" id = "birthDate"-->
+            <!--                       name = "birthDate" required th:field = "*{birthDate}">-->
+            <!--                <p class = "alert-warning">Error Message</p>-->
+            <!--            </div>-->
 
             <div class = "form-group">
                 <label for = "country">Country</label>
                 <select id = "country" name = "country" required>
-                    <option value = "">Select your country</option>
-                    <option value = "BG">Bulgaria</option>
-                    <option value = "DE">Germany</option>
-                    <option value = "FR">France</option>
-                    <option value = "IT">Italy</option>
-                    <option value = "ES">Spain</option>
+                    <option value = "" disabled selected>Select your country</option>
+                    <option th:each = "country : ${T(app.model.enums.Country).values()}" th:value = "${country}"
+                            th:text = "${#strings.capitalize(#strings.toLowerCase(country))}">
+                    </option>
                 </select>
             </div>
 
@@ -120,27 +107,24 @@
                 <label class = "checkbox-container">
                     <input type = "checkbox" id = "terms" name = "terms" required>
                     <span class = "checkmark"></span>
-                    I agree to the <a href = "/terms" class = "terms-link">Terms of Service</a> and <a href = "/privacy"
-                                                                                                       class = "terms-link">Privacy
-                                                                                                                            Policy</a>
+                    I agree to the
+                    <a href = "/terms" class = "terms-link">Terms of Service</a>
+                    and
+                    <a href = "/privacy" class = "terms-link">Privacy Policy</a>
                 </label>
             </div>
 
-            <div class = "form-group">
-                <label class = "checkbox-container">
-                    <input type = "checkbox" id = "newsletter" name = "newsletter">
-                    <span class = "checkmark"></span>
-                    Subscribe to our newsletter for music updates and exclusive offers
-                </label>
-            </div>
+            <!--            <div class = "form-group">-->
+            <!--                <label class = "checkbox-container">-->
+            <!--                    <input type = "checkbox" id = "newsletter" name = "newsletter">-->
+            <!--                    <span class = "checkmark"></span>-->
+            <!--                    Subscribe to our newsletter for music updates and exclusive offers-->
+            <!--                </label>-->
+            <!--            </div>-->
 
-            <button type = "submit" class = "auth-button primary">
-                Create Account
-            </button>
+            <button type = "submit" class = "auth-button primary">Create Account</button>
 
-            <div class = "auth-divider">
-                <span>or</span>
-            </div>
+            <div class = "auth-divider"><span>or</span></div>
 
             <div class = "social-login">
                 <button type = "button" class = "social-button google">
@@ -164,7 +148,7 @@
     </section>
 </main>
 
-<th:block th:replace = "fragments/footer :: site-footer"></th:block>
+<th:block th:replace = "~{fragments/footer :: site-footer}"></th:block>
 
 </body>
 

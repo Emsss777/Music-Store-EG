@@ -1,14 +1,30 @@
 package app.controller;
 
+import app.model.dto.RegisterDTO;
+import app.service.UserService;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import static app.util.ModelAttributes.MODEL_REGISTER_DTO;
+import static app.util.Redirects.REDIRECT_LOGIN;
 import static app.util.UrlPaths.*;
 import static app.util.Views.*;
 
 @Controller
 public class IndexController {
+
+    private final UserService userService;
+
+    @Autowired
+    public IndexController(UserService userService) {
+
+        this.userService = userService;
+    }
 
     @GetMapping(URL_ROOT)
     public String getIndexPage() {
@@ -31,8 +47,20 @@ public class IndexController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_REGISTER);
-        //modelAndView.addObject(MODEL_REGISTER_DTO, new RegisterDTO());
+        modelAndView.addObject(MODEL_REGISTER_DTO, new RegisterDTO());
 
         return modelAndView;
+    }
+
+    @PostMapping(URL_REGISTER)
+    public ModelAndView doRegister(@Valid RegisterDTO registerDTO, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return new ModelAndView(VIEW_REGISTER);
+        }
+
+        userService.registerUser(registerDTO);
+
+        return new ModelAndView(REDIRECT_LOGIN);
     }
 }

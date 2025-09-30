@@ -22,6 +22,9 @@ import java.util.List;
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
 
+    @Column(name = "username", nullable = false, unique = true)
+    private String username;
+
     @Column(name = "first_name")
     private String firstName;
 
@@ -31,14 +34,11 @@ public class UserEntity extends BaseEntity {
     @Column(name = "email", unique = true)
     private String email;
 
-    @Column(name = "username", nullable = false, unique = true)
-    private String username;
-
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "date_of_birth", nullable = false)
-    private LocalDate dateOfBirth;
+    @Column(name = "birth_date")
+    private LocalDate birthDate;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "country", nullable = false)
