@@ -1,48 +1,48 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
 
 <head>
-    <meta charset = "UTF-8">
-    <link rel = "preconnect" href = "https://fonts.googleapis.com">
-    <link rel = "preconnect" href = "https://fonts.gstatic.com" crossorigin>
-    <link href = "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel = "stylesheet">
-    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" type = "text/css" href = "/css/common.css">
-    <link rel = "stylesheet" type = "text/css" href = "/css/error/error-page.css">
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/css/error/error-page.css">
     <title>Server Error | Music Store</title>
 </head>
 
 <body>
 
-<th:block th:replace = "fragments/header :: site-header"></th:block>
+<th:block th:replace="fragments/header :: site-header"></th:block>
 
 <main>
-    <section class = "error-section">
-        <div class = "container">
-            <div class = "error-content">
-                <div class = "error-illustration">
-                    <div class = "error-icon server-error">
-                        <span class = "icon-500">🎛️</span>
+    <section class="error-section">
+        <div class="container">
+            <div class="error-content">
+                <div class="error-illustration">
+                    <div class="error-icon server-error">
+                        <span class="icon-500">🎛️</span>
                     </div>
-                    <div class = "error-particles">
-                        <div class = "particle particle-1"></div>
-                        <div class = "particle particle-2"></div>
-                        <div class = "particle particle-3"></div>
-                        <div class = "particle particle-4"></div>
-                        <div class = "particle particle-5"></div>
+                    <div class="error-particles">
+                        <div class="particle particle-1"></div>
+                        <div class="particle particle-2"></div>
+                        <div class="particle particle-3"></div>
+                        <div class="particle particle-4"></div>
+                        <div class="particle particle-5"></div>
                     </div>
                 </div>
 
-                <div class = "error-text">
-                    <h1 class = "error-title">500</h1>
-                    <h2 class = "error-subtitle">Oops! Server Error</h2>
-                    <p class = "error-description">
+                <div class="error-text">
+                    <h1 class="error-title">500</h1>
+                    <h2 class="error-subtitle">Oops! Server Error</h2>
+                    <p class="error-description">
                         Our music servers are experiencing some technical difficulties.
                         Don't worry, our engineers are working to get the rhythm back!
                     </p>
 
-                    <div class = "error-suggestions">
+                    <div class="error-suggestions">
                         <h3>What you can do:</h3>
                         <ul>
                             <li>Try refreshing the page in a few moments</li>
@@ -52,15 +52,15 @@
                         </ul>
                     </div>
 
-                    <div class = "error-actions">
-                        <button onclick = "location.reload()" class = "button primary">Refresh Page</button>
-                        <a href = "/" class = "button">Go Home</a>
-                        <a href = "/contact" class = "button">Contact Support</a>
+                    <div class="error-actions">
+                        <button onclick="location.reload()" class="button primary">Refresh Page</button>
+                        <a href="/" class="button">Go Home</a>
+                        <a href="/contact" class="button">Contact Support</a>
                     </div>
 
-                    <div class = "error-status">
-                        <p class = "status-message">
-                            <span class = "status-icon">🔧</span>
+                    <div class="error-status">
+                        <p class="status-message">
+                            <span class="status-icon">🔧</span>
                             We're working to fix this issue. Estimated time: 5–10 minutes.
                         </p>
                     </div>
@@ -69,33 +69,33 @@
         </div>
     </section>
 
-    <section class = "maintenance-section">
-        <div class = "container">
-            <div class = "maintenance-info card">
+    <section class="maintenance-section">
+        <div class="container">
+            <div class="maintenance-info card">
                 <h3>System Status</h3>
-                <div class = "status-grid">
-                    <div class = "status-item">
-                        <div class = "status-indicator online"></div>
+                <div class="status-grid">
+                    <div class="status-item">
+                        <div class="status-indicator online"></div>
                         <span>Website</span>
-                        <span class = "status-text">Operational</span>
+                        <span class="status-text">Operational</span>
                     </div>
-                    <div class = "status-item">
-                        <div class = "status-indicator offline"></div>
+                    <div class="status-item">
+                        <div class="status-indicator offline"></div>
                         <span>Music Catalog</span>
-                        <span class = "status-text">Maintenance</span>
+                        <span class="status-text">Maintenance</span>
                     </div>
-                    <div class = "status-item">
-                        <div class = "status-indicator online"></div>
+                    <div class="status-item">
+                        <div class="status-indicator online"></div>
                         <span>Payment System</span>
-                        <span class = "status-text">Operational</span>
+                        <span class="status-text">Operational</span>
                     </div>
-                    <div class = "status-item">
-                        <div class = "status-indicator warning"></div>
+                    <div class="status-item">
+                        <div class="status-indicator warning"></div>
                         <span>Download Service</span>
-                        <span class = "status-text">Slow</span>
+                        <span class="status-text">Slow</span>
                     </div>
                 </div>
-                <p class = "maintenance-note">
+                <p class="maintenance-note">
                     We're performing scheduled maintenance to improve your experience.
                     Some features may be temporarily unavailable.
                 </p>
@@ -104,7 +104,7 @@
     </section>
 </main>
 
-<th:block th:replace = "fragments/footer :: site-footer"></th:block>
+<th:block th:replace="fragments/footer :: site-footer"></th:block>
 
 </body>
 

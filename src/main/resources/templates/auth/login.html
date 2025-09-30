@@ -1,105 +1,99 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
 
 <head>
-    <meta charset = "UTF-8">
-    <link rel = "preconnect" href = "https://fonts.googleapis.com">
-    <link rel = "preconnect" href = "https://fonts.gstatic.com" crossorigin>
-    <link href = "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel = "stylesheet">
-    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" type = "text/css" href = "/css/common.css">
-    <link rel = "stylesheet" type = "text/css" href = "/css/auth/login.css">
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/css/auth/login.css">
     <title>Login | Music Store</title>
 </head>
 
 <body>
 
-<main class = "auth-container">
-    <section class = "auth-section">
-        <div class = "auth-header">
-            <a href = "/" class = "logo-link">
-                <h1 class = "auth-logo">Music Store</h1>
+<main class="auth-container">
+    <section class="auth-section">
+        <div class="auth-header">
+            <a href="/" class="logo-link">
+                <h1 class="auth-logo">Music Store</h1>
             </a>
-            <p class = "auth-subtitle">Welcome back! Sign in to your account</p>
+            <p class="auth-subtitle">Welcome back! Sign in to your account</p>
         </div>
 
-        <form class = "auth-form">
-            <div class = "form-group">
-                <label for = "username">Username or Email</label>
-                <input type = "text"
-                       id = "username"
-                       name = "username"
-                       placeholder = "Enter your username or email"
-                       required>
+        <form class="auth-form">
+            <div class="form-group">
+                <label for="username">Username or Email</label>
+                <input type="text" id="username" name="username"
+                       placeholder="Enter your username or email" required>
             </div>
 
-            <div class = "form-group">
-                <label for = "password">Password</label>
-                <input type = "password" id = "password" name = "password" placeholder = "Enter your password" required>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password"
+                       placeholder="Enter your password" required>
             </div>
 
-            <div class = "form-options">
-                <label class = "checkbox-container">
-                    <input type = "checkbox" id = "remember" name = "remember">
-                    <span class = "checkmark"></span>
+            <div class="form-options">
+                <label class="checkbox-container">
+                    <input type="checkbox" id="remember" name="remember">
+                    <span class="checkmark"></span>
                     Remember me
                 </label>
-                <a href = "/forgot-password" class = "forgot-password">Forgot password?</a>
+                <a href="/forgot-password" class="forgot-password">Forgot password?</a>
             </div>
 
-            <button type = "submit" class = "auth-button primary">
-                Sign In
-            </button>
+            <button type="submit" class="auth-button primary">Sign In</button>
 
-            <div class = "auth-divider">
-                <span>or</span>
-            </div>
+            <div class="auth-divider"><span>or</span></div>
 
-            <div class = "social-login">
-                <button type = "button" class = "social-button google">
-                    <span class = "social-icon">🔍</span>
+            <div class="social-login">
+                <button type="button" class="social-button google">
+                    <span class="social-icon">🔍</span>
                     Continue with Google
                 </button>
-                <button type = "button" class = "social-button facebook">
-                    <span class = "social-icon">📘</span>
+                <button type="button" class="social-button facebook">
+                    <span class="social-icon">📘</span>
                     Continue with Facebook
                 </button>
-                <button type = "button" class = "social-button apple">
-                    <span class = "social-icon">🍎</span>
+                <button type="button" class="social-button apple">
+                    <span class="social-icon">🍎</span>
                     Continue with Apple
                 </button>
             </div>
 
-            <div class = "auth-footer">
-                <p>Don't have an account? <a th:href = "@{/register}" class = "auth-link">Create one here</a></p>
+            <div class="auth-footer">
+                <p>Don't have an account? <a th:href="@{/register}" class="auth-link">Create one here</a></p>
             </div>
         </form>
     </section>
 
-    <div class = "auth-image">
-        <div class = "image-content">
-            <div class = "floating-album album-1">
-                <img src = "https://via.placeholder.com/120x120/746ab0/ffffff?text=Album" alt = "Music Album">
+    <div class="auth-image">
+        <div class="image-content">
+            <div class="floating-album album-1">
+                <img src="https://via.placeholder.com/120x120/746ab0/ffffff?text=Album" alt="Music Album">
             </div>
-            <div class = "floating-album album-2">
-                <img src = "https://via.placeholder.com/100x100/6a61a4/ffffff?text=Song" alt = "Music Album">
+            <div class="floating-album album-2">
+                <img src="https://via.placeholder.com/100x100/6a61a4/ffffff?text=Song" alt="Music Album">
             </div>
-            <div class = "floating-album album-3">
-                <img src = "https://via.placeholder.com/140x140/605899/ffffff?text=Track" alt = "Music Album">
+            <div class="floating-album album-3">
+                <img src="https://via.placeholder.com/140x140/605899/ffffff?text=Track" alt="Music Album">
             </div>
-            <div class = "floating-album album-4">
-                <img src = "https://via.placeholder.com/110x110/56508d/ffffff?text=Music" alt = "Music Album">
+            <div class="floating-album album-4">
+                <img src="https://via.placeholder.com/110x110/56508d/ffffff?text=Music" alt="Music Album">
             </div>
-            <h2 class = "image-title">Discover Amazing Music</h2>
-            <p class = "image-subtitle">Join thousands of music lovers and explore our vast collection of digital albums
-                                        and
-                                        singles.</p>
+            <h2 class="image-title">Discover Amazing Music</h2>
+            <p class="image-subtitle">Join thousands of music lovers and explore our vast collection
+                                      of digital albums and singles.
+            </p>
         </div>
     </div>
 </main>
 
-<th:block th:replace = "fragments/footer :: site-footer"></th:block>
+<th:block th:replace="fragments/footer :: site-footer"></th:block>
 
 </body>
 

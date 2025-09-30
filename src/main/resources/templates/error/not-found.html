@@ -1,48 +1,48 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
 
 <head>
-    <meta charset = "UTF-8">
-    <link rel = "preconnect" href = "https://fonts.googleapis.com">
-    <link rel = "preconnect" href = "https://fonts.gstatic.com" crossorigin>
-    <link href = "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel = "stylesheet">
-    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" type = "text/css" href = "/css/common.css">
-    <link rel = "stylesheet" type = "text/css" href = "/css/error/error-page.css">
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/css/error/error-page.css">
     <title>Page Not Found | Music Store</title>
 </head>
 
 <body>
 
-<th:block th:replace = "fragments/header :: site-header"></th:block>
+<th:block th:replace="fragments/header :: site-header"></th:block>
 
 <main>
-    <section class = "error-section">
-        <div class = "container">
-            <div class = "error-content">
-                <div class = "error-illustration">
-                    <div class = "error-icon">
-                        <span class = "icon-404">🎵</span>
+    <section class="error-section">
+        <div class="container">
+            <div class="error-content">
+                <div class="error-illustration">
+                    <div class="error-icon">
+                        <span class="icon-404">🎵</span>
                     </div>
-                    <div class = "floating-notes">
-                        <div class = "note note-1">♪</div>
-                        <div class = "note note-2">♫</div>
-                        <div class = "note note-3">♬</div>
-                        <div class = "note note-4">♩</div>
-                        <div class = "note note-5">♪</div>
+                    <div class="floating-notes">
+                        <div class="note note-1">♪</div>
+                        <div class="note note-2">♫</div>
+                        <div class="note note-3">♬</div>
+                        <div class="note note-4">♩</div>
+                        <div class="note note-5">♪</div>
                     </div>
                 </div>
 
-                <div class = "error-text">
-                    <h1 class = "error-title">404</h1>
-                    <h2 class = "error-subtitle">Oops! Page Not Found</h2>
-                    <p class = "error-description">
+                <div class="error-text">
+                    <h1 class="error-title">404</h1>
+                    <h2 class="error-subtitle">Oops! Page Not Found</h2>
+                    <p class="error-description">
                         The page you're looking for seems to have hit the wrong note.
                         Don't worry, even the best musicians miss a beat sometimes!
                     </p>
 
-                    <div class = "error-suggestions">
+                    <div class="error-suggestions">
                         <h3>Here are some suggestions:</h3>
                         <ul>
                             <li>Check the URL for typos</li>
@@ -52,51 +52,51 @@
                         </ul>
                     </div>
 
-                    <div class = "error-actions">
-                        <a href = "/" class = "button primary">Go Home</a>
-                        <a href = "/catalog" class = "button">Browse Music</a>
-                        <button onclick = "history.back()" class = "button">Go Back</button>
+                    <div class="error-actions">
+                        <a href="/" class="button primary">Go Home</a>
+                        <a href="/catalog" class="button">Browse Music</a>
+                        <button onclick="history.back()" class="button">Go Back</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class = "popular-section">
-        <div class = "container">
-            <h3 class = "section-title">Popular Albums</h3>
-            <div class = "albums-grid">
-                <div class = "album-card card">
-                    <div class = "album-image">
-                        <img src = "https://via.placeholder.com/200x200/746ab0/ffffff?text=Album+1"
-                             alt = "Popular Album">
+    <section class="popular-section">
+        <div class="container">
+            <h3 class="section-title">Popular Albums</h3>
+            <div class="albums-grid">
+                <div class="album-card card">
+                    <div class="album-image">
+                        <img src="https://via.placeholder.com/200x200/746ab0/ffffff?text=Album+1"
+                             alt="Popular Album">
                     </div>
-                    <div class = "album-info">
-                        <h4 class = "album-title">Midnight Dreams</h4>
-                        <p class = "album-artist">The Night Owls</p>
-                        <span class = "album-price">$12.99</span>
-                    </div>
-                </div>
-                <div class = "album-card card">
-                    <div class = "album-image">
-                        <img src = "https://via.placeholder.com/200x200/6a61a4/ffffff?text=Album+2"
-                             alt = "Popular Album">
-                    </div>
-                    <div class = "album-info">
-                        <h4 class = "album-title">Electric Pulse</h4>
-                        <p class = "album-artist">Digital Waves</p>
-                        <span class = "album-price">$9.99</span>
+                    <div class="album-info">
+                        <h4 class="album-title">Midnight Dreams</h4>
+                        <p class="album-artist">The Night Owls</p>
+                        <span class="album-price">$12.99</span>
                     </div>
                 </div>
-                <div class = "album-card card">
-                    <div class = "album-image">
-                        <img src = "https://via.placeholder.com/200x200/605899/ffffff?text=Album+3"
-                             alt = "Popular Album">
+                <div class="album-card card">
+                    <div class="album-image">
+                        <img src="https://via.placeholder.com/200x200/6a61a4/ffffff?text=Album+2"
+                             alt="Popular Album">
                     </div>
-                    <div class = "album-info">
-                        <h4 class = "album-title">Acoustic Stories</h4>
-                        <p class = "album-artist">Folk Masters</p>
-                        <span class = "album-price">$14.99</span>
+                    <div class="album-info">
+                        <h4 class="album-title">Electric Pulse</h4>
+                        <p class="album-artist">Digital Waves</p>
+                        <span class="album-price">$9.99</span>
+                    </div>
+                </div>
+                <div class="album-card card">
+                    <div class="album-image">
+                        <img src="https://via.placeholder.com/200x200/605899/ffffff?text=Album+3"
+                             alt="Popular Album">
+                    </div>
+                    <div class="album-info">
+                        <h4 class="album-title">Acoustic Stories</h4>
+                        <p class="album-artist">Folk Masters</p>
+                        <span class="album-price">$14.99</span>
                     </div>
                 </div>
             </div>
@@ -104,7 +104,7 @@
     </section>
 </main>
 
-<th:block th:replace = "fragments/footer :: site-footer"></th:block>
+<th:block th:replace="fragments/footer :: site-footer"></th:block>
 
 </body>
 

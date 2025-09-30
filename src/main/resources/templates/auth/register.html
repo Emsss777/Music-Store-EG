@@ -1,75 +1,75 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
 
 <head>
-    <meta charset = "UTF-8">
-    <link rel = "preconnect" href = "https://fonts.googleapis.com">
-    <link rel = "preconnect" href = "https://fonts.gstatic.com" crossorigin>
-    <link href = "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel = "stylesheet">
-    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" type = "text/css" href = "/css/common.css">
-    <link rel = "stylesheet" type = "text/css" href = "/css/auth/register.css">
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/css/auth/register.css">
     <title>Register | Music Store</title>
 </head>
 
 <body>
 
-<main class = "auth-container">
-    <div class = "auth-image">
-        <div class = "image-content">
-            <div class = "floating-album album-1">
-                <img src = "https://via.placeholder.com/120x120/746ab0/ffffff?text=Album" alt = "Music Album">
+<main class="auth-container">
+    <div class="auth-image">
+        <div class="image-content">
+            <div class="floating-album album-1">
+                <img src="https://via.placeholder.com/120x120/746ab0/ffffff?text=Album" alt="Music Album">
             </div>
-            <div class = "floating-album album-2">
-                <img src = "https://via.placeholder.com/100x100/6a61a4/ffffff?text=Song" alt = "Music Album">
+            <div class="floating-album album-2">
+                <img src="https://via.placeholder.com/100x100/6a61a4/ffffff?text=Song" alt="Music Album">
             </div>
-            <div class = "floating-album album-3">
-                <img src = "https://via.placeholder.com/140x140/605899/ffffff?text=Track" alt = "Music Album">
+            <div class="floating-album album-3">
+                <img src="https://via.placeholder.com/140x140/605899/ffffff?text=Track" alt="Music Album">
             </div>
-            <div class = "floating-album album-4">
-                <img src = "https://via.placeholder.com/110x110/56508d/ffffff?text=Music" alt = "Music Album">
+            <div class="floating-album album-4">
+                <img src="https://via.placeholder.com/110x110/56508d/ffffff?text=Music" alt="Music Album">
             </div>
-            <h2 class = "image-title">Join Our Community</h2>
-            <p class = "image-subtitle">Create your account and start your musical journey
-                                        with access to thousands of albums and exclusive content.
+            <h2 class="image-title">Join Our Community</h2>
+            <p class="image-subtitle">Create your account and start your musical journey
+                                      with access to thousands of albums and exclusive content.
             </p>
         </div>
     </div>
 
-    <section class = "auth-section">
-        <div class = "auth-header">
-            <a href = "/" class = "logo-link">
-                <h1 class = "auth-logo">Music Store</h1>
+    <section class="auth-section">
+        <div class="auth-header">
+            <a href="/" class="logo-link">
+                <h1 class="auth-logo">Music Store</h1>
             </a>
-            <p class = "auth-subtitle">Create your account to get started</p>
+            <p class="auth-subtitle">Create your account to get started</p>
         </div>
 
-        <form th:method = "POST" th:action = "@{/register}" th:object = "${registerDTO}" class = "auth-form">
+        <form th:method="POST" th:action="@{/register}" th:object="${registerDTO}" class="auth-form">
 
-            <div class = "form-group">
-                <label for = "username">Username</label>
-                <input type = "text" id = "username" name = "username" th:field = "*{username}"
-                       placeholder = "Choose a username" required>
-                <p class = "alert-warning" th:if = "${#fields.hasErrors('username')}" th:errors = "*{username}"></p>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" th:field="*{username}"
+                       placeholder="Choose a username" required>
+                <p class="alert-warning" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
                 <!--/*@thymesVar id="usernameAlreadyExistMessage" type="text"*/-->
-                <p class = "alert-warning" th:if = "${usernameAlreadyExistMessage}"
-                   th:text = "${usernameAlreadyExistMessage}"></p>
+                <p class="alert-warning" th:if="${usernameAlreadyExistMessage}"
+                   th:text="${usernameAlreadyExistMessage}"></p>
             </div>
 
-            <div class = "form-group">
-                <label for = "email">Email Address</label>
-                <input type = "email" id = "email" name = "email" th:field = "*{email}"
-                       placeholder = "Enter your email address" required>
-                <p class = "alert-warning" th:if = "${#fields.hasErrors('email')}" th:errors = "*{email}"></p>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" th:field="*{email}"
+                       placeholder="Enter your email address" required>
+                <p class="alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
             </div>
 
-            <div class = "form-group">
-                <label for = "password">Password</label>
-                <input type = "password" id = "password"
-                       name = "password" th:field = "*{password}"
-                       placeholder = "Create a strong password" required>
-                <p class = "alert-warning" th:if = "${#fields.hasErrors('password')}" th:errors = "*{password}"></p>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password"
+                       name="password" th:field="*{password}"
+                       placeholder="Create a strong password" required>
+                <p class="alert-warning" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
                 <!--                <div class = "password-strength">-->
                 <!--                    <div class = "strength-bar">-->
                 <!--                        <div class = "strength-fill"></div>-->
@@ -78,12 +78,12 @@
                 <!--                </div>-->
             </div>
 
-            <div class = "form-group">
-                <label for = "confirmPassword">Confirm Password</label>
-                <input type = "password" id = "confirmPassword" name = "confirmPassword" th:field = "*{confirmPassword}"
-                       placeholder = "Confirm your password" required>
-                <p class = "alert-warning"
-                   th:if = "${#fields.hasErrors('confirmPassword')}" th:errors = "*{confirmPassword}"></p>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" th:field="*{confirmPassword}"
+                       placeholder="Confirm your password" required>
+                <p class="alert-warning"
+                   th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></p>
             </div>
 
             <!--            <div class = "form-group">-->
@@ -93,24 +93,24 @@
             <!--                <p class = "alert-warning">Error Message</p>-->
             <!--            </div>-->
 
-            <div class = "form-group">
-                <label for = "country">Country</label>
-                <select id = "country" name = "country" required>
-                    <option value = "" disabled selected>Select your country</option>
-                    <option th:each = "country : ${T(app.model.enums.Country).values()}" th:value = "${country}"
-                            th:text = "${#strings.capitalize(#strings.toLowerCase(country))}">
+            <div class="form-group">
+                <label for="country">Country</label>
+                <select id="country" name="country" required>
+                    <option value="" disabled selected>Select your country</option>
+                    <option th:each="country : ${T(app.model.enums.Country).values()}" th:value="${country}"
+                            th:text="${#strings.capitalize(#strings.toLowerCase(country))}">
                     </option>
                 </select>
             </div>
 
-            <div class = "form-group">
-                <label class = "checkbox-container">
-                    <input type = "checkbox" id = "terms" name = "terms" required>
-                    <span class = "checkmark"></span>
+            <div class="form-group">
+                <label class="checkbox-container">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <span class="checkmark"></span>
                     I agree to the
-                    <a href = "/terms" class = "terms-link">Terms of Service</a>
+                    <a href="/terms" class="terms-link">Terms of Service</a>
                     and
-                    <a href = "/privacy" class = "terms-link">Privacy Policy</a>
+                    <a href="/privacy" class="terms-link">Privacy Policy</a>
                 </label>
             </div>
 
@@ -122,33 +122,33 @@
             <!--                </label>-->
             <!--            </div>-->
 
-            <button type = "submit" class = "auth-button primary">Create Account</button>
+            <button type="submit" class="auth-button primary">Create Account</button>
 
-            <div class = "auth-divider"><span>or</span></div>
+            <div class="auth-divider"><span>or</span></div>
 
-            <div class = "social-login">
-                <button type = "button" class = "social-button google">
-                    <span class = "social-icon">🔍</span>
+            <div class="social-login">
+                <button type="button" class="social-button google">
+                    <span class="social-icon">🔍</span>
                     Continue with Google
                 </button>
-                <button type = "button" class = "social-button facebook">
-                    <span class = "social-icon">📘</span>
+                <button type="button" class="social-button facebook">
+                    <span class="social-icon">📘</span>
                     Continue with Facebook
                 </button>
-                <button type = "button" class = "social-button apple">
-                    <span class = "social-icon">🍎</span>
+                <button type="button" class="social-button apple">
+                    <span class="social-icon">🍎</span>
                     Continue with Apple
                 </button>
             </div>
 
-            <div class = "auth-footer">
-                <p>Already have an account? <a th:href = "@{/login}" class = "auth-link">Sign in here</a></p>
+            <div class="auth-footer">
+                <p>Already have an account? <a th:href="@{/login}" class="auth-link">Sign in here</a></p>
             </div>
         </form>
     </section>
 </main>
 
-<th:block th:replace = "~{fragments/footer :: site-footer}"></th:block>
+<th:block th:replace="~{fragments/footer :: site-footer}"></th:block>
 
 </body>
 
