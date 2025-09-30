@@ -253,8 +253,7 @@
     font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
-    /*letter-spacing: 0.5px;*/
-    letter-spacing: 0.042em;
+    letter-spacing: 0.04em;
 }
 
 .status-badge.active {

@@ -21,8 +21,7 @@ body {
     #000000 100%) no-repeat fixed;
     font-family: 'Poppins', sans-serif;
     color: #ffffff;
-    /*letter-spacing: 0.5px;*/
-    letter-spacing: 0.042em;
+    letter-spacing: 0.04em;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -556,8 +555,7 @@ p {
     font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
-    /*letter-spacing: 0.5px;*/
-    letter-spacing: 0.042em;
+    letter-spacing: 0.04em;
 }
 
 .status.active {

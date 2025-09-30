@@ -1,5 +1,4 @@
 /* Home Page Specific Styles */
-
 /* Hero Section */
 .hero-section {
     background: linear-gradient(135deg, rgba(116, 106, 176, 0.2) 0%, rgba(106, 97, 164, 0.1) 100%);
@@ -132,7 +131,7 @@
     font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.042em;
 }
 
 .album-info {

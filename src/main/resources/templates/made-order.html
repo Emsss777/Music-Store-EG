@@ -1,216 +1,216 @@
 <!DOCTYPE html>
-<html lang = "en" xmlns:th = "http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset = "UTF-8">
-    <link rel = "preconnect" href = "https://fonts.googleapis.com">
-    <link rel = "preconnect" href = "https://fonts.gstatic.com" crossorigin>
-    <link href = "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel = "stylesheet">
-    <link rel = "preconnect" href = "https://fonts.gstatic.com">
-    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href = "https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel = "stylesheet">
-    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" type = "text/css" href = "/css/common.css">
-    <link rel = "stylesheet" type = "text/css" href = "/css/made-order.css">
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/css/made-order.css">
     <title>Order Confirmation | Music Store</title>
 </head>
 
 <body>
 
-<th:block th:replace = "fragments/header :: site-header"></th:block>
+<th:block th:replace="fragments/header :: site-header"></th:block>
 
-<main class = "main-content">
-    <section class = "order-confirmation-section">
-        <div class = "container">
-            <div class = "order-header">
-                <div class = "success-icon">
-                    <i class = "fas fa-check-circle"></i>
+<main class="main-content">
+    <section class="order-confirmation-section">
+        <div class="container">
+            <div class="order-header">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
                 </div>
                 <h1>Order Placed Successfully!</h1>
-                <p class = "order-subtitle">Thank you for your purchase. Your order has been confirmed and will be
-                                            processed shortly.</p>
+                <p class="order-subtitle">Thank you for your purchase. Your order has been confirmed
+                                          and will be processed shortly.</p>
             </div>
 
-            <div class = "order-details-grid">
-                <div class = "order-info-card card">
-                    <h2 class = "card-title">Order Information</h2>
-                    <div class = "info-grid">
-                        <div class = "info-item">
-                            <span class = "info-label">Order Number:</span>
-                            <span class = "info-value">#MS-2025-001247</span>
+            <div class="order-details-grid">
+                <div class="order-info-card card">
+                    <h2 class="card-title">Order Information</h2>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Order Number:</span>
+                            <span class="info-value">#MS-2025-001247</span>
                         </div>
-                        <div class = "info-item">
-                            <span class = "info-label">Order Date:</span>
-                            <span class = "info-value">January 15, 2025</span>
+                        <div class="info-item">
+                            <span class="info-label">Order Date:</span>
+                            <span class="info-value">January 15, 2025</span>
                         </div>
-                        <div class = "info-item">
-                            <span class = "info-label">Order Status:</span>
-                            <span class = "info-value status-confirmed">Confirmed</span>
+                        <div class="info-item">
+                            <span class="info-label">Order Status:</span>
+                            <span class="info-value status-confirmed">Confirmed</span>
                         </div>
-                        <div class = "info-item">
-                            <span class = "info-label">Payment Method:</span>
-                            <span class = "info-value">Visa ending in 4242</span>
+                        <div class="info-item">
+                            <span class="info-label">Payment Method:</span>
+                            <span class="info-value">Visa ending in 4242</span>
                         </div>
-                        <div class = "info-item">
-                            <span class = "info-label">Total Amount:</span>
-                            <span class = "info-value total-amount">$28.98</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class = "shipping-info-card card">
-                    <h2 class = "card-title">Shipping Information</h2>
-                    <div class = "shipping-address">
-                        <p class = "address-name">John Doe</p>
-                        <p class = "address-line">123 Music Lane</p>
-                        <p class = "address-line">Apt 4B</p>
-                        <p class = "address-line">Melody City, MC 12345</p>
-                        <p class = "address-line">United States</p>
-                    </div>
-                    <div class = "shipping-method">
-                        <span class = "shipping-label">Shipping Method:</span>
-                        <span class = "shipping-value">Standard Shipping (5–7 business days)</span>
-                    </div>
-                    <div class = "estimated-delivery">
-                        <span class = "delivery-label">Estimated Delivery:</span>
-                        <span class = "delivery-value">January 22–24, 2025</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class = "order-items-section">
-                <h2 class = "section-title">Order Items</h2>
-                <div class = "items-list">
-                    <div class = "order-item">
-                        <div class = "item-image">
-                            <img th:src = "@{/images/album-cover-1.jpg}" alt = "Album Cover">
-                        </div>
-                        <div class = "item-details">
-                            <h3 class = "item-title">The Dark Side of the Moon</h3>
-                            <p class = "item-artist">Pink Floyd</p>
-                            <p class = "item-format">Digital Download</p>
-                        </div>
-                        <div class = "item-quantity">
-                            <span class = "quantity">Qty: 1</span>
-                        </div>
-                        <div class = "item-price">
-                            <span class = "price">$12.99</span>
-                        </div>
-                    </div>
-
-                    <div class = "order-item">
-                        <div class = "item-image">
-                            <img th:src = "@{/images/album-cover-2.jpg}" alt = "Album Cover">
-                        </div>
-                        <div class = "item-details">
-                            <h3 class = "item-title">Thriller</h3>
-                            <p class = "item-artist">Michael Jackson</p>
-                            <p class = "item-format">Digital Download</p>
-                        </div>
-                        <div class = "item-quantity">
-                            <span class = "quantity">Qty: 1</span>
-                        </div>
-                        <div class = "item-price">
-                            <span class = "price">$10.99</span>
+                        <div class="info-item">
+                            <span class="info-label">Total Amount:</span>
+                            <span class="info-value total-amount">$28.98</span>
                         </div>
                     </div>
                 </div>
 
-                <div class = "order-summary">
-                    <div class = "summary-row">
-                        <span class = "summary-label">Subtotal:</span>
-                        <span class = "summary-value">$23.98</span>
+                <div class="shipping-info-card card">
+                    <h2 class="card-title">Shipping Information</h2>
+                    <div class="shipping-address">
+                        <p class="address-name">John Doe</p>
+                        <p class="address-line">123 Music Lane</p>
+                        <p class="address-line">Apt 4B</p>
+                        <p class="address-line">Melody City, MC 12345</p>
+                        <p class="address-line">United States</p>
                     </div>
-                    <div class = "summary-row">
-                        <span class = "summary-label">Shipping:</span>
-                        <span class = "summary-value">$5.00</span>
+                    <div class="shipping-method">
+                        <span class="shipping-label">Shipping Method:</span>
+                        <span class="shipping-value">Standard Shipping (5–7 business days)</span>
                     </div>
-                    <div class = "summary-row">
-                        <span class = "summary-label">Tax:</span>
-                        <span class = "summary-value">$0.00</span>
-                    </div>
-                    <div class = "summary-row total-row">
-                        <span class = "summary-label">Total:</span>
-                        <span class = "summary-value">$28.98</span>
+                    <div class="estimated-delivery">
+                        <span class="delivery-label">Estimated Delivery:</span>
+                        <span class="delivery-value">January 22–24, 2025</span>
                     </div>
                 </div>
             </div>
 
-            <div class = "order-actions">
-                <div class = "action-buttons">
-                    <a href = "/my-orders" class = "button primary">View My Orders</a>
-                    <a href = "/catalog" class = "button secondary">Continue Shopping</a>
-                    <button class = "button download-receipt" onclick = "downloadReceipt()">Download Receipt</button>
+            <div class="order-items-section">
+                <h2 class="section-title">Order Items</h2>
+                <div class="items-list">
+                    <div class="order-item">
+                        <div class="item-image">
+                            <img th:src="@{/images/album-cover-1.jpg}" alt="Album Cover">
+                        </div>
+                        <div class="item-details">
+                            <h3 class="item-title">The Dark Side of the Moon</h3>
+                            <p class="item-artist">Pink Floyd</p>
+                            <p class="item-format">Digital Download</p>
+                        </div>
+                        <div class="item-quantity">
+                            <span class="quantity">Qty: 1</span>
+                        </div>
+                        <div class="item-price">
+                            <span class="price">$12.99</span>
+                        </div>
+                    </div>
+
+                    <div class="order-item">
+                        <div class="item-image">
+                            <img th:src="@{/images/album-cover-2.jpg}" alt="Album Cover">
+                        </div>
+                        <div class="item-details">
+                            <h3 class="item-title">Thriller</h3>
+                            <p class="item-artist">Michael Jackson</p>
+                            <p class="item-format">Digital Download</p>
+                        </div>
+                        <div class="item-quantity">
+                            <span class="quantity">Qty: 1</span>
+                        </div>
+                        <div class="item-price">
+                            <span class="price">$10.99</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-summary">
+                    <div class="summary-row">
+                        <span class="summary-label">Subtotal:</span>
+                        <span class="summary-value">$23.98</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Shipping:</span>
+                        <span class="summary-value">$5.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Tax:</span>
+                        <span class="summary-value">$0.00</span>
+                    </div>
+                    <div class="summary-row total-row">
+                        <span class="summary-label">Total:</span>
+                        <span class="summary-value">$28.98</span>
+                    </div>
                 </div>
             </div>
 
-            <div class = "order-timeline">
-                <h2 class = "section-title">Order Timeline</h2>
-                <div class = "timeline">
-                    <div class = "timeline-item completed">
-                        <div class = "timeline-icon">
-                            <i class = "fas fa-shopping-cart"></i>
+            <div class="order-actions">
+                <div class="action-buttons">
+                    <a href="/my-orders" class="button primary">View My Orders</a>
+                    <a href="/catalog" class="button secondary">Continue Shopping</a>
+                    <button class="button download-receipt" onclick="downloadReceipt()">Download Receipt</button>
+                </div>
+            </div>
+
+            <div class="order-timeline">
+                <h2 class="section-title">Order Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item completed">
+                        <div class="timeline-icon">
+                            <i class="fas fa-shopping-cart"></i>
                         </div>
-                        <div class = "timeline-content">
+                        <div class="timeline-content">
                             <h4>Order Placed</h4>
                             <p>Your order has been successfully placed</p>
-                            <span class = "timeline-date">January 15, 2025–2:30 PM</span>
+                            <span class="timeline-date">January 15, 2025–2:30 PM</span>
                         </div>
                     </div>
 
-                    <div class = "timeline-item completed">
-                        <div class = "timeline-icon">
-                            <i class = "fas fa-credit-card"></i>
+                    <div class="timeline-item completed">
+                        <div class="timeline-icon">
+                            <i class="fas fa-credit-card"></i>
                         </div>
-                        <div class = "timeline-content">
+                        <div class="timeline-content">
                             <h4>Payment Processed</h4>
                             <p>Payment has been successfully processed</p>
-                            <span class = "timeline-date">January 15, 2025–2:31 PM</span>
+                            <span class="timeline-date">January 15, 2025–2:31 PM</span>
                         </div>
                     </div>
 
-                    <div class = "timeline-item current">
-                        <div class = "timeline-icon">
-                            <i class = "fas fa-box"></i>
+                    <div class="timeline-item current">
+                        <div class="timeline-icon">
+                            <i class="fas fa-box"></i>
                         </div>
-                        <div class = "timeline-content">
+                        <div class="timeline-content">
                             <h4>Processing</h4>
                             <p>Your order is being prepared for shipment</p>
-                            <span class = "timeline-date">In Progress</span>
+                            <span class="timeline-date">In Progress</span>
                         </div>
                     </div>
 
-                    <div class = "timeline-item">
-                        <div class = "timeline-icon">
-                            <i class = "fas fa-shipping-fast"></i>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-shipping-fast"></i>
                         </div>
-                        <div class = "timeline-content">
+                        <div class="timeline-content">
                             <h4>Shipped</h4>
                             <p>Your order has been shipped</p>
-                            <span class = "timeline-date">Estimated: January 17, 2025</span>
+                            <span class="timeline-date">Estimated: January 17, 2025</span>
                         </div>
                     </div>
 
-                    <div class = "timeline-item">
-                        <div class = "timeline-icon">
-                            <i class = "fas fa-home"></i>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-home"></i>
                         </div>
-                        <div class = "timeline-content">
+                        <div class="timeline-content">
                             <h4>Delivered</h4>
                             <p>Your order has been delivered</p>
-                            <span class = "timeline-date">Estimated: January 22–24, 2025</span>
+                            <span class="timeline-date">Estimated: January 22–24, 2025</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class = "support-section">
-                <div class = "support-card card">
+            <div class="support-section">
+                <div class="support-card card">
                     <h3>Need Help?</h3>
                     <p>If you have any questions about your order, our customer support team is here to help.</p>
-                    <div class = "support-actions">
-                        <a href = "/contact" class = "button support-button">Contact Support</a>
-                        <a href = "/help" class = "button support-button">Help Center</a>
+                    <div class="support-actions">
+                        <a href="/contact" class="button support-button">Contact Support</a>
+                        <a href="/help" class="button support-button">Help Center</a>
                     </div>
                 </div>
             </div>
@@ -218,7 +218,7 @@
     </section>
 </main>
 
-<th:block th:replace = "fragments/footer :: site-footer"></th:block>
+<th:block th:replace="fragments/footer :: site-footer"></th:block>
 
 <script>
     function downloadReceipt() {

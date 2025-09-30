@@ -1,181 +1,182 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
 
 <head>
-    <meta charset = "UTF-8">
-    <link rel = "preconnect" href = "https://fonts.googleapis.com">
-    <link rel = "preconnect" href = "https://fonts.gstatic.com" crossorigin>
-    <link href = "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel = "stylesheet">
-    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" type = "text/css" href = "/css/common.css">
-    <link rel = "stylesheet" type = "text/css" href = "/css/profile.css">
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/css/profile.css">
     <title>My Profile | Music Store</title>
 </head>
 
 <body>
 
-<th:block th:replace = "fragments/header :: site-header"></th:block>
+<th:block th:replace="fragments/header :: site-header"></th:block>
 
 <main>
-    <div class = "profile-header">
-        <div class = "container">
-            <h1 class = "page-title">My Profile</h1>
-            <p class = "page-subtitle">Manage your account and preferences</p>
+    <div class="profile-header">
+        <div class="container">
+            <h1 class="page-title">My Profile</h1>
+            <p class="page-subtitle">Manage your account and preferences</p>
         </div>
     </div>
 
-    <section class = "profile-section">
-        <div class = "container">
-            <div class = "profile-layout">
-                <aside class = "profile-sidebar">
-                    <div class = "profile-nav card">
-                        <div class = "profile-avatar-section">
-                            <div class = "profile-avatar">
-                                <img src = "https://via.placeholder.com/120x120/746ab0/ffffff?text=JD"
-                                     alt = "Profile Avatar">
+    <section class="profile-section">
+        <div class="container">
+            <div class="profile-layout">
+                <aside class="profile-sidebar">
+                    <div class="profile-nav card">
+                        <div class="profile-avatar-section">
+                            <div class="profile-avatar">
+                                <img src="https://via.placeholder.com/120x120/746ab0/ffffff?text=JD"
+                                     alt="Profile Avatar">
                             </div>
-                            <h3 class = "profile-name">John Doe</h3>
-                            <p class = "profile-email">john.doe@example.com</p>
-                            <span class = "member-since">Member since 2023</span>
+                            <h3 class="profile-name">John Doe</h3>
+                            <p class="profile-email">john.doe@example.com</p>
+                            <span class="member-since">Member since 2023</span>
                         </div>
-                        <nav class = "profile-menu">
-                            <a href = "/profile" class = "profile-menu-item active">
-                                <span class = "menu-icon">👤</span>
+                        <nav class="profile-menu">
+                            <a href="/profile" class="profile-menu-item active">
+                                <span class="menu-icon">👤</span>
                                 Personal Info
                             </a>
-                            <a href = "/my-orders" class = "profile-menu-item">
-                                <span class = "menu-icon">📦</span>
+                            <a href="/my-orders" class="profile-menu-item">
+                                <span class="menu-icon">📦</span>
                                 My Orders
                             </a>
-                            <a href = "/order-details" class = "profile-menu-item">
-                                <span class = "menu-icon">📋</span>
+                            <a href="/order-details" class="profile-menu-item">
+                                <span class="menu-icon">📋</span>
                                 Order Details
                             </a>
-                            <a href = "/wishlist" class = "profile-menu-item">
-                                <span class = "menu-icon">❤️</span>
+                            <a href="/wishlist" class="profile-menu-item">
+                                <span class="menu-icon">❤️</span>
                                 Wishlist
                             </a>
-                            <a href = "/settings" class = "profile-menu-item">
-                                <span class = "menu-icon">⚙️</span>
+                            <a href="/settings" class="profile-menu-item">
+                                <span class="menu-icon">⚙️</span>
                                 Settings
                             </a>
                         </nav>
                     </div>
                 </aside>
 
-                <div class = "profile-content">
-                    <div class = "profile-info-card card">
-                        <div class = "card-header">
+                <div class="profile-content">
+                    <div class="profile-info-card card">
+                        <div class="card-header">
                             <h2>Personal Information</h2>
-                            <button class = "edit-button">Edit</button>
+                            <button class="edit-button">Edit</button>
                         </div>
 
-                        <div class = "profile-info-grid">
-                            <div class = "info-group">
+                        <div class="profile-info-grid">
+                            <div class="info-group">
                                 <label>First Name</label>
                                 <p>John</p>
                             </div>
-                            <div class = "info-group">
+                            <div class="info-group">
                                 <label>Last Name</label>
                                 <p>Doe</p>
                             </div>
-                            <div class = "info-group">
+                            <div class="info-group">
                                 <label>Email Address</label>
                                 <p>john.doe@example.com</p>
                             </div>
-                            <div class = "info-group">
+                            <div class="info-group">
                                 <label>Username</label>
                                 <p>johndoe123</p>
                             </div>
-                            <div class = "info-group">
+                            <div class="info-group">
                                 <label>Date of Birth</label>
                                 <p>January 15, 1990</p>
                             </div>
-                            <div class = "info-group">
+                            <div class="info-group">
                                 <label>Country</label>
                                 <p>United States</p>
                             </div>
-                            <div class = "info-group full-width">
+                            <div class="info-group full-width">
                                 <label>Bio</label>
-                                <p>Music lover and digital audio enthusiast. Always looking for new sounds and artists
-                                   to discover.</p>
+                                <p>Music lover and digital audio enthusiast.
+                                   Always looking for new sounds and artists to discover.
+                                </p>
                             </div>
                         </div>
                     </div>
 
-                    <div class = "stats-card card">
-                        <div class = "card-header">
+                    <div class="stats-card card">
+                        <div class="card-header">
                             <h2>Account Statistics</h2>
                         </div>
-                        <div class = "stats-grid">
-                            <div class = "stat-item">
-                                <div class = "stat-icon">🎵</div>
-                                <div class = "stat-content">
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-icon">🎵</div>
+                                <div class="stat-content">
                                     <h3>Albums Purchased</h3>
-                                    <p class = "stat-number">24</p>
+                                    <p class="stat-number">24</p>
                                 </div>
                             </div>
-                            <div class = "stat-item">
-                                <div class = "stat-icon">💰</div>
-                                <div class = "stat-content">
+                            <div class="stat-item">
+                                <div class="stat-icon">💰</div>
+                                <div class="stat-content">
                                     <h3>Totally Spent</h3>
-                                    <p class = "stat-number">$347.52</p>
+                                    <p class="stat-number">$347.52</p>
                                 </div>
                             </div>
-                            <div class = "stat-item">
-                                <div class = "stat-icon">⭐</div>
-                                <div class = "stat-content">
+                            <div class="stat-item">
+                                <div class="stat-icon">⭐</div>
+                                <div class="stat-content">
                                     <h3>Reviews Written</h3>
-                                    <p class = "stat-number">12</p>
+                                    <p class="stat-number">12</p>
                                 </div>
                             </div>
-                            <div class = "stat-item">
-                                <div class = "stat-icon">❤️</div>
-                                <div class = "stat-content">
+                            <div class="stat-item">
+                                <div class="stat-icon">❤️</div>
+                                <div class="stat-content">
                                     <h3>Wishlist Items</h3>
-                                    <p class = "stat-number">8</p>
+                                    <p class="stat-number">8</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class = "recent-activity-card card">
-                        <div class = "card-header">
+                    <div class="recent-activity-card card">
+                        <div class="card-header">
                             <h2>Recent Activity</h2>
-                            <a href = "/my-orders" class = "view-all-link">View All</a>
+                            <a href="/my-orders" class="view-all-link">View All</a>
                         </div>
-                        <div class = "activity-list">
-                            <div class = "activity-item">
-                                <div class = "activity-icon">🛒</div>
-                                <div class = "activity-content">
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-icon">🛒</div>
+                                <div class="activity-content">
                                     <h4>Purchase Completed</h4>
                                     <p>Midnight Dreams by The Night Owls</p>
-                                    <span class = "activity-date">2 days ago</span>
+                                    <span class="activity-date">2 days ago</span>
                                 </div>
                             </div>
-                            <div class = "activity-item">
-                                <div class = "activity-icon">⭐</div>
-                                <div class = "activity-content">
+                            <div class="activity-item">
+                                <div class="activity-icon">⭐</div>
+                                <div class="activity-content">
                                     <h4>Review Added</h4>
                                     <p>Rated "Electric Pulse" 5 stars</p>
-                                    <span class = "activity-date">1 week ago</span>
+                                    <span class="activity-date">1 week ago</span>
                                 </div>
                             </div>
-                            <div class = "activity-item">
-                                <div class = "activity-icon">❤️</div>
-                                <div class = "activity-content">
+                            <div class="activity-item">
+                                <div class="activity-icon">❤️</div>
+                                <div class="activity-content">
                                     <h4>Added to Wishlist</h4>
                                     <p>Jazz Fusion by Modern Jazz Collective</p>
-                                    <span class = "activity-date">2 weeks ago</span>
+                                    <span class="activity-date">2 weeks ago</span>
                                 </div>
                             </div>
-                            <div class = "activity-item">
-                                <div class = "activity-icon">🎵</div>
-                                <div class = "activity-content">
+                            <div class="activity-item">
+                                <div class="activity-icon">🎵</div>
+                                <div class="activity-content">
                                     <h4>Download Completed</h4>
                                     <p>Acoustic Stories by Folk Masters</p>
-                                    <span class = "activity-date">3 weeks ago</span>
+                                    <span class="activity-date">3 weeks ago</span>
                                 </div>
                             </div>
                         </div>
@@ -186,7 +187,7 @@
     </section>
 </main>
 
-<th:block th:replace = "fragments/footer :: site-footer"></th:block>
+<th:block th:replace="fragments/footer :: site-footer"></th:block>
 
 </body>
 

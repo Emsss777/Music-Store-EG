@@ -465,8 +465,7 @@
     font-size: 12px;
     color: rgba(255, 255, 255, 0.6);
     text-transform: uppercase;
-    /*letter-spacing: 0.5px;*/
-    letter-spacing: 0.042em;
+    letter-spacing: 0.04em;
 }
 
 .maintenance-note {
