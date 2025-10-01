@@ -16,20 +16,14 @@ import static app.util.UrlPaths.*;
 import static app.util.Views.*;
 
 @Controller
-public class IndexController {
+public class AuthController {
 
     private final UserService userService;
 
     @Autowired
-    public IndexController(UserService userService) {
+    public AuthController(UserService userService) {
 
         this.userService = userService;
-    }
-
-    @GetMapping(URL_ROOT)
-    public String getIndexPage() {
-
-        return VIEW_HOME;
     }
 
     @GetMapping(URL_LOGIN)
