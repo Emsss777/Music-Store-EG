@@ -3,6 +3,7 @@ package app.service.impl;
 import app.exception.UsernameAlreadyExistException;
 import app.model.dto.RegisterDTO;
 import app.model.entity.UserEntity;
+import app.model.enums.Country;
 import app.model.enums.UserRole;
 import app.repository.UserRepo;
 import app.service.UserService;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -28,6 +30,44 @@ public class UserServiceImpl implements UserService {
 
         this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;
+    }
+
+    @Override
+    public void initAuth() {
+
+        if (userRepo.count() != 0) {
+            return;
+        }
+
+        UserEntity testAdmin = new UserEntity()
+                .setUsername("admin1")
+                .setFirstName("FirstName1")
+                .setLastName("LastName1")
+                .setEmail("admin1@softuni.bg")
+                .setPassword(passwordEncoder.encode("123456"))
+                .setBirthDate(LocalDate.parse("1999-09-19"))
+                .setCountry(Country.BULGARIA)
+                .setRole(UserRole.ADMIN)
+                .setActive(true)
+                .setCreatedOn(LocalDateTime.now())
+                .setUpdatedOn(LocalDateTime.now());
+
+        userRepo.save(testAdmin);
+
+        UserEntity testUser = new UserEntity()
+                .setUsername("user1")
+                .setFirstName("FirstName2")
+                .setLastName("LastName2")
+                .setEmail("user1@softuni.bg")
+                .setPassword(passwordEncoder.encode("456123"))
+                .setBirthDate(LocalDate.parse("1989-08-18"))
+                .setCountry(Country.SPAIN)
+                .setRole(UserRole.USER)
+                .setActive(true)
+                .setCreatedOn(LocalDateTime.now())
+                .setUpdatedOn(LocalDateTime.now());
+
+        userRepo.save(testUser);
     }
 
     @CacheEvict(value = "users", allEntries = true)
