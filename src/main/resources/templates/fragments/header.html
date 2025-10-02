@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -22,12 +22,19 @@
             </a>
         </div>
         <nav class="nav">
-            <a th:href="@{/home}" th:classappend="${page == 'home'} ? ' active'" class="nav-link">Home</a>
-            <a th:href="@{/catalog}" th:classappend="${page == 'catalog'} ? ' active'" class="nav-link">Catalog</a>
-            <a th:href="@{/cart}" th:classappend="${page == 'cart'} ? ' active'" class="nav-link">Cart</a>
-            <a th:href="@{/profile}" th:classappend="${page == 'profile'} ? ' active'" class="nav-link">Profile</a>
-            <a th:href="@{/login}" class="button login">Login</a>
-            <a th:href="@{/register}" class="button register">Register</a>
+            <a class="nav-link" th:href="@{/home}" th:classappend="${page == 'home'} ? ' active'">Home</a>
+            <a class="nav-link" th:href="@{/catalog}" th:classappend="${page == 'catalog'} ? ' active'">Catalog</a>
+
+            <a class="nav-link" th:href="@{/cart}" th:classappend="${page == 'cart'} ? ' active'"
+               sec:authorize="isAuthenticated()">Cart</a>
+
+            <a class="nav-link" th:href="@{/profile}" th:classappend="${page == 'profile'} ? ' active'"
+               sec:authorize="isAuthenticated()">Profile</a>
+
+            <a class="button login" th:href="@{/login}" sec:authorize="isAnonymous()">Login</a>
+            <a class="button register" th:href="@{/register}" sec:authorize="isAnonymous()">Register</a>
+
+            <a class="button login" href="/logout" sec:authorize="isAuthenticated()">Logout</a>
         </nav>
     </div>
 </header>
