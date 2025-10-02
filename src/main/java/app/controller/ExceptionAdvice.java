@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import static app.util.FlashAttributes.USERNAME_ALREADY_EXISTS;
+import static app.util.ErrorMessages.USERNAME_ALREADY_EXISTS;
 import static app.util.Redirects.REDIRECT_REGISTER;
 
 @ControllerAdvice
