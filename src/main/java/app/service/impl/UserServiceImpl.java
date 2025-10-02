@@ -1,5 +1,6 @@
 package app.service.impl;
 
+import app.exception.PasswordMismatchException;
 import app.exception.UsernameAlreadyExistException;
 import app.model.dto.RegisterDTO;
 import app.model.entity.UserEntity;
@@ -78,9 +79,12 @@ public class UserServiceImpl implements UserService {
         Optional<UserEntity> optionalUser = userRepo.findByUsername(registerDTO.getUsername());
 
         if (optionalUser.isPresent()) {
-
             throw new UsernameAlreadyExistException(
                     "Username [%s] Already Exist!".formatted(registerDTO.getUsername()));
+        }
+
+        if (!registerDTO.getPassword().equals(registerDTO.getConfirmPassword())) {
+            throw new PasswordMismatchException("Passwords do NOT Match!");
         }
 
         UserEntity user = userRepo.save(initializeUser(registerDTO));

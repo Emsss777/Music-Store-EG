@@ -45,16 +45,19 @@
             <p class="auth-subtitle">Create your account to get started</p>
         </div>
 
-        <form class="auth-form" th:method="POST" th:action="@{/register}"
-              th:object="${registerDTO}" th:with="usernameAlreadyExists=${usernameAlreadyExists}">
+        <form class="auth-form" th:method="POST" th:action="@{/register}" th:object="${registerDTO}"
+              th:with="usernameAlreadyExists=${usernameAlreadyExists},
+              passwordMismatchException=${passwordMismatchException}">
 
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" th:field="*{username}"
                        placeholder="Choose a username" required>
                 <p class="alert-warning" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
-                <p class="alert-warning" th:if="${usernameAlreadyExists}"
-                   th:text="${usernameAlreadyExists}"></p>
+                <p class="alert-warning"
+                   th:if="${usernameAlreadyExists}" th:text="${usernameAlreadyExists}"></p>
+                <p class="alert-warning"
+                   th:if="${passwordMismatchException}" th:text="${passwordMismatchException}"></p>
             </div>
 
             <div class="form-group">
