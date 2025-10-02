@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import static app.util.ModelAttributes.*;
 import static app.util.UrlPaths.URL_HOME;
 import static app.util.Views.VIEW_HOME;
 
@@ -15,6 +16,7 @@ public class HomeController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_HOME);
+        modelAndView.addObject(MODEL_PAGE, MODEL_HOME);
 
         return modelAndView;
     }
