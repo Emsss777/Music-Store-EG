@@ -6,12 +6,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import static app.util.ModelAttributes.*;
 import static app.util.UrlPaths.URL_HOME;
+import static app.util.UrlPaths.URL_ROOT;
 import static app.util.Views.VIEW_HOME;
 
 @Controller
 public class HomeController {
 
-    @GetMapping(URL_HOME)
+    @GetMapping({URL_ROOT, URL_HOME})
     public ModelAndView getHomePage() {
 
         ModelAndView modelAndView = new ModelAndView();

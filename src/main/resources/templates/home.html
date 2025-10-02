@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -24,7 +24,7 @@
                 <h1 class="hero-title">Discover Your Next Favorite Song</h1>
                 <p class="hero-subtitle">Explore thousands of albums and singles from your favorite artists</p>
                 <div class="hero-actions">
-                    <a href="/catalog" class="button primary">Browse Catalog</a>
+                    <a class="button primary" th:href="@{/catalog}" sec:authorize="isAnonymous()">Browse Catalog</a>
                     <a href="/register" class="button">Join Now</a>
                 </div>
             </div>

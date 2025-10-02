@@ -1,4 +1,4 @@
-<footer th:fragment="site-footer" class="footer">
+<footer class="footer" th:fragment="site-footer" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <div class="footer-content">
         <div class="footer-section">
             <h3>Music Store</h3>
@@ -9,23 +9,30 @@
             <ul>
                 <li><a th:href="@{/home}">Home</a></li>
                 <li><a th:href="@{/catalog}">Catalog</a></li>
-                <li><a th:href="@{/cart}">Shopping Cart</a></li>
+                <li><a th:href="@{/cart}" sec:authorize="isAuthenticated()">Shopping Cart</a></li>
+                <li><a th:href="@{/profile}" sec:authorize="isAuthenticated()">Profile</a></li>
+                <li><a th:href="@{/register}" sec:authorize="isAnonymous()">Register</a></li>
             </ul>
         </div>
         <div class="footer-section">
             <h4>Support</h4>
             <ul>
-                <li><a href="/contact">Contact Us</a></li>
-                <li><a href="/help">Help Center</a></li>
-                <li><a href="/terms">Terms of Service</a></li>
+                <li><a href="/">Contact Us</a></li>
+                <li><a href="/">Help Center</a></li>
+                <li><a href="/">Terms of Service</a></li>
             </ul>
         </div>
         <div class="footer-section">
             <h4>Connect</h4>
             <div class="social-links">
-                <a href="#" class="social-link">Facebook</a>
-                <a href="#" class="social-link">Twitter</a>
-                <a href="#" class="social-link">Instagram</a>
+                <a class="social-link" href="https://www.facebook.com/"
+                   target="_blank" rel="noopener noreferrer">Facebook</a>
+
+                <a class="social-link" href="https://x.com/"
+                   target="_blank" rel="noopener noreferrer">Twitter</a>
+
+                <a class="social-link" href="https://www.instagram.com/"
+                   target="_blank" rel="noopener noreferrer">Instagram</a>
             </div>
         </div>
     </div>
