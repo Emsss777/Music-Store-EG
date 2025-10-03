@@ -1,5 +1,6 @@
 package app.service.impl;
 
+import app.aspect.VeryImportant;
 import app.exception.DomainException;
 import app.exception.PasswordMismatchException;
 import app.exception.UsernameAlreadyExistException;
@@ -111,6 +112,7 @@ public class UserServiceImpl implements UserService {
                 .build();
     }
 
+    @VeryImportant
     @Override
     public UserEntity getUserById(UUID userId) {
 
