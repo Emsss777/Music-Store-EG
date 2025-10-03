@@ -15,12 +15,12 @@ import static app.util.ValueAttributes.ATTRIBUTE_PROFILE;
 import static app.util.Views.VIEW_PROFILE;
 
 @Controller
-public class ProfileController {
+public class UserController {
 
     private final UserService userService;
 
     @Autowired
-    public ProfileController(UserService userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 

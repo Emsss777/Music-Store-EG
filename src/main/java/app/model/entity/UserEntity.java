@@ -31,6 +31,9 @@ public class UserEntity extends BaseEntity {
     @Column(name = "last_name")
     private String lastName;
 
+    @Column(name = "profile_picture")
+    private String profilePicture;
+
     @Column(name = "email", unique = true)
     private String email;
 
@@ -43,6 +46,9 @@ public class UserEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "country", nullable = false)
     private Country country;
+
+    @Column(name = "bio", columnDefinition = "TEXT")
+    private String bio;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)

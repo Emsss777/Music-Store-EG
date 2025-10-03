@@ -1,7 +1,6 @@
 package app.model.dto;
 
 import app.model.enums.Country;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
@@ -18,10 +17,6 @@ public class RegisterDTO {
     @NotNull(message = USER_CANNOT_BE_EMPTY)
     @Size(min = 3, max = 20, message = USERNAME_INVALID_LENGTH)
     private String username;
-
-    @NotNull(message = EMAIL_CANNOT_BE_EMPTY)
-    @Email
-    private String email;
 
     @NotNull(message = PASSWORD_CANNOT_BE_EMPTY)
     @Size(min = 3, max = 20, message = PASSWORD_INVALID_LENGTH)

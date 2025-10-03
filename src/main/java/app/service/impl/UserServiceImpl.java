@@ -102,7 +102,6 @@ public class UserServiceImpl implements UserService {
 
         return UserEntity.builder()
                 .username(registerDTO.getUsername())
-                .email(registerDTO.getEmail())
                 .password(passwordEncoder.encode(registerDTO.getPassword()))
                 .country(registerDTO.getCountry())
                 .role(UserRole.USER)

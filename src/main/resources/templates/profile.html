@@ -32,12 +32,14 @@
                     <div class="profile-nav card">
                         <div class="profile-avatar-section">
                             <div class="profile-avatar">
-                                <img src="https://via.placeholder.com/120x120/746ab0/ffffff?text=JD"
-                                     alt="Profile Avatar">
+                                <img th:src="${#strings.isEmpty(user.profilePicture)
+                                    ? 'https://t4.ftcdn.net/jpg/09/43/48/93/360_F_943489384_zq3u5kkefFjPY3liE6t81KrX8W3lvxSz.jpg'
+                                    : user.profilePicture}" alt="Profile Avatar">
                             </div>
-                            <h3 class="profile-name">John Doe</h3>
-                            <p class="profile-email">john.doe@example.com</p>
-                            <button class="status-button active">ACTIVE</button>
+                            <h3 class="profile-name" th:text="${user.username}"></h3>
+                            <p class="profile-email" th:text="${user.email}"></p>
+                            <button class="status-button active" th:if="${user.isActive()}">ACTIVE</button>
+                            <button class="status-button inactive" th:if="${!user.isActive()}">INACTIVE</button>
                         </div>
                         <nav class="profile-menu">
                             <a href="/profile" class="profile-menu-item active">
@@ -74,32 +76,45 @@
                         <div class="profile-info-grid">
                             <div class="info-group">
                                 <label>First Name</label>
-                                <p>John</p>
+                                <p th:text="${#strings.isEmpty(user.firstName)
+                                    ? 'Edit your profile and add your first name here.'
+                                    : user.firstName}">
+                                </p>
                             </div>
                             <div class="info-group">
                                 <label>Last Name</label>
-                                <p>Doe</p>
+                                <p th:text="${#strings.isEmpty(user.lastName)
+                                    ? 'Edit your profile and add your last name here.'
+                                    : user.lastName}">
+                                </p>
                             </div>
                             <div class="info-group">
                                 <label>Email Address</label>
-                                <p>john.doe@example.com</p>
+                                <p th:text="${#strings.isEmpty(user.email)
+                                    ? 'Edit your profile and add your email here.'
+                                    : user.email}">
+                                </p>
                             </div>
                             <div class="info-group">
                                 <label>Username</label>
-                                <p>johndoe123</p>
+                                <p th:text="${user.username}"></p>
                             </div>
                             <div class="info-group">
                                 <label>Date of Birth</label>
-                                <p>January 15, 1990</p>
+                                <p th:text="${#strings.isEmpty(user.birthDate)
+                                    ? 'Edit your profile and add your date of birth here.'
+                                    : user.birthDate}">
+                                </p>
                             </div>
                             <div class="info-group">
                                 <label>Country</label>
-                                <p>United States</p>
+                                <p th:text="${user.country}"></p>
                             </div>
                             <div class="info-group full-width">
                                 <label>Bio</label>
-                                <p>Music lover and digital audio enthusiast.
-                                   Always looking for new sounds and artists to discover.
+                                <p th:text="${#strings.isEmpty(user.bio)
+                                    ? 'Edit your profile and write your biography here.'
+                                    : user.bio}">
                                 </p>
                             </div>
                         </div>
