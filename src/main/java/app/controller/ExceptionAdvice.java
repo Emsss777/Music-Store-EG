@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import static app.util.ErrorMessagesAttributes.*;
+import static app.util.ModelAttributes.*;
 import static app.util.Redirects.REDIRECT_REGISTER;
 
 @ControllerAdvice
@@ -18,7 +18,7 @@ public class ExceptionAdvice {
 
         String message = exception.getMessage();
 
-        redirectAttributes.addFlashAttribute(USERNAME_ALREADY_EXISTS, message);
+        redirectAttributes.addFlashAttribute(MODEL_USERNAME_ALREADY_EXISTS, message);
 
         return REDIRECT_REGISTER;
     }
@@ -29,7 +29,7 @@ public class ExceptionAdvice {
 
         String message = exception.getMessage();
 
-        redirectAttributes.addFlashAttribute(PASSWORD_MISMATCH_EXCEPTION, message);
+        redirectAttributes.addFlashAttribute(MODEL_PASSWORD_MISMATCH_EXCEPTION, message);
 
         return REDIRECT_REGISTER;
     }

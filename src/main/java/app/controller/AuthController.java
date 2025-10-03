@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import static app.util.ExceptionMessages.INCORRECT_USERNAME_OR_PASSWORD;
 import static app.util.ModelAttributes.*;
 import static app.util.Redirects.REDIRECT_LOGIN;
 import static app.util.UrlPaths.*;
@@ -36,7 +37,7 @@ public class AuthController {
         modelAndView.addObject(MODEL_LOGIN_DTO, new LoginDTO());
 
         if (errorParam != null) {
-            modelAndView.addObject("errorMessage", "Incorrect Username or Password!");
+            modelAndView.addObject(MODEL_ERROR_MESSAGE, INCORRECT_USERNAME_OR_PASSWORD);
         }
 
         return modelAndView;

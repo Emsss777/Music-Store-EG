@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import static app.util.ModelAttributes.*;
 import static app.util.UrlPaths.URL_PROFILE;
+import static app.util.ValueAttributes.ATTRIBUTE_PROFILE;
 import static app.util.Views.VIEW_PROFILE;
 
 @Controller
@@ -30,7 +31,7 @@ public class ProfileController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_PROFILE);
-        modelAndView.addObject(MODEL_PAGE, MODEL_PROFILE);
+        modelAndView.addObject(MODEL_PAGE, ATTRIBUTE_PROFILE);
         modelAndView.addObject(MODEL_USER, currentUser);
 
         return modelAndView;

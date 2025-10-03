@@ -6,6 +6,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
+import static app.util.ExceptionMessages.*;
+
 @Builder
 @Getter
 @Setter
@@ -13,22 +15,22 @@ import lombok.*;
 @NoArgsConstructor
 public class RegisterDTO {
 
-    @NotNull(message = "Username cannot be empty!")
-    @Size(min = 3, max = 20, message = "Username length must be between 3 and 20 characters!")
+    @NotNull(message = USER_CANNOT_BE_EMPTY)
+    @Size(min = 3, max = 20, message = USERNAME_INVALID_LENGTH)
     private String username;
 
-    @NotNull(message = "Email cannot be empty!")
+    @NotNull(message = EMAIL_CANNOT_BE_EMPTY)
     @Email
     private String email;
 
-    @NotNull(message = "Password cannot be empty!")
-    @Size(min = 3, max = 20, message = "Password length must be between 3 and 20 characters!")
+    @NotNull(message = PASSWORD_CANNOT_BE_EMPTY)
+    @Size(min = 3, max = 20, message = PASSWORD_INVALID_LENGTH)
     private String password;
 
-    @NotNull(message = "Password cannot be empty!")
-    @Size(min = 3, max = 20, message = "Password length must be between 3 and 20 characters!")
+    @NotNull(message = PASSWORD_CANNOT_BE_EMPTY)
+    @Size(min = 3, max = 20, message = PASSWORD_INVALID_LENGTH)
     private String confirmPassword;
 
-    @NotNull(message = "You must select a country!")
+    @NotNull(message = SELECT_A_COUNTRY)
     private Country country;
 }

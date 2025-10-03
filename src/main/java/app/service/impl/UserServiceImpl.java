@@ -21,6 +21,9 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
+import static app.util.ExceptionMessages.*;
+import static app.util.SuccessMessages.USER_CREATED;
+
 @Slf4j
 @Service
 public class UserServiceImpl implements UserService {
@@ -82,17 +85,16 @@ public class UserServiceImpl implements UserService {
 
         if (optionalUser.isPresent()) {
             throw new UsernameAlreadyExistException(
-                    "Username [%s] Already Exist!".formatted(registerDTO.getUsername()));
+                    USERNAME_ALREADY_EXIST.formatted(registerDTO.getUsername()));
         }
 
         if (!registerDTO.getPassword().equals(registerDTO.getConfirmPassword())) {
-            throw new PasswordMismatchException("Passwords do NOT Match!");
+            throw new PasswordMismatchException(PASSWORD_DO_NOT_MATCH);
         }
 
         UserEntity user = userRepo.save(initializeUser(registerDTO));
 
-        log.info("Successfully created new User account for username [{}] and ID [{}]",
-                user.getUsername(), user.getId());
+        log.info(USER_CREATED, user.getUsername(), user.getId());
     }
 
     private UserEntity initializeUser(RegisterDTO registerDTO) {
@@ -112,8 +114,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserEntity getUserById(UUID userId) {
 
-        return userRepo.findById(userId)
-                .orElseThrow(() -> new DomainException(
-                        "User with ID [%s] does NOT Exist!".formatted(userId)));
+        return userRepo.findById(userId).orElseThrow(() ->
+                new DomainException(USER_DOES_NOT_EXIST.formatted(userId)));
     }
 }

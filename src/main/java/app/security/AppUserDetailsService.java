@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import static app.util.ExceptionMessages.*;
+
 @Slf4j
 @Service
 public class AppUserDetailsService implements UserDetailsService {
@@ -25,8 +27,8 @@ public class AppUserDetailsService implements UserDetailsService {
 
         UserEntity user = userRepo.findByUsername(username)
                 .orElseThrow(() -> {
-                    log.warn("User [{}] does NOT Exist!", username); // лог в терминала
-                    return new UsernameNotFoundException("Bad Credentials!");
+                    log.warn(USERNAME_DOES_NOT_EXIST, username);
+                    return new UsernameNotFoundException(BAD_CREDENTIALS);
                 });
 
         return AuthenticationMetadata.builder()
