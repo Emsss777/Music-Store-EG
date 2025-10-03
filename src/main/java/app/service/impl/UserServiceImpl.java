@@ -1,5 +1,6 @@
 package app.service.impl;
 
+import app.exception.DomainException;
 import app.exception.PasswordMismatchException;
 import app.exception.UsernameAlreadyExistException;
 import app.model.dto.RegisterDTO;
@@ -18,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.UUID;
 
 @Slf4j
 @Service
@@ -105,5 +107,13 @@ public class UserServiceImpl implements UserService {
                 .createdOn(LocalDateTime.now())
                 .updatedOn(LocalDateTime.now())
                 .build();
+    }
+
+    @Override
+    public UserEntity getUserById(UUID userId) {
+
+        return userRepo.findById(userId)
+                .orElseThrow(() -> new DomainException(
+                        "User with ID [%s] does NOT Exist!".formatted(userId)));
     }
 }

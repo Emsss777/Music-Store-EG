@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.model.dto.LoginDTO;
 import app.model.dto.RegisterDTO;
 import app.service.UserService;
 import jakarta.validation.Valid;
@@ -8,9 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import static app.util.ModelAttributes.MODEL_REGISTER_DTO;
+import static app.util.ModelAttributes.*;
 import static app.util.Redirects.REDIRECT_LOGIN;
 import static app.util.UrlPaths.*;
 import static app.util.Views.*;
@@ -27,11 +29,15 @@ public class AuthController {
     }
 
     @GetMapping(URL_LOGIN)
-    public ModelAndView getLoginPage() {
+    public ModelAndView getLoginPage(@RequestParam(value = "error", required = false) String errorParam) {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_LOGIN);
-        //modelAndView.addObject(MODEL_LOGIN_DTO, new LoginDTO());
+        modelAndView.addObject(MODEL_LOGIN_DTO, new LoginDTO());
+
+        if (errorParam != null) {
+            modelAndView.addObject("errorMessage", "Incorrect Username or Password!");
+        }
 
         return modelAndView;
     }
