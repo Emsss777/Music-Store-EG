@@ -28,7 +28,7 @@
             <a class="nav-link" th:href="@{/cart}" th:classappend="${page == 'cart'} ? ' active'"
                sec:authorize="isAuthenticated()">Shopping Cart</a>
 
-            <a class="nav-link" th:href="@{/profile}" th:classappend="${page == 'profile'} ? ' active'"
+            <a class="nav-link" th:href="@{/users/profile}" th:classappend="${page == 'profile'} ? ' active'"
                sec:authorize="isAuthenticated()">Profile</a>
 
             <a class="button login" th:href="@{/login}" sec:authorize="isAnonymous()">Login</a>

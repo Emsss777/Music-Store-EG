@@ -70,28 +70,30 @@
                     <div class="profile-info-card card">
                         <div class="card-header">
                             <h2>Personal Information</h2>
-                            <button class="edit-button">Edit</button>
+                            <form th:action="@{'/users/' + ${user.id} + '/profile'}" method="get">
+                                <button class="edit-button">Edit</button>
+                            </form>
                         </div>
 
                         <div class="profile-info-grid">
                             <div class="info-group">
                                 <label>First Name</label>
                                 <p th:text="${#strings.isEmpty(user.firstName)
-                                    ? 'Edit your profile and add your first name here.'
+                                    ? 'Edit your profile and add your first name'
                                     : user.firstName}">
                                 </p>
                             </div>
                             <div class="info-group">
                                 <label>Last Name</label>
                                 <p th:text="${#strings.isEmpty(user.lastName)
-                                    ? 'Edit your profile and add your last name here.'
+                                    ? 'Edit your profile and add your last name'
                                     : user.lastName}">
                                 </p>
                             </div>
                             <div class="info-group">
                                 <label>Email Address</label>
                                 <p th:text="${#strings.isEmpty(user.email)
-                                    ? 'Edit your profile and add your email here.'
+                                    ? 'Edit your profile and add your email'
                                     : user.email}">
                                 </p>
                             </div>
@@ -102,7 +104,7 @@
                             <div class="info-group">
                                 <label>Date of Birth</label>
                                 <p th:text="${#strings.isEmpty(user.birthDate)
-                                    ? 'Edit your profile and add your date of birth here.'
+                                    ? 'Edit your profile and add your date of birth'
                                     : user.birthDate}">
                                 </p>
                             </div>
@@ -113,7 +115,7 @@
                             <div class="info-group full-width">
                                 <label>Bio</label>
                                 <p th:text="${#strings.isEmpty(user.bio)
-                                    ? 'Edit your profile and write your biography here.'
+                                    ? 'Edit your profile and write your biography'
                                     : user.bio}">
                                 </p>
                             </div>

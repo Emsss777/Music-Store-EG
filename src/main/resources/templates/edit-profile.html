@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/css/edit-profile.css">
+    <title>Edit Profile | Music Store App</title>
+</head>
+
+<body>
+
+<th:block th:replace="~{fragments/header :: site-header}"></th:block>
+
+<main class="main-content">
+    <div class="edit-profile-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="/profile">Profile</a> / <span>Edit Profile</span>
+            </div>
+            <h1 class="page-title">Edit Profile</h1>
+            <p class="page-subtitle">Update your personal information and preferences</p>
+        </div>
+    </div>
+
+    <section class="edit-profile-section">
+        <div class="container">
+            <div class="form-layout">
+                <div class="form-container">
+                    <form class="edit-profile-form" id="editProfileForm">
+                        <div class="form-section">
+                            <h2 class="section-title">Personal Information</h2>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" id="firstName" name="firstName"
+                                           th:field="*{user.firstName}"
+                                           placeholder="Add your first name here">
+                                    <p class="alert-warning">Error Message</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" id="lastName" name="lastName"
+                                           th:field="*{user.lastName}"
+                                           placeholder="Add your last name here">
+                                    <p class="alert-warning">Error Message</p>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="username">Username *</label>
+                                    <input type="text" id="username" name="username"
+                                           th:field="*{user.username}">
+                                    <p class="alert-warning">Error Message</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" name="email"
+                                           th:field="*{user.email}"
+                                           placeholder="Add your email here.">
+                                    <p class="alert-warning">Error Message</p>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone" name="phone"
+                                           placeholder="Add your phone number here">
+                                    <p class="alert-warning">Error Message</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dateOfBirth">Date of Birth</label>
+                                    <input type="date" id="dateOfBirth" name="dateOfBirth">
+                                    <p class="alert-warning">Error Message</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bio">Bio</label>
+                                <textarea id="bio" name="bio" rows="4"
+                                          th:field="*{user.bio}"
+                                          placeholder="Tell us about yourself, your musical interests, and what you're looking for..."></textarea>
+                                <p class="alert-warning">Error Message</p>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h2 class="section-title">Location Information</h2>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="country">Country *</label>
+                                    <select id="country" name="country" th:field="*{user.country}">
+                                        <option th:each="country : ${T(app.model.enums.Country).values()}" th:value="${country}"
+                                                th:text="${#strings.capitalize(#strings.toLowerCase(country))}">
+                                        </option>
+                                    </select>
+                                    <p class="alert-warning">Error Message</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="city">City</label>
+                                    <input type="text" id="city" name="city"
+                                           placeholder="Enter your city">
+                                    <p class="alert-warning">Error Message</p>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="state">State/Province</label>
+                                    <input type="text" id="state" name="state"
+                                           placeholder="Enter your state">
+                                    <p class="alert-warning">Error Message</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="zipCode">ZIP/Postal Code</label>
+                                    <input type="text" id="zipCode" name="zipCode"
+                                           placeholder="Enter your ZIP code">
+                                    <p class="alert-warning">Error Message</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h2 class="section-title">Musical Preferences</h2>
+
+                            <div class="form-group">
+                                <label for="favoriteGenres">Favorite Genres</label>
+                                <div class="genre-tags" id="favoriteGenres">
+                                    <label class="genre-tag">
+                                        <input type="checkbox" name="favoriteGenres">
+                                        <span class="tag-label">Rock</span>
+                                    </label>
+                                    <label class="genre-tag">
+                                        <input type="checkbox" name="favoriteGenres">
+                                        <span class="tag-label">Pop</span>
+                                    </label>
+                                    <label class="genre-tag">
+                                        <input type="checkbox" name="favoriteGenres">
+                                        <span class="tag-label">Jazz</span>
+                                    </label>
+                                    <label class="genre-tag">
+                                        <input type="checkbox" name="favoriteGenres">
+                                        <span class="tag-label">Electronic</span>
+                                    </label>
+                                    <label class="genre-tag">
+                                        <input type="checkbox" name="favoriteGenres">
+                                        <span class="tag-label">Classical</span>
+                                    </label>
+                                    <label class="genre-tag">
+                                        <input type="checkbox" name="favoriteGenres">
+                                        <span class="tag-label">Hip-Hop</span>
+                                    </label>
+                                    <label class="genre-tag">
+                                        <input type="checkbox" name="favoriteGenres">
+                                        <span class="tag-label">Country</span>
+                                    </label>
+                                    <label class="genre-tag">
+                                        <input type="checkbox" name="favoriteGenres">
+                                        <span class="tag-label">Blues</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="favoriteArtist">Favorite Artist</label>
+                                    <input type="text" id="favoriteArtist" name="favoriteArtist"
+                                           placeholder="Your favorite artist or band">
+                                    <p class="alert-warning">Error Message</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="favoriteAlbum">Favorite Album</label>
+                                    <input type="text" id="favoriteAlbum" name="favoriteAlbum"
+                                           placeholder="Your favorite album">
+                                    <p class="alert-warning">Error Message</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h2 class="section-title">Privacy & Notifications</h2>
+
+                            <div class="form-group">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" id="emailNotifications" name="emailNotifications">
+                                    <span class="checkmark"></span>
+                                    Receive email notifications about new releases
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" id="newsletter" name="newsletter">
+                                    <span class="checkmark"></span>
+                                    Subscribe to our newsletter for music recommendations
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" id="profilePublic" name="profilePublic">
+                                    <span class="checkmark"></span>
+                                    Make my profile public to other users
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" id="showActivity" name="showActivity">
+                                    <span class="checkmark"></span>
+                                    Show my listening activity to friends
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h2 class="section-title">Change Password</h2>
+                            <p class="section-subtitle">Leave blank to keep your current password</p>
+
+                            <div class="form-group">
+                                <label for="currentPassword">Current Password</label>
+                                <input type="password" id="currentPassword" name="currentPassword"
+                                       placeholder="Enter current password">
+                                <p class="alert-warning">Error Message</p>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="newPassword">New Password</label>
+                                    <input type="password" id="newPassword" name="newPassword"
+                                           placeholder="Enter new password">
+                                    <p class="alert-warning">Error Message</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmPassword">Confirm New Password</label>
+                                    <input type="password" id="confirmPassword" name="confirmPassword"
+                                           placeholder="Confirm new password">
+                                    <p class="alert-warning">Error Message</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="button secondary">Cancel</button>
+                            <button type="button" class="button" onclick="saveDraft()">Save Draft</button>
+                            <button type="submit" class="button primary">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="form-sidebar">
+                    <div class="profile-preview-card card">
+                        <h3>Profile Preview</h3>
+                        <div class="preview-content">
+                            <div class="preview-avatar">
+                                <img src="https://via.placeholder.com/100x100/746ab0/ffffff?text=JD"
+                                     alt="Profile Preview" id="previewAvatar">
+                                <button class="change-avatar-btn">Change Photo</button>
+                            </div>
+                            <div class="preview-info">
+                                <h4 id="previewName">John Doe</h4>
+                                <p id="previewUsername">@johndoe123</p>
+                                <p id="previewLocation">New York, NY, United States</p>
+                                <div class="preview-genres" id="previewGenres">
+                                    <span class="genre-badge">Rock</span>
+                                    <span class="genre-badge">Pop</span>
+                                </div>
+                                <p id="previewBio" class="preview-bio">Music lover and digital audio enthusiast...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="help-card card">
+                        <h3>💡 Tips</h3>
+                        <ul class="help-list">
+                            <li>Keep your profile information up to date</li>
+                            <li>Add your musical preferences for better recommendations</li>
+                            <li>Use a clear profile picture for better recognition</li>
+                            <li>Write a compelling bio to connect with other music lovers</li>
+                            <li>Review your privacy settings regularly</li>
+                        </ul>
+                    </div>
+
+                    <div class="account-info-card card">
+                        <h3>Account Information</h3>
+                        <div class="account-details">
+                            <div class="account-item">
+                                <span class="account-label">Member Since:</span>
+                                <span class="account-value">January 2023</span>
+                            </div>
+                            <div class="account-item">
+                                <span class="account-label">Last Updated:</span>
+                                <span class="account-value">2 days ago</span>
+                            </div>
+                            <div class="account-item">
+                                <span class="account-label">Profile Views:</span>
+                                <span class="account-value">156</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<th:block th:replace="~{fragments/footer :: site-footer}"></th:block>
+
+</body>
+
+</html>
+

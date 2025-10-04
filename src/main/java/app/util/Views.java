@@ -11,4 +11,5 @@ public final class Views {
     public static final String VIEW_CATALOG = "catalog";
     public static final String VIEW_CART = "cart";
     public static final String VIEW_PROFILE = "profile";
+    public static final String VIEW_EDIT_PROFILE = "edit-profile";
 }
