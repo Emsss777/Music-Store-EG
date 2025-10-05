@@ -1,21 +1,27 @@
 package app.controller;
 
+import app.mapper.UserEditMapper;
 import app.mapper.UserProfileMapper;
+import app.model.dto.UserEditDTO;
 import app.model.dto.UserProfileDTO;
 import app.model.entity.UserEntity;
 import app.security.AuthenticationMetadata;
 import app.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.UUID;
 
 import static app.util.ModelAttributes.*;
+import static app.util.Redirects.REDIRECT_PROFILE;
 import static app.util.UrlParams.PARAM_ID;
 import static app.util.UrlPaths.*;
 import static app.util.ValueAttributes.ATTRIBUTE_PROFILE;
@@ -49,12 +55,35 @@ public class UserController {
     public ModelAndView showEditProfile(@PathVariable UUID id) {
 
         UserEntity user = userService.getUserById(id);
-        UserProfileDTO safe = UserProfileMapper.toSafeDTO(user);
+        UserProfileDTO userProfileDTO = UserProfileMapper.toSafeDTO(user);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_EDIT_PROFILE);
-        modelAndView.addObject(MODEL_USER, safe);
+        modelAndView.addObject(MODEL_USER, userProfileDTO);
+        modelAndView.addObject(MODEL_USER_EDIT_DTO, UserEditMapper.mapUserToUserEditDTO(user));
 
         return modelAndView;
+    }
+
+    @PutMapping(PARAM_ID + URL_PROFILE)
+    public ModelAndView updateUserProfile(@PathVariable UUID id,
+                                          @Valid UserEditDTO userEditDTO, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+
+            UserEntity user = userService.getUserById(id);
+            UserProfileDTO userProfileDTO = UserProfileMapper.toSafeDTO(user);
+
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName(VIEW_EDIT_PROFILE);
+            modelAndView.addObject(MODEL_USER, userProfileDTO);
+            modelAndView.addObject(MODEL_USER_EDIT_DTO, userEditDTO);
+
+            return modelAndView;
+        }
+
+        userService.editUserDetails(id, userEditDTO);
+
+        return new ModelAndView(REDIRECT_PROFILE);
     }
 }

@@ -5,6 +5,7 @@ import app.exception.DomainException;
 import app.exception.PasswordMismatchException;
 import app.exception.UsernameAlreadyExistException;
 import app.model.dto.RegisterDTO;
+import app.model.dto.UserEditDTO;
 import app.model.entity.UserEntity;
 import app.model.enums.Country;
 import app.model.enums.UserRole;
@@ -117,5 +118,22 @@ public class UserServiceImpl implements UserService {
 
         return userRepo.findById(userId).orElseThrow(() ->
                 new DomainException(USER_DOES_NOT_EXIST.formatted(userId)));
+    }
+
+    @CacheEvict(value = "users", allEntries = true)
+    @Override
+    public void editUserDetails(UUID userId, UserEditDTO userEditDTO) {
+
+        UserEntity user = getUserById(userId);
+
+        user.setFirstName(userEditDTO.getFirstName());
+        user.setLastName(userEditDTO.getLastName());
+        user.setUsername(userEditDTO.getUsername());
+        user.setEmail(userEditDTO.getEmail());
+        user.setBio(userEditDTO.getBio());
+        user.setProfilePicture(userEditDTO.getProfilePicture());
+        user.setCountry(Country.valueOf(userEditDTO.getCountry()));
+
+        userRepo.save(user);
     }
 }

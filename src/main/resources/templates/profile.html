@@ -70,7 +70,8 @@
                     <div class="profile-info-card card">
                         <div class="card-header">
                             <h2>Personal Information</h2>
-                            <form th:action="@{'/users/' + ${user.id} + '/profile'}" method="get">
+                            <form th:action="@{'/users/' + ${user.id} + '/profile'}"
+                                  method="GET" th:object="${user}">
                                 <button class="edit-button">Edit</button>
                             </form>
                         </div>
@@ -110,7 +111,7 @@
                             </div>
                             <div class="info-group">
                                 <label>Country</label>
-                                <p th:text="${user.country}"></p>
+                                <p th:text="${#strings.capitalize(#strings.toLowerCase(user.country))}"></p>
                             </div>
                             <div class="info-group full-width">
                                 <label>Bio</label>
