@@ -21,4 +21,7 @@ public class ExceptionMessages {
     public static final String INVALID_EMAIL_FORMAT = "Email must be in a valid format!";
     public static final String BIO_INVALID_LENGTH = "Bio cannot exceed 500 characters!";
     public static final String INVALID_URL_FORMAT = "Profile picture must be a valid URL!";
+    public static final String FEIGN_NOTIFICATION_SAVE_FAILED =
+            "[Feign call to notification-svc failed] Can't save user preference for user with id = [{}]";
+    public static final String FEIGN_NOTIFICATION_CALL_FAILED = "Unable to call notification-svc.";
 }

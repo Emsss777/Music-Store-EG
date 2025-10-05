@@ -13,4 +13,5 @@ public final class UrlPaths {
     public static final String URL_CART = "/cart";
     public static final String URL_PROFILE = "/profile";
     public static final String URL_USERS = "/users";
+    public static final String URL_PREFERENCES = "/preferences";
 }

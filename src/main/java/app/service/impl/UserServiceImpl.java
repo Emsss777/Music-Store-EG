@@ -9,6 +9,7 @@ import app.model.dto.UserEditDTO;
 import app.model.entity.UserEntity;
 import app.model.enums.Country;
 import app.model.enums.UserRole;
+import app.notification.services.NotificationService;
 import app.repository.UserRepo;
 import app.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -32,12 +33,15 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
+    private final NotificationService notificationService;
 
     @Autowired
-    public UserServiceImpl(UserRepo userRepo, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepo userRepo, PasswordEncoder passwordEncoder,
+                           NotificationService notificationService) {
 
         this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;
+        this.notificationService = notificationService;
     }
 
     @Override
@@ -133,6 +137,12 @@ public class UserServiceImpl implements UserService {
         user.setBio(userEditDTO.getBio());
         user.setProfilePicture(userEditDTO.getProfilePicture());
         user.setCountry(Country.valueOf(userEditDTO.getCountry()));
+
+        if (!userEditDTO.getEmail().isBlank()) {
+            notificationService.saveNotificationPreference(userId, true, userEditDTO.getEmail());
+        } else {
+            notificationService.saveNotificationPreference(userId, false, null);
+        }
 
         userRepo.save(user);
     }
