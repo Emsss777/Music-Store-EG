@@ -143,17 +143,6 @@
     min-height: 100px;
 }
 
-/* Alert Warning Styles */
-.alert-warning {
-    color: #ff9800;
-    font-size: 12px;
-    margin: 4px 0 0 0;
-    padding: 0;
-    min-height: 16px;
-    display: none;
-    font-weight: 500;
-}
-
 /* Genre Tags */
 .genre-tags {
     display: flex;

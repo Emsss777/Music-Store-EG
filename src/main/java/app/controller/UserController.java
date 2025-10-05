@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.UUID;
@@ -69,10 +66,10 @@ public class UserController {
     public ModelAndView updateUserProfile(@PathVariable UUID id,
                                           @Valid UserEditDTO userEditDTO, BindingResult bindingResult) {
 
-        if (bindingResult.hasErrors()) {
+        UserEntity user = userService.getUserById(id);
+        UserProfileDTO userProfileDTO = UserProfileMapper.toSafeDTO(user);
 
-            UserEntity user = userService.getUserById(id);
-            UserProfileDTO userProfileDTO = UserProfileMapper.toSafeDTO(user);
+        if (bindingResult.hasErrors()) {
 
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName(VIEW_EDIT_PROFILE);
