@@ -1,6 +1,8 @@
 package app.service.impl;
 
 import app.aspect.VeryImportant;
+import app.event.UserRegisteredEventProducer;
+import app.event.payload.UserRegisteredEvent;
 import app.exception.DomainException;
 import app.exception.PasswordMismatchException;
 import app.exception.UsernameAlreadyExistException;
@@ -34,14 +36,17 @@ public class UserServiceImpl implements UserService {
     private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
     private final NotificationService notificationService;
+    private final UserRegisteredEventProducer userRegisteredEventProducer;
 
     @Autowired
     public UserServiceImpl(UserRepo userRepo, PasswordEncoder passwordEncoder,
-                           NotificationService notificationService) {
+                           NotificationService notificationService,
+                           UserRegisteredEventProducer userRegisteredEventProducer) {
 
         this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;
         this.notificationService = notificationService;
+        this.userRegisteredEventProducer = userRegisteredEventProducer;
     }
 
     @Override
@@ -99,6 +104,12 @@ public class UserServiceImpl implements UserService {
         }
 
         UserEntity user = userRepo.save(initializeUser(registerDTO));
+
+        UserRegisteredEvent event = UserRegisteredEvent.builder()
+                .userId(user.getId())
+                .createdOn(user.getCreatedOn())
+                .build();
+        userRegisteredEventProducer.sendEvent(event);
 
         log.info(USER_CREATED, user.getUsername(), user.getId());
     }

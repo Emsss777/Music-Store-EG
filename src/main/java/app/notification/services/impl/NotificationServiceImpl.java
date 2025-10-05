@@ -36,9 +36,9 @@ public class NotificationServiceImpl implements NotificationService {
         try {
             ResponseEntity<Void> httpResponse = notificationClient
                     .upsertNotificationPreference(notificationPreference);
+
             if (!httpResponse.getStatusCode().is2xxSuccessful()) {
                 log.error(FEIGN_NOTIFICATION_SAVE_FAILED, userId);
-
             }
         } catch (Exception e) {
             log.error(FEIGN_NOTIFICATION_CALL_FAILED);
