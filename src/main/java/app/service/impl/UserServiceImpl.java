@@ -13,10 +13,14 @@ import app.model.enums.Country;
 import app.model.enums.UserRole;
 import app.notification.services.NotificationService;
 import app.repository.UserRepo;
+import app.security.AuthenticationMetadata;
 import app.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,7 +35,7 @@ import static app.util.SuccessMessages.USER_CREATED;
 
 @Slf4j
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
@@ -156,5 +160,23 @@ public class UserServiceImpl implements UserService {
         }
 
         userRepo.save(user);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        UserEntity user = userRepo.findByUsername(username)
+                .orElseThrow(() -> {
+                    log.warn(USERNAME_DOES_NOT_EXIST, username);
+                    return new UsernameNotFoundException(BAD_CREDENTIALS);
+                });
+
+        return AuthenticationMetadata.builder()
+                .username(user.getUsername())
+                .userId(user.getId())
+                .password(user.getPassword())
+                .role(user.getRole())
+                .isActive(user.isActive())
+                .build();
     }
 }
