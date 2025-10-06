@@ -15,6 +15,7 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import static app.util.ModelAttributes.*;
 import static app.util.Redirects.REDIRECT_REGISTER;
+import static app.util.Views.VIEW_INTERNAL_SERVER_ERROR;
 import static app.util.Views.VIEW_PAGE_NOT_FOUND;
 
 @ControllerAdvice
@@ -52,5 +53,16 @@ public class ExceptionAdvice {
     public ModelAndView handleNotFoundExceptions() {
 
         return new ModelAndView(VIEW_PAGE_NOT_FOUND);
+    }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(Exception.class)
+    public ModelAndView handleAnyException(Exception exception) {
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName(VIEW_INTERNAL_SERVER_ERROR);
+        modelAndView.addObject(MODEL_ERROR_MESSAGE, exception.getClass().getSimpleName());
+
+        return modelAndView;
     }
 }

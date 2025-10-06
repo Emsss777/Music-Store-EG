@@ -322,6 +322,34 @@
     font-size: 20px;
 }
 
+/* Additional Message Styles */
+.additional-message {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 152, 0, 0.2);
+}
+
+.additional-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ff9800;
+    margin: 0 0 8px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.additional-content {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    line-height: 1.5;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    font-style: italic;
+}
+
 /* Popular Albums Section */
 .popular-section {
     padding: 60px 0;

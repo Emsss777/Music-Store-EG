@@ -13,4 +13,5 @@ public final class Views {
     public static final String VIEW_PROFILE = "profile";
     public static final String VIEW_EDIT_PROFILE = "edit-profile";
     public static final String VIEW_PAGE_NOT_FOUND = "error/not-found";
+    public static final String VIEW_INTERNAL_SERVER_ERROR = "error/internal-server-error";
 }

@@ -24,4 +24,5 @@ public class ExceptionMessages {
     public static final String FEIGN_NOTIFICATION_SAVE_FAILED =
             "[Feign call to notification-svc failed] Can't save user preference for user with id = [{}]";
     public static final String FEIGN_NOTIFICATION_CALL_FAILED = "Unable to call notification-svc.";
+    public static final String INTERNAL_SERVER_ERROR_TEST = "Internal Server Error Test";
 }

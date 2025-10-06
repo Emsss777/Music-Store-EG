@@ -14,4 +14,5 @@ public final class UrlPaths {
     public static final String URL_PROFILE = "/profile";
     public static final String URL_USERS = "/users";
     public static final String URL_PREFERENCES = "/preferences";
+    public static final String URL_DEV_TEST_500 = "/dev/test-500";
 }

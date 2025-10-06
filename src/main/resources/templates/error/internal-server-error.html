@@ -53,16 +53,20 @@
                     </div>
 
                     <div class="error-actions">
-                        <button onclick="location.reload()" class="button primary">Refresh Page</button>
-                        <a href="/" class="button">Go Home</a>
-                        <a href="/contact" class="button">Contact Support</a>
+                        <button class="button primary" onclick="location.reload()">Refresh Page</button>
+                        <a class="button" th:href="@{/home}">Go Home</a>
+                        <a class="button" href="/">Contact Support</a>
                     </div>
 
-                    <div class="error-status">
+                    <div class="error-status" th:with="errorMessage=${errorMessage}">
                         <p class="status-message">
                             <span class="status-icon">🔧</span>
-                            We're working to fix this issue. Estimated time: 5–10 minutes.
+                            We're sorry for the inconvenience. Our team is working hard to resolve the issue.
                         </p>
+                        <div class="additional-message">
+                            <p class="additional-label">Additional Message:</p>
+                            <p class="additional-content" th:text="${errorMessage}"></p>
+                        </div>
                     </div>
                 </div>
             </div>
