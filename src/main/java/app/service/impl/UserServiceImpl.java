@@ -61,10 +61,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
 
         UserEntity testAdmin = new UserEntity()
-                .setUsername("admin1")
-                .setFirstName("FirstName1")
-                .setLastName("LastName1")
-                .setEmail("admin1@softuni.bg")
+                .setUsername("Emsss777")
+                .setFirstName("Emil")
+                .setLastName("Ganchev")
+                .setEmail("admin@softuni.bg")
                 .setPassword(passwordEncoder.encode("123456"))
                 .setBirthDate(LocalDate.parse("1999-09-19"))
                 .setCountry(Country.BULGARIA)
@@ -76,9 +76,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userRepo.save(testAdmin);
 
         UserEntity testUser = new UserEntity()
-                .setUsername("user1")
-                .setFirstName("FirstName2")
-                .setLastName("LastName2")
+                .setUsername("Petko777")
+                .setFirstName("Petko")
+                .setLastName("Ganchev")
                 .setEmail("user1@softuni.bg")
                 .setPassword(passwordEncoder.encode("456123"))
                 .setBirthDate(LocalDate.parse("1989-08-18"))

@@ -53,9 +53,9 @@
                     </div>
 
                     <div class="error-actions">
-                        <a href="/" class="button primary">Go Home</a>
-                        <a href="/catalog" class="button">Browse Music</a>
-                        <button onclick="history.back()" class="button">Go Back</button>
+                        <a class="button primary" th:href="@{/home}">Go Home</a>
+                        <a class="button" th:href="@{/catalog}">Browse Music</a >
+                        <button class="button" onclick="history.back()">Go Back</button>
                     </div>
                 </div>
             </div>
