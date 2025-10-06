@@ -10,7 +10,7 @@
                 <li><a th:href="@{/home}">Home</a></li>
                 <li><a th:href="@{/catalog}">Catalog</a></li>
                 <li><a th:href="@{/cart}" sec:authorize="isAuthenticated()">Shopping Cart</a></li>
-                <li><a th:href="@{/profile}" sec:authorize="isAuthenticated()">Profile</a></li>
+                <li><a th:href="@{/users/profile}" sec:authorize="isAuthenticated()">Profile</a></li>
                 <li><a th:href="@{/register}" sec:authorize="isAnonymous()">Register</a></li>
             </ul>
         </div>

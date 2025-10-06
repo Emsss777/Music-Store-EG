@@ -14,7 +14,7 @@
 
 <body>
 
-<header th:fragment="site-header" th:with="page=${page}" class="header">
+<header class="header" th:fragment="site-header" th:with="page=${page}">
     <div class="header-inner">
         <div class="logo-container">
             <a href="/" class="logo">
@@ -30,6 +30,10 @@
 
             <a class="nav-link" th:href="@{/users/profile}" th:classappend="${page == 'profile'} ? ' active'"
                sec:authorize="isAuthenticated()">Profile</a>
+
+            <a class="nav-link" th:href="@{/users/admin-dashboard}"
+               th:classappend="${page == 'admin/admin-dashboard'} ? ' active'"
+               sec:authorize="hasRole('ADMIN')">Admin</a>
 
             <a class="button login" th:href="@{/login}" sec:authorize="isAnonymous()">Login</a>
             <a class="button register" th:href="@{/register}" sec:authorize="isAnonymous()">Register</a>

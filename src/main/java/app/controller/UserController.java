@@ -21,7 +21,6 @@ import static app.util.ModelAttributes.*;
 import static app.util.Redirects.REDIRECT_PROFILE;
 import static app.util.UrlParams.PARAM_ID;
 import static app.util.UrlPaths.*;
-import static app.util.ValueAttributes.ATTRIBUTE_PROFILE;
 import static app.util.Views.*;
 
 @Controller
@@ -42,7 +41,7 @@ public class UserController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_PROFILE);
-        modelAndView.addObject(MODEL_PAGE, ATTRIBUTE_PROFILE);
+        modelAndView.addObject(MODEL_PAGE, VIEW_PROFILE);
         modelAndView.addObject(MODEL_USER, currentUser);
 
         return modelAndView;
@@ -82,5 +81,18 @@ public class UserController {
         userService.editUserDetails(id, userEditDTO);
 
         return new ModelAndView(REDIRECT_PROFILE);
+    }
+
+    @GetMapping(URL_ADMIN_DASHBOARD)
+    public ModelAndView getAdminPage(@AuthenticationPrincipal AuthenticationMetadata authMetadata) {
+
+        UserEntity currentUser = userService.getUserById(authMetadata.getUserId());
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName(VIEW_ADMIN_DASHBOARD);
+        modelAndView.addObject(MODEL_PAGE, VIEW_ADMIN_DASHBOARD);
+        modelAndView.addObject(MODEL_USER, currentUser);
+
+        return modelAndView;
     }
 }
