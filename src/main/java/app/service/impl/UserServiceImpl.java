@@ -24,8 +24,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.boot.ansi.AnsiColor;
+import org.springframework.boot.ansi.AnsiOutput;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
@@ -44,46 +45,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private final UserRegisteredEventProducer userRegisteredEventProducer;
 
     @Override
-    public void initAuth() {
-
-        if (userRepo.count() != 0) {
-            return;
-        }
-
-        UserEntity testAdmin = new UserEntity()
-                .setUsername("Emsss777")
-                .setFirstName("Emil")
-                .setLastName("Ganchev")
-                .setEmail("admin@softuni.bg")
-                .setPassword(passwordEncoder.encode("123456"))
-                .setBirthDate(LocalDate.parse("1999-09-19"))
-                .setCountry(Country.BULGARIA)
-                .setRole(UserRole.ADMIN)
-                .setActive(true)
-                .setCreatedOn(LocalDateTime.now())
-                .setUpdatedOn(LocalDateTime.now());
-
-        userRepo.save(testAdmin);
-
-        UserEntity testUser = new UserEntity()
-                .setUsername("Petko777")
-                .setFirstName("Petko")
-                .setLastName("Ganchev")
-                .setEmail("user1@softuni.bg")
-                .setPassword(passwordEncoder.encode("456123"))
-                .setBirthDate(LocalDate.parse("1989-08-18"))
-                .setCountry(Country.SPAIN)
-                .setRole(UserRole.USER)
-                .setActive(true)
-                .setCreatedOn(LocalDateTime.now())
-                .setUpdatedOn(LocalDateTime.now());
-
-        userRepo.save(testUser);
-    }
-
-    @CacheEvict(value = "users", allEntries = true)
     @Transactional
-    @Override
+    @CacheEvict(value = "users", allEntries = true)
     public void registerUser(RegisterDTO registerDTO) {
 
         Optional<UserEntity> optionalUser = userRepo.findByUsername(registerDTO.getUsername());
@@ -105,7 +68,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .build();
         userRegisteredEventProducer.sendEvent(event);
 
-        log.info(USER_CREATED, user.getUsername(), user.getId());
+        log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, USER_CREATED), user.getUsername(), user.getId());
     }
 
     private UserEntity initializeUser(RegisterDTO registerDTO) {
@@ -121,16 +84,23 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .build();
     }
 
-    @VeryImportant
     @Override
+    @VeryImportant
     public UserEntity getUserById(UUID userId) {
 
         return userRepo.findById(userId).orElseThrow(() ->
                 new DomainException(USER_DOES_NOT_EXIST.formatted(userId)));
     }
 
-    @CacheEvict(value = "users", allEntries = true)
     @Override
+    public void getUserByUsername(String username) {
+
+        userRepo.findByUsername(username).orElseThrow(() ->
+                new DomainException(USER_DOES_NOT_EXIST.formatted(username)));
+    }
+
+    @Override
+    @CacheEvict(value = "users", allEntries = true)
     public void editUserDetails(UUID userId, UserEditDTO userEditDTO) {
 
         UserEntity user = getUserById(userId);
@@ -158,7 +128,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         UserEntity user = userRepo.findByUsername(username)
                 .orElseThrow(() -> {
                     log.warn(USERNAME_DOES_NOT_EXIST, username);
-                    return new UsernameNotFoundException(BAD_CREDENTIALS);
+                    return new UsernameNotFoundException(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, BAD_CREDENTIALS));
                 });
 
         return AuthenticationMetadata.builder()
@@ -168,5 +138,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .role(user.getRole())
                 .isActive(user.isActive())
                 .build();
+    }
+
+    @Override
+    public void saveUser(UserEntity userEntity) {
+
+        userRepo.save(userEntity);
     }
 }

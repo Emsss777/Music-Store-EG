@@ -3,6 +3,8 @@ package app.event;
 import app.event.payload.UserRegisteredEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.ansi.AnsiColor;
+import org.springframework.boot.ansi.AnsiOutput;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +21,6 @@ public class UserRegisteredEventProducer {
     public void sendEvent(UserRegisteredEvent event) {
 
         kafkaTemplate.send(USER_REGISTERED_EVENT_V1, event);
-        log.info(USER_REGISTERED_EVENT_PUBLISHED, event.getUserId());
+        log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, USER_REGISTERED_EVENT_PUBLISHED), event.getUserId());
     }
 }

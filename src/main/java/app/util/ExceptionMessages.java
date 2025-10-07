@@ -9,6 +9,10 @@ public class ExceptionMessages {
     public static final String USERNAME_DOES_NOT_EXIST = "Username [{}] does NOT Exist!";
     public static final String USER_DOES_NOT_EXIST = "User with ID [%s] does NOT Exist!";
     public static final String USERNAME_ALREADY_EXIST = "Username [%s] Already Exist!";
+    public static final String ADMIN_ALREADY_EXIST = "Admin User [{}] Already Exists! Skipping Seeding!";
+    public static final String ADMIN_NOT_FOUND = "Admin User [{}] NOT Found! Creating new...";
+    public static final String TEST_USER_ALREADY_EXIST = "Test User [{}] Already Exists! Skipping Seeding!";
+    public static final String TEST_USER_NOT_FOUND = "Test User [{}] NOT Found! Creating new...";
     public static final String INCORRECT_USERNAME_OR_PASSWORD = "Incorrect Username or Password!";
     public static final String USER_CANNOT_BE_EMPTY = "Username cannot be empty!";
     public static final String PASSWORD_CANNOT_BE_EMPTY = "Password cannot be empty!";

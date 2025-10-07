@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.boot.ansi.AnsiColor;
+import org.springframework.boot.ansi.AnsiOutput;
 
 import java.util.List;
 import java.util.UUID;
@@ -32,12 +34,14 @@ public class NotificationServiceImpl implements NotificationService {
         try {
             ResponseEntity<Void> httpResponse = notificationClient.upsertNotificationPreference(upsert);
             if (!httpResponse.getStatusCode().is2xxSuccessful()) {
-                log.error(NOTIFICATION_SAVE_PREF_NON_2XX, userId, httpResponse.getStatusCode());
+                log.error(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_SAVE_PREF_NON_2XX),
+                        userId, httpResponse.getStatusCode());
             }
         } catch (FeignException ex) {
-            log.warn(NOTIFICATION_SAVE_PREF_ERROR, userId, ex.status(), ex.getMessage());
+            log.warn(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_SAVE_PREF_ERROR),
+                    userId, ex.status(), ex.getMessage());
         } catch (Exception ex) {
-            log.error(NOTIFICATION_SAVE_PREF_UNEXPECTED, userId, ex);
+            log.error(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_SAVE_PREF_UNEXPECTED), userId, ex);
         }
     }
 
@@ -49,12 +53,14 @@ public class NotificationServiceImpl implements NotificationService {
             if (httpResponse.getStatusCode().is2xxSuccessful() && httpResponse.getBody() != null) {
                 return httpResponse.getBody();
             }
-            log.warn(NOTIFICATION_GET_PREF_NON_2XX, userId, httpResponse.getStatusCode());
+            log.warn(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_GET_PREF_NON_2XX),
+                    userId, httpResponse.getStatusCode());
 
         } catch (FeignException ex) {
-            log.warn(NOTIFICATION_GET_PREF_ERROR, userId, ex.status(), ex.getMessage());
+            log.warn(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_GET_PREF_ERROR),
+                    userId, ex.status(), ex.getMessage());
         } catch (Exception ex) {
-            log.error(NOTIFICATION_GET_PREF_UNEXPECTED, userId, ex);
+            log.error(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_GET_PREF_UNEXPECTED), userId, ex);
         }
         return NotificationPreference.defaultFor(userId);
     }
@@ -68,12 +74,14 @@ public class NotificationServiceImpl implements NotificationService {
             if (httpResponse.getStatusCode().is2xxSuccessful() && httpResponse.getBody() != null) {
                 return httpResponse.getBody();
             }
-            log.warn(NOTIFICATION_GET_HISTORY_NON_2XX, userId, httpResponse.getStatusCode());
+            log.warn(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_GET_HISTORY_NON_2XX),
+                    userId, httpResponse.getStatusCode());
 
         } catch (FeignException ex) {
-            log.warn(NOTIFICATION_GET_HISTORY_ERROR, userId, ex.status(), ex.getMessage());
+            log.warn(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_GET_HISTORY_ERROR),
+                    userId, ex.status(), ex.getMessage());
         } catch (Exception ex) {
-            log.error(NOTIFICATION_GET_HISTORY_UNEXPECTED, userId, ex);
+            log.error(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_GET_HISTORY_UNEXPECTED), userId, ex);
         }
         return Notification.defaultHistory();
     }

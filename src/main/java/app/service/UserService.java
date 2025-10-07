@@ -8,11 +8,13 @@ import java.util.UUID;
 
 public interface UserService {
 
-    void initAuth();
-
     void registerUser(RegisterDTO registerDTO);
 
     UserEntity getUserById(UUID userId);
 
+    void getUserByUsername(String username);
+
     void editUserDetails(UUID userId, UserEditDTO userEditDTO);
+
+    void saveUser(UserEntity userEntity);
 }
