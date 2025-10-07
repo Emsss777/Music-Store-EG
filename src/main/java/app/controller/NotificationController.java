@@ -45,13 +45,11 @@ public class NotificationController {
         List<Notification> notificationHistory = notificationService.getNotificationHistory(currentUser.getId());
 
         long succeededNotificationsNumber = notificationHistory.stream()
-                .filter(notification ->
-                        NotificationStatus.fromString(notification.getStatus()) == NotificationStatus.SUCCEEDED)
+                .filter(notification -> notification.getStatus().equals(NotificationStatus.SUCCEEDED.name()))
                 .count();
 
         long failedNotificationsNumber = notificationHistory.stream()
-                .filter(notification ->
-                        NotificationStatus.fromString(notification.getStatus()) == NotificationStatus.FAILED)
+                .filter(notification -> notification.getStatus().equals(NotificationStatus.FAILED.name()))
                 .count();
 
         ModelAndView modelAndView = new ModelAndView();
