@@ -4,7 +4,7 @@ import app.model.dto.LoginDTO;
 import app.model.dto.RegisterDTO;
 import app.service.UserService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,15 +19,10 @@ import static app.util.UrlPaths.*;
 import static app.util.Views.*;
 
 @Controller
+@RequiredArgsConstructor
 public class AuthController {
 
     private final UserService userService;
-
-    @Autowired
-    public AuthController(UserService userService) {
-
-        this.userService = userService;
-    }
 
     @GetMapping(URL_LOGIN)
     public ModelAndView getLoginPage(@RequestParam(value = "error", required = false) String errorParam) {

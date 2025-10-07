@@ -7,7 +7,7 @@ import app.notification.client.dto.NotificationPreference;
 import app.notification.services.NotificationService;
 import app.security.AuthenticationMetadata;
 import app.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,18 +21,12 @@ import static app.util.UrlPaths.URL_NOTIFICATIONS;
 import static app.util.Views.VIEW_NOTIFICATIONS;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping(URL_NOTIFICATIONS)
 public class NotificationController {
 
     private final UserService userService;
     private final NotificationService notificationService;
-
-    @Autowired
-    public NotificationController(UserService userService, NotificationService notificationService) {
-
-        this.userService = userService;
-        this.notificationService = notificationService;
-    }
 
     @GetMapping
     public ModelAndView getNotificationPage(@AuthenticationPrincipal AuthenticationMetadata authMetadata) {

@@ -6,8 +6,8 @@ import app.notification.services.NotificationService;
 import app.notification.client.NotificationClient;
 import app.notification.client.dto.UpsertNotificationPreference;
 import feign.FeignException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -18,14 +18,10 @@ import static app.util.ExceptionMessages.*;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class NotificationServiceImpl implements NotificationService {
 
     private final NotificationClient notificationClient;
-
-    @Autowired
-    public NotificationServiceImpl(NotificationClient notificationClient) {
-        this.notificationClient = notificationClient;
-    }
 
     @Override
     public void saveNotificationPreference(UUID userId, boolean isEmailEnabled, String email) {

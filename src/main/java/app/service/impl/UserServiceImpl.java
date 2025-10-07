@@ -15,8 +15,8 @@ import app.notification.services.NotificationService;
 import app.repository.UserRepo;
 import app.security.AuthenticationMetadata;
 import app.service.UserService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -35,23 +35,13 @@ import static app.util.SuccessMessages.USER_CREATED;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
     private final NotificationService notificationService;
     private final UserRegisteredEventProducer userRegisteredEventProducer;
-
-    @Autowired
-    public UserServiceImpl(UserRepo userRepo, PasswordEncoder passwordEncoder,
-                           NotificationService notificationService,
-                           UserRegisteredEventProducer userRegisteredEventProducer) {
-
-        this.userRepo = userRepo;
-        this.passwordEncoder = passwordEncoder;
-        this.notificationService = notificationService;
-        this.userRegisteredEventProducer = userRegisteredEventProducer;
-    }
 
     @Override
     public void initAuth() {

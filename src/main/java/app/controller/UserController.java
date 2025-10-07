@@ -8,7 +8,7 @@ import app.model.entity.UserEntity;
 import app.security.AuthenticationMetadata;
 import app.service.UserService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -25,15 +25,11 @@ import static app.util.UrlPaths.*;
 import static app.util.Views.*;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping(URL_USERS)
 public class UserController {
 
     private final UserService userService;
-
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
 
     @GetMapping(URL_PROFILE)
     public ModelAndView getProfilePage(@AuthenticationPrincipal AuthenticationMetadata authMetadata) {
