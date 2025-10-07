@@ -12,7 +12,7 @@ public interface UserService {
 
     UserEntity getUserById(UUID userId);
 
-    void getUserByUsername(String username);
+    UserEntity getUserByUsername(String username);
 
     void editUserDetails(UUID userId, UserEditDTO userEditDTO);
 

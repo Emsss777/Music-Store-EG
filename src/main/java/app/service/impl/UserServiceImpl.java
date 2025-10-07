@@ -69,6 +69,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userRegisteredEventProducer.sendEvent(event);
 
         log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, USER_CREATED), user.getUsername(), user.getId());
+
     }
 
     private UserEntity initializeUser(RegisterDTO registerDTO) {
@@ -93,9 +94,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public void getUserByUsername(String username) {
+    public UserEntity getUserByUsername(String username) {
 
-        userRepo.findByUsername(username).orElseThrow(() ->
+        return userRepo.findByUsername(username).orElseThrow(() ->
                 new DomainException(USER_DOES_NOT_EXIST.formatted(username)));
     }
 
