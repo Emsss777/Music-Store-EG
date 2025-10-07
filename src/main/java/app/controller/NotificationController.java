@@ -1,6 +1,7 @@
 package app.controller;
 
 import app.model.entity.UserEntity;
+import app.model.enums.NotificationStatus;
 import app.notification.client.dto.Notification;
 import app.notification.client.dto.NotificationPreference;
 import app.notification.services.NotificationService;
@@ -44,11 +45,13 @@ public class NotificationController {
         List<Notification> notificationHistory = notificationService.getNotificationHistory(currentUser.getId());
 
         long succeededNotificationsNumber = notificationHistory.stream()
-                .filter(notification -> notification.getStatus().equals("SUCCEEDED"))
+                .filter(notification ->
+                        NotificationStatus.fromString(notification.getStatus()) == NotificationStatus.SUCCEEDED)
                 .count();
 
         long failedNotificationsNumber = notificationHistory.stream()
-                .filter(notification -> notification.getStatus().equals("FAILED"))
+                .filter(notification ->
+                        NotificationStatus.fromString(notification.getStatus()) == NotificationStatus.FAILED)
                 .count();
 
         ModelAndView modelAndView = new ModelAndView();
