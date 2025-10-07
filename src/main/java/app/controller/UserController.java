@@ -9,6 +9,7 @@ import app.security.AuthenticationMetadata;
 import app.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -83,6 +84,7 @@ public class UserController {
         return new ModelAndView(REDIRECT_PROFILE);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(URL_ADMIN_DASHBOARD)
     public ModelAndView getAdminPage(@AuthenticationPrincipal AuthenticationMetadata authMetadata) {
 

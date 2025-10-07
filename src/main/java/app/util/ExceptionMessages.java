@@ -21,8 +21,23 @@ public class ExceptionMessages {
     public static final String INVALID_EMAIL_FORMAT = "Email must be in a valid format!";
     public static final String BIO_INVALID_LENGTH = "Bio cannot exceed 500 characters!";
     public static final String INVALID_URL_FORMAT = "Profile picture must be a valid URL!";
-    public static final String FEIGN_NOTIFICATION_SAVE_FAILED =
-            "[Feign call to notification-svc failed] Can't save user preference for user with id = [{}]";
-    public static final String FEIGN_NOTIFICATION_CALL_FAILED = "Unable to call notification-svc.";
+    public static final String NOTIFICATION_SAVE_PREF_NON_2XX =
+            "[notification-svc] non-2xx on 'saveNotificationPreference' for user [{}]: {}";
+    public static final String NOTIFICATION_SAVE_PREF_ERROR =
+            "[notification-svc] error on 'saveNotificationPreference' for user [{}]: status={}, msg={}";
+    public static final String NOTIFICATION_SAVE_PREF_UNEXPECTED =
+            "[notification-svc] unexpected error on 'saveNotificationPreference' for user [{}]";
+    public static final String NOTIFICATION_GET_PREF_NON_2XX =
+            "[notification-svc] non-2xx on 'getNotificationPreference' for user [{}]: {}";
+    public static final String NOTIFICATION_GET_PREF_ERROR =
+            "[notification-svc] error on 'getNotificationPreference' for user [{}]: status={}, msg={}";
+    public static final String NOTIFICATION_GET_PREF_UNEXPECTED =
+            "[notification-svc] unexpected error on 'getNotificationPreference' for user [{}]";
+    public static final String NOTIFICATION_GET_HISTORY_NON_2XX =
+            "[notification-svc] non-2xx on 'getNotificationHistory' for user [{}]: {}";
+    public static final String NOTIFICATION_GET_HISTORY_ERROR =
+            "[notification-svc] error on 'getNotificationHistory' for user [{}]: status={}, msg={}";
+    public static final String NOTIFICATION_GET_HISTORY_UNEXPECTED =
+            "[notification-svc] unexpected error on 'getNotificationHistory' for user [{}]";
     public static final String INTERNAL_SERVER_ERROR_TEST = "Internal Server Error Test";
 }

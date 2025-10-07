@@ -13,4 +13,8 @@ public final class ModelAttributes {
     public static final String MODEL_USERNAME_ALREADY_EXISTS = "usernameAlreadyExists";
     public static final String MODEL_PASSWORD_MISMATCH_EXCEPTION = "passwordMismatchException";
     public static final String MODEL_ERROR_MESSAGE = "errorMessage";
+    public static final String MODEL_NOTIFICATIONS_PREFERENCE = "notificationPreference";
+    public static final String MODEL_NOTIFICATION_HISTORY = "notificationHistory";
+    public static final String MODEL_SUCCEEDED_NOTIFICATIONS_NUMBER = "succeededNotificationsNumber";
+    public static final String MODEL_FAILED_NOTIFICATIONS_NUMBER = "failedNotificationsNumber";
 }

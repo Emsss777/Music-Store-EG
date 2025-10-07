@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/css/admin/notifications.css">
+    <title>Notification Dashboard | Music Store App</title>
+</head>
+
+<body>
+
+<th:block th:replace="~{fragments/header :: site-header}"></th:block>
+
+<main>
+    <div class="admin-header">
+        <div class="container">
+            <h1 class="page-title">Notification Dashboard</h1>
+            <p class="page-subtitle">Manage your notification preferences</p>
+        </div>
+    </div>
+
+    <section class="notifications-section">
+        <div class="container">
+            <div class="notifications-container">
+                <div class="notifications-card card">
+                    <div class="notification-content" th:if="${user.role.name() == 'ADMIN'}">
+                        <!-- Current Preferences Section -->
+                        <div class="section">
+                            <h2 class="section-title">Current Preferences:</h2>
+
+                            <div class="preference-item">
+                                <label class="preference-label">Notification Type:</label>
+                                <p class="preference-value" th:text="${notificationPreference.type}"></p>
+                            </div>
+
+                            <div class="preference-item">
+                                <label class="preference-label">Source:</label>
+                                <p class="preference-value"
+                                   th:text="${#strings.isEmpty(notificationPreference.contactInfo)
+                                   ? 'Edit profile and add email' : notificationPreference.contactInfo}"></p>
+                            </div>
+
+                            <div class="preference-item">
+                                <label class="preference-label">Non-Failed Notifications:</label>
+                                <p class="preference-value" th:text="${succeededNotificationsNumber}"></p>
+                            </div>
+
+                            <div class="preference-item">
+                                <label class="preference-label">Failed Notifications:</label>
+                                <p class="preference-value" th:text="${failedNotificationsNumber}"></p>
+                            </div>
+
+                            <div class="preference-item status-item">
+                                <label class="preference-label">Notification State:</label>
+                                <div class="status-container">
+                                    <p class="enabled-notification-status"
+                                       th:if="${notificationPreference.enabled}">ENABLED</p>
+                                    <p class="disabled-notification-status"
+                                       th:unless="${notificationPreference.enabled}">DISABLED</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Change State Section -->
+                        <div class="section">
+                            <h2 class="section-title">Change State:</h2>
+                            <div class="button-group">
+                                <button class="button secondary"
+                                        onclick="disableNotifications()">Disable Notifications</button>
+                                <button class="button primary"
+                                        onclick="enableNotifications()">Enable Notifications</button>
+                            </div>
+                        </div>
+
+                        <!-- General Actions Section -->
+                        <div class="section">
+                            <h2 class="section-title">General Actions:</h2>
+                            <div class="button-group">
+                                <button class="button secondary" onclick="clearHistory()">Clear History</button>
+                                <button class="button primary" onclick="retryFailed()">Retry Failed</button>
+                            </div>
+                        </div>
+
+                        <!-- Warning Message -->
+                        <div class="warning-section">
+                            <p class="warning-text">
+                                Any action that you take will affect the notification mechanism for your account!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<th:block th:replace="~{fragments/footer :: site-footer}"></th:block>
+
+<script>
+    function enableNotifications() {
+        if (confirm('Are you sure you want to enable notifications?')) {
+            // In a real application, this would make an API call
+            alert('Notifications enabled successfully!');
+            // Reload the page to update the status
+            window.location.reload();
+        }
+    }
+
+    function disableNotifications() {
+        if (confirm('Are you sure you want to disable notifications?')) {
+            // In a real application, this would make an API call
+            alert('Notifications disabled successfully!');
+            // Reload the page to update the status
+            window.location.reload();
+        }
+    }
+
+    function clearHistory() {
+        if (confirm('Are you sure you want to clear the notification history? This action cannot be undone.')) {
+            // In a real application, this would make an API call
+            alert('Notification history cleared successfully!');
+            // Reload the page to update the counts
+            window.location.reload();
+        }
+    }
+
+    function retryFailed() {
+        if (confirm('Are you sure you want to retry all failed notifications?')) {
+            // In a real application, this would make an API call
+            alert('Retrying failed notifications...');
+            // Reload the page to update the counts
+            window.location.reload();
+        }
+    }
+</script>
+
+</body>
+
+</html>
