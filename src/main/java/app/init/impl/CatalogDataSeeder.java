@@ -19,6 +19,6 @@ public class CatalogDataSeeder implements DataSeeder {
 
     @Override
     public int order() {
-        return 10;
+        return 30;
     }
 }

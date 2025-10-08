@@ -79,8 +79,8 @@ public class UserDataSeeder implements DataSeeder {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, TEST_USER_NOT_FOUND), username);
         }
 
-        UserEntity admin = new UserEntity()
-                .setUsername("Petko777")
+        UserEntity testUser = new UserEntity()
+                .setUsername(username)
                 .setFirstName("Petko")
                 .setLastName("Ganchev")
                 .setEmail("user1@softuni.bg")
@@ -92,7 +92,7 @@ public class UserDataSeeder implements DataSeeder {
                 .setCreatedOn(LocalDateTime.now())
                 .setUpdatedOn(LocalDateTime.now());
 
-        userService.saveUser(admin);
+        userService.saveUser(testUser);
         log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, SEEDED_TEST_USER), username);
     }
 

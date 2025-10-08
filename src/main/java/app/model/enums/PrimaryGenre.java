@@ -4,8 +4,8 @@ public enum PrimaryGenre {
 
     POP,
     ROCK,
-    JAZZ,
+    HIP_HOP,
     CLASSICAL,
-    BLUES,
-    FOLK
+    METAL,
+    ELECTRONIC
 }
