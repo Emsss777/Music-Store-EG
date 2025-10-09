@@ -12,6 +12,7 @@ public class SuccessMessages {
     public static final String SEEDED_ADMIN_USER = "Seeded Admin User [{}].";
     public static final String SEEDED_TEST_USER = "Seeded Test User [{}].";
     public static final String SEEDED_ARTIST = "Seeded Artist [{}].";
+    public static final String SEEDED_ALBUM = "Seeded Album [{}].";
     public static final String SEEDING_COMPLETE = "Seeding Complete!";
     public static final String SEEDING = "Seeding {}";
     public static final String BEFORE_METHOD_EXEC = "Before method execution!";

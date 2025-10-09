@@ -96,7 +96,7 @@ public class ArtistDataSeeder implements DataSeeder {
 
     private void seedArtist3() {
 
-        String artistName = "Antonio Vivaldi";
+        String artistName = "Ton Koopman";
 
         try {
             artistService.getArtistByArtistName(artistName);
@@ -108,13 +108,15 @@ public class ArtistDataSeeder implements DataSeeder {
 
         ArtistEntity artist3 = new ArtistEntity()
                 .setArtistName(artistName)
-                .setStageName("Antonio Vivaldi")
-                .setFirstName("Antonio")
-                .setLastName("Vivaldi")
+                .setStageName("Ton Koopman")
+                .setFirstName("Ton")
+                .setLastName("Koopman")
                 .setArtistBio(
-                        "Antonio Vivaldi was an Italian composer, violinist, and priest, " +
-                                "born in 1678. Nicknamed “The Red Priest” for his red hair, " +
-                                "he was one of the most prolific and influential composers of the Baroque era."
+                        "Ton Koopman is a Dutch conductor, organist, and harpsichordist known for " +
+                                "his vibrant and historically informed performances of Baroque music. " +
+                                "He founded the Amsterdam Baroque Orchestra & Choir and is especially " +
+                                "acclaimed for his interpretations of J.S. Bach’s works, " +
+                                "performed with energy, precision, and authenticity."
                 )
                 .setPrimaryGenre(PrimaryGenre.CLASSICAL);
 
