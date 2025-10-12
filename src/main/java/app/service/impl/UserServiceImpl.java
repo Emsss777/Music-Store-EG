@@ -18,6 +18,7 @@ import app.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,6 +29,7 @@ import org.springframework.boot.ansi.AnsiColor;
 import org.springframework.boot.ansi.AnsiOutput;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -43,6 +45,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private final PasswordEncoder passwordEncoder;
     private final NotificationService notificationService;
     private final UserRegisteredEventProducer userRegisteredEventProducer;
+
+    @Override
+    @Cacheable("users")
+    public List<UserEntity> getAllUsers() {
+
+        return userRepo.findAll();
+    }
 
     @Override
     @Transactional
@@ -145,5 +154,29 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public void saveUser(UserEntity userEntity) {
 
         userRepo.save(userEntity);
+    }
+
+    @Override
+    @CacheEvict(value = "users", allEntries = true)
+    public void changeStatus(UUID id) {
+
+        UserEntity user = getUserById(id);
+        user.setActive(!user.isActive());
+        userRepo.save(user);
+    }
+
+    @Override
+    @CacheEvict(value = "users", allEntries = true)
+    public void changeRole(UUID id) {
+
+        UserEntity user = getUserById(id);
+
+        if (user.getRole() == UserRole.USER) {
+            user.setRole(UserRole.ADMIN);
+        } else {
+            user.setRole(UserRole.USER);
+        }
+
+        userRepo.save(user);
     }
 }

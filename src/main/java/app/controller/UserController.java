@@ -16,10 +16,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.UUID;
 
 import static app.util.ModelAttributes.*;
-import static app.util.Redirects.REDIRECT_PROFILE;
+import static app.util.Redirects.*;
 import static app.util.UrlParams.PARAM_ID;
 import static app.util.UrlPaths.*;
 import static app.util.Views.*;
@@ -30,6 +31,19 @@ import static app.util.Views.*;
 public class UserController {
 
     private final UserService userService;
+
+    @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
+    public ModelAndView getAllUsers() {
+
+        List<UserEntity> users = userService.getAllUsers();
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName(VIEW_USERS);
+        modelAndView.addObject(MODEL_USERS, users);
+
+        return modelAndView;
+    }
 
     @GetMapping(URL_PROFILE)
     public ModelAndView getProfilePage(@AuthenticationPrincipal AuthenticationMetadata authMetadata) {
@@ -92,5 +106,23 @@ public class UserController {
         modelAndView.addObject(MODEL_USER, currentUser);
 
         return modelAndView;
+    }
+
+    @PutMapping(PARAM_ID + URL_STATUS)
+    @PreAuthorize("hasRole('ADMIN')")
+    public String changeUserStatus(@PathVariable UUID id) {
+
+        userService.changeStatus(id);
+
+        return REDIRECT_USERS;
+    }
+
+    @PutMapping(PARAM_ID + URL_ROLE)
+    @PreAuthorize("hasRole('ADMIN')")
+    public String changeUserRole(@PathVariable UUID id) {
+
+        userService.changeRole(id);
+
+        return REDIRECT_USERS;
     }
 }

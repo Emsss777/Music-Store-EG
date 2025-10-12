@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/css/admin/users.css">
+    <title>User Management | Music Store App</title>
+</head>
+
+<body>
+
+<th:block th:replace="~{fragments/header :: site-header}"></th:block>
+
+<main>
+    <div class="admin-header">
+        <div class="container">
+            <h1 class="page-title">User Management</h1>
+            <p class="page-subtitle">Manage user accounts and permissions</p>
+        </div>
+    </div>
+
+    <section class="users-section">
+        <div class="container">
+            <div class="users-card card">
+                <div class="users-table-container">
+                    <table class="users-table">
+                        <thead>
+                        <tr class="table-header">
+                            <th>ID</th>
+                            <th>USERNAME</th>
+                            <th>EMAIL</th>
+                            <th>ROLE</th>
+                            <th>COUNTRY</th>
+                            <th>STATUS</th>
+                            <th>CREATED ON</th>
+                            <th>CHANGE STATUS</th>
+                            <th>CHANGE ROLE</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- Regular Users Section -->
+                        <tr class="user-row" th:each="user : ${users}" th:if="${user.role.name() == 'USER'}">
+                            <td class="user-id" th:text="${user.id}"></td>
+                            <td class="user-username" th:text="${user.username}"></td>
+                            <td class="user-email"
+                                th:text="${#strings.isEmpty(user.email) ? 'no email' : user.email}"></td>
+                            <td class="user-role">
+                                <span class="role-badge user-badge" th:text="${user.role.name()}"></span>
+                            </td>
+                            <td class="user-country"
+                                th:text="${#strings.capitalize(#strings.toLowerCase(user.country.name()))}"></td>
+                            <td class="user-status">
+                                <span class="status-badge active" th:if="${user.active}">ACTIVE</span>
+                                <span class="status-badge inactive" th:unless="${user.active}">INACTIVE</span>
+                            </td>
+                            <td class="user-created"
+                                th:text="${#temporals.format(user.createdOn, 'dd MMM YYYY HH:mm')}"></td>
+                            <td class="user-action">
+                                <form th:action="@{'/users/' + ${user.id} + '/status'}" th:method="PUT">
+                                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox"
+                                               th:checked="${user.active}"
+                                               onchange="this.form.submit()">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </form>
+                            </td>
+                            <td class="user-action">
+                                <form th:action="@{'/users/' + ${user.id} + '/role'}" th:method="PUT">
+                                    <button class="action-button role-change">
+                                        Change Role
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+
+                        <!-- Separator Row -->
+                        <tr class="separator-row">
+                            <td colspan="9">
+                                <div class="separator-line"></div>
+                            </td>
+                        </tr>
+
+                        <!-- Admin Users Section -->
+                        <tr class="user-row" th:each="user : ${users}" th:if="${user.role.name() == 'ADMIN'}">
+                            <td class="user-id" th:text="${user.id}"></td>
+                            <td class="user-username" th:text="${user.username}"></td>
+                            <td class="user-email"
+                                th:text="${#strings.isEmpty(user.email) ? 'no email' : user.email}"></td>
+                            <td class="user-role">
+                                <span class="role-badge user-badge" th:text="${user.role.name()}"></span>
+                            </td>
+                            <td class="user-country"
+                                th:text="${#strings.capitalize(#strings.toLowerCase(user.country.name()))}"></td>
+                            <td class="user-status">
+                                <span class="status-badge active" th:if="${user.active}">ACTIVE</span>
+                                <span class="status-badge inactive" th:unless="${user.active}">INACTIVE</span>
+                            </td>
+                            <td class="user-created"
+                                th:text="${#temporals.format(user.createdOn, 'dd MMM YYYY HH:mm')}"></td>
+                            <td class="user-action">
+                                <form th:action="@{'/users/' + ${user.id} + '/status'}" th:method="PUT">
+                                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox"
+                                               th:checked="${user.active}"
+                                               onchange="this.form.submit()">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </form>
+                            </td>
+                            <td class="user-action">
+                                <form th:action="@{'/users/' + ${user.id} + '/role'}" th:method="PUT">
+                                    <button class="action-button role-change">
+                                        Change Role
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<th:block th:replace="~{fragments/footer :: site-footer}"></th:block>
+
+</body>
+
+</html>
