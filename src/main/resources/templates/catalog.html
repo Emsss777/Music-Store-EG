@@ -36,34 +36,25 @@
                             <h4>Genre</h4>
                             <div class="filter-options">
                                 <label class="checkbox-container">
-                                    <input type="checkbox" name="genre" value="pop">
-                                    <span class="checkmark"></span>
-                                    Pop
+                                    <a style="text-decoration: none; color: inherit; display: flex;
+                                    align-items: center;" th:href="@{/catalog}">
+                                        <input type="checkbox" name="genre" value="all"
+                                               th:checked="${selectedGenre == null}">
+                                        <span class="checkmark"></span>
+                                        All Genres
+                                    </a>
                                 </label>
-                                <label class="checkbox-container">
-                                    <input type="checkbox" name="genre" value="rock">
-                                    <span class="checkmark"></span>
-                                    Rock
-                                </label>
-                                <label class="checkbox-container">
-                                    <input type="checkbox" name="genre" value="electronic">
-                                    <span class="checkmark"></span>
-                                    Electronic
-                                </label>
-                                <label class="checkbox-container">
-                                    <input type="checkbox" name="genre" value="metal">
-                                    <span class="checkmark"></span>
-                                    Metal
-                                </label>
-                                <label class="checkbox-container">
-                                    <input type="checkbox" name="genre" value="classical">
-                                    <span class="checkmark"></span>
-                                    Classical
-                                </label>
-                                <label class="checkbox-container">
-                                    <input type="checkbox" name="genre" value="hip-hop">
-                                    <span class="checkmark"></span>
-                                    Hip-Hop
+                                <label class="checkbox-container" th:each="genre : ${genres}">
+                                    <a style="text-decoration: none; color: inherit; display: flex;
+                                    align-items: center;" th:href="@{/catalog(genre=${genre})}">
+                                        <input type="checkbox" name="genre" th:value="${genre}"
+                                               th:checked="${selectedGenre == genre}">
+                                        <span class="checkmark"></span>
+                                        <span
+                                                th:text="${#strings.capitalize(#strings.replace(#strings.toLowerCase(genre), '_', ' '))}">
+                                            Genre
+                                        </span>
+                                    </a>
                                 </label>
                             </div>
                         </div>
@@ -115,19 +106,24 @@
                             </div>
                         </div>
 
-                        <button class="clear-filters-btn">Clear All Filters</button>
+                        <a class="clear-filters-btn" style="text-decoration: none; text-align: center;
+                        display: block;" th:href="@{/catalog}">Clear All Filters</a>
                     </div>
                 </aside>
 
                 <div class="catalog-content">
                     <div class="catalog-toolbar">
                         <div class="results-info">
-                            <span class="results-count" th:text="'Showing ' + ${albums.size()} + ' results'"></span>
+                            <span class="results-count" th:if="${selectedGenre == null}"
+                                  th:text="'Showing ' + ${albums.size()} + ' results'"></span>
+                            <span class="results-count" th:if="${selectedGenre != null}"
+                                  th:text="'Showing ' + ${albums.size()} + ' ' + ${#strings.capitalize(
+                                  #strings.replace(#strings.toLowerCase(selectedGenre), '_', ' '))} + ' albums'">
+                            </span>
                         </div>
                         <div class="sort-options">
                             <label for="sort">Sort by:</label>
                             <select id="sort" class="sort-select">
-                                <option value="popularity">Popularity</option>
                                 <option value="newest">Newest First</option>
                                 <option value="oldest">Oldest First</option>
                                 <option value="price-low">Price: Low to High</option>

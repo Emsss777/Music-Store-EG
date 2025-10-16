@@ -1,6 +1,7 @@
 package app.repository;
 
 import app.model.entity.AlbumEntity;
+import app.model.enums.PrimaryGenre;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,4 +15,6 @@ public interface AlbumRepo extends JpaRepository<AlbumEntity, UUID> {
     Optional<AlbumEntity> findByTitle(String albumTitle);
 
     List<AlbumEntity> findAllByOrderByYearDesc();
+
+    List<AlbumEntity> findByGenreOrderByYearDesc(PrimaryGenre genre);
 }
