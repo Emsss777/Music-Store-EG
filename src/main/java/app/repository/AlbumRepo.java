@@ -4,6 +4,7 @@ import app.model.entity.AlbumEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -11,4 +12,6 @@ import java.util.UUID;
 public interface AlbumRepo extends JpaRepository<AlbumEntity, UUID> {
 
     Optional<AlbumEntity> findByTitle(String albumTitle);
+
+    List<AlbumEntity> findAllByOrderByYearDesc();
 }

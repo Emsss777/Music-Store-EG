@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.service.AlbumService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,12 +14,15 @@ import static app.util.Views.VIEW_CATALOG;
 @RequiredArgsConstructor
 public class CatalogController {
 
+    private final AlbumService albumService;
+
     @GetMapping(URL_CATALOG)
     public ModelAndView getCatalogPage() {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_CATALOG);
         modelAndView.addObject(MODEL_PAGE, VIEW_CATALOG);
+        modelAndView.addObject(MODEL_ALBUMS, albumService.getAllAlbums());
 
         return modelAndView;
     }

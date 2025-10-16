@@ -51,9 +51,9 @@
                                     Electronic
                                 </label>
                                 <label class="checkbox-container">
-                                    <input type="checkbox" name="genre" value="jazz">
+                                    <input type="checkbox" name="genre" value="metal">
                                     <span class="checkmark"></span>
-                                    Jazz
+                                    Metal
                                 </label>
                                 <label class="checkbox-container">
                                     <input type="checkbox" name="genre" value="classical">
@@ -122,7 +122,7 @@
                 <div class="catalog-content">
                     <div class="catalog-toolbar">
                         <div class="results-info">
-                            <span class="results-count">Showing 1–12 of 156 results</span>
+                            <span class="results-count" th:text="'Showing ' + ${albums.size()} + ' results'"></span>
                         </div>
                         <div class="sort-options">
                             <label for="sort">Sort by:</label>
@@ -138,203 +138,25 @@
                     </div>
 
                     <div class="album-grid grid grid-3">
-                        <div class="album-card card">
+                        <div class="album-card card" th:each="album : ${albums}">
                             <div class="album-image">
-                                <img src="https://via.placeholder.com/300x300/746ab0/ffffff?text=Midnight+Dreams"
-                                     alt="Midnight Dreams">
+                                <img th:src="@{${album.coverUrl}}"
+                                     th:alt="${album.title}">
                                 <div class="album-overlay light">
                                     <button class="play-button">▶</button>
                                 </div>
                             </div>
                             <div class="album-info">
-                                <h3 class="album-title">Midnight Dreams</h3>
-                                <p class="album-artist">The Night Owls</p>
+                                <h3 class="album-title" th:text="${album.title}"></h3>
+                                <p class="album-artist" th:text="${album.artist.artistName}"></p>
                                 <div class="album-meta">
-                                    <span class="album-year">2024</span>
-                                    <span class="album-genre">Pop Rock</span>
+                                    <span class="album-year" th:text="${album.year}"></span>
+                                    <span class="album-genre" th:text="${album.genre}"></span>
                                 </div>
                                 <div class="album-price">
-                                    <span class="price">$12.99</span>
-                                    <span class="price-old">$15.99</span>
+                                    <span class="price" th:text="'$' + ${album.price}"></span>
                                 </div>
-                                <a href="/album/1" class="button primary">View Details</a>
-                            </div>
-                        </div>
-
-                        <div class="album-card card">
-                            <div class="album-image">
-                                <img src="https://via.placeholder.com/300x300/6a61a4/ffffff?text=Electric+Pulse"
-                                     alt="Electric Pulse">
-                                <div class="album-overlay light">
-                                    <button class="play-button">▶</button>
-                                </div>
-                            </div>
-                            <div class="album-info">
-                                <h3 class="album-title">Electric Pulse</h3>
-                                <p class="album-artist">Digital Waves</p>
-                                <div class="album-meta">
-                                    <span class="album-year">2024</span>
-                                    <span class="album-genre">Electronic</span>
-                                </div>
-                                <div class="album-price">
-                                    <span class="price">$9.99</span>
-                                </div>
-                                <a href="/album/2" class="button primary">View Details</a>
-                            </div>
-                        </div>
-
-                        <div class="album-card card">
-                            <div class="album-image">
-                                <img src="https://via.placeholder.com/300x300/605899/ffffff?text=Acoustic+Stories"
-                                     alt="Acoustic Stories">
-                                <div class="album-overlay light">
-                                    <button class="play-button">▶</button>
-                                </div>
-                            </div>
-                            <div class="album-info">
-                                <h3 class="album-title">Acoustic Stories</h3>
-                                <p class="album-artist">Folk Masters</p>
-                                <div class="album-meta">
-                                    <span class="album-year">2023</span>
-                                    <span class="album-genre">Folk</span>
-                                </div>
-                                <div class="album-price">
-                                    <span class="price">$14.99</span>
-                                    <span class="price-old">$18.99</span>
-                                </div>
-                                <a href="/album/3" class="button primary">View Details</a>
-                            </div>
-                        </div>
-
-                        <div class="album-card card">
-                            <div class="album-image">
-                                <img src="https://via.placeholder.com/300x300/56508d/ffffff?text=Jazz+Fusion"
-                                     alt="Jazz Fusion">
-                                <div class="album-overlay light">
-                                    <button class="play-button">▶</button>
-                                </div>
-                            </div>
-                            <div class="album-info">
-                                <h3 class="album-title">Jazz Fusion</h3>
-                                <p class="album-artist">Modern Jazz Collective</p>
-                                <div class="album-meta">
-                                    <span class="album-year">2023</span>
-                                    <span class="album-genre">Jazz</span>
-                                </div>
-                                <div class="album-price">
-                                    <span class="price">$16.99</span>
-                                </div>
-                                <a href="/album/4" class="button primary">View Details</a>
-                            </div>
-                        </div>
-
-                        <div class="album-card card">
-                            <div class="album-image">
-                                <img src="https://via.placeholder.com/300x300/4c477f/ffffff?text=Summer+Vibes"
-                                     alt="Summer Vibes">
-                                <div class="album-overlay light">
-                                    <button class="play-button">▶</button>
-                                </div>
-                            </div>
-                            <div class="album-info">
-                                <h3 class="album-title">Summer Vibes</h3>
-                                <p class="album-artist">Beach Boys Revival</p>
-                                <div class="album-meta">
-                                    <span class="album-year">2024</span>
-                                    <span class="album-genre">Pop</span>
-                                </div>
-                                <div class="album-price">
-                                    <span class="price">$11.99</span>
-                                </div>
-                                <a href="/album/5" class="button primary">View Details</a>
-                            </div>
-                        </div>
-
-                        <div class="album-card card">
-                            <div class="album-image">
-                                <img src="https://via.placeholder.com/300x300/423f73/ffffff?text=Urban+Legends"
-                                     alt="Urban Legends">
-                                <div class="album-overlay light">
-                                    <button class="play-button">▶</button>
-                                </div>
-                            </div>
-                            <div class="album-info">
-                                <h3 class="album-title">Urban Legends</h3>
-                                <p class="album-artist">City Beats</p>
-                                <div class="album-meta">
-                                    <span class="album-year">2024</span>
-                                    <span class="album-genre">Hip-Hop</span>
-                                </div>
-                                <div class="album-price">
-                                    <span class="price">$13.99</span>
-                                </div>
-                                <a href="/album/6" class="button primary">View Details</a>
-                            </div>
-                        </div>
-
-                        <div class="album-card card">
-                            <div class="album-image">
-                                <img src="https://via.placeholder.com/300x300/383666/ffffff?text=Indie+Dreams"
-                                     alt="Indie Dreams">
-                                <div class="album-overlay light">
-                                    <button class="play-button">▶</button>
-                                </div>
-                            </div>
-                            <div class="album-info">
-                                <h3 class="album-title">Indie Dreams</h3>
-                                <p class="album-artist">Underground Sounds</p>
-                                <div class="album-meta">
-                                    <span class="album-year">2023</span>
-                                    <span class="album-genre">Indie</span>
-                                </div>
-                                <div class="album-price">
-                                    <span class="price">$10.99</span>
-                                </div>
-                                <a href="/album/7" class="button primary">View Details</a>
-                            </div>
-                        </div>
-
-                        <div class="album-card card">
-                            <div class="album-image">
-                                <img src="https://via.placeholder.com/300x300/2e2d5a/ffffff?text=Classical+Beauty"
-                                     alt="Classical Beauty">
-                                <div class="album-overlay light">
-                                    <button class="play-button">▶</button>
-                                </div>
-                            </div>
-                            <div class="album-info">
-                                <h3 class="album-title">Classical Beauty</h3>
-                                <p class="album-artist">Symphony Orchestra</p>
-                                <div class="album-meta">
-                                    <span class="album-year">2023</span>
-                                    <span class="album-genre">Classical</span>
-                                </div>
-                                <div class="album-price">
-                                    <span class="price">$19.99</span>
-                                </div>
-                                <a href="/album/8" class="button primary">View Details</a>
-                            </div>
-                        </div>
-
-                        <div class="album-card card">
-                            <div class="album-image">
-                                <img src="https://via.placeholder.com/300x300/24244d/ffffff?text=Rock+Anthems"
-                                     alt="Rock Anthems">
-                                <div class="album-overlay light">
-                                    <button class="play-button">▶</button>
-                                </div>
-                            </div>
-                            <div class="album-info">
-                                <h3 class="album-title">Rock Anthems</h3>
-                                <p class="album-artist">Thunder Band</p>
-                                <div class="album-meta">
-                                    <span class="album-year">2024</span>
-                                    <span class="album-genre">Rock</span>
-                                </div>
-                                <div class="album-price">
-                                    <span class="price">$15.99</span>
-                                </div>
-                                <a href="/album/9" class="button primary">View Details</a>
+                                <a th:href="@{/album/{id}(id=${album.id})}" class="button primary">View Details</a>
                             </div>
                         </div>
                     </div>

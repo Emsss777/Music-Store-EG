@@ -2,7 +2,6 @@ package app.controller;
 
 import app.exception.PasswordMismatchException;
 import app.exception.UsernameAlreadyExistException;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MissingRequestValueException;

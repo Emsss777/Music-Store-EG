@@ -7,6 +7,8 @@ import app.service.AlbumService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import static app.util.ExceptionMessages.ALBUM_DOES_NOT_EXIST;
 
 @Service
@@ -26,5 +28,11 @@ public class AlbumServiceImpl implements AlbumService {
     public void saveAlbum(AlbumEntity albumEntity) {
 
         albumRepo.save(albumEntity);
+    }
+
+    @Override
+    public List<AlbumEntity> getAllAlbums() {
+
+        return albumRepo.findAllByOrderByYearDesc();
     }
 }
