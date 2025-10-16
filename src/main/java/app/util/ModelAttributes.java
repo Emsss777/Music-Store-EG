@@ -19,6 +19,7 @@ public final class ModelAttributes {
     public static final String MODEL_SUCCEEDED_NOTIFICATIONS_NUMBER = "succeededNotificationsNumber";
     public static final String MODEL_FAILED_NOTIFICATIONS_NUMBER = "failedNotificationsNumber";
     public static final String MODEL_ALBUMS = "albums";
+    public static final String MODEL_ALBUM = "album";
     public static final String MODEL_SELECTED_GENRE = "selectedGenre";
     public static final String MODEL_GENRES = "genres";
 }

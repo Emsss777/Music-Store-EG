@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/css/common.css">
     <link rel="stylesheet" type="text/css" href="/css/album.css">
-    <title>Midnight Dreams - The Night Owls | Music Store</title>
+    <title th:text="${album.title} + ' - ' + ${album.artist.artistName} + ' | Music Store'"></title>
 </head>
 
 <body>
@@ -20,7 +20,8 @@
 <main>
     <div class="breadcrumb">
         <div class="container">
-            <a href="/">Home</a> / <a href="/catalog">Catalog</a> / <span>Midnight Dreams</span>
+            <a href="/">Home</a> / <a href="/catalog">Catalog</a> /
+            <span th:text="${album.title}">Midnight Dreams</span>
         </div>
     </div>
 
@@ -29,8 +30,8 @@
             <div class="album-detail-grid">
                 <div class="album-image-container">
                     <div class="album-image-large">
-                        <img src="https://via.placeholder.com/500x500/746ab0/ffffff?text=Midnight+Dreams"
-                             alt="Midnight Dreams Album Cover">
+                        <img th:src="@{${album.coverUrl}}"
+                             th:alt="${album.title} + ' Album Cover'">
                         <div class="play-overlay">
                             <button class="play-button-large">▶</button>
                         </div>
@@ -39,27 +40,24 @@
 
                 <div class="album-info-container">
                     <div class="album-header">
-                        <h1 class="album-title">Midnight Dreams</h1>
-                        <p class="album-artist">The Night Owls</p>
+                        <h1 class="album-title" th:text="${album.title}">Midnight Dreams</h1>
+                        <p class="album-artist" th:text="${album.artist.artistName}">The Night Owls</p>
                         <div class="album-meta">
-                            <span class="album-year">2024</span>
-                            <span class="album-genre">Pop Rock</span>
-                            <span class="album-duration">45 min</span>
+                            <span class="album-year" th:text="${album.year}">2024</span>
+                            <span class="album-genre"
+                                  th:text="${#strings.capitalize(
+                                  #strings.replace(#strings.toLowerCase(album.genre), '_', ' '))}">
+                            </span>
                         </div>
                     </div>
 
-                    <div class="album-description">
-                        <p>Experience the magic of nightfall with "Midnight Dreams," a mesmerizing collection of pop
-                           rock anthems that capture the essence of late-night introspection and urban romance. The
-                           Night Owls deliver their most compelling work yet, blending atmospheric soundscapes with
-                           infectious melodies.</p>
+                    <div class="album-description" th:if="${album.description != null}">
+                        <p th:text="${album.description}"></p>
                     </div>
 
                     <div class="album-pricing">
                         <div class="price-container">
-                            <span class="price-current">$12.99</span>
-                            <span class="price-original">$15.99</span>
-                            <span class="discount-badge">Save 19%</span>
+                            <span class="price-current" th:text="'$' + ${album.price}"></span>
                         </div>
                         <p class="price-note">Digital Download • High-Quality MP3</p>
                     </div>
@@ -84,154 +82,6 @@
                             <li>✅ Compatible with all devices</li>
                             <li>✅ No DRM restrictions</li>
                         </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="tracklist-section">
-        <div class="container">
-            <h2 class="section-title">Tracklist</h2>
-            <div class="tracklist">
-                <div class="track-item">
-                    <div class="track-number">1</div>
-                    <div class="track-info">
-                        <h4 class="track-title">Midnight Dreams</h4>
-                        <p class="track-artist">The Night Owls</p>
-                    </div>
-                    <div class="track-duration">4:32</div>
-                    <button class="circle-btn track-play">▶</button>
-                </div>
-
-                <div class="track-item">
-                    <div class="track-number">2</div>
-                    <div class="track-info">
-                        <h4 class="track-title">City Lights</h4>
-                        <p class="track-artist">The Night Owls</p>
-                    </div>
-                    <div class="track-duration">3:45</div>
-                    <button class="circle-btn track-play">▶</button>
-                </div>
-
-                <div class="track-item">
-                    <div class="track-number">3</div>
-                    <div class="track-info">
-                        <h4 class="track-title">Neon Streets</h4>
-                        <p class="track-artist">The Night Owls</p>
-                    </div>
-                    <div class="track-duration">4:18</div>
-                    <button class="circle-btn track-play">▶</button>
-                </div>
-
-                <div class="track-item">
-                    <div class="track-number">4</div>
-                    <div class="track-info">
-                        <h4 class="track-title">Electric Dreams</h4>
-                        <p class="track-artist">The Night Owls</p>
-                    </div>
-                    <div class="track-duration">3:52</div>
-                    <button class="circle-btn track-play">▶</button>
-                </div>
-
-                <div class="track-item">
-                    <div class="track-number">5</div>
-                    <div class="track-info">
-                        <h4 class="track-title">Moonlight Serenade</h4>
-                        <p class="track-artist">The Night Owls</p>
-                    </div>
-                    <div class="track-duration">5:12</div>
-                    <button class="circle-btn track-play">▶</button>
-                </div>
-
-                <div class="track-item">
-                    <div class="track-number">6</div>
-                    <div class="track-info">
-                        <h4 class="track-title">Dawn Breaks</h4>
-                        <p class="track-artist">The Night Owls</p>
-                    </div>
-                    <div class="track-duration">4:07</div>
-                    <button class="circle-btn track-play">▶</button>
-                </div>
-
-                <div class="track-item">
-                    <div class="track-number">7</div>
-                    <div class="track-info">
-                        <h4 class="track-title">Night Falls</h4>
-                        <p class="track-artist">The Night Owls</p>
-                    </div>
-                    <div class="track-duration">4:33</div>
-                    <button class="circle-btn track-play">▶</button>
-                </div>
-
-                <div class="track-item">
-                    <div class="track-number">8</div>
-                    <div class="track-info">
-                        <h4 class="track-title">Urban Legends</h4>
-                        <p class="track-artist">The Night Owls</p>
-                    </div>
-                    <div class="track-duration">3:58</div>
-                    <button class="circle-btn track-play">▶</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="related-albums-section">
-        <div class="container">
-            <h2 class="section-title">You Might Also Like</h2>
-            <div class="related-albums-grid grid grid-3">
-                <div class="album-card card">
-                    <div class="album-image">
-                        <img src="https://via.placeholder.com/300x300/6a61a4/ffffff?text=Electric+Pulse"
-                             alt="Electric Pulse">
-                        <div class="album-overlay light">
-                            <button class="play-button">▶</button>
-                        </div>
-                    </div>
-                    <div class="album-info">
-                        <h3 class="album-title">Electric Pulse</h3>
-                        <p class="album-artist">Digital Waves</p>
-                        <div class="album-price">
-                            <span class="price">$9.99</span>
-                        </div>
-                        <a href="/album/2" class="button primary">View Details</a>
-                    </div>
-                </div>
-
-                <div class="album-card card">
-                    <div class="album-image">
-                        <img src="https://via.placeholder.com/300x300/605899/ffffff?text=Acoustic+Stories"
-                             alt="Acoustic Stories">
-                        <div class="album-overlay light">
-                            <button class="play-button">▶</button>
-                        </div>
-                    </div>
-                    <div class="album-info">
-                        <h3 class="album-title">Acoustic Stories</h3>
-                        <p class="album-artist">Folk Masters</p>
-                        <div class="album-price">
-                            <span class="price">$14.99</span>
-                        </div>
-                        <a href="/album/3" class="button primary">View Details</a>
-                    </div>
-                </div>
-
-                <div class="album-card card">
-                    <div class="album-image">
-                        <img src="https://via.placeholder.com/300x300/56508d/ffffff?text=Jazz+Fusion"
-                             alt="Jazz Fusion">
-                        <div class="album-overlay light">
-                            <button class="play-button">▶</button>
-                        </div>
-                    </div>
-                    <div class="album-info">
-                        <h3 class="album-title">Jazz Fusion</h3>
-                        <p class="album-artist">Modern Jazz Collective</p>
-                        <div class="album-price">
-                            <span class="price">$16.99</span>
-                        </div>
-                        <a href="/album/4" class="button primary">View Details</a>
                     </div>
                 </div>
             </div>

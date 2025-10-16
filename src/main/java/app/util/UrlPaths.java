@@ -10,6 +10,7 @@ public final class UrlPaths {
     public static final String URL_LOGIN = "/login";
     public static final String URL_REGISTER = "/register";
     public static final String URL_CATALOG = "/catalog";
+    public static final String URL_ALBUM = "/album";
     public static final String URL_CART = "/cart";
     public static final String URL_PROFILE = "/profile";
     public static final String URL_USERS = "/users";

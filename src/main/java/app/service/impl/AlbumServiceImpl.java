@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 import static app.util.ExceptionMessages.ALBUM_DOES_NOT_EXIST;
 
@@ -41,5 +42,12 @@ public class AlbumServiceImpl implements AlbumService {
     public List<AlbumEntity> getAlbumsByGenre(PrimaryGenre genre) {
 
         return albumRepo.findByGenreOrderByYearDesc(genre);
+    }
+
+    @Override
+    public AlbumEntity getAlbumById(UUID id) {
+
+        return albumRepo.findById(id).orElseThrow(() ->
+                new DomainException(ALBUM_DOES_NOT_EXIST.formatted(id)));
     }
 }

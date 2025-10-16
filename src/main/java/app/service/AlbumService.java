@@ -4,6 +4,7 @@ import app.model.entity.AlbumEntity;
 import app.model.enums.PrimaryGenre;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface AlbumService {
 
@@ -14,4 +15,6 @@ public interface AlbumService {
     List<AlbumEntity> getAllAlbums();
 
     List<AlbumEntity> getAlbumsByGenre(PrimaryGenre genre);
+
+    AlbumEntity getAlbumById(UUID id);
 }
