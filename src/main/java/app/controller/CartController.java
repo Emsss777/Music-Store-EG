@@ -18,10 +18,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import static app.util.FlashAttributes.*;
 import static app.util.ModelAttributes.*;
 import static app.util.Redirects.REDIRECT_CART;
+import static app.util.SuccessMessages.*;
 import static app.util.UrlParams.PARAM_ID;
-import static app.util.UrlPaths.URL_CART;
+import static app.util.UrlPaths.*;
 import static app.util.Views.VIEW_CART;
 
 @Controller
@@ -45,46 +47,46 @@ public class CartController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_CART);
         modelAndView.addObject(MODEL_PAGE, VIEW_CART);
-        modelAndView.addObject("cartItems", cartItems);
-        modelAndView.addObject("cartTotal", cartTotal);
-        modelAndView.addObject("itemCount", itemCount);
+        modelAndView.addObject(MODEL_CART_ITEMS, cartItems);
+        modelAndView.addObject(MODEL_CART_TOTAL, cartTotal);
+        modelAndView.addObject(MODEL_ITEM_COUNT, itemCount);
 
         return modelAndView;
     }
 
-    @PostMapping(URL_CART + "/add" + PARAM_ID)
-    public String addToCart(@PathVariable UUID id, HttpSession session,
-                            RedirectAttributes redirectAttributes) {
+    @PostMapping(URL_CART + URL_ADD + PARAM_ID)
+    public ModelAndView addToCart(@PathVariable UUID id, HttpSession session,
+                                  RedirectAttributes redirectAttributes) {
 
         initializeCart(session);
 
         AlbumEntity album = albumService.getAlbumById(id);
         cartService.addToCart(session, album);
 
-        redirectAttributes.addFlashAttribute("message", "Album added to cart successfully!");
+        redirectAttributes.addFlashAttribute(FLASH_MESSAGE, ALBUM_ADDED_TO_CART);
 
-        return REDIRECT_CART;
+        return new ModelAndView(REDIRECT_CART);
     }
 
-    @PostMapping(URL_CART + "/remove" + PARAM_ID)
-    public String removeFromCart(@PathVariable UUID id, HttpSession session,
-                                 RedirectAttributes redirectAttributes) {
+    @PostMapping(URL_CART + URL_REMOVE + PARAM_ID)
+    public ModelAndView removeFromCart(@PathVariable UUID id, HttpSession session,
+                                       RedirectAttributes redirectAttributes) {
 
         initializeCart(session);
 
         cartService.removeFromCart(session, id);
-        redirectAttributes.addFlashAttribute("message", "Album removed from cart.");
+        redirectAttributes.addFlashAttribute(FLASH_MESSAGE, ALBUM_REMOVED_FROM_CART);
 
-        return REDIRECT_CART;
+        return new ModelAndView(REDIRECT_CART);
     }
 
-    @PostMapping(URL_CART + "/clear")
-    public String clearCart(HttpSession session, RedirectAttributes redirectAttributes) {
+    @PostMapping(URL_CART + URL_CLEAR)
+    public ModelAndView clearCart(HttpSession session, RedirectAttributes redirectAttributes) {
 
         cartService.clearCart(session);
-        redirectAttributes.addFlashAttribute("message", "Cart cleared.");
+        redirectAttributes.addFlashAttribute(FLASH_MESSAGE, CART_CLEARED);
 
-        return REDIRECT_CART;
+        return new ModelAndView(REDIRECT_CART);
     }
 
     private void initializeCart(HttpSession session) {

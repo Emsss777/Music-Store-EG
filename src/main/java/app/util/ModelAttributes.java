@@ -22,4 +22,7 @@ public final class ModelAttributes {
     public static final String MODEL_ALBUM = "album";
     public static final String MODEL_SELECTED_GENRE = "selectedGenre";
     public static final String MODEL_GENRES = "genres";
+    public static final String MODEL_CART_ITEMS = "cartItems";
+    public static final String MODEL_CART_TOTAL = "cartTotal";
+    public static final String MODEL_ITEM_COUNT = "itemCount";
 }

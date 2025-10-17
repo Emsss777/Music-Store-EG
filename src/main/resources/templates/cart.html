@@ -31,14 +31,14 @@
                  class="alert alert-success"
                  style="margin-bottom: 1rem; padding: 1rem; background-color: #d4edda;
                  border: 1px solid #c3e6cb; border-radius: 0.25rem; color: #155724;">
-                <span th:text="${message}">Message</span>
+                <span th:text="${message}"></span>
             </div>
 
             <div class="empty-cart" style="text-align: center; padding: 3rem;"
                  th:if="${cartItems.isEmpty()}">
                 <h2>Your cart is empty</h2>
                 <p style="margin: 1rem 0;">Start adding some albums to your cart!</p>
-                <a th:href="@{/catalog}" class="button primary">Browse Catalog</a>
+                <a class="button primary" th:href="@{/catalog}">Browse Catalog</a>
             </div>
 
             <div class="cart-layout" th:unless="${cartItems.isEmpty()}">
@@ -89,11 +89,22 @@
                             <span class="summary-value total" th:text="'$' + ${cartTotal}"></span>
                         </div>
 
-                        <a href="/checkout" class="checkout-btn button primary">
-                            Proceed to Checkout
-                        </a>
+                        <div class="promo-code">
+                            <h3>Promo Code</h3>
+                            <div class="promo-input-group">
+                                <label for="promoCode" class="sr-only">Promo code</label>
+                                <input type="text" id="promoCode"
+                                       placeholder="Enter promo code" class="promo-input">
+                                <button class="promo-btn">Apply</button>
+                            </div>
+                            <p class="promo-note">You saved $6.00 with current discounts!</p>
+                        </div>
 
-                        <form th:action="@{/cart/clear}" method="post" style="margin-top: 1rem;">
+                        <button class="checkout-btn button primary" th:href="@{/checkout}">
+                            Proceed to Checkout
+                        </button>
+
+                        <form method="post" style="margin-top: 1rem;" th:action="@{/cart/clear}">
                             <button type="submit"
                                     class="button"
                                     style="width: 100%;"

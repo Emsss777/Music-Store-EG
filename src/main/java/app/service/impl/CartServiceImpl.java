@@ -66,6 +66,7 @@ public class CartServiceImpl implements CartService {
         if (cartItems == null) {
             return 0;
         }
+
         return cartItems.stream()
                 .mapToInt(CartItemDTO::getQuantity)
                 .sum();
@@ -78,6 +79,7 @@ public class CartServiceImpl implements CartService {
         if (cartItems == null) {
             return BigDecimal.ZERO;
         }
+
         return cartItems.stream()
                 .map(CartItemDTO::getTotalPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);

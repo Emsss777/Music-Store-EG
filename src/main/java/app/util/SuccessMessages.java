@@ -18,4 +18,7 @@ public class SuccessMessages {
     public static final String BEFORE_METHOD_EXEC = "Before method execution!";
     public static final String AFTER_METHOD_EXEC = "After method execution!";
     public static final String ANOTHER_METHOD_EXEC = "Hey, another method in UserController was executed!";
+    public static final String ALBUM_ADDED_TO_CART = "Album added to cart successfully!";
+    public static final String ALBUM_REMOVED_FROM_CART = "Album removed from cart!";
+    public static final String CART_CLEARED = "Cart cleared!";
 }
