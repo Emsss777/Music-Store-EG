@@ -63,10 +63,13 @@
                     </div>
 
                     <div class="album-actions">
-                        <button class="button primary add-to-cart">
-                            <span class="button-icon">🛒</span>
-                            Add to Cart
-                        </button>
+                        <form method="post" style="display: inline; flex: 1;"
+                              th:action="@{/cart/add/{id}(id=${album.id})}">
+                            <button type="submit" class="button primary add-to-cart" style="width: 100%;">
+                                <span class="button-icon">🛒</span>
+                                Add to Cart
+                            </button>
+                        </form>
                         <button class="button wishlist">
                             <span class="button-icon">❤️</span>
                             Add to Wishlist
