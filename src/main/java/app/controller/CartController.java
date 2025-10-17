@@ -30,8 +30,6 @@ import static app.util.Views.VIEW_CART;
 @RequiredArgsConstructor
 public class CartController {
 
-    private static final String CART_SESSION_KEY = "cart";
-
     private final CartService cartService;
     private final AlbumService albumService;
 
@@ -91,8 +89,8 @@ public class CartController {
 
     private void initializeCart(HttpSession session) {
 
-        if (session.getAttribute(CART_SESSION_KEY) == null) {
-            session.setAttribute(CART_SESSION_KEY, new ArrayList<CartItemDTO>());
+        if (session.getAttribute(VIEW_CART) == null) {
+            session.setAttribute(VIEW_CART, new ArrayList<CartItemDTO>());
         }
     }
 }

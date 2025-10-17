@@ -12,6 +12,7 @@ public final class UrlPaths {
     public static final String URL_CATALOG = "/catalog";
     public static final String URL_ALBUM = "/album";
     public static final String URL_CART = "/cart";
+    public static final String URL_CHECKOUT = "/checkout";
     public static final String URL_ADD = "/add";
     public static final String URL_REMOVE = "/remove";
     public static final String URL_CLEAR = "/clear";

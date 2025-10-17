@@ -100,14 +100,13 @@
                             <p class="promo-note">You saved $6.00 with current discounts!</p>
                         </div>
 
-                        <button class="checkout-btn button primary" th:href="@{/checkout}">
+                        <a class="checkout-btn button primary" th:href="@{/checkout}"
+                                style="text-decoration: none; text-align: center; display: block;">
                             Proceed to Checkout
-                        </button>
+                        </a>
 
                         <form method="post" style="margin-top: 1rem;" th:action="@{/cart/clear}">
-                            <button type="submit"
-                                    class="button"
-                                    style="width: 100%;"
+                            <button type="submit" class="button" style="width: 100%;"
                                     onclick="return confirm('Are you sure you want to clear your cart?');">
                                 Clear Cart
                             </button>
