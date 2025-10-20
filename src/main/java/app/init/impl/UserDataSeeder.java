@@ -55,7 +55,7 @@ public class UserDataSeeder implements DataSeeder {
                 .setFirstName("Emil")
                 .setLastName("Ganchev")
                 .setEmail("admin@softuni.bg")
-                .setPassword(passwordEncoder.encode("123456"))
+                .setPassword(passwordEncoder.encode("456123"))
                 .setBirthDate(LocalDate.parse("1999-09-19"))
                 .setCountry(Country.BULGARIA)
                 .setRole(UserRole.ADMIN)

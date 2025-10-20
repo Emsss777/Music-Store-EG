@@ -22,10 +22,10 @@ public class AlbumEntity extends BaseEntity {
     private String title;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "genre", nullable = false)
+    @Column(name = "genre", columnDefinition = "VARCHAR(50)", nullable = false)
     private PrimaryGenre genre;
 
-    @Column(name = "year", nullable = false)
+    @Column(name = "release_year", nullable = false)
     private int year;
 
     @Column(name = "description", columnDefinition = "TEXT")

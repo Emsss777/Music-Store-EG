@@ -50,5 +50,4 @@ public class ExceptionMessages {
             "[notification-svc] error on 'getNotificationHistory' for user [{}]: status={}, msg={}";
     public static final String NOTIFICATION_GET_HISTORY_UNEXPECTED =
             "[notification-svc] unexpected error on 'getNotificationHistory' for user [{}]";
-    public static final String INTERNAL_SERVER_ERROR_TEST = "Internal Server Error Test";
 }
