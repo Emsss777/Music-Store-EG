@@ -21,6 +21,7 @@ import static app.util.Views.VIEW_CATALOG;
 
 @Controller
 @RequiredArgsConstructor
+@SuppressWarnings("JvmTaintAnalysis")
 public class CatalogController {
 
     private final AlbumService albumService;
