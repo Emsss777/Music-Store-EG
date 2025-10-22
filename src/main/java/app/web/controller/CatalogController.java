@@ -1,5 +1,6 @@
-package app.controller;
+package app.web.controller;
 
+import app.web.util.PageBuilder;
 import app.model.entity.Album;
 import app.model.enums.PrimaryGenre;
 import app.service.AlbumService;
@@ -25,18 +26,12 @@ import static app.util.Views.VIEW_CATALOG;
 public class CatalogController {
 
     private final AlbumService albumService;
+    private final PageBuilder pageBuilder;
 
     @GetMapping(URL_CATALOG)
     public ModelAndView getCatalogPage(@RequestParam(required = false) PrimaryGenre genre) {
 
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(VIEW_CATALOG);
-        modelAndView.addObject(MODEL_PAGE, VIEW_CATALOG);
-        modelAndView.addObject(MODEL_ALBUMS, albumService.getAlbums(genre));
-        modelAndView.addObject(MODEL_SELECTED_GENRE, genre);
-        modelAndView.addObject(MODEL_GENRES, PrimaryGenre.values());
-
-        return modelAndView;
+        return pageBuilder.buildAlbumsPage(VIEW_CATALOG, genre);
     }
 
     @GetMapping(URL_ALBUM + PARAM_ID)

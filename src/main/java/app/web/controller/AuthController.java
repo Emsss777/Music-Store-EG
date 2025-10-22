@@ -1,4 +1,4 @@
-package app.controller;
+package app.web.controller;
 
 import app.model.dto.LoginDTO;
 import app.model.dto.RegisterDTO;

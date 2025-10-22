@@ -1,4 +1,4 @@
-package app.controller;
+package app.web.controller;
 
 import app.model.entity.User;
 import app.model.enums.NotificationStatus;

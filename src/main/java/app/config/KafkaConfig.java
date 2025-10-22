@@ -8,7 +8,7 @@ import org.springframework.kafka.config.TopicBuilder;
 import static app.util.KafkaTopics.USER_REGISTERED_EVENT_V1;
 
 @Configuration
-public class KafkaConfiguration {
+public class KafkaConfig {
 
     @Bean
     public NewTopic newTopic() {

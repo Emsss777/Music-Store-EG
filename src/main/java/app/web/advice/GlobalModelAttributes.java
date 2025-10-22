@@ -1,4 +1,4 @@
-package app.config;
+package app.web.advice;
 
 import app.service.CartService;
 import jakarta.servlet.http.HttpSession;

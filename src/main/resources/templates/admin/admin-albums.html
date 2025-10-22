@@ -26,8 +26,7 @@
     </div>
 
     <section class="albums-section">
-        <div class="container">
-            <!-- Albums Management Toolbar -->
+        <div class="container">>
             <div class="albums-toolbar">
                 <div class="toolbar-left">
                     <div class="search-box">
@@ -36,17 +35,26 @@
                                placeholder="Search albums..." class="search-input">
                         <button class="search-btn">🔍</button>
                     </div>
+
                     <div class="filter-dropdown">
                         <label>
-                            <select class="filter-select">
-                                <option value="">All Genres</option>
-                                <option value="pop">Pop</option>
-                                <option value="rock">Rock</option>
-                                <option value="electronic">Electronic</option>
-                                <option value="jazz">Jazz</option>
-                                <option value="classical">Classical</option>
+                            <select class="filter-select" onchange="window.location.href=this.value">
+                                <option value="/admin/albums" th:selected="${selectedGenre == null}">All Genres</option>
+                                <option th:each="genre : ${genres}"
+                                        th:value="'/admin/albums?genre=' + ${genre}"
+                                        th:selected="${selectedGenre == genre}"
+                                        th:text="${#strings.capitalize(#strings.replace(#strings.toLowerCase(genre), '_', ' '))}">
+                                </option>
                             </select>
                         </label>
+                    </div>
+                    <div class="results-info">
+                        <span class="results-count" th:if="${selectedGenre == null}"
+                              th:text="'Showing ' + ${albums.size()} + ' albums'"></span>
+                        <span class="results-count" th:if="${selectedGenre != null}"
+                              th:text="'Showing ' + ${albums.size()} + ' ' + ${#strings.capitalize(
+                              #strings.replace(#strings.toLowerCase(selectedGenre), '_', ' '))} + ' albums'">
+                        </span>
                     </div>
                 </div>
                 <div class="toolbar-right">
@@ -57,154 +65,31 @@
                 </div>
             </div>
 
-            <!-- Albums Grid -->
             <div class="albums-grid">
-                <div class="album-management-card card">
+                <div class="album-management-card card" th:each="album : ${albums}">
                     <div class="album-image">
-                        <img src="https://via.placeholder.com/200x200/746ab0/ffffff?text=Midnight+Dreams"
-                             alt="Midnight Dreams">
+                        <img th:src="@{${album.coverUrl}}" th:alt="${album.title}">
                         <div class="album-overlay dark">
                             <button class="edit-btn" title="Edit Album">✏️</button>
                             <button class="delete-btn" title="Delete Album">🗑️</button>
                         </div>
                     </div>
                     <div class="album-info">
-                        <h3 class="album-title">Midnight Dreams</h3>
-                        <p class="album-artist">The Night Owls</p>
+                        <h3 class="album-title" th:text="${album.title}"></h3>
+                        <p class="album-artist" th:text="${album.artist.artistName}"></p>
                         <div class="album-meta">
-                            <span class="album-genre">Pop Rock</span>
-                            <span class="album-year">2024</span>
+                            <span class="album-genre" th:text="${album.genre}"></span>
+                            <span class="album-year" th:text="${album.year}"></span>
                         </div>
-                        <div class="album-price">$12.99</div>
+                        <div class="album-price" th:text="'$' + ${album.price}"></div>
                         <div class="album-stats">
-                            <span class="sales-count">234 sales</span>
+                            <span class="sales-count">0 sales</span>
                             <span class="status-badge active">Active</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="album-management-card card">
-                    <div class="album-image">
-                        <img src="https://via.placeholder.com/200x200/6a61a4/ffffff?text=Electric+Pulse"
-                             alt="Electric Pulse">
-                        <div class="album-overlay dark">
-                            <button class="edit-btn" title="Edit Album">✏️</button>
-                            <button class="delete-btn" title="Delete Album">🗑️</button>
-                        </div>
-                    </div>
-                    <div class="album-info">
-                        <h3 class="album-title">Electric Pulse</h3>
-                        <p class="album-artist">Digital Waves</p>
-                        <div class="album-meta">
-                            <span class="album-genre">Electronic</span>
-                            <span class="album-year">2024</span>
-                        </div>
-                        <div class="album-price">$9.99</div>
-                        <div class="album-stats">
-                            <span class="sales-count">189 sales</span>
-                            <span class="status-badge active">Active</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="album-management-card card">
-                    <div class="album-image">
-                        <img src="https://via.placeholder.com/200x200/605899/ffffff?text=Acoustic+Stories"
-                             alt="Acoustic Stories">
-                        <div class="album-overlay dark">
-                            <button class="edit-btn" title="Edit Album">✏️</button>
-                            <button class="delete-btn" title="Delete Album">🗑️</button>
-                        </div>
-                    </div>
-                    <div class="album-info">
-                        <h3 class="album-title">Acoustic Stories</h3>
-                        <p class="album-artist">Folk Masters</p>
-                        <div class="album-meta">
-                            <span class="album-genre">Folk</span>
-                            <span class="album-year">2023</span>
-                        </div>
-                        <div class="album-price">$14.99</div>
-                        <div class="album-stats">
-                            <span class="sales-count">156 sales</span>
-                            <span class="status-badge active">Active</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="album-management-card card">
-                    <div class="album-image">
-                        <img src="https://via.placeholder.com/200x200/56508d/ffffff?text=Jazz+Fusion"
-                             alt="Jazz Fusion">
-                        <div class="album-overlay dark">
-                            <button class="edit-btn" title="Edit Album">✏️</button>
-                            <button class="delete-btn" title="Delete Album">🗑️</button>
-                        </div>
-                    </div>
-                    <div class="album-info">
-                        <h3 class="album-title">Jazz Fusion</h3>
-                        <p class="album-artist">Modern Jazz Collective</p>
-                        <div class="album-meta">
-                            <span class="album-genre">Jazz</span>
-                            <span class="album-year">2023</span>
-                        </div>
-                        <div class="album-price">$16.99</div>
-                        <div class="album-stats">
-                            <span class="sales-count">142 sales</span>
-                            <span class="status-badge active">Active</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="album-management-card card">
-                    <div class="album-image">
-                        <img src="https://via.placeholder.com/200x200/4c477f/ffffff?text=Summer+Vibes"
-                             alt="Summer Vibes">
-                        <div class="album-overlay dark">
-                            <button class="edit-btn" title="Edit Album">✏️</button>
-                            <button class="delete-btn" title="Delete Album">🗑️</button>
-                        </div>
-                    </div>
-                    <div class="album-info">
-                        <h3 class="album-title">Summer Vibes</h3>
-                        <p class="album-artist">Beach Boys Revival</p>
-                        <div class="album-meta">
-                            <span class="album-genre">Pop</span>
-                            <span class="album-year">2024</span>
-                        </div>
-                        <div class="album-price">$11.99</div>
-                        <div class="album-stats">
-                            <span class="sales-count">128 sales</span>
-                            <span class="status-badge active">Active</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="album-management-card card">
-                    <div class="album-image">
-                        <img src="https://via.placeholder.com/200x200/423f73/ffffff?text=Urban+Legends"
-                             alt="Urban Legends">
-                        <div class="album-overlay dark">
-                            <button class="edit-btn" title="Edit Album">✏️</button>
-                            <button class="delete-btn" title="Delete Album">🗑️</button>
-                        </div>
-                    </div>
-                    <div class="album-info">
-                        <h3 class="album-title">Urban Legends</h3>
-                        <p class="album-artist">City Beats</p>
-                        <div class="album-meta">
-                            <span class="album-genre">Hip-Hop</span>
-                            <span class="album-year">2024</span>
-                        </div>
-                        <div class="album-price">$13.99</div>
-                        <div class="album-stats">
-                            <span class="sales-count">115 sales</span>
-                            <span class="status-badge inactive">Inactive</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Pagination -->
             <div class="pagination">
                 <button class="pagination-btn prev" disabled>Previous</button>
                 <div class="pagination-pages">

@@ -1,4 +1,4 @@
-package app.controller;
+package app.web.controller;
 
 import app.exception.PasswordMismatchException;
 import app.exception.UsernameAlreadyExistException;

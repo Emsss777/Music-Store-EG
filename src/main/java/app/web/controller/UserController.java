@@ -1,4 +1,4 @@
-package app.controller;
+package app.web.controller;
 
 import app.mapper.UserEditMapper;
 import app.mapper.UserProfileMapper;
