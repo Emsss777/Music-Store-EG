@@ -1,7 +1,7 @@
 package app.service.impl;
 
 import app.model.dto.CartItemDTO;
-import app.model.entity.AlbumEntity;
+import app.model.entity.Album;
 import app.service.CartService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import static app.util.ModelAttributes.MODEL_CART;
 public class CartServiceImpl implements CartService {
 
     @Override
-    public void addToCart(HttpSession session, AlbumEntity album) {
+    public void addToCart(HttpSession session, Album album) {
 
         List<CartItemDTO> cartItems = getCartItems(session);
 

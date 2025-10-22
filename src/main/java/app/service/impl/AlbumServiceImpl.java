@@ -1,7 +1,7 @@
 package app.service.impl;
 
 import app.exception.DomainException;
-import app.model.entity.AlbumEntity;
+import app.model.entity.Album;
 import app.model.enums.PrimaryGenre;
 import app.repository.AlbumRepo;
 import app.service.AlbumService;
@@ -21,20 +21,20 @@ public class AlbumServiceImpl implements AlbumService {
     private final AlbumRepo albumRepo;
 
     @Override
-    public AlbumEntity getAlbumByAlbumTitle(String albumTitle) {
+    public Album getAlbumByAlbumTitle(String albumTitle) {
 
         return albumRepo.findByTitle(albumTitle).orElseThrow(() ->
                 new DomainException(ALBUM_DOES_NOT_EXIST.formatted(albumTitle)));
     }
 
     @Override
-    public void saveAlbum(AlbumEntity albumEntity) {
+    public void saveAlbum(Album albumEntity) {
 
         albumRepo.save(albumEntity);
     }
 
     @Override
-    public List<AlbumEntity> getAlbums(@Nullable PrimaryGenre genre) {
+    public List<Album> getAlbums(@Nullable PrimaryGenre genre) {
 
         return genre != null
                 ? albumRepo.findByGenreOrderByYearDesc(genre)
@@ -42,7 +42,7 @@ public class AlbumServiceImpl implements AlbumService {
     }
 
     @Override
-    public AlbumEntity getAlbumById(UUID id) {
+    public Album getAlbumById(UUID id) {
 
         return albumRepo.findById(id).orElseThrow(() ->
                 new DomainException(ALBUM_DOES_NOT_EXIST.formatted(id)));

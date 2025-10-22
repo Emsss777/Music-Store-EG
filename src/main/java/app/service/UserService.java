@@ -2,7 +2,7 @@ package app.service;
 
 import app.model.dto.RegisterDTO;
 import app.model.dto.UserEditDTO;
-import app.model.entity.UserEntity;
+import app.model.entity.User;
 
 import java.util.List;
 import java.util.UUID;
@@ -11,15 +11,15 @@ public interface UserService {
 
     void registerUser(RegisterDTO registerDTO);
 
-    UserEntity getUserById(UUID userId);
+    User getUserById(UUID userId);
 
-    UserEntity getUserByUsername(String username);
+    User getUserByUsername(String username);
 
     void editUserDetails(UUID userId, UserEditDTO userEditDTO);
 
-    void saveUser(UserEntity userEntity);
+    void saveUser(User userEntity);
 
-    List<UserEntity> getAllUsers();
+    List<User> getAllUsers();
 
     void changeStatus(UUID id);
 

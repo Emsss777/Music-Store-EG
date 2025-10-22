@@ -1,10 +1,10 @@
 package app.service;
 
-import app.model.entity.ArtistEntity;
+import app.model.entity.Artist;
 
 public interface ArtistService {
 
-    ArtistEntity getArtistByArtistName(String artistName);
+    Artist getArtistByArtistName(String artistName);
 
-    void saveArtist(ArtistEntity artistEntity);
+    void saveArtist(Artist artistEntity);
 }

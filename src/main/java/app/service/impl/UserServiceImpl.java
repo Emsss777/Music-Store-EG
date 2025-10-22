@@ -8,7 +8,7 @@ import app.exception.PasswordMismatchException;
 import app.exception.UsernameAlreadyExistException;
 import app.model.dto.RegisterDTO;
 import app.model.dto.UserEditDTO;
-import app.model.entity.UserEntity;
+import app.model.entity.User;
 import app.model.enums.Country;
 import app.model.enums.UserRole;
 import app.notification.services.NotificationService;
@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Cacheable("users")
-    public List<UserEntity> getAllUsers() {
+    public List<User> getAllUsers() {
 
         return userRepo.findAll();
     }
@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @CacheEvict(value = "users", allEntries = true)
     public void registerUser(RegisterDTO registerDTO) {
 
-        Optional<UserEntity> optionalUser = userRepo.findByUsername(registerDTO.getUsername());
+        Optional<User> optionalUser = userRepo.findByUsername(registerDTO.getUsername());
 
         if (optionalUser.isPresent()) {
             throw new UsernameAlreadyExistException(
@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             throw new PasswordMismatchException(PASSWORD_DO_NOT_MATCH);
         }
 
-        UserEntity user = userRepo.save(initializeUser(registerDTO));
+        User user = userRepo.save(initializeUser(registerDTO));
 
         UserRegisteredEvent event = UserRegisteredEvent.builder()
                 .userId(user.getId())
@@ -81,9 +81,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     }
 
-    private UserEntity initializeUser(RegisterDTO registerDTO) {
+    private User initializeUser(RegisterDTO registerDTO) {
 
-        return UserEntity.builder()
+        return User.builder()
                 .username(registerDTO.getUsername())
                 .password(passwordEncoder.encode(registerDTO.getPassword()))
                 .country(registerDTO.getCountry())
@@ -96,14 +96,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @VeryImportant
-    public UserEntity getUserById(UUID userId) {
+    public User getUserById(UUID userId) {
 
         return userRepo.findById(userId).orElseThrow(() ->
                 new DomainException(USER_DOES_NOT_EXIST.formatted(userId)));
     }
 
     @Override
-    public UserEntity getUserByUsername(String username) {
+    public User getUserByUsername(String username) {
 
         return userRepo.findByUsername(username).orElseThrow(() ->
                 new DomainException(USER_DOES_NOT_EXIST.formatted(username)));
@@ -113,7 +113,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @CacheEvict(value = "users", allEntries = true)
     public void editUserDetails(UUID userId, UserEditDTO userEditDTO) {
 
-        UserEntity user = getUserById(userId);
+        User user = getUserById(userId);
 
         user.setFirstName(userEditDTO.getFirstName());
         user.setLastName(userEditDTO.getLastName());
@@ -135,7 +135,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        UserEntity user = userRepo.findByUsername(username)
+        User user = userRepo.findByUsername(username)
                 .orElseThrow(() -> {
                     log.warn(USERNAME_DOES_NOT_EXIST, username);
                     return new UsernameNotFoundException(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, BAD_CREDENTIALS));
@@ -151,7 +151,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public void saveUser(UserEntity userEntity) {
+    public void saveUser(User userEntity) {
 
         userRepo.save(userEntity);
     }
@@ -160,7 +160,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @CacheEvict(value = "users", allEntries = true)
     public void changeStatus(UUID id) {
 
-        UserEntity user = getUserById(id);
+        User user = getUserById(id);
         user.setActive(!user.isActive());
         userRepo.save(user);
     }
@@ -169,7 +169,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @CacheEvict(value = "users", allEntries = true)
     public void changeRole(UUID id) {
 
-        UserEntity user = getUserById(id);
+        User user = getUserById(id);
 
         if (user.getRole() == UserRole.USER) {
             user.setRole(UserRole.ADMIN);

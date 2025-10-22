@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 @Accessors(chain = true)
 @Access(AccessType.FIELD)
 @Table(name = "albums")
-public class AlbumEntity extends BaseEntity {
+public class Album extends BaseEntity {
 
     @Column(name = "title", nullable = false)
     private String title;
@@ -39,5 +39,5 @@ public class AlbumEntity extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "artist_id", nullable = false)
-    private ArtistEntity artist;
+    private Artist artist;
 }

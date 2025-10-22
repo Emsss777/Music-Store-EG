@@ -2,8 +2,8 @@ package app.controller;
 
 import app.model.dto.CartItemDTO;
 import app.model.dto.CheckoutDTO;
-import app.model.entity.OrderEntity;
-import app.model.entity.UserEntity;
+import app.model.entity.Order;
+import app.model.entity.User;
 import app.security.AuthenticationMetadata;
 import app.service.CartService;
 import app.service.OrderService;
@@ -76,9 +76,9 @@ public class CheckoutController {
             return new ModelAndView(REDIRECT_CART);
         }
 
-        UserEntity user = userService.getUserById(authMetadata.getUserId());
+        User user = userService.getUserById(authMetadata.getUserId());
 
-        OrderEntity order = orderService.createOrder(checkoutDTO, cartItems, user);
+        Order order = orderService.createOrder(checkoutDTO, cartItems, user);
 
         cartService.clearCart(session);
 

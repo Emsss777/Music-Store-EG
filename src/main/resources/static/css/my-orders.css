@@ -115,7 +115,7 @@
     box-shadow: 0 20px 60px rgba(116, 106, 176, 0.2);
 }
 
-/* OrderEntity Header */
+/* Order Header */
 .order-header {
     display: flex;
     justify-content: space-between;
@@ -177,7 +177,7 @@
     border: 1px solid rgba(244, 67, 54, 0.3);
 }
 
-/* OrderEntity Items */
+/* Order Items */
 .order-items {
     display: flex;
     flex-direction: column;
@@ -259,7 +259,7 @@
     cursor: not-allowed;
 }
 
-/* OrderEntity Footer */
+/* Order Footer */
 .order-footer {
     display: flex;
     justify-content: space-between;

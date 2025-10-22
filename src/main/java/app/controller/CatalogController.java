@@ -1,6 +1,6 @@
 package app.controller;
 
-import app.model.entity.AlbumEntity;
+import app.model.entity.Album;
 import app.model.enums.PrimaryGenre;
 import app.service.AlbumService;
 import lombok.RequiredArgsConstructor;
@@ -42,7 +42,7 @@ public class CatalogController {
     @GetMapping(URL_ALBUM + PARAM_ID)
     public ModelAndView getAlbumDetailsPage(@PathVariable UUID id) {
 
-        AlbumEntity album = albumService.getAlbumById(id);
+        Album album = albumService.getAlbumById(id);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_ALBUM);

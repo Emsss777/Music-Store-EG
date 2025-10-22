@@ -2,8 +2,8 @@ package app.init.impl;
 
 import app.exception.DomainException;
 import app.init.DataSeeder;
-import app.model.entity.AlbumEntity;
-import app.model.entity.ArtistEntity;
+import app.model.entity.Album;
+import app.model.entity.Artist;
 import app.model.enums.PrimaryGenre;
 import app.service.AlbumService;
 import app.service.ArtistService;
@@ -53,9 +53,9 @@ public class AlbumDataSeeder implements DataSeeder {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, ALBUM_NOT_FOUND), albumTitle);
         }
 
-        ArtistEntity artist1 = artistService.getArtistByArtistName("Pink Floyd");
+        Artist artist1 = artistService.getArtistByArtistName("Pink Floyd");
 
-        AlbumEntity album1 = new AlbumEntity()
+        Album album1 = new Album()
                 .setTitle("The Dark Side of the Moon")
                 .setGenre(PrimaryGenre.ROCK)
                 .setYear(1973)
@@ -86,9 +86,9 @@ public class AlbumDataSeeder implements DataSeeder {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, ALBUM_NOT_FOUND), albumTitle);
         }
 
-        ArtistEntity artist2 = artistService.getArtistByArtistName("Kendrick Lamar");
+        Artist artist2 = artistService.getArtistByArtistName("Kendrick Lamar");
 
-        AlbumEntity album2 = new AlbumEntity()
+        Album album2 = new Album()
                 .setTitle("To Pimp a Butterfly")
                 .setGenre(PrimaryGenre.HIP_HOP)
                 .setYear(2015)
@@ -119,9 +119,9 @@ public class AlbumDataSeeder implements DataSeeder {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, ALBUM_NOT_FOUND), albumTitle);
         }
 
-        ArtistEntity artist3 = artistService.getArtistByArtistName("Ton Koopman");
+        Artist artist3 = artistService.getArtistByArtistName("Ton Koopman");
 
-        AlbumEntity album3 = new AlbumEntity()
+        Album album3 = new Album()
                 .setTitle("Bach: Organ Works")
                 .setGenre(PrimaryGenre.CLASSICAL)
                 .setYear(1995)
@@ -153,9 +153,9 @@ public class AlbumDataSeeder implements DataSeeder {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, ALBUM_NOT_FOUND), albumTitle);
         }
 
-        ArtistEntity artist4 = artistService.getArtistByArtistName("Taylor Swift");
+        Artist artist4 = artistService.getArtistByArtistName("Taylor Swift");
 
-        AlbumEntity album4 = new AlbumEntity()
+        Album album4 = new Album()
                 .setTitle("1989")
                 .setGenre(PrimaryGenre.POP)
                 .setYear(2014)
@@ -186,9 +186,9 @@ public class AlbumDataSeeder implements DataSeeder {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, ALBUM_NOT_FOUND), albumTitle);
         }
 
-        ArtistEntity artist5 = artistService.getArtistByArtistName("Metallica");
+        Artist artist5 = artistService.getArtistByArtistName("Metallica");
 
-        AlbumEntity album5 = new AlbumEntity()
+        Album album5 = new Album()
                 .setTitle("Master of Puppets")
                 .setGenre(PrimaryGenre.METAL)
                 .setYear(1986)
@@ -220,9 +220,9 @@ public class AlbumDataSeeder implements DataSeeder {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, ALBUM_NOT_FOUND), albumTitle);
         }
 
-        ArtistEntity artist6 = artistService.getArtistByArtistName("Daft Punk");
+        Artist artist6 = artistService.getArtistByArtistName("Daft Punk");
 
-        AlbumEntity album6 = new AlbumEntity()
+        Album album6 = new Album()
                 .setTitle("Discovery")
                 .setGenre(PrimaryGenre.ELECTRONIC)
                 .setYear(2001)

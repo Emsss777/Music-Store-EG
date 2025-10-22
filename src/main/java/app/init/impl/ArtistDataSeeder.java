@@ -2,7 +2,7 @@ package app.init.impl;
 
 import app.exception.DomainException;
 import app.init.DataSeeder;
-import app.model.entity.ArtistEntity;
+import app.model.entity.Artist;
 import app.model.enums.PrimaryGenre;
 import app.service.ArtistService;
 import lombok.RequiredArgsConstructor;
@@ -48,7 +48,7 @@ public class ArtistDataSeeder implements DataSeeder {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, ARTIST_NOT_FOUND), artistName);
         }
 
-        ArtistEntity artist1 = new ArtistEntity()
+        Artist artist1 = new Artist()
                 .setArtistName(artistName)
                 .setStageName("Pink Floyd")
                 .setFirstName("David")
@@ -77,7 +77,7 @@ public class ArtistDataSeeder implements DataSeeder {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, ARTIST_NOT_FOUND), artistName);
         }
 
-        ArtistEntity artist2 = new ArtistEntity()
+        Artist artist2 = new Artist()
                 .setArtistName(artistName)
                 .setStageName("Kendrick Lamar")
                 .setFirstName("Kendrick")
@@ -106,7 +106,7 @@ public class ArtistDataSeeder implements DataSeeder {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, ARTIST_NOT_FOUND), artistName);
         }
 
-        ArtistEntity artist3 = new ArtistEntity()
+        Artist artist3 = new Artist()
                 .setArtistName(artistName)
                 .setStageName("Ton Koopman")
                 .setFirstName("Ton")
@@ -136,7 +136,7 @@ public class ArtistDataSeeder implements DataSeeder {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, ARTIST_NOT_FOUND), artistName);
         }
 
-        ArtistEntity artist4 = new ArtistEntity()
+        Artist artist4 = new Artist()
                 .setArtistName(artistName)
                 .setStageName("Taylor Swift")
                 .setFirstName("Taylor")
@@ -165,7 +165,7 @@ public class ArtistDataSeeder implements DataSeeder {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, ARTIST_NOT_FOUND), artistName);
         }
 
-        ArtistEntity artist5 = new ArtistEntity()
+        Artist artist5 = new Artist()
                 .setArtistName(artistName)
                 .setStageName("Metallica")
                 .setFirstName("James")
@@ -194,7 +194,7 @@ public class ArtistDataSeeder implements DataSeeder {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, ARTIST_NOT_FOUND), artistName);
         }
 
-        ArtistEntity artist6 = new ArtistEntity()
+        Artist artist6 = new Artist()
                 .setArtistName(artistName)
                 .setStageName("Daft Punk")
                 .setFirstName("Thomas")

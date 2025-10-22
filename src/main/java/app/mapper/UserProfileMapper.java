@@ -1,7 +1,7 @@
 package app.mapper;
 
 import app.model.dto.UserProfileDTO;
-import app.model.entity.UserEntity;
+import app.model.entity.User;
 import lombok.NoArgsConstructor;
 
 import static app.util.HtmlSafe.esc;
@@ -9,7 +9,7 @@ import static app.util.HtmlSafe.esc;
 @NoArgsConstructor
 public class UserProfileMapper {
 
-    public static UserProfileDTO toSafeDTO(UserEntity user) {
+    public static UserProfileDTO toSafeDTO(User user) {
 
         return new UserProfileDTO(
                 user.getId() != null ? user.getId().toString() : null,

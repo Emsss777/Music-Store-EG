@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @Accessors(chain = true)
 @Access(AccessType.FIELD)
 @Table(name = "orders")
-public class OrderEntity extends BaseEntity {
+public class Order extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
@@ -39,5 +39,5 @@ public class OrderEntity extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "owner_id", nullable = false)
-    private UserEntity owner;
+    private User owner;
 }

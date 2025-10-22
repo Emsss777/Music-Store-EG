@@ -1,6 +1,6 @@
 package app.repository;
 
-import app.model.entity.AlbumEntity;
+import app.model.entity.Album;
 import app.model.enums.PrimaryGenre;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -10,11 +10,11 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface AlbumRepo extends JpaRepository<AlbumEntity, UUID> {
+public interface AlbumRepo extends JpaRepository<Album, UUID> {
 
-    Optional<AlbumEntity> findByTitle(String albumTitle);
+    Optional<Album> findByTitle(String albumTitle);
 
-    List<AlbumEntity> findAllByOrderByYearDesc();
+    List<Album> findAllByOrderByYearDesc();
 
-    List<AlbumEntity> findByGenreOrderByYearDesc(PrimaryGenre genre);
+    List<Album> findByGenreOrderByYearDesc(PrimaryGenre genre);
 }

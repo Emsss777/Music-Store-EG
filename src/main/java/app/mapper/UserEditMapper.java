@@ -1,13 +1,13 @@
 package app.mapper;
 
 import app.model.dto.UserEditDTO;
-import app.model.entity.UserEntity;
+import app.model.entity.User;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class UserEditMapper {
 
-    public static UserEditDTO mapUserToUserEditDTO(UserEntity user) {
+    public static UserEditDTO mapUserToUserEditDTO(User user) {
 
         return UserEditDTO.builder()
                 .firstName(user.getFirstName())

@@ -1,11 +1,11 @@
 package app.repository;
 
-import app.model.entity.OrderEntity;
+import app.model.entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
 @Repository
-public interface OrderRepo extends JpaRepository<OrderEntity, UUID> {
+public interface OrderRepo extends JpaRepository<Order, UUID> {
 }

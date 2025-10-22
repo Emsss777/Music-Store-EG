@@ -15,16 +15,16 @@ import java.math.BigDecimal;
 @Accessors(chain = true)
 @Access(AccessType.FIELD)
 @Table(name = "order_items")
-public class OrderItemEntity extends BaseEntity {
+public class OrderItem extends BaseEntity {
 
     @Column(name = "unit_price", nullable = false)
     private BigDecimal unitPrice;
 
     @ManyToOne
     @JoinColumn(name = "album_id", nullable = false)
-    private AlbumEntity album;
+    private Album album;
 
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
-    private OrderEntity order;
+    private Order order;
 }

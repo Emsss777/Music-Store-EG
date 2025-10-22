@@ -28,13 +28,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
-    public OrderEntity createOrder(CheckoutDTO checkoutDTO, List<CartItemDTO> cartItems, UserEntity user) {
+    public Order createOrder(CheckoutDTO checkoutDTO, List<CartItemDTO> cartItems, User user) {
 
         BigDecimal totalAmount = cartItems.stream()
                 .map(CartItemDTO::getTotalPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-        OrderEntity order = OrderEntity.builder()
+        Order order = Order.builder()
                 .orderNumber(generateOrderNumber())
                 .status(Status.PENDING)
                 .paymentMethod(PaymentMethod.CREDIT_CARD)
@@ -43,12 +43,12 @@ public class OrderServiceImpl implements OrderService {
                 .createdOn(LocalDateTime.now())
                 .build();
 
-        OrderEntity savedOrder = orderRepo.save(order);
+        Order savedOrder = orderRepo.save(order);
 
         for (CartItemDTO cartItem : cartItems) {
-            AlbumEntity album = albumService.getAlbumById(cartItem.getAlbumId());
+            Album album = albumService.getAlbumById(cartItem.getAlbumId());
 
-            OrderItemEntity orderItem = OrderItemEntity.builder()
+            OrderItem orderItem = OrderItem.builder()
                     .album(album)
                     .order(savedOrder)
                     .unitPrice(cartItem.getPrice())

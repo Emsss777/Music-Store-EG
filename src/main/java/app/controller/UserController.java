@@ -4,7 +4,7 @@ import app.mapper.UserEditMapper;
 import app.mapper.UserProfileMapper;
 import app.model.dto.UserEditDTO;
 import app.model.dto.UserProfileDTO;
-import app.model.entity.UserEntity;
+import app.model.entity.User;
 import app.security.AuthenticationMetadata;
 import app.service.UserService;
 import jakarta.validation.Valid;
@@ -36,7 +36,7 @@ public class UserController {
     @PreAuthorize("hasRole('ADMIN')")
     public ModelAndView getAllUsers() {
 
-        List<UserEntity> users = userService.getAllUsers();
+        List<User> users = userService.getAllUsers();
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_USERS);
@@ -48,7 +48,7 @@ public class UserController {
     @GetMapping(URL_PROFILE)
     public ModelAndView getProfilePage(@AuthenticationPrincipal AuthenticationMetadata authMetadata) {
 
-        UserEntity currentUser = userService.getUserById(authMetadata.getUserId());
+        User currentUser = userService.getUserById(authMetadata.getUserId());
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_PROFILE);
@@ -61,7 +61,7 @@ public class UserController {
     @GetMapping(PARAM_ID + URL_PROFILE)
     public ModelAndView showEditProfile(@PathVariable UUID id) {
 
-        UserEntity user = userService.getUserById(id);
+        User user = userService.getUserById(id);
         UserProfileDTO userProfileDTO = UserProfileMapper.toSafeDTO(user);
 
         ModelAndView modelAndView = new ModelAndView();
@@ -76,7 +76,7 @@ public class UserController {
     public ModelAndView updateUserProfile(@PathVariable UUID id,
                                           @Valid UserEditDTO userEditDTO, BindingResult bindingResult) {
 
-        UserEntity user = userService.getUserById(id);
+        User user = userService.getUserById(id);
         UserProfileDTO userProfileDTO = UserProfileMapper.toSafeDTO(user);
 
         if (bindingResult.hasErrors()) {
@@ -98,7 +98,7 @@ public class UserController {
     @GetMapping(URL_ADMIN_DASHBOARD)
     public ModelAndView getAdminPage(@AuthenticationPrincipal AuthenticationMetadata authMetadata) {
 
-        UserEntity currentUser = userService.getUserById(authMetadata.getUserId());
+        User currentUser = userService.getUserById(authMetadata.getUserId());
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_ADMIN_DASHBOARD);

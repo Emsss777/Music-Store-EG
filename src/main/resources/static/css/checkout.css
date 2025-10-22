@@ -117,7 +117,7 @@
     color: #ffffff;
 }
 
-/* OrderEntity Items */
+/* Order Items */
 .order-items {
     margin-bottom: 24px;
 }
@@ -152,7 +152,7 @@
     color: #4caf50;
 }
 
-/* OrderEntity Totals */
+/* Order Totals */
 .order-totals {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 16px;

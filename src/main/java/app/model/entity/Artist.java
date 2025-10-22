@@ -17,7 +17,7 @@ import java.util.List;
 @Accessors(chain = true)
 @Access(AccessType.FIELD)
 @Table(name = "artists")
-public class ArtistEntity extends BaseEntity {
+public class Artist extends BaseEntity {
 
     @Column(name = "artist_name", nullable = false)
     private String artistName;
@@ -39,5 +39,5 @@ public class ArtistEntity extends BaseEntity {
     private PrimaryGenre primaryGenre;
 
     @OneToMany(mappedBy = "artist", fetch = FetchType.EAGER)
-    private List<AlbumEntity> albums = new ArrayList<>();
+    private List<Album> albums = new ArrayList<>();
 }

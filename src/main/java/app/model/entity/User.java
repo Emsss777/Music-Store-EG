@@ -21,7 +21,7 @@ import java.util.List;
 @Accessors(chain = true)
 @Access(AccessType.FIELD)
 @Table(name = "users")
-public class UserEntity extends BaseEntity {
+public class User extends BaseEntity {
 
     @Column(name = "username", nullable = false, unique = true)
     private String username;
@@ -66,5 +66,5 @@ public class UserEntity extends BaseEntity {
 
     @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     @OrderBy("createdOn DESC")
-    private List<OrderEntity> orders = new ArrayList<>();
+    private List<Order> orders = new ArrayList<>();
 }

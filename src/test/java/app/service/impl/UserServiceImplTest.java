@@ -7,7 +7,7 @@ import app.exception.PasswordMismatchException;
 import app.exception.UsernameAlreadyExistException;
 import app.model.dto.RegisterDTO;
 import app.model.dto.UserEditDTO;
-import app.model.entity.UserEntity;
+import app.model.entity.User;
 import app.model.enums.Country;
 import app.model.enums.UserRole;
 import app.notification.services.NotificationService;
@@ -51,7 +51,7 @@ public class UserServiceImplTest {
     @InjectMocks
     private UserServiceImpl userService;
 
-    private UserEntity user;
+    private User user;
     private UUID userId;
     private String username;
 
@@ -61,7 +61,7 @@ public class UserServiceImplTest {
         userId = UUID.randomUUID();
         username = "testUser";
 
-        user = UserEntity.builder()
+        user = User.builder()
                 .id(userId)
                 .username(username)
                 .password("encodedPassword")
@@ -92,7 +92,7 @@ public class UserServiceImplTest {
                 assertThrows(UsernameAlreadyExistException.class, () -> userService.registerUser(registerDTO));
 
         assertTrue(exception.getMessage().contains(username));
-        verify(userRepo, never()).save(any(UserEntity.class));
+        verify(userRepo, never()).save(any(User.class));
         verify(userRegisteredEventProducer, never()).sendEvent(any(UserRegisteredEvent.class));
         verify(notificationService, never()).saveNotificationPreference(any(), anyBoolean(), any());
     }
@@ -116,7 +116,7 @@ public class UserServiceImplTest {
                 assertThrows(PasswordMismatchException.class, () -> userService.registerUser(registerDTO));
 
         assertNotNull(exception.getMessage());
-        verify(userRepo, never()).save(any(UserEntity.class));
+        verify(userRepo, never()).save(any(User.class));
         verify(userRegisteredEventProducer, never()).sendEvent(any(UserRegisteredEvent.class));
         verify(notificationService, never()).saveNotificationPreference(any(), anyBoolean(), any());
     }
@@ -134,7 +134,7 @@ public class UserServiceImplTest {
                 .build();
 
         String encodedPassword = "encodedPassword123";
-        UserEntity savedUser = UserEntity.builder()
+        User savedUser = User.builder()
                 .id(userId)
                 .username(username)
                 .password(encodedPassword)
@@ -147,16 +147,16 @@ public class UserServiceImplTest {
 
         when(userRepo.findByUsername(username)).thenReturn(Optional.empty());
         when(passwordEncoder.encode("password123")).thenReturn(encodedPassword);
-        when(userRepo.save(any(UserEntity.class))).thenReturn(savedUser);
+        when(userRepo.save(any(User.class))).thenReturn(savedUser);
 
         // When
         userService.registerUser(registerDTO);
 
         // Then
-        ArgumentCaptor<UserEntity> userCaptor = ArgumentCaptor.forClass(UserEntity.class);
+        ArgumentCaptor<User> userCaptor = ArgumentCaptor.forClass(User.class);
         verify(userRepo).save(userCaptor.capture());
 
-        UserEntity capturedUser = userCaptor.getValue();
+        User capturedUser = userCaptor.getValue();
         assertEquals(username, capturedUser.getUsername());
         assertEquals(encodedPassword, capturedUser.getPassword());
         assertEquals(Country.BULGARIA, capturedUser.getCountry());
@@ -181,7 +181,7 @@ public class UserServiceImplTest {
         when(userRepo.findById(userId)).thenReturn(Optional.of(user));
 
         // When
-        UserEntity result = userService.getUserById(userId);
+        User result = userService.getUserById(userId);
 
         // Then
         assertNotNull(result);
@@ -214,7 +214,7 @@ public class UserServiceImplTest {
         when(userRepo.findByUsername(username)).thenReturn(Optional.of(user));
 
         // When
-        UserEntity result = userService.getUserByUsername(username);
+        User result = userService.getUserByUsername(username);
 
         // Then
         assertNotNull(result);
@@ -255,7 +255,7 @@ public class UserServiceImplTest {
                 .build();
 
         when(userRepo.findById(userId)).thenReturn(Optional.of(user));
-        when(userRepo.save(any(UserEntity.class))).thenReturn(user);
+        when(userRepo.save(any(User.class))).thenReturn(user);
 
         // When
         userService.editUserDetails(userId, userEditDTO);
@@ -289,7 +289,7 @@ public class UserServiceImplTest {
                 .build();
 
         when(userRepo.findById(userId)).thenReturn(Optional.of(user));
-        when(userRepo.save(any(UserEntity.class))).thenReturn(user);
+        when(userRepo.save(any(User.class))).thenReturn(user);
 
         // When
         userService.editUserDetails(userId, userEditDTO);
@@ -328,7 +328,7 @@ public class UserServiceImplTest {
                 assertThrows(DomainException.class, () -> userService.editUserDetails(nonExistentUserId, userEditDTO));
 
         assertTrue(exception.getMessage().contains(nonExistentUserId.toString()));
-        verify(userRepo, never()).save(any(UserEntity.class));
+        verify(userRepo, never()).save(any(User.class));
         verify(notificationService, never()).saveNotificationPreference(any(), anyBoolean(), any());
     }
 

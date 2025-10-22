@@ -1,6 +1,6 @@
 package app.controller;
 
-import app.model.entity.UserEntity;
+import app.model.entity.User;
 import app.model.enums.NotificationStatus;
 import app.notification.client.dto.Notification;
 import app.notification.client.dto.NotificationPreference;
@@ -31,7 +31,7 @@ public class NotificationController {
     @GetMapping
     public ModelAndView getNotificationPage(@AuthenticationPrincipal AuthenticationMetadata authMetadata) {
 
-        UserEntity currentUser = userService.getUserById(authMetadata.getUserId());
+        User currentUser = userService.getUserById(authMetadata.getUserId());
 
         NotificationPreference notificationPreference =
                 notificationService.getNotificationPreference(currentUser.getId());

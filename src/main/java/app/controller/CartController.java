@@ -1,7 +1,7 @@
 package app.controller;
 
 import app.model.dto.CartItemDTO;
-import app.model.entity.AlbumEntity;
+import app.model.entity.Album;
 import app.service.AlbumService;
 import app.service.CartService;
 import jakarta.servlet.http.HttpSession;
@@ -60,7 +60,7 @@ public class CartController {
 
         initializeCart(session);
 
-        AlbumEntity album = albumService.getAlbumById(id);
+        Album album = albumService.getAlbumById(id);
         cartService.addToCart(session, album);
 
         redirectAttributes.addFlashAttribute(FLASH_MESSAGE, ALBUM_ADDED_TO_CART);

@@ -2,7 +2,7 @@ package app.init.impl;
 
 import app.exception.DomainException;
 import app.init.DataSeeder;
-import app.model.entity.UserEntity;
+import app.model.entity.User;
 import app.model.enums.Country;
 import app.model.enums.UserRole;
 import app.service.UserService;
@@ -50,7 +50,7 @@ public class UserDataSeeder implements DataSeeder {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, ADMIN_NOT_FOUND), username);
         }
 
-        UserEntity admin = new UserEntity()
+        User admin = new User()
                 .setUsername(username)
                 .setFirstName("Emil")
                 .setLastName("Ganchev")
@@ -79,7 +79,7 @@ public class UserDataSeeder implements DataSeeder {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, TEST_USER_NOT_FOUND), username);
         }
 
-        UserEntity testUser = new UserEntity()
+        User testUser = new User()
                 .setUsername(username)
                 .setFirstName("Petko")
                 .setLastName("Ganchev")
