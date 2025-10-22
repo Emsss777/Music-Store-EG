@@ -5,6 +5,7 @@ import app.model.entity.AlbumEntity;
 import app.model.enums.PrimaryGenre;
 import app.repository.AlbumRepo;
 import app.service.AlbumService;
+import jakarta.annotation.Nullable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -33,15 +34,11 @@ public class AlbumServiceImpl implements AlbumService {
     }
 
     @Override
-    public List<AlbumEntity> getAllAlbums() {
+    public List<AlbumEntity> getAlbums(@Nullable PrimaryGenre genre) {
 
-        return albumRepo.findAllByOrderByYearDesc();
-    }
-
-    @Override
-    public List<AlbumEntity> getAlbumsByGenre(PrimaryGenre genre) {
-
-        return albumRepo.findByGenreOrderByYearDesc(genre);
+        return genre != null
+                ? albumRepo.findByGenreOrderByYearDesc(genre)
+                : albumRepo.findAllByOrderByYearDesc();
     }
 
     @Override

@@ -32,13 +32,7 @@ public class CatalogController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_CATALOG);
         modelAndView.addObject(MODEL_PAGE, VIEW_CATALOG);
-
-        if (genre != null) {
-            modelAndView.addObject(MODEL_ALBUMS, albumService.getAlbumsByGenre(genre));
-        } else {
-            modelAndView.addObject(MODEL_ALBUMS, albumService.getAllAlbums());
-        }
-
+        modelAndView.addObject(MODEL_ALBUMS, albumService.getAlbums(genre));
         modelAndView.addObject(MODEL_SELECTED_GENRE, genre);
         modelAndView.addObject(MODEL_GENRES, PrimaryGenre.values());
 

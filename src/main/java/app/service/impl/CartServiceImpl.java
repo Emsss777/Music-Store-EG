@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import static app.util.ModelAttributes.MODEL_CART;
+
 @Service
 public class CartServiceImpl implements CartService {
 
@@ -50,13 +52,13 @@ public class CartServiceImpl implements CartService {
     @SuppressWarnings("unchecked")
     public List<CartItemDTO> getCartItems(HttpSession session) {
 
-        return (List<CartItemDTO>) session.getAttribute("cart");
+        return (List<CartItemDTO>) session.getAttribute(MODEL_CART);
     }
 
     @Override
     public void clearCart(HttpSession session) {
 
-        session.setAttribute("cart", new ArrayList<CartItemDTO>());
+        session.setAttribute(MODEL_CART, new ArrayList<CartItemDTO>());
     }
 
     @Override

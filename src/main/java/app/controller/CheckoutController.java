@@ -10,6 +10,7 @@ import app.service.OrderService;
 import app.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +32,7 @@ import static app.util.Views.VIEW_CHECKOUT;
 
 @Controller
 @RequiredArgsConstructor
+@PreAuthorize("hasRole('USER')")
 public class CheckoutController {
 
     private final CartService cartService;

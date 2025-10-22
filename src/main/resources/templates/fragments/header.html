@@ -26,7 +26,7 @@
             <a class="nav-link" th:href="@{/catalog}" th:classappend="${page == 'catalog'} ? ' active'">Catalog</a>
 
             <a class="nav-link" th:href="@{/cart}" th:classappend="${page == 'cart'} ? ' active'"
-               sec:authorize="isAuthenticated()">Shopping Cart</a>
+               sec:authorize="hasRole('USER')">Shopping Cart</a>
 
             <a class="nav-link" th:href="@{/users/profile}" th:classappend="${page == 'profile'} ? ' active'"
                sec:authorize="isAuthenticated()">Profile</a>

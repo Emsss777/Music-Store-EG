@@ -6,6 +6,7 @@ import app.service.AlbumService;
 import app.service.CartService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +29,7 @@ import static app.util.Views.VIEW_CART;
 
 @Controller
 @RequiredArgsConstructor
+@PreAuthorize("hasRole('USER')")
 public class CartController {
 
     private final CartService cartService;
