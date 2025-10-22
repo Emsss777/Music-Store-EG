@@ -25,8 +25,12 @@
             <a class="nav-link" th:href="@{/home}" th:classappend="${page == 'home'} ? ' active'">Home</a>
             <a class="nav-link" th:href="@{/catalog}" th:classappend="${page == 'catalog'} ? ' active'">Catalog</a>
 
+            <!--@thymesVar id="itemCount" type="java.lang.Integer"-->
             <a class="nav-link" th:href="@{/cart}" th:classappend="${page == 'cart'} ? ' active'"
-               sec:authorize="hasRole('USER')">Shopping Cart</a>
+               sec:authorize="hasRole('USER')">
+                Shopping Cart
+                <span class="cart-count" th:if="${itemCount > 0}" th:text="'( ' + ${itemCount} + ' )'"></span>
+            </a>
 
             <a class="nav-link" th:href="@{/users/profile}" th:classappend="${page == 'profile'} ? ' active'"
                sec:authorize="isAuthenticated()">Profile</a>
