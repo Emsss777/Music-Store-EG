@@ -16,6 +16,7 @@ public final class Views {
     public static final String VIEW_EDIT_PROFILE = "edit-profile";
     public static final String VIEW_ADMIN_DASHBOARD = "admin/admin-dashboard";
     public static final String VIEW_ADMIN_ALBUMS = "admin/admin-albums";
+    public static final String VIEW_ADMIN_ADD_ALBUM = "admin/add-album";
     public static final String VIEW_NOTIFICATIONS = "admin/notifications";
     public static final String VIEW_USERS = "admin/users";
     public static final String VIEW_PAGE_NOT_FOUND = "error/not-found";

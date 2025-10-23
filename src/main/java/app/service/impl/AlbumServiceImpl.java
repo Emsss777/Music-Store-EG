@@ -1,11 +1,13 @@
 package app.service.impl;
 
 import app.exception.DomainException;
+import app.model.dto.SaveAlbumDTO;
 import app.model.entity.Album;
+import app.model.entity.Artist;
 import app.model.enums.PrimaryGenre;
 import app.repository.AlbumRepo;
 import app.service.AlbumService;
-import jakarta.annotation.Nullable;
+import app.service.ArtistService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,7 @@ import static app.util.ExceptionMessages.ALBUM_DOES_NOT_EXIST;
 public class AlbumServiceImpl implements AlbumService {
 
     private final AlbumRepo albumRepo;
+    private final ArtistService artistService;
 
     @Override
     public Album getAlbumByAlbumTitle(String albumTitle) {
@@ -28,13 +31,13 @@ public class AlbumServiceImpl implements AlbumService {
     }
 
     @Override
-    public void saveAlbum(Album albumEntity) {
+    public void saveAlbum(Album album) {
 
-        albumRepo.save(albumEntity);
+        albumRepo.save(album);
     }
 
     @Override
-    public List<Album> getAllAlbums(@Nullable PrimaryGenre genre) {
+    public List<Album> getAllAlbums(PrimaryGenre genre) {
 
         return genre != null
                 ? albumRepo.findByGenreOrderByYearDesc(genre)
@@ -42,9 +45,27 @@ public class AlbumServiceImpl implements AlbumService {
     }
 
     @Override
-    public Album getAlbumById(UUID id) {
+    public Album getAlbumById(UUID albumId) {
 
-        return albumRepo.findById(id).orElseThrow(() ->
-                new DomainException(ALBUM_DOES_NOT_EXIST.formatted(id)));
+        return albumRepo.findById(albumId).orElseThrow(() ->
+                new DomainException(ALBUM_DOES_NOT_EXIST.formatted(albumId)));
+    }
+
+    @Override
+    public void saveAlbumFromDTO(SaveAlbumDTO saveAlbumDTO) {
+
+        Artist artist = artistService.getArtistById(saveAlbumDTO.getArtistId());
+
+        Album album = Album.builder()
+                .title(saveAlbumDTO.getTitle())
+                .genre(saveAlbumDTO.getGenre())
+                .year(saveAlbumDTO.getYear())
+                .description(saveAlbumDTO.getDescription())
+                .coverUrl(saveAlbumDTO.getCoverUrl())
+                .price(saveAlbumDTO.getPrice())
+                .artist(artist)
+                .build();
+
+        albumRepo.save(album);
     }
 }

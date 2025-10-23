@@ -33,60 +33,69 @@
         <div class="container">
             <div class="form-layout">
                 <div class="form-container">
-                    <form class="album-form" id="albumForm">
+                    <form class="album-form" id="albumForm"
+                          th:method="POST" th:action="@{/admin/albums/add}" th:object="${saveAlbumDTO}">
                         <div class="form-section">
                             <h2 class="section-title">Album Information</h2>
 
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="albumTitle">Album Title *</label>
-                                    <input type="text" id="albumTitle" name="albumTitle"
+                                    <label for="title">Album Title *</label>
+                                    <input type="text" id="title" th:field="*{title}"
                                            placeholder="Enter album title" required>
+                                    <div class="error-message"
+                                         th:if="${#fields.hasErrors('title')}" th:errors="*{title}">
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="albumArtist">Artist *</label>
-                                    <select id="albumArtist" name="albumArtist" required>
+                                    <label for="artistId">Artist *</label>
+                                    <select id="artistId" th:field="*{artistId}" required>
                                         <option value="">Select artist</option>
-                                        <option value="the-night-owls">The Night Owls</option>
-                                        <option value="digital-waves">Digital Waves</option>
-                                        <option value="folk-masters">Folk Masters</option>
-                                        <option value="modern-jazz-collective">Modern Jazz Collective</option>
-                                        <option value="beach-boys-revival">Beach Boys Revival</option>
-                                        <option value="city-beats">City Beats</option>
-                                        <option value="underground-sounds">Underground Sounds</option>
+                                        <option th:each="artist : ${artists}"
+                                                th:value="${artist.id}"
+                                                th:text="${artist.artistName}">
+                                        </option>
                                     </select>
+                                    <div class="error-message"
+                                         th:if="${#fields.hasErrors('artistId')}" th:errors="*{artistId}">
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="albumGenre">Genre *</label>
-                                    <select id="albumGenre" name="albumGenre" required>
+                                    <label for="genre">Genre *</label>
+                                    <select id="genre" th:field="*{genre}" required>
                                         <option value="">Select genre</option>
-                                        <option value="pop">Pop</option>
-                                        <option value="rock">Rock</option>
-                                        <option value="electronic">Electronic</option>
-                                        <option value="jazz">Jazz</option>
-                                        <option value="classical">Classical</option>
-                                        <option value="hip-hop">Hip-Hop</option>
-                                        <option value="folk">Folk</option>
-                                        <option value="country">Country</option>
-                                        <option value="blues">Blues</option>
+                                        <option th:each="genre : ${genres}"
+                                                th:value="${genre}"
+                                                th:text="${#strings.capitalize(
+                                                #strings.replace(#strings.toLowerCase(genre), '_', ' '))}">
+                                        </option>
                                     </select>
+                                    <div class="error-message"
+                                         th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}">
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="albumYear">Release Year *</label>
-                                    <input type="number" id="albumYear" name="albumYear"
-                                           min="1900" max="2025" placeholder="2024" required>
+                                    <label for="year">Release Year *</label>
+                                    <input type="number" id="year" th:field="*{year}"
+                                           max="2025" placeholder="2024" required>
+                                    <div class="error-message"
+                                         th:if="${#fields.hasErrors('year')}" th:errors="*{year}">
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="albumDescription">Album Description</label>
-                                <textarea id="albumDescription"
-                                          name="albumDescription"
+                                <label for="description">Album Description</label>
+                                <textarea id="description" th:field="*{description}"
                                           rows="4"
-                                          placeholder="Describe the album's concept, themes, and musical style..."></textarea>
+                                          placeholder="Describe the album's concept, themes, and musical style...">
+                                </textarea>
+                                <div class="error-message"
+                                     th:if="${#fields.hasErrors('description')}" th:errors="*{description}">
+                                </div>
                             </div>
                         </div>
 
@@ -94,9 +103,12 @@
                             <h2 class="section-title">Media & Artwork</h2>
 
                             <div class="form-group">
-                                <label for="albumCover">Album Cover URL *</label>
-                                <input type="url" id="albumCover" name="albumCover"
+                                <label for="coverUrl">Album Cover URL *</label>
+                                <input type="url" id="coverUrl" th:field="*{coverUrl}"
                                        placeholder="https://example.com/album-cover.jpg" required>
+                                <div class="error-message"
+                                     th:if="${#fields.hasErrors('coverUrl')}" th:errors="*{coverUrl}">
+                                </div>
                             </div>
 
                             <div class="form-row">
@@ -118,9 +130,12 @@
 
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="albumPrice">Price (USD) *</label>
-                                    <input type="number" id="albumPrice" name="albumPrice"
+                                    <label for="price">Price (USD) *</label>
+                                    <input type="number" id="price" th:field="*{price}"
                                            step="0.01" min="0" placeholder="12.99" required>
+                                    <div class="error-message"
+                                         th:if="${#fields.hasErrors('price')}" th:errors="*{price}">
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="originalPrice">Original Price (if on sale)</label>
@@ -274,15 +289,15 @@
 <script>
     let trackCount = 1;
 
-    // Form preview functionality
     function updatePreview() {
-        const title = document.getElementById('albumTitle').value || 'Album Title';
-        const artist = document.getElementById('albumArtist').selectedOptions[0]?.text || 'Artist Name';
-        const genre = document.getElementById('albumGenre').value || 'Genre';
-        const year = document.getElementById('albumYear').value || '2024';
-        const price = document.getElementById('albumPrice').value || '12.99';
+        const title = document.getElementById('title').value || 'Album Title';
+        const artist = document.getElementById('artistId').selectedOptions[0]?.text || 'Artist Name';
+        const genre = document.getElementById('genre').value || 'Genre';
+        const year = document.getElementById('year').value || '2024';
+        const price = document.getElementById('price').value || '12.99';
         const originalPrice = document.getElementById('originalPrice').value;
-        const cover = document.getElementById('albumCover').value || 'https://via.placeholder.com/200x200/746ab0/ffffff?text=Album+Cover';
+        const cover = document.getElementById('coverUrl').value ||
+            'https://via.placeholder.com/200x200/746ab0/ffffff?text=Album+Cover';
         const isNewRelease = document.getElementById('newRelease').checked;
 
         document.getElementById('previewTitle').textContent = title;
@@ -291,7 +306,6 @@
         document.getElementById('previewPrice').textContent = `$${price}`;
         document.getElementById('previewCover').src = cover;
 
-        // Handle original price
         const originalPriceElement = document.getElementById('previewOriginalPrice');
         if (originalPrice) {
             originalPriceElement.textContent = `$${originalPrice}`;
@@ -303,12 +317,10 @@
             originalPriceElement.style.display = 'none';
         }
 
-        // Handle the new release badge
         const newReleaseBadge = document.getElementById('newReleaseBadge');
         newReleaseBadge.style.display = isNewRelease ? 'block' : 'none';
     }
 
-    // Track management
     function addTrack() {
         trackCount++;
         const trackList = document.getElementById('trackList');
@@ -336,12 +348,14 @@
         });
     }
 
-    // Add event listeners for a live preview
     document.addEventListener('DOMContentLoaded', function () {
-        const previewFields = ['albumTitle', 'albumArtist', 'albumGenre', 'albumYear', 'albumPrice', 'originalPrice', 'albumCover', 'newRelease'];
+        const previewFields = ['title', 'artistId', 'genre', 'year', 'price', 'originalPrice', 'coverUrl', 'newRelease'];
         previewFields.forEach(field => {
-            document.getElementById(field).addEventListener('input', updatePreview);
-            document.getElementById(field).addEventListener('change', updatePreview);
+            const element = document.getElementById(field);
+            if (element) {
+                element.addEventListener('input', updatePreview);
+                element.addEventListener('change', updatePreview);
+            }
         });
     });
 
@@ -349,7 +363,6 @@
         if (confirm('Are you sure you want to reset the form? All data will be lost.')) {
             document.getElementById('albumForm').reset();
             updatePreview();
-            // Reset track list by default
             const trackList = document.getElementById('trackList');
             trackList.innerHTML = `
                     <div class="track-item">

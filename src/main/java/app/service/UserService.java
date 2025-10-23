@@ -17,7 +17,7 @@ public interface UserService {
 
     void editUserDetails(UUID userId, UserEditDTO userEditDTO);
 
-    void saveUser(User userEntity);
+    void saveUser(User user);
 
     List<User> getAllUsers();
 

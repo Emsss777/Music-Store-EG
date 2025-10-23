@@ -7,6 +7,9 @@ import app.service.ArtistService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.UUID;
+
 import static app.util.ExceptionMessages.ARTIST_DOES_NOT_EXIST;
 
 @Service
@@ -23,8 +26,21 @@ public class ArtistServiceImpl implements ArtistService {
     }
 
     @Override
-    public void saveArtist(Artist artistEntity) {
+    public void saveArtist(Artist artist) {
 
-        artistRepo.save(artistEntity);
+        artistRepo.save(artist);
+    }
+
+    @Override
+    public List<Artist> getAllArtists() {
+
+        return artistRepo.findAll();
+    }
+
+    @Override
+    public Artist getArtistById(UUID artistId) {
+
+        return artistRepo.findById(artistId).orElseThrow(() ->
+                new DomainException(ARTIST_DOES_NOT_EXIST.formatted(artistId)));
     }
 }

@@ -32,6 +32,10 @@ public class ExceptionMessages {
     public static final String BIO_INVALID_LENGTH = "Bio cannot exceed 500 characters!";
     public static final String INVALID_URL_FORMAT = "Profile picture must be a valid URL!";
     public static final String CART_IS_EMPTY = "Your cart is empty!";
+    public static final String ALBUM_TITLE_TOO_LONG = "Album title must not exceed 100 characters!";
+    public static final String ALBUM_YEAR_TOO_HIGH = "Release year must not exceed 2025";
+    public static final String ALBUM_DESCRIPTION_TOO_LONG = "Description must not exceed 1000 characters!";
+    public static final String ALBUM_COVER_URL_INVALID = "Cover URL must be a valid HTTP/HTTPS URL!";
     public static final String NOTIFICATION_SAVE_PREF_NON_2XX =
             "[notification-svc] non-2xx on 'saveNotificationPreference' for user [{}]: {}";
     public static final String NOTIFICATION_SAVE_PREF_ERROR =
