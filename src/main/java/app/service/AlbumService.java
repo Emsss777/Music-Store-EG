@@ -13,7 +13,7 @@ public interface AlbumService {
 
     void saveAlbum(Album albumEntity);
 
-    List<Album> getAlbums(@Nullable PrimaryGenre genre);
+    List<Album> getAllAlbums(@Nullable PrimaryGenre genre);
 
     Album getAlbumById(UUID id);
 }

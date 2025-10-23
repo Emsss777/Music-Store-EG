@@ -38,6 +38,7 @@ public class Artist extends BaseEntity {
     @Column(name = "primary_genre", nullable = false)
     private PrimaryGenre primaryGenre;
 
+    @Builder.Default
     @OneToMany(mappedBy = "artist", fetch = FetchType.EAGER)
     private List<Album> albums = new ArrayList<>();
 }

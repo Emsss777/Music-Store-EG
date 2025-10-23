@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<!--@thymesVar id="albums" type="java.util.List<app.model.entity.Album>"-->
+<!--@thymesVar id="genres" type="app.model.enums.PrimaryGenre[]"-->
+<!--@thymesVar id="selectedGenre" type="app.model.enums.PrimaryGenre"-->
 
 <head>
     <meta charset="UTF-8">
@@ -133,6 +136,7 @@
                         </div>
                     </div>
 
+                    <!--@thymesVar id="album" type="app.model.entity.Album"-->
                     <div class="album-grid grid grid-3">
                         <div class="album-card card" th:each="album : ${albums}">
                             <div class="album-image">

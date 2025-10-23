@@ -34,7 +34,7 @@ public class AlbumServiceImpl implements AlbumService {
     }
 
     @Override
-    public List<Album> getAlbums(@Nullable PrimaryGenre genre) {
+    public List<Album> getAllAlbums(@Nullable PrimaryGenre genre) {
 
         return genre != null
                 ? albumRepo.findByGenreOrderByYearDesc(genre)

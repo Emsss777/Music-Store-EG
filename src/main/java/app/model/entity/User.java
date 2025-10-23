@@ -51,9 +51,10 @@ public class User extends BaseEntity {
     @Column(name = "bio", columnDefinition = "TEXT")
     private String bio;
 
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
-    private UserRole role;
+    private UserRole role = UserRole.USER;
 
     @Column(name = "is_active")
     private boolean isActive;
