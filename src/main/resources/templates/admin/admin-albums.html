@@ -3,6 +3,8 @@
 <!--@thymesVar id="albums" type="java.util.List<app.model.entity.Album>"-->
 <!--@thymesVar id="genres" type="app.model.enums.PrimaryGenre[]"-->
 <!--@thymesVar id="selectedGenre" type="app.model.enums.PrimaryGenre"-->
+<!--@thymesVar id="success" type="java.lang.String"-->
+<!--@thymesVar id="error" type="java.lang.String"-->
 
 <head>
     <meta charset="UTF-8">
@@ -29,7 +31,10 @@
     </div>
 
     <section class="albums-section">
-        <div class="container">>
+        <div class="container">
+            <div class="alert alert-success" th:if="${success}" th:text="${success}"></div>
+            <div class="alert alert-error" th:if="${error}" th:text="${error}"></div>
+
             <div class="albums-toolbar">
                 <div class="toolbar-left">
                     <div class="search-box">
@@ -74,7 +79,13 @@
                         <img th:src="@{${album.coverUrl}}" th:alt="${album.title}">
                         <div class="album-overlay dark">
                             <button class="edit-btn" title="Edit Album">✏️</button>
-                            <button class="delete-btn" title="Delete Album">🗑️</button>
+                            <form th:action="@{/admin/albums/{id}/remove(id=${album.id})}"
+                                  th:method="POST" style="display: inline;"
+                                  onsubmit="return confirm(
+                                      'Are you sure you want to delete this album? ' +
+                                      'This action cannot be undone.');">
+                                <button type="submit" class="delete-btn" title="Delete Album">🗑️</button>
+                            </form>
                         </div>
                     </div>
                     <div class="album-info">

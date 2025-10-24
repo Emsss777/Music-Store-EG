@@ -6,22 +6,27 @@ import app.model.entity.Album;
 import app.model.entity.Artist;
 import app.model.enums.PrimaryGenre;
 import app.repository.AlbumRepo;
-import app.service.AlbumService;
-import app.service.ArtistService;
+import app.service.*;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.boot.ansi.AnsiColor;
+import org.springframework.boot.ansi.AnsiOutput;
 
 import java.util.List;
 import java.util.UUID;
 
 import static app.util.ExceptionMessages.ALBUM_DOES_NOT_EXIST;
+import static app.util.SuccessMessages.ALBUM_DELETED_WITH_DETAILS;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class AlbumServiceImpl implements AlbumService {
 
     private final AlbumRepo albumRepo;
     private final ArtistService artistService;
+    private final OrderItemManagerService orderItemManager;
 
     @Override
     public Album getAlbumByAlbumTitle(String albumTitle) {
@@ -67,5 +72,19 @@ public class AlbumServiceImpl implements AlbumService {
                 .build();
 
         albumRepo.save(album);
+    }
+
+    @Override
+    public void deleteAlbum(UUID albumId) {
+
+        Album album = getAlbumById(albumId);
+
+        int deletedItems = orderItemManager.deleteAllItemsByAlbumId(albumId);
+        int deletedOrders = orderItemManager.deleteEmptyOrders();
+
+        log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, ALBUM_DELETED_WITH_DETAILS),
+                album.getTitle(), deletedItems, deletedOrders);
+
+        albumRepo.delete(album);
     }
 }

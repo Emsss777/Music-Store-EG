@@ -20,6 +20,9 @@ public class SuccessMessages {
     public static final String ANOTHER_METHOD_EXEC = "Hey, another method in UserController was executed!";
     public static final String ALBUM_ADDED_TO_CART = "Album added to cart successfully!";
     public static final String ALBUM_REMOVED_FROM_CART = "Album removed from cart!";
+    public static final String ALBUM_DELETED = "Album deleted successfully!";
+    public static final String ALBUM_DELETED_WITH_DETAILS =
+            "Deleted album [%s] with %d order items and %d empty orders removed!";
     public static final String CART_CLEARED = "Cart cleared!";
     public static final String ORDER_PLACED_SUCCESS = "Order placed successfully! Order Number: ";
 }
