@@ -60,6 +60,12 @@ public class OrderServiceImpl implements OrderService {
         return savedOrder;
     }
 
+    @Override
+    public List<Order> getAllOrders() {
+
+        return orderRepo.findAll();
+    }
+
     private String generateOrderNumber() {
 
         return "ORD-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();

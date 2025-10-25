@@ -10,4 +10,6 @@ import java.util.List;
 public interface OrderService {
 
     Order createOrder(CheckoutDTO checkoutDTO, List<CartItemDTO> cartItems, User user);
+
+    List<Order> getAllOrders();
 }

@@ -43,158 +43,59 @@
             </div>
 
             <div class="orders-list">
-                <div class="order-card card">
+                <div th:each="order : ${orders}" class="order-card card">
                     <div class="order-header">
                         <div class="order-info">
-                            <h3 class="order-id">Order #12345</h3>
-                            <span class="order-date">January 15, 2025</span>
+                            <h3 class="order-id" th:text="'Order #' + ${order.orderNumber}"></h3>
+                            <span class="order-date"
+                                  th:text="${#temporals.format(order.createdOn, 'MMMM dd, yyyy')}"></span>
                         </div>
                         <div class="order-status">
-                            <span class="status-badge completed">Completed</span>
-                            <span class="order-total">$34.53</span>
+                            <span class="status-badge" th:classappend="${order.status.name().toLowerCase()}"
+                                  th:text="${order.status.name()}">Completed</span>
+                            <span class="order-total"
+                                  th:text="'$' + ${#numbers.formatDecimal(order.totalAmount, 1, 2)}"></span>
                         </div>
                     </div>
                     <div class="order-items">
-                        <div class="order-item">
+                        <div th:each="item : ${order.items}" class="order-item">
                             <div class="item-image">
-                                <img src="https://via.placeholder.com/80x80/746ab0/ffffff?text=Album"
-                                     alt="Midnight Dreams">
+                                <img th:src="${item.album.coverUrl}" th:alt="${item.album.title}"
+                                     src="https://via.placeholder.com/80x80/746ab0/ffffff?text=Album">
                             </div>
                             <div class="item-details">
-                                <h4 class="item-title">Midnight Dreams</h4>
-                                <p class="item-artist">The Night Owls</p>
-                                <span class="item-price">$12.99</span>
+                                <h4 class="item-title" th:text="${item.album.title}"></h4>
+                                <p class="item-artist" th:text="${item.album.artist.artistName}"></p>
+                                <span class="item-price"
+                                      th:text="'$' + ${#numbers.formatDecimal(item.unitPrice, 1, 2)}"></span>
                             </div>
                             <div class="item-actions">
-                                <button class="download-btn">Download</button>
-                            </div>
-                        </div>
-                        <div class="order-item">
-                            <div class="item-image">
-                                <img src="https://via.placeholder.com/80x80/6a61a4/ffffff?text=Album"
-                                     alt="Electric Pulse">
-                            </div>
-                            <div class="item-details">
-                                <h4 class="item-title">Electric Pulse</h4>
-                                <p class="item-artist">Digital Waves</p>
-                                <span class="item-price">$9.99</span>
-                            </div>
-                            <div class="item-actions">
-                                <button class="download-btn">Download</button>
-                            </div>
-                        </div>
-                        <div class="order-item">
-                            <div class="item-image">
-                                <img src="https://via.placeholder.com/80x80/605899/ffffff?text=Album"
-                                     alt="Acoustic Stories">
-                            </div>
-                            <div class="item-details">
-                                <h4 class="item-title">Acoustic Stories</h4>
-                                <p class="item-artist">Folk Masters</p>
-                                <span class="item-price">$14.99</span>
-                            </div>
-                            <div class="item-actions">
-                                <button class="download-btn">Download</button>
+                                <button class="download-btn"
+                                        th:if="${order.status.name() == 'COMPLETED'}">Download
+                                </button>
+                                <button class="download-btn" disabled
+                                        th:if="${order.status.name() == 'PENDING'}">Processing
+                                </button>
                             </div>
                         </div>
                     </div>
                     <div class="order-footer">
-                        <a href="/order-details/12345" class="view-details-btn">View Details</a>
-                        <button class="reorder-btn">Reorder</button>
+                        <a class="view-details-btn"
+                           th:href="@{/order-details/{orderNumber}(orderNumber=${order.orderNumber})}">View Details</a>
+                        <button class="reorder-btn"
+                                th:if="${order.status.name() == 'COMPLETED'}">Reorder
+                        </button>
+                        <button class="cancel-btn"
+                                th:if="${order.status.name() == 'PENDING'}">Cancel Order
+                        </button>
                     </div>
                 </div>
 
-                <div class="order-card card">
-                    <div class="order-header">
-                        <div class="order-info">
-                            <h3 class="order-id">Order #12344</h3>
-                            <span class="order-date">January 10, 2025</span>
-                        </div>
-                        <div class="order-status">
-                            <span class="status-badge completed">Completed</span>
-                            <span class="order-total">$22.99</span>
-                        </div>
-                    </div>
-                    <div class="order-items">
-                        <div class="order-item">
-                            <div class="item-image">
-                                <img src="https://via.placeholder.com/80x80/56508d/ffffff?text=Album"
-                                     alt="Jazz Fusion">
-                            </div>
-                            <div class="item-details">
-                                <h4 class="item-title">Jazz Fusion</h4>
-                                <p class="item-artist">Modern Jazz Collective</p>
-                                <span class="item-price">$16.99</span>
-                            </div>
-                            <div class="item-actions">
-                                <button class="download-btn">Download</button>
-                            </div>
-                        </div>
-                        <div class="order-item">
-                            <div class="item-image">
-                                <img src="https://via.placeholder.com/80x80/4c477f/ffffff?text=Album"
-                                     alt="Summer Vibes">
-                            </div>
-                            <div class="item-details">
-                                <h4 class="item-title">Summer Vibes</h4>
-                                <p class="item-artist">Beach Boys Revival</p>
-                                <span class="item-price">$11.99</span>
-                            </div>
-                            <div class="item-actions">
-                                <button class="download-btn">Download</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="order-footer">
-                        <a href="/order-details/12344" class="view-details-btn">View Details</a>
-                        <button class="reorder-btn">Reorder</button>
-                    </div>
-                </div>
-
-                <div class="order-card card">
-                    <div class="order-header">
-                        <div class="order-info">
-                            <h3 class="order-id">Order #12343</h3>
-                            <span class="order-date">January 5, 2025</span>
-                        </div>
-                        <div class="order-status">
-                            <span class="status-badge pending">Pending</span>
-                            <span class="order-total">$45.67</span>
-                        </div>
-                    </div>
-                    <div class="order-items">
-                        <div class="order-item">
-                            <div class="item-image">
-                                <img src="https://via.placeholder.com/80x80/423f73/ffffff?text=Album"
-                                     alt="Urban Legends">
-                            </div>
-                            <div class="item-details">
-                                <h4 class="item-title">Urban Legends</h4>
-                                <p class="item-artist">City Beats</p>
-                                <span class="item-price">$13.99</span>
-                            </div>
-                            <div class="item-actions">
-                                <button class="download-btn" disabled>Processing</button>
-                            </div>
-                        </div>
-                        <div class="order-item">
-                            <div class="item-image">
-                                <img src="https://via.placeholder.com/80x80/383666/ffffff?text=Album"
-                                     alt="Indie Dreams">
-                            </div>
-                            <div class="item-details">
-                                <h4 class="item-title">Indie Dreams</h4>
-                                <p class="item-artist">Underground Sounds</p>
-                                <span class="item-price">$10.99</span>
-                            </div>
-                            <div class="item-actions">
-                                <button class="download-btn" disabled>Processing</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="order-footer">
-                        <a href="/order-details/12343" class="view-details-btn">View Details</a>
-                        <button class="cancel-btn">Cancel Order</button>
+                <div th:if="${#lists.isEmpty(orders)}" class="no-orders">
+                    <div class="no-orders-content">
+                        <h3>No orders found</h3>
+                        <p>You haven't placed any orders yet. Start shopping to see your orders here!</p>
+                        <a href="/catalog" class="btn btn-primary">Browse Albums</a>
                     </div>
                 </div>
             </div>
