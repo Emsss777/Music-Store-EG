@@ -1,6 +1,7 @@
 package app.service.impl;
 
 import app.exception.DomainException;
+import app.exception.TitleAlreadyExistException;
 import app.model.dto.SaveAlbumDTO;
 import app.model.entity.Album;
 import app.model.entity.Artist;
@@ -14,9 +15,10 @@ import org.springframework.boot.ansi.AnsiColor;
 import org.springframework.boot.ansi.AnsiOutput;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
-import static app.util.ExceptionMessages.ALBUM_DOES_NOT_EXIST;
+import static app.util.ExceptionMessages.*;
 import static app.util.SuccessMessages.ALBUM_DELETED_WITH_DETAILS;
 
 @Slf4j
@@ -60,6 +62,12 @@ public class AlbumServiceImpl implements AlbumService {
     public void saveAlbumFromDTO(SaveAlbumDTO saveAlbumDTO) {
 
         Artist artist = artistService.getArtistById(saveAlbumDTO.getArtistId());
+
+        Optional<Album> existingAlbum = albumRepo.findByTitle(saveAlbumDTO.getTitle());
+        if (existingAlbum.isPresent()) {
+            throw new TitleAlreadyExistException(
+                    ALBUM_ALREADY_EXISTS.formatted(saveAlbumDTO.getTitle()));
+        }
 
         Album album = Album.builder()
                 .title(saveAlbumDTO.getTitle())

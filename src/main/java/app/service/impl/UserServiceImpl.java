@@ -58,11 +58,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @CacheEvict(value = "users", allEntries = true)
     public void registerUser(RegisterDTO registerDTO) {
 
-        Optional<User> optionalUser = userRepo.findByUsername(registerDTO.getUsername());
+        Optional<User> existingUser = userRepo.findByUsername(registerDTO.getUsername());
 
-        if (optionalUser.isPresent()) {
+        if (existingUser.isPresent()) {
             throw new UsernameAlreadyExistException(
-                    USERNAME_ALREADY_EXIST.formatted(registerDTO.getUsername()));
+                    USERNAME_ALREADY_EXISTS.formatted(registerDTO.getUsername()));
         }
 
         if (!registerDTO.getPassword().equals(registerDTO.getConfirmPassword())) {

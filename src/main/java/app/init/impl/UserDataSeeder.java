@@ -44,7 +44,7 @@ public class UserDataSeeder implements DataSeeder {
 
         try {
             userService.getUserByUsername(username);
-            log.info(AnsiOutput.toString(AnsiColor.YELLOW, ADMIN_ALREADY_EXIST), username);
+            log.info(AnsiOutput.toString(AnsiColor.YELLOW, ADMIN_ALREADY_EXISTS), username);
             return;
         } catch (DomainException ex) {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, ADMIN_NOT_FOUND), username);
@@ -73,7 +73,7 @@ public class UserDataSeeder implements DataSeeder {
 
         try {
             userService.getUserByUsername(username);
-            log.info(AnsiOutput.toString(AnsiColor.YELLOW, TEST_USER_ALREADY_EXIST), username);
+            log.info(AnsiOutput.toString(AnsiColor.YELLOW, TEST_USER_ALREADY_EXISTS), username);
             return;
         } catch (DomainException ex) {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, TEST_USER_NOT_FOUND), username);

@@ -42,7 +42,7 @@ public class ArtistDataSeeder implements DataSeeder {
 
         try {
             artistService.getArtistByArtistName(artistName);
-            log.info(AnsiOutput.toString(AnsiColor.YELLOW, ARTIST_ALREADY_EXIST), artistName);
+            log.info(AnsiOutput.toString(AnsiColor.YELLOW, ARTIST_ALREADY_EXISTS), artistName);
             return;
         } catch (DomainException ex) {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, ARTIST_NOT_FOUND), artistName);
@@ -71,7 +71,7 @@ public class ArtistDataSeeder implements DataSeeder {
 
         try {
             artistService.getArtistByArtistName(artistName);
-            log.info(AnsiOutput.toString(AnsiColor.YELLOW, ARTIST_ALREADY_EXIST), artistName);
+            log.info(AnsiOutput.toString(AnsiColor.YELLOW, ARTIST_ALREADY_EXISTS), artistName);
             return;
         } catch (DomainException ex) {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, ARTIST_NOT_FOUND), artistName);
@@ -100,7 +100,7 @@ public class ArtistDataSeeder implements DataSeeder {
 
         try {
             artistService.getArtistByArtistName(artistName);
-            log.info(AnsiOutput.toString(AnsiColor.YELLOW, ARTIST_ALREADY_EXIST), artistName);
+            log.info(AnsiOutput.toString(AnsiColor.YELLOW, ARTIST_ALREADY_EXISTS), artistName);
             return;
         } catch (DomainException ex) {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, ARTIST_NOT_FOUND), artistName);
@@ -130,7 +130,7 @@ public class ArtistDataSeeder implements DataSeeder {
 
         try {
             artistService.getArtistByArtistName(artistName);
-            log.info(AnsiOutput.toString(AnsiColor.YELLOW, ARTIST_ALREADY_EXIST), artistName);
+            log.info(AnsiOutput.toString(AnsiColor.YELLOW, ARTIST_ALREADY_EXISTS), artistName);
             return;
         } catch (DomainException ex) {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, ARTIST_NOT_FOUND), artistName);
@@ -159,7 +159,7 @@ public class ArtistDataSeeder implements DataSeeder {
 
         try {
             artistService.getArtistByArtistName(artistName);
-            log.info(AnsiOutput.toString(AnsiColor.YELLOW, ARTIST_ALREADY_EXIST), artistName);
+            log.info(AnsiOutput.toString(AnsiColor.YELLOW, ARTIST_ALREADY_EXISTS), artistName);
             return;
         } catch (DomainException ex) {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, ARTIST_NOT_FOUND), artistName);
@@ -188,7 +188,7 @@ public class ArtistDataSeeder implements DataSeeder {
 
         try {
             artistService.getArtistByArtistName(artistName);
-            log.info(AnsiOutput.toString(AnsiColor.YELLOW, ARTIST_ALREADY_EXIST), artistName);
+            log.info(AnsiOutput.toString(AnsiColor.YELLOW, ARTIST_ALREADY_EXISTS), artistName);
             return;
         } catch (DomainException ex) {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, ARTIST_NOT_FOUND), artistName);
