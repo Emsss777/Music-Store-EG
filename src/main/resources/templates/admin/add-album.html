@@ -49,13 +49,19 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="artistId">Artist *</label>
-                                    <select id="artistId" th:field="*{artistId}" required>
-                                        <option value="">Select artist</option>
-                                        <option th:each="artist : ${artists}"
-                                                th:value="${artist.id}"
-                                                th:text="${artist.artistName}">
-                                        </option>
-                                    </select>
+                                    <div class="artist-selection">
+                                        <select id="artistId" th:field="*{artistId}" required>
+                                            <option value="">Select artist</option>
+                                            <option th:each="artist : ${artists}"
+                                                    th:value="${artist.id}"
+                                                    th:text="${artist.artistName}">
+                                            </option>
+                                        </select>
+                                        <a class="add-artist-btn" target="_blank" th:href="@{/admin/artists/add}">
+                                            <span class="btn-icon">+</span>
+                                            Add New Artist
+                                        </a>
+                                    </div>
                                     <div class="error-message"
                                          th:if="${#fields.hasErrors('artistId')}" th:errors="*{artistId}">
                                     </div>

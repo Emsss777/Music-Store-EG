@@ -45,6 +45,51 @@
     align-items: start;
 }
 
+/* Artist Selection */
+.artist-selection {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+}
+
+.artist-selection select {
+    flex: 1;
+}
+
+.add-artist-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #746ab0 0%, #6a61a4 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    border: none;
+    cursor: pointer;
+}
+
+.add-artist-btn:hover {
+    background: linear-gradient(135deg, #6a61a4 0%, #605899 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(116, 106, 176, 0.3);
+    color: white;
+    text-decoration: none;
+}
+
+.add-artist-btn:active {
+    transform: translateY(0);
+}
+
+.btn-icon {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
 /* Error Messages */
 .error-message {
     color: #ff6b6b;
