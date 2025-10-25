@@ -66,7 +66,7 @@ public class AlbumServiceImpl implements AlbumService {
         Optional<Album> existingAlbum = albumRepo.findByTitle(saveAlbumDTO.getTitle());
         if (existingAlbum.isPresent()) {
             throw new TitleAlreadyExistException(
-                    ALBUM_ALREADY_EXISTS.formatted(saveAlbumDTO.getTitle()));
+                    TITLE_ALREADY_EXISTS.formatted(saveAlbumDTO.getTitle()));
         }
 
         Album album = Album.builder()

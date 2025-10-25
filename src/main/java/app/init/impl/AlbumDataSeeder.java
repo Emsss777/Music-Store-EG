@@ -47,7 +47,7 @@ public class AlbumDataSeeder implements DataSeeder {
 
         try {
             albumService.getAlbumByAlbumTitle(albumTitle);
-            log.info(AnsiOutput.toString(AnsiColor.YELLOW, ALBUM_ALREADY_EXISTS_SKIPPING_SEEDING), albumTitle);
+            log.info(AnsiOutput.toString(AnsiColor.YELLOW, ALBUM_ALREADY_EXISTS), albumTitle);
             return;
         } catch (DomainException ex) {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, ALBUM_NOT_FOUND), albumTitle);
@@ -80,7 +80,7 @@ public class AlbumDataSeeder implements DataSeeder {
 
         try {
             albumService.getAlbumByAlbumTitle(albumTitle);
-            log.info(AnsiOutput.toString(AnsiColor.YELLOW, ALBUM_ALREADY_EXISTS_SKIPPING_SEEDING), albumTitle);
+            log.info(AnsiOutput.toString(AnsiColor.YELLOW, ALBUM_ALREADY_EXISTS), albumTitle);
             return;
         } catch (DomainException ex) {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, ALBUM_NOT_FOUND), albumTitle);
@@ -113,7 +113,7 @@ public class AlbumDataSeeder implements DataSeeder {
 
         try {
             albumService.getAlbumByAlbumTitle(albumTitle);
-            log.info(AnsiOutput.toString(AnsiColor.YELLOW, ALBUM_ALREADY_EXISTS_SKIPPING_SEEDING), albumTitle);
+            log.info(AnsiOutput.toString(AnsiColor.YELLOW, ALBUM_ALREADY_EXISTS), albumTitle);
             return;
         } catch (DomainException ex) {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, ALBUM_NOT_FOUND), albumTitle);
@@ -147,7 +147,7 @@ public class AlbumDataSeeder implements DataSeeder {
 
         try {
             albumService.getAlbumByAlbumTitle(albumTitle);
-            log.info(AnsiOutput.toString(AnsiColor.YELLOW, ALBUM_ALREADY_EXISTS_SKIPPING_SEEDING), albumTitle);
+            log.info(AnsiOutput.toString(AnsiColor.YELLOW, ALBUM_ALREADY_EXISTS), albumTitle);
             return;
         } catch (DomainException ex) {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, ALBUM_NOT_FOUND), albumTitle);
@@ -180,7 +180,7 @@ public class AlbumDataSeeder implements DataSeeder {
 
         try {
             albumService.getAlbumByAlbumTitle(albumTitle);
-            log.info(AnsiOutput.toString(AnsiColor.YELLOW, ALBUM_ALREADY_EXISTS_SKIPPING_SEEDING), albumTitle);
+            log.info(AnsiOutput.toString(AnsiColor.YELLOW, ALBUM_ALREADY_EXISTS), albumTitle);
             return;
         } catch (DomainException ex) {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, ALBUM_NOT_FOUND), albumTitle);
@@ -214,7 +214,7 @@ public class AlbumDataSeeder implements DataSeeder {
 
         try {
             albumService.getAlbumByAlbumTitle(albumTitle);
-            log.info(AnsiOutput.toString(AnsiColor.YELLOW, ALBUM_ALREADY_EXISTS_SKIPPING_SEEDING), albumTitle);
+            log.info(AnsiOutput.toString(AnsiColor.YELLOW, ALBUM_ALREADY_EXISTS), albumTitle);
             return;
         } catch (DomainException ex) {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_CYAN, ALBUM_NOT_FOUND), albumTitle);

@@ -15,8 +15,8 @@ public class ExceptionMessages {
     public static final String ARTIST_ALREADY_EXISTS = "Artist [{}] Already Exists! Skipping Seeding!";
     public static final String ARTIST_NOT_FOUND = "Artist [{}] NOT Found! Creating new...";
     public static final String ALBUM_DOES_NOT_EXIST = "Album [%s] does NOT Exist!";
-    public static final String ALBUM_ALREADY_EXISTS_SKIPPING_SEEDING = "Album [{}] Already Exists! Skipping Seeding!";
-    public static final String ALBUM_ALREADY_EXISTS = "Album [%s] Already Exists!";
+    public static final String ALBUM_ALREADY_EXISTS = "Album [{}] Already Exists! Skipping Seeding!";
+    public static final String TITLE_ALREADY_EXISTS = "Title [%s] Already Exists!";
     public static final String ALBUM_NOT_FOUND = "Album [{}] NOT Found! Creating new...";
     public static final String ALBUM_FAILED_TO_DELETE = "Failed to delete album!";
     public static final String TEST_USER_ALREADY_EXISTS = "Test User [{}] Already Exists! Skipping Seeding!";
