@@ -12,4 +12,6 @@ public interface OrderService {
     Order createOrder(CheckoutDTO checkoutDTO, List<CartItemDTO> cartItems, User user);
 
     List<Order> getAllOrders();
+
+    Order getOrderByOrderNumber(String orderNumber);
 }

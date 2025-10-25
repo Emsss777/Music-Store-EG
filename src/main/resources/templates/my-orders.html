@@ -81,7 +81,7 @@
                     </div>
                     <div class="order-footer">
                         <a class="view-details-btn"
-                           th:href="@{/order-details/{orderNumber}(orderNumber=${order.orderNumber})}">View Details</a>
+                           th:href="@{/users/order-details/{orderNumber}(orderNumber=${order.orderNumber})}">View Details</a>
                         <button class="reorder-btn"
                                 th:if="${order.status.name() == 'COMPLETED'}">Reorder
                         </button>

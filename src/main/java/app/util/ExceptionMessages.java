@@ -19,6 +19,7 @@ public class ExceptionMessages {
     public static final String TITLE_ALREADY_EXISTS = "Title [%s] Already Exists!";
     public static final String ALBUM_NOT_FOUND = "Album [{}] NOT Found! Creating new...";
     public static final String ALBUM_FAILED_TO_DELETE = "Failed to delete album!";
+    public static final String ORDER_DOES_NOT_EXIST = "Order [%s] does NOT Exist!";
     public static final String TEST_USER_ALREADY_EXISTS = "Test User [{}] Already Exists! Skipping Seeding!";
     public static final String TEST_USER_NOT_FOUND = "Test User [{}] NOT Found! Creating new...";
     public static final String INCORRECT_USERNAME_OR_PASSWORD = "Incorrect Username or Password!";

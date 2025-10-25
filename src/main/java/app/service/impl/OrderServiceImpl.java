@@ -1,5 +1,6 @@
 package app.service.impl;
 
+import app.exception.DomainException;
 import app.model.dto.CartItemDTO;
 import app.model.dto.CheckoutDTO;
 import app.model.entity.*;
@@ -17,6 +18,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
+
+import static app.util.ExceptionMessages.ORDER_DOES_NOT_EXIST;
 
 @Service
 @RequiredArgsConstructor
@@ -64,6 +67,13 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getAllOrders() {
 
         return orderRepo.findAll();
+    }
+
+    @Override
+    public Order getOrderByOrderNumber(String orderNumber) {
+
+        return orderRepo.findByOrderNumber(orderNumber).orElseThrow(() ->
+                new DomainException(ORDER_DOES_NOT_EXIST + orderNumber));
     }
 
     private String generateOrderNumber() {
