@@ -25,9 +25,9 @@ import java.util.List;
 import static app.util.ExceptionMessages.CART_IS_EMPTY;
 import static app.util.FlashAttributes.*;
 import static app.util.ModelAttributes.*;
-import static app.util.Redirects.REDIRECT_CART;
+import static app.util.Redirects.*;
 import static app.util.SuccessMessages.ORDER_PLACED_SUCCESS;
-import static app.util.UrlPaths.URL_CHECKOUT;
+import static app.util.UrlPaths.*;
 import static app.util.Views.VIEW_CHECKOUT;
 
 @Controller
@@ -65,8 +65,8 @@ public class CheckoutController {
 
     @PostMapping(URL_CHECKOUT)
     public ModelAndView processCheckout(@ModelAttribute CheckoutDTO checkoutDTO, HttpSession session,
-                                  @AuthenticationPrincipal AuthenticationMetadata authMetadata,
-                                  RedirectAttributes redirectAttributes) {
+                                        @AuthenticationPrincipal AuthenticationMetadata authMetadata,
+                                        RedirectAttributes redirectAttributes) {
 
         List<CartItemDTO> cartItems = cartService.getCartItems(session);
 
@@ -85,6 +85,6 @@ public class CheckoutController {
         redirectAttributes.addFlashAttribute(FLASH_MESSAGE, ORDER_PLACED_SUCCESS + order.getOrderNumber());
         redirectAttributes.addFlashAttribute(FLASH_ORDER_NUMBER, order.getOrderNumber());
 
-        return new ModelAndView(REDIRECT_CART);
+        return new ModelAndView(REDIRECT_MADE_ORDER + URL_ORDER_NUMBER + order.getOrderNumber());
     }
 }

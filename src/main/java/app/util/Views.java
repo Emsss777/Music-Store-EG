@@ -12,6 +12,7 @@ public final class Views {
     public static final String VIEW_ALBUM = "album";
     public static final String VIEW_CART = "cart";
     public static final String VIEW_CHECKOUT = "checkout";
+    public static final String VIEW_MADE_ORDER = "made-order";
     public static final String VIEW_MY_ORDERS = "my-orders";
     public static final String VIEW_ORDER_DETAILS = "order-details";
     public static final String VIEW_PROFILE = "profile";

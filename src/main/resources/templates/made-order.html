@@ -27,8 +27,10 @@
                     <i class="fas fa-check-circle"></i>
                 </div>
                 <h1>Order Placed Successfully!</h1>
-                <p class="order-subtitle">Thank you for your purchase. Your order has been confirmed
-                                          and will be processed shortly.</p>
+                <p class="order-subtitle">
+                    Thank you for your purchase. Your order has been confirmed
+                    and will be processed shortly.
+                </p>
             </div>
 
             <div class="order-details-grid">
@@ -37,23 +39,25 @@
                     <div class="info-grid">
                         <div class="info-item">
                             <span class="info-label">Order Number:</span>
-                            <span class="info-value">#MS-2025-001247</span>
+                            <span class="info-value" th:text="${order.orderNumber}"></span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Order Date:</span>
-                            <span class="info-value">January 15, 2025</span>
+                            <span class="info-value"
+                                  th:text="${#temporals.format(order.createdOn, 'dd MMM, yyyy - HH:mm')}"></span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Order Status:</span>
-                            <span class="info-value status-confirmed">Confirmed</span>
+                            <span class="info-value status-confirmed" th:text="${order.status}"></span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Payment Method:</span>
-                            <span class="info-value">Visa ending in 4242</span>
+                            <span class="info-value" th:text="${order.paymentMethod}"></span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Total Amount:</span>
-                            <span class="info-value total-amount">$28.98</span>
+                            <span class="info-value total-amount"
+                                  th:text="${#numbers.formatDecimal(order.totalAmount, 2, 2)} + ' €'"></span>
                         </div>
                     </div>
                 </div>
@@ -61,19 +65,19 @@
                 <div class="shipping-info-card card">
                     <h2 class="card-title">Shipping Information</h2>
                     <div class="shipping-address">
-                        <p class="address-name">John Doe</p>
-                        <p class="address-line">123 Music Lane</p>
-                        <p class="address-line">Apt 4B</p>
-                        <p class="address-line">Melody City, MC 12345</p>
-                        <p class="address-line">United States</p>
+                        <p class="address-name"
+                           th:text="${order.owner.firstName + ' ' + order.owner.lastName}"></p>
+                        <p class="address-line" th:text="${order.owner.email}"></p>
+                        <p class="address-line">Digital Download</p>
+                        <p class="address-line">No physical shipping required</p>
                     </div>
                     <div class="shipping-method">
-                        <span class="shipping-label">Shipping Method:</span>
-                        <span class="shipping-value">Standard Shipping (5–7 business days)</span>
+                        <span class="shipping-label">Delivery Method:</span>
+                        <span class="shipping-value">Digital Download (Instant)</span>
                     </div>
                     <div class="estimated-delivery">
-                        <span class="delivery-label">Estimated Delivery:</span>
-                        <span class="delivery-value">January 22–24, 2025</span>
+                        <span class="delivery-label">Delivery Status:</span>
+                        <span class="delivery-value">Available immediately after purchase</span>
                     </div>
                 </div>
             </div>
@@ -81,37 +85,23 @@
             <div class="order-items-section">
                 <h2 class="section-title">Order Items</h2>
                 <div class="items-list">
-                    <div class="order-item">
+                    <div class="order-item" th:each="item : ${order.items}">
                         <div class="item-image">
-                            <img th:src="@{/images/album-cover-1.jpg}" alt="Album Cover">
+                            <img th:src="@{/images/album-covers/{imageName}(imageName=${item.album.coverUrl})}"
+                                 alt="Album Cover">
                         </div>
                         <div class="item-details">
-                            <h3 class="item-title">The Dark Side of the Moon</h3>
-                            <p class="item-artist">Pink Floyd</p>
+                            <h3 class="item-title" th:text="${item.album.title}"></h3>
+                            <p class="item-artist"
+                               th:text="${item.album.artist.firstName + ' ' + item.album.artist.lastName}"></p>
                             <p class="item-format">Digital Download</p>
                         </div>
                         <div class="item-quantity">
                             <span class="quantity">Qty: 1</span>
                         </div>
                         <div class="item-price">
-                            <span class="price">$12.99</span>
-                        </div>
-                    </div>
-
-                    <div class="order-item">
-                        <div class="item-image">
-                            <img th:src="@{/images/album-cover-2.jpg}" alt="Album Cover">
-                        </div>
-                        <div class="item-details">
-                            <h3 class="item-title">Thriller</h3>
-                            <p class="item-artist">Michael Jackson</p>
-                            <p class="item-format">Digital Download</p>
-                        </div>
-                        <div class="item-quantity">
-                            <span class="quantity">Qty: 1</span>
-                        </div>
-                        <div class="item-price">
-                            <span class="price">$10.99</span>
+                            <span class="price"
+                                  th:text="${#numbers.formatDecimal(item.unitPrice, 2, 2)} + ' €'"></span>
                         </div>
                     </div>
                 </div>
@@ -119,11 +109,12 @@
                 <div class="order-summary">
                     <div class="summary-row">
                         <span class="summary-label">Subtotal:</span>
-                        <span class="summary-value">$23.98</span>
+                        <span class="summary-value"
+                              th:text="${#numbers.formatDecimal(order.totalAmount, 2, 2)} + ' €'"></span>
                     </div>
                     <div class="summary-row">
                         <span class="summary-label">Shipping:</span>
-                        <span class="summary-value">$5.00</span>
+                        <span class="summary-value">$0.00</span>
                     </div>
                     <div class="summary-row">
                         <span class="summary-label">Tax:</span>
@@ -131,7 +122,8 @@
                     </div>
                     <div class="summary-row total-row">
                         <span class="summary-label">Total:</span>
-                        <span class="summary-value">$28.98</span>
+                        <span class="summary-value"
+                              th:text="${#numbers.formatDecimal(order.totalAmount, 2, 2)} + ' €'"></span>
                     </div>
                 </div>
             </div>
@@ -154,7 +146,8 @@
                         <div class="timeline-content">
                             <h4>Order Placed</h4>
                             <p>Your order has been successfully placed</p>
-                            <span class="timeline-date">January 15, 2025–2:30 PM</span>
+                            <span class="timeline-date"
+                                  th:text="${#temporals.format(order.createdOn, 'dd MMM, yyyy - HH:mm')}"></span>
                         </div>
                     </div>
 
@@ -165,7 +158,8 @@
                         <div class="timeline-content">
                             <h4>Payment Processed</h4>
                             <p>Payment has been successfully processed</p>
-                            <span class="timeline-date">January 15, 2025–2:31 PM</span>
+                            <span class="timeline-date"
+                                  th:text="${#temporals.format(order.createdOn, 'dd MMM, yyyy - HH:mm')}"></span>
                         </div>
                     </div>
 
@@ -222,36 +216,43 @@
 
 <script>
     function downloadReceipt() {
-        // In a real application, this would generate and download a PDF receipt
         alert('Receipt download started! Check your downloads folder.');
 
-        // Simulate download
+        const orderNumber = /*[[${order.orderNumber}]]*/ 'ORD-12345678';
+        const orderDate = /*[[${#temporals.format(order.createdOn, 'dd MMM, yyyy')}]]*/ '15 яну, 2025';
+        const orderStatus = /*[[${order.status}]]*/ 'Confirmed';
+        const orderTotal = /*[[${#numbers.formatCurrency(order.totalAmount)} + '€']]*/ '28,98 €';
+        const customerName = /*[[${order.owner.firstName + ' ' + order.owner.lastName}]]*/ 'Emil Ganchev';
+        const customerEmail = /*[[${order.owner.email}]]*/ 'admin@softuni.bg';
+
         const receiptData = `
                 MUSIC STORE APP - RECEIPT
                 =========================
-                
-                Order Number: #MS-2025-001247
-                Date: January 15, 2025
-                Status: Confirmed
-                
-                BILLING INFORMATION:
-                John Doe
-                123 Music Lane, Apt 4B
-                Melody City, MC 12345
-                United States
-                
+
+                Order Number: ${orderNumber}
+                Date: ${orderDate}
+                Status: ${orderStatus}
+
+                CUSTOMER INFORMATION:
+                ${customerName}
+                ${customerEmail}
+
                 ORDER ITEMS:
-                1x The Dark Side of the Moon - Pink Floyd - $12.99
-                1x Thriller - Michael Jackson - $10.99
-                
+                ${Array.from(document.querySelectorAll('.order-item')).map(item => {
+            const title = item.querySelector('.item-title').textContent;
+            const artist = item.querySelector('.item-artist').textContent;
+            const price = item.querySelector('.price').textContent;
+            return `1x ${title} - ${artist} - ${price}`;
+        }).join('\n')}
+
                 SUMMARY:
-                Subtotal: $23.98
-                Shipping: $5.00
+                Subtotal: ${orderTotal}
+                Shipping: $0.00
                 Tax: $0.00
-                Total: $28.98
-                
-                Payment Method: Visa ending in 4242
-                
+                Total: ${orderTotal}
+
+                Payment Method: Digital Download
+
                 Thank you for your purchase!
             `;
 
@@ -259,14 +260,13 @@
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'music-store-receipt-MS-2025-001247.txt';
+        a.download = 'music-store-receipt-' + orderNumber + '.txt';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
         window.URL.revokeObjectURL(url);
     }
 
-    // Add some interactive animations
     document.addEventListener('DOMContentLoaded', function () {
         // Animate timeline items on scroll
         const timelineItems = document.querySelectorAll('.timeline-item');

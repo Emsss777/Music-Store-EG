@@ -13,6 +13,8 @@ public final class UrlPaths {
     public static final String URL_ALBUM = "/album";
     public static final String URL_CART = "/cart";
     public static final String URL_CHECKOUT = "/checkout";
+    public static final String URL_MADE_ORDER = "/made-order";
+    public static final String URL_ORDER_NUMBER = "?orderNumber=";
     public static final String URL_MY_ORDERS = "/my-orders";
     public static final String URL_ORDER_DETAILS = "/order-details";
     public static final String URL_ADD = "/add";
