@@ -8,8 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/common.css">
-    <link rel="stylesheet" type="text/css" href="/css/auth/register.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/auth/register.css}">
     <title>Register | Music Store</title>
 </head>
 
@@ -39,7 +39,7 @@
 
     <section class="auth-section">
         <div class="auth-header">
-            <a href="/" class="logo-link">
+            <a th:href="@{/}" class="logo-link">
                 <h1 class="auth-logo">Music Store</h1>
             </a>
             <p class="auth-subtitle">Create your account to get started</p>
@@ -55,9 +55,11 @@
                        placeholder="Choose a username" required>
                 <p class="alert-warning" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
                 <p class="alert-warning"
-                   th:if="${usernameAlreadyExists}" th:text="${usernameAlreadyExists}"></p>
+                   th:if="${usernameAlreadyExists}" th:text="${usernameAlreadyExists}">
+                </p>
                 <p class="alert-warning"
-                   th:if="${passwordMismatchException}" th:text="${passwordMismatchException}"></p>
+                   th:if="${passwordMismatchException}" th:text="${passwordMismatchException}">
+                </p>
             </div>
 
             <div class="form-group">
@@ -67,12 +69,6 @@
                        placeholder="Create a strong password" required>
                 <p class="alert-warning"
                    th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
-                <!--                <div class="password-strength">-->
-                <!--                    <div class="strength-bar">-->
-                <!--                        <div class="strength-fill"></div>-->
-                <!--                    </div>-->
-                <!--                    <span class="strength-text">Password strength</span>-->
-                <!--                </div>-->
             </div>
 
             <div class="form-group">
@@ -82,13 +78,6 @@
                 <p class="alert-warning"
                    th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></p>
             </div>
-
-            <!--            <div class="form-group">-->
-            <!--                <label for="birthDate">Date of Birth</label>-->
-            <!--                <input type="date" id="birthDate"-->
-            <!--                       name="birthDate" required th:field="*{birthDate}">-->
-            <!--                <p class="alert-warning">Error Message</p>-->
-            <!--            </div>-->
 
             <div class="form-group">
                 <label for="country">Country</label>
@@ -110,14 +99,6 @@
                     <a href="/privacy" class="terms-link">Privacy Policy</a>
                 </label>
             </div>
-
-            <!--            <div class="form-group">-->
-            <!--                <label class="checkbox-container">-->
-            <!--                    <input type="checkbox" id="newsletter" name="newsletter">-->
-            <!--                    <span class="checkmark"></span>-->
-            <!--                    Subscribe to our newsletter for music updates and exclusive offers-->
-            <!--                </label>-->
-            <!--            </div>-->
 
             <button type="submit" class="auth-button primary">Create Account</button>
 

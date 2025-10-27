@@ -8,8 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/common.css">
-    <link rel="stylesheet" type="text/css" href="/css/error/error-page.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/error/error-page.css}">
     <title>Page Not Found | Music Store</title>
 </head>
 
@@ -54,7 +54,7 @@
 
                     <div class="error-actions">
                         <a class="button primary" th:href="@{/home}">Go Home</a>
-                        <a class="button" th:href="@{/catalog}">Browse Music</a >
+                        <a class="button" th:href="@{/catalog}">Browse Music</a>
                         <button class="button" onclick="history.back()">Go Back</button>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                     <div class="album-info">
                         <h4 class="album-title">Midnight Dreams</h4>
                         <p class="album-artist">The Night Owls</p>
-                        <span class="album-price">$12.99</span>
+                        <span class="album-price">12,99 €</span>
                     </div>
                 </div>
                 <div class="album-card card">
@@ -85,7 +85,7 @@
                     <div class="album-info">
                         <h4 class="album-title">Electric Pulse</h4>
                         <p class="album-artist">Digital Waves</p>
-                        <span class="album-price">$9.99</span>
+                        <span class="album-price">9,99 €</span>
                     </div>
                 </div>
                 <div class="album-card card">
@@ -96,7 +96,7 @@
                     <div class="album-info">
                         <h4 class="album-title">Acoustic Stories</h4>
                         <p class="album-artist">Folk Masters</p>
-                        <span class="album-price">$14.99</span>
+                        <span class="album-price">14,99 €</span>
                     </div>
                 </div>
             </div>

@@ -8,8 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/common.css">
-    <link rel="stylesheet" type="text/css" href="/css/auth/login.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/auth/login.css}">
     <title>Login | Music Store</title>
 </head>
 
@@ -18,7 +18,7 @@
 <main class="auth-container">
     <section class="auth-section">
         <div class="auth-header">
-            <a href="/" class="logo-link">
+            <a th:href="@{/}" class="logo-link">
                 <h1 class="auth-logo">Music Store</h1>
             </a>
             <p class="auth-subtitle">Welcome back! Sign in to your account</p>

@@ -13,9 +13,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/common.css">
-    <link rel="stylesheet" type="text/css" href="/css/admin/admin-albums.css">
-    <title>Manage Albums | Music Store Admin</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin/admin-albums.css}">
+    <title>Manage Albums | Music Store</title>
 </head>
 
 <body>
@@ -95,7 +95,9 @@
                             <span class="album-genre" th:text="${album.genre}"></span>
                             <span class="album-year" th:text="${album.year}"></span>
                         </div>
-                        <div class="album-price" th:text="'$' + ${album.price}"></div>
+                        <div class="album-price"
+                             th:text="${#numbers.formatDecimal(album.price, 1, 2)} + ' €'">
+                        </div>
                         <div class="album-stats">
                             <span class="sales-count">0 sales</span>
                             <span class="status-badge active">Active</span>

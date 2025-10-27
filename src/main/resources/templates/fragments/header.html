@@ -38,7 +38,7 @@
             <a class="nav-link" th:href="@{/users/my-orders}" th:classappend="${page == 'my-orders'} ? ' active'"
                sec:authorize="hasRole('USER')">My Orders</a>
 
-            <a class="nav-link" th:href="@{/users/admin-dashboard}"
+            <a class="nav-link" th:href="@{/admin/admin-dashboard}"
                th:classappend="${page == 'admin/admin-dashboard'} ? ' active'"
                sec:authorize="hasRole('ADMIN')">Admin</a>
 

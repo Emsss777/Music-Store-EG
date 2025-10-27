@@ -8,9 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/common.css">
-    <link rel="stylesheet" type="text/css" href="/css/admin/add-artist.css">
-    <title>Add New Artist | Music Store Admin</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin/add-artist.css}">
+    <title>Add New Artist | Music Store</title>
 </head>
 
 <body>
@@ -21,7 +21,9 @@
     <div class="admin-header">
         <div class="container">
             <div class="breadcrumb">
-                <a href="/admin">Admin Dashboard</a> / <a href="/admin/albums">Albums</a> / <span>Add Artist</span>
+                <a th:href="@{/admin/admin-dashboard}">Admin Dashboard</a> /
+                <a th:href="@{/admin/albums}">Albums</a> /
+                <span>Add Artist</span>
             </div>
             <h1 class="page-title">Add New Artist</h1>
             <p class="page-subtitle">Create a new artist profile for the music catalog</p>
@@ -65,7 +67,9 @@
                             <div class="form-group">
                                 <label for="artistBio">Artist Biography</label>
                                 <textarea id="artistBio" name="artistBio" rows="6"
-                                          placeholder="Tell us about the artist's background, musical style, and achievements..."></textarea>
+                                          placeholder="Tell us about the artist's background,
+                                          musical style, and achievements...">
+                                </textarea>
                             </div>
                         </div>
 
@@ -79,16 +83,10 @@
                                         <option value="">Select primary genre</option>
                                         <option value="pop">Pop</option>
                                         <option value="rock">Rock</option>
-                                        <option value="electronic">Electronic</option>
-                                        <option value="jazz">Jazz</option>
-                                        <option value="classical">Classical</option>
                                         <option value="hip-hop">Hip-Hop</option>
-                                        <option value="country">Country</option>
-                                        <option value="blues">Blues</option>
-                                        <option value="folk">Folk</option>
-                                        <option value="r&b">R&B</option>
-                                        <option value="reggae">Reggae</option>
-                                        <option value="other">Other</option>
+                                        <option value="classical">Classical</option>
+                                        <option value="metal">Metal</option>
+                                        <option value="electronic">Electronic</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -102,21 +100,17 @@
                                 <div class="form-group">
                                     <label for="formedYear">Year Formed/Started</label>
                                     <input type="number" id="formedYear" name="formedYear"
-                                           min="1900" max="2025" placeholder="e.g., 2020">
+                                           max="2025" placeholder="e.g., 2020">
                                 </div>
                                 <div class="form-group">
                                     <label for="originCountry">Country of Origin</label>
                                     <select id="originCountry" name="originCountry">
                                         <option value="">Select country</option>
-                                        <option value="US">United States</option>
-                                        <option value="UK">United Kingdom</option>
-                                        <option value="CA">Canada</option>
-                                        <option value="AU">Australia</option>
+                                        <option value="BG">Bulgaria</option>
                                         <option value="DE">Germany</option>
                                         <option value="FR">France</option>
-                                        <option value="JP">Japan</option>
-                                        <option value="BR">Brazil</option>
-                                        <option value="other">Other</option>
+                                        <option value="IT">Italy</option>
+                                        <option value="ES">Spain</option>
                                     </select>
                                 </div>
                             </div>
@@ -265,12 +259,12 @@
 <th:block th:replace="~{fragments/footer :: site-footer}"></th:block>
 
 <script>
-    // Form preview functionality
     function updatePreview() {
         const name = document.getElementById('artistName').value || 'Artist Name';
         const genre = document.getElementById('primaryGenre').value || 'Genre';
         const bio = document.getElementById('artistBio').value || 'Artist biography will appear here...';
-        const photo = document.getElementById('artistPhoto').value || 'https://via.placeholder.com/200x200/746ab0/ffffff?text=Artist+Photo';
+        const photo = document.getElementById('artistPhoto').value ||
+            'https://via.placeholder.com/200x200/746ab0/ffffff?text=Artist+Photo';
 
         document.getElementById('previewName').textContent = name;
         document.getElementById('previewGenre').textContent = genre;
@@ -278,7 +272,6 @@
         document.getElementById('previewImage').src = photo;
     }
 
-    // Add event listeners for a live preview
     document.addEventListener('DOMContentLoaded', function () {
         const previewFields = ['artistName', 'primaryGenre', 'artistBio', 'artistPhoto'];
         previewFields.forEach(field => {

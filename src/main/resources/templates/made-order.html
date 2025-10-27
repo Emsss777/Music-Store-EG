@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/common.css">
-    <link rel="stylesheet" type="text/css" href="/css/made-order.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/made-order.css}">
     <title>Order Confirmation | Music Store</title>
 </head>
 
@@ -57,7 +57,8 @@
                         <div class="info-item">
                             <span class="info-label">Total Amount:</span>
                             <span class="info-value total-amount"
-                                  th:text="${#numbers.formatDecimal(order.totalAmount, 2, 2)} + ' €'"></span>
+                                  th:text="${#numbers.formatDecimal(order.totalAmount, 1, 2)} + ' €'">
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -100,8 +101,9 @@
                             <span class="quantity">Qty: 1</span>
                         </div>
                         <div class="item-price">
-                            <span class="price"
-                                  th:text="${#numbers.formatDecimal(item.unitPrice, 2, 2)} + ' €'"></span>
+                            <span class="summary-value"
+                                  th:text="${#numbers.formatDecimal(item.unitPrice, 1, 2)} + ' €'">
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -110,28 +112,30 @@
                     <div class="summary-row">
                         <span class="summary-label">Subtotal:</span>
                         <span class="summary-value"
-                              th:text="${#numbers.formatDecimal(order.totalAmount, 2, 2)} + ' €'"></span>
+                              th:text="${#numbers.formatDecimal(order.totalAmount, 1, 2)} + ' €'">
+                        </span>
                     </div>
                     <div class="summary-row">
                         <span class="summary-label">Shipping:</span>
-                        <span class="summary-value">$0.00</span>
+                        <span class="summary-value">0,00 €</span>
                     </div>
                     <div class="summary-row">
                         <span class="summary-label">Tax:</span>
-                        <span class="summary-value">$0.00</span>
+                        <span class="summary-value">0,00 €</span>
                     </div>
                     <div class="summary-row total-row">
                         <span class="summary-label">Total:</span>
                         <span class="summary-value"
-                              th:text="${#numbers.formatDecimal(order.totalAmount, 2, 2)} + ' €'"></span>
+                              th:text="${#numbers.formatDecimal(order.totalAmount, 1, 2)} + ' €'">
+                        </span>
                     </div>
                 </div>
             </div>
 
             <div class="order-actions">
                 <div class="action-buttons">
-                    <a href="/my-orders" class="button primary">View My Orders</a>
-                    <a href="/catalog" class="button secondary">Continue Shopping</a>
+                    <a th:href="@{/users/my-orders}" class="button primary">View My Orders</a>
+                    <a th:href="@{/catalog}" class="button secondary">Continue Shopping</a>
                     <button class="button download-receipt" onclick="downloadReceipt()">Download Receipt</button>
                 </div>
             </div>
@@ -181,7 +185,7 @@
                         <div class="timeline-content">
                             <h4>Shipped</h4>
                             <p>Your order has been shipped</p>
-                            <span class="timeline-date">Estimated: January 17, 2025</span>
+                            <span class="timeline-date">Estimated: 17 jan, 2025</span>
                         </div>
                     </div>
 
@@ -192,7 +196,7 @@
                         <div class="timeline-content">
                             <h4>Delivered</h4>
                             <p>Your order has been delivered</p>
-                            <span class="timeline-date">Estimated: January 22–24, 2025</span>
+                            <span class="timeline-date">Estimated: 22–24 jan, 2025</span>
                         </div>
                     </div>
                 </div>

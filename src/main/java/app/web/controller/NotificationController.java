@@ -17,18 +17,19 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 import static app.util.ModelAttributes.*;
+import static app.util.UrlPaths.URL_ADMIN;
 import static app.util.UrlPaths.URL_NOTIFICATIONS;
 import static app.util.Views.VIEW_NOTIFICATIONS;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping(URL_NOTIFICATIONS)
+@RequestMapping(URL_ADMIN)
 public class NotificationController {
 
     private final UserService userService;
     private final NotificationService notificationService;
 
-    @GetMapping
+    @GetMapping(URL_NOTIFICATIONS)
     public ModelAndView getNotificationPage(@AuthenticationPrincipal AuthenticationMetadata authMetadata) {
 
         User currentUser = userService.getUserById(authMetadata.getUserId());

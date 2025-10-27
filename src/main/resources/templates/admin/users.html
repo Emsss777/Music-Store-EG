@@ -8,9 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/common.css">
-    <link rel="stylesheet" type="text/css" href="/css/admin/users.css">
-    <title>User Management | Music Store App</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin/users.css}">
+    <title>User Management | Music Store</title>
 </head>
 
 <body>
@@ -44,7 +44,6 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <!-- Regular Users Section -->
                         <tr class="user-row" th:each="user : ${users}" th:if="${user.role.name() == 'USER'}">
                             <td class="user-id" th:text="${user.id}"></td>
                             <td class="user-username" th:text="${user.username}"></td>
@@ -60,9 +59,9 @@
                                 <span class="status-badge inactive" th:unless="${user.active}">INACTIVE</span>
                             </td>
                             <td class="user-created"
-                                th:text="${#temporals.format(user.createdOn, 'dd MMM YYYY HH:mm')}"></td>
+                                th:text="${#temporals.format(user.createdOn, 'dd MMM, yyyy - HH:mm')}"></td>
                             <td class="user-action">
-                                <form th:action="@{'/users/' + ${user.id} + '/status'}" th:method="PUT">
+                                <form th:action="@{'/admin/users/' + ${user.id} + '/status'}" th:method="PUT">
                                     <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
                                     <label class="toggle-switch">
                                         <input type="checkbox"
@@ -73,7 +72,7 @@
                                 </form>
                             </td>
                             <td class="user-action">
-                                <form th:action="@{'/users/' + ${user.id} + '/role'}" th:method="PUT">
+                                <form th:action="@{'/admin/users/' + ${user.id} + '/role'}" th:method="PUT">
                                     <button class="action-button role-change">
                                         Change Role
                                     </button>
@@ -104,9 +103,9 @@
                                 <span class="status-badge inactive" th:unless="${user.active}">INACTIVE</span>
                             </td>
                             <td class="user-created"
-                                th:text="${#temporals.format(user.createdOn, 'dd MMM YYYY HH:mm')}"></td>
+                                th:text="${#temporals.format(user.createdOn, 'dd MMM, yyyy - HH:mm')}"></td>
                             <td class="user-action">
-                                <form th:action="@{'/users/' + ${user.id} + '/status'}" th:method="PUT">
+                                <form th:action="@{'/admin/users/' + ${user.id} + '/status'}" th:method="PUT">
                                     <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
                                     <label class="toggle-switch">
                                         <input type="checkbox"
@@ -117,7 +116,7 @@
                                 </form>
                             </td>
                             <td class="user-action">
-                                <form th:action="@{'/users/' + ${user.id} + '/role'}" th:method="PUT">
+                                <form th:action="@{'/admin/users/' + ${user.id} + '/role'}" th:method="PUT">
                                     <button class="action-button role-change">
                                         Change Role
                                     </button>

@@ -9,14 +9,12 @@ import app.security.AuthenticationMetadata;
 import app.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
 import java.util.UUID;
 
 import static app.util.ModelAttributes.*;
@@ -31,19 +29,6 @@ import static app.util.Views.*;
 public class UserController {
 
     private final UserService userService;
-
-    @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
-    public ModelAndView getAllUsers() {
-
-        List<User> users = userService.getAllUsers();
-
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(VIEW_USERS);
-        modelAndView.addObject(MODEL_USERS, users);
-
-        return modelAndView;
-    }
 
     @GetMapping(URL_PROFILE)
     public ModelAndView getProfilePage(@AuthenticationPrincipal AuthenticationMetadata authMetadata) {
@@ -92,37 +77,5 @@ public class UserController {
         userService.editUserDetails(id, userEditDTO);
 
         return new ModelAndView(REDIRECT_PROFILE);
-    }
-
-    @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping(URL_ADMIN_DASHBOARD)
-    public ModelAndView getAdminPage(@AuthenticationPrincipal AuthenticationMetadata authMetadata) {
-
-        User currentUser = userService.getUserById(authMetadata.getUserId());
-
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(VIEW_ADMIN_DASHBOARD);
-        modelAndView.addObject(MODEL_PAGE, VIEW_ADMIN_DASHBOARD);
-        modelAndView.addObject(MODEL_USER, currentUser);
-
-        return modelAndView;
-    }
-
-    @PutMapping(PARAM_ID + URL_STATUS)
-    @PreAuthorize("hasRole('ADMIN')")
-    public String changeUserStatus(@PathVariable UUID id) {
-
-        userService.changeStatus(id);
-
-        return REDIRECT_USERS;
-    }
-
-    @PutMapping(PARAM_ID + URL_ROLE)
-    @PreAuthorize("hasRole('ADMIN')")
-    public String changeUserRole(@PathVariable UUID id) {
-
-        userService.changeRole(id);
-
-        return REDIRECT_USERS;
     }
 }
