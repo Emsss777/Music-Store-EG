@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/common.css">
-    <link rel="stylesheet" type="text/css" href="/css/edit-profile.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/edit-profile.css}">
     <title>Edit Profile | Music Store App</title>
 </head>
 
@@ -23,7 +23,7 @@
     <div class="edit-profile-header">
         <div class="container">
             <div class="breadcrumb">
-                <a href="/profile">Profile</a> / <span>Edit Profile</span>
+                <a th:href="@{/users/profile}">Profile</a> / <span>Edit Profile</span>
             </div>
             <h1 class="page-title">Edit Profile</h1>
             <p class="page-subtitle">Update your personal information and preferences</p>
@@ -91,7 +91,8 @@
                                 <label for="bio">Bio</label>
                                 <textarea id="bio" name="bio" rows="4"
                                           th:field="*{bio}"
-                                          placeholder="Tell us about yourself, your musical interests, and what you're looking for..."></textarea>
+                                          placeholder="Tell us about yourself, your musical interests, and what you're looking for...">
+                                </textarea>
                                 <p class="alert-warning"
                                    th:if="${#fields.hasErrors('bio')}" th:errors="*{bio}"></p>
                             </div>

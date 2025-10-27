@@ -8,8 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/common.css">
-    <link rel="stylesheet" type="text/css" href="/css/album.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/album.css}">
     <title th:text="${album.title} + ' - ' + ${album.artist.artistName} + ' | Music Store'"></title>
 </head>
 
@@ -20,7 +20,8 @@
 <main>
     <div class="breadcrumb">
         <div class="container">
-            <a href="/">Home</a> / <a href="/catalog">Catalog</a> /
+            <a th:href="@{/}">Home</a> /
+            <a th:href="@{/catalog}">Catalog</a> /
             <span th:text="${album.title}">Midnight Dreams</span>
         </div>
     </div>
@@ -57,7 +58,9 @@
 
                     <div class="album-pricing">
                         <div class="price-container">
-                            <span class="price-current" th:text="'$' + ${album.price}"></span>
+                            <span class="price-current"
+                                  th:text="${#numbers.formatDecimal(album.price, 1, 2)} + ' €'">
+                            </span>
                         </div>
                         <p class="price-note">Digital Download • High-Quality MP3</p>
                     </div>

@@ -8,8 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/common.css">
-    <link rel="stylesheet" type="text/css" href="/css/profile.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/profile.css}">
     <title>My Profile | Music Store</title>
 </head>
 
@@ -42,17 +42,13 @@
                             <button class="status-button inactive" th:if="${!user.isActive()}">INACTIVE</button>
                         </div>
                         <nav class="profile-menu">
-                            <a href="/profile" class="profile-menu-item active">
+                            <a th:href="@{/users/profile}" class="profile-menu-item active">
                                 <span class="menu-icon">👤</span>
                                 Personal Info
                             </a>
-                            <a href="/my-orders" class="profile-menu-item">
+                            <a th:href="@{/users/my-orders}" class="profile-menu-item">
                                 <span class="menu-icon">📦</span>
                                 My Orders
-                            </a>
-                            <a href="/order-details" class="profile-menu-item">
-                                <span class="menu-icon">📋</span>
-                                Order Details
                             </a>
                             <a href="/wishlist" class="profile-menu-item">
                                 <span class="menu-icon">❤️</span>
@@ -106,7 +102,7 @@
                                 <label>Date of Birth</label>
                                 <p th:text="${#strings.isEmpty(user.birthDate)
                                     ? 'Edit your profile and add your date of birth'
-                                    : user.birthDate}">
+                                    : #temporals.format(user.birthDate, 'dd MMM, yyyy')}">
                                 </p>
                             </div>
                             <div class="info-group">

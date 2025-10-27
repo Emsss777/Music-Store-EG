@@ -8,8 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/common.css">
-    <link rel="stylesheet" type="text/css" href="/css/order-details.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/order-details.css}">
     <title th:text="'Order Details #' + ${order.orderNumber} + ' | Music Store'"></title>
 </head>
 
@@ -21,12 +21,13 @@
     <div class="order-details-header">
         <div class="container">
             <div class="breadcrumb">
-                <a href="/users/my-orders">My Orders</a> / <span th:text="'Order #' + ${order.orderNumber}"></span>
+                <a th:href="@{/users/my-orders}">My Orders</a> /
+                <span th:text="'Order #' + ${order.orderNumber}"></span>
             </div>
             <h1 class="page-title">Order Details</h1>
             <p class="page-subtitle"
                th:text="'Order #' + ${order.orderNumber} + ' • ' + ${#temporals.format(
-               order.createdOn, 'MMMM dd, yyyy')}"></p>
+               order.createdOn, 'dd MMM, yyyy')}"></p>
         </div>
     </div>
 
@@ -36,7 +37,8 @@
                 <div class="order-summary-card card">
                     <div class="card-header">
                         <h2>Order Summary</h2>
-                        <span class="status-badge" th:classappend="${order.status.name().toLowerCase()}"
+                        <span class="status-badge"
+                              th:classappend="${order.status.name().toLowerCase()}"
                               th:text="${order.status.name()}"></span>
                     </div>
 
@@ -48,7 +50,7 @@
                         <div class="info-row">
                             <span class="info-label">Order Date</span>
                             <span class="info-value"
-                                  th:text="${#temporals.format(order.createdOn, 'MMMM dd, yyyy')}"></span>
+                                  th:text="${#temporals.format(order.createdOn, 'dd MMM, yyyy')}"></span>
                         </div>
                         <div class="info-row">
                             <span class="info-label">Payment Method</span>
@@ -57,7 +59,8 @@
                         <div class="info-row">
                             <span class="info-label">Total Amount</span>
                             <span class="info-value total"
-                                  th:text="'$' + ${#numbers.formatDecimal(order.totalAmount, 1, 2)}"></span>
+                                  th:text="${#numbers.formatDecimal(order.totalAmount, 1, 2)} + ' €'">
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -85,7 +88,8 @@
                                     <span class="item-year" th:text="${item.album.year}"></span>
                                 </div>
                                 <div class="item-price"
-                                     th:text="'$' + ${#numbers.formatDecimal(item.unitPrice, 1, 2)}"></div>
+                                     th:text="${#numbers.formatDecimal(item.unitPrice, 1, 2)} + ' €'">
+                                </div>
                             </div>
                             <div class="item-actions">
                                 <button class="download-btn primary"
@@ -118,7 +122,9 @@
                             <h3>Payment Details</h3>
                             <div class="payment-info">
                                 <p th:text="${order.paymentMethod.name()}"></p>
-                                <p th:text="'Order Total: $' + ${#numbers.formatDecimal(order.totalAmount, 1, 2)}"></p>
+                                <p th:text="'Order Total: ' +
+                                   ${#numbers.formatDecimal(order.totalAmount, 1, 2)} + ' €'">
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -136,7 +142,7 @@
                                 <h4>Order Placed</h4>
                                 <p>Your order has been successfully placed</p>
                                 <span class="timeline-date"
-                                      th:text="${#temporals.format(order.createdOn, 'MMMM dd, yyyy ''at'' h:mm a')}">
+                                      th:text="${#temporals.format(order.createdOn, 'dd MMM, yyyy - HH:mm')}">
                                 </span>
                             </div>
                         </div>
@@ -147,7 +153,7 @@
                                 <h4>Payment Processed</h4>
                                 <p>Payment has been successfully processed</p>
                                 <span class="timeline-date"
-                                      th:text="${#temporals.format(order.createdOn, 'MMMM dd, yyyy ''at'' h:mm a')}">
+                                      th:text="${#temporals.format(order.createdOn, 'dd MMM, yyyy - HH:mm')}">
                                 </span>
                             </div>
                         </div>
@@ -165,7 +171,7 @@
                                 </p>
                                 <span class="timeline-date"
                                       th:if="${order.status.name() == 'COMPLETED'}"
-                                      th:text="${#temporals.format(order.createdOn, 'MMMM dd, yyyy ''at'' h:mm a')}">
+                                      th:text="${#temporals.format(order.createdOn, 'dd MMM, yyyy - HH:mm')}">
                                 </span>
                                 <span class="timeline-date" th:if="${order.status.name() == 'PENDING'}">Pending</span>
                             </div>
@@ -187,7 +193,7 @@
                 <button class="reorder-btn"
                         th:if="${order.status.name() == 'COMPLETED'}">Reorder Items
                 </button>
-                <a href="/users/my-orders" class="back-to-orders-btn">Back to Orders</a>
+                <a th:href="@{/users/my-orders}" class="back-to-orders-btn">Back to Orders</a>
             </div>
         </div>
     </section>

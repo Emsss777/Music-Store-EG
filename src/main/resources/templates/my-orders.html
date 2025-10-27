@@ -8,8 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/common.css">
-    <link rel="stylesheet" type="text/css" href="/css/my-orders.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/my-orders.css}">
     <title>My Orders | Music Store</title>
 </head>
 
@@ -48,13 +48,14 @@
                         <div class="order-info">
                             <h3 class="order-id" th:text="'Order #' + ${order.orderNumber}"></h3>
                             <span class="order-date"
-                                  th:text="${#temporals.format(order.createdOn, 'MMMM dd, yyyy')}"></span>
+                                  th:text="${#temporals.format(order.createdOn, 'dd MMM, yyyy')}"></span>
                         </div>
                         <div class="order-status">
                             <span class="status-badge" th:classappend="${order.status.name().toLowerCase()}"
                                   th:text="${order.status.name()}">Completed</span>
                             <span class="order-total"
-                                  th:text="'$' + ${#numbers.formatDecimal(order.totalAmount, 1, 2)}"></span>
+                                  th:text="${#numbers.formatDecimal(order.totalAmount, 1, 2)} + ' €'">
+                            </span>
                         </div>
                     </div>
                     <div class="order-items">
@@ -67,7 +68,8 @@
                                 <h4 class="item-title" th:text="${item.album.title}"></h4>
                                 <p class="item-artist" th:text="${item.album.artist.artistName}"></p>
                                 <span class="item-price"
-                                      th:text="'$' + ${#numbers.formatDecimal(item.unitPrice, 1, 2)}"></span>
+                                      th:text="${#numbers.formatDecimal(item.unitPrice, 1, 2)} + ' €'">
+                                </span>
                             </div>
                             <div class="item-actions">
                                 <button class="download-btn"
@@ -81,7 +83,9 @@
                     </div>
                     <div class="order-footer">
                         <a class="view-details-btn"
-                           th:href="@{/users/order-details/{orderNumber}(orderNumber=${order.orderNumber})}">View Details</a>
+                           th:href="@{/users/order-details/{orderNumber}(orderNumber=${order.orderNumber})}">
+                            View Details
+                        </a>
                         <button class="reorder-btn"
                                 th:if="${order.status.name() == 'COMPLETED'}">Reorder
                         </button>

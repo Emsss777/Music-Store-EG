@@ -11,8 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/common.css">
-    <link rel="stylesheet" type="text/css" href="/css/catalog.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/catalog.css}">
     <title>Music Catalog | Music Store</title>
 </head>
 
@@ -136,7 +136,6 @@
                         </div>
                     </div>
 
-                    <!--@thymesVar id="album" type="app.model.entity.Album"-->
                     <div class="album-grid grid grid-3">
                         <div class="album-card card" th:each="album : ${albums}">
                             <div class="album-image">
@@ -154,7 +153,9 @@
                                     <span class="album-genre" th:text="${album.genre}"></span>
                                 </div>
                                 <div class="album-price">
-                                    <span class="price" th:text="'$' + ${album.price}"></span>
+                                    <span class="price"
+                                          th:text="${#numbers.formatDecimal(album.price, 1, 2)} + ' €'">
+                                    </span>
                                 </div>
                                 <a class="button primary" th:href="@{/album/{id}(id=${album.id})}">View Details</a>
                             </div>
