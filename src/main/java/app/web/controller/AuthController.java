@@ -59,6 +59,14 @@ public class AuthController {
         modelAndView.setViewName(VIEW_REGISTER);
         modelAndView.addObject(MODEL_REGISTER_DTO, new RegisterDTO());
 
+        List<Album> allAlbums = albumService.getAllAlbums();
+        Collections.shuffle(allAlbums);
+        List<Album> randomAlbums = allAlbums.stream()
+                .limit(6)
+                .toList();
+
+        modelAndView.addObject(MODEL_ALBUMS, randomAlbums);
+
         return modelAndView;
     }
 

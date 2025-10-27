@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/auth/register.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/auth/login.css}">
     <title>Register | Music Store</title>
 </head>
 
@@ -18,22 +19,16 @@
 <main class="auth-container">
     <div class="auth-image">
         <div class="image-content">
-            <div class="floating-album album-1">
-                <img src="https://via.placeholder.com/120x120/746ab0/ffffff?text=Album" alt="Music Album">
-            </div>
-            <div class="floating-album album-2">
-                <img src="https://via.placeholder.com/100x100/6a61a4/ffffff?text=Song" alt="Music Album">
-            </div>
-            <div class="floating-album album-3">
-                <img src="https://via.placeholder.com/140x140/605899/ffffff?text=Track" alt="Music Album">
-            </div>
-            <div class="floating-album album-4">
-                <img src="https://via.placeholder.com/110x110/56508d/ffffff?text=Music" alt="Music Album">
-            </div>
             <h2 class="image-title">Join Our Community</h2>
             <p class="image-subtitle">Create your account and start your musical journey
                                       with access to thousands of albums and exclusive content.
             </p>
+            <div class="album-gallery">
+                <div class="gallery-item" th:each="album : ${albums}">
+                    <img th:alt="${album.title}"
+                         th:src="@{${album.coverUrl}}">
+                </div>
+            </div>
         </div>
     </div>
 
