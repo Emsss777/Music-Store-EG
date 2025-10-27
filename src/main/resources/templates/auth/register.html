@@ -10,7 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/auth/register.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/auth/login.css}">
     <title>Register | Music Store</title>
 </head>
 
@@ -23,10 +22,21 @@
             <p class="image-subtitle">Create your account and start your musical journey
                                       with access to thousands of albums and exclusive content.
             </p>
-            <div class="album-gallery">
-                <div class="gallery-item" th:each="album : ${albums}">
-                    <img th:alt="${album.title}"
-                         th:src="@{${album.coverUrl}}">
+            <div class="album-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-track" th:each="album, iterStat : ${albums}">
+                        <div class="carousel-item" th:classappend="${iterStat.first} ? 'active' : ''">
+                            <div class="album-card">
+                                <img th:alt="${album.title}" th:src="@{${album.coverUrl}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-indicators">
+                    <span th:each="album, iterStat : ${albums}"
+                          th:classappend="${iterStat.first} ? 'active' : ''"
+                          th:onclick="'showSlide(' + ${iterStat.index} + ')'">
+                    </span>
                 </div>
             </div>
         </div>
@@ -63,12 +73,14 @@
                        name="password" th:field="*{password}"
                        placeholder="Create a strong password" required>
                 <p class="alert-warning"
-                   th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+                   th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+                </p>
             </div>
 
             <div class="form-group">
                 <label for="confirmPassword">Confirm Password</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" th:field="*{confirmPassword}"
+                <input type="password" id="confirmPassword" name="confirmPassword"
+                       th:field="*{confirmPassword}"
                        placeholder="Confirm your password" required>
                 <p class="alert-warning"
                    th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></p>
@@ -122,6 +134,37 @@
 </main>
 
 <th:block th:replace="~{fragments/footer :: site-footer}"></th:block>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-item');
+    const indicators = document.querySelectorAll('.carousel-indicators span');
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+
+        slides.forEach(slide => slide.classList.remove('active'));
+        indicators.forEach(indicator => indicator.classList.remove('active'));
+
+        slides[index].classList.add('active');
+        indicators[index].classList.add('active');
+
+        currentSlide = index;
+    }
+
+    function nextSlide() {
+        const nextIndex = (currentSlide + 1) % totalSlides;
+        showSlide(nextIndex);
+    }
+
+    setInterval(nextSlide, 4000);
+
+    document.addEventListener('DOMContentLoaded', function () {
+        if (slides.length > 0) {
+            showSlide(0);
+        }
+    });
+</script>
 
 </body>
 
