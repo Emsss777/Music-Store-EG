@@ -15,6 +15,8 @@ public interface AlbumService {
 
     List<Album> getAllAlbums(PrimaryGenre genre);
 
+    List<Album> getAllAlbums();
+
     Album getAlbumById(UUID albumId);
 
     void saveAlbumFromDTO(SaveAlbumDTO saveAlbumDTO);

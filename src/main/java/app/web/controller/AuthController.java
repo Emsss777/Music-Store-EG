@@ -2,6 +2,8 @@ package app.web.controller;
 
 import app.model.dto.LoginDTO;
 import app.model.dto.RegisterDTO;
+import app.model.entity.Album;
+import app.service.AlbumService;
 import app.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Collections;
+import java.util.List;
 
 import static app.util.ExceptionMessages.INCORRECT_USERNAME_OR_PASSWORD;
 import static app.util.ModelAttributes.*;
@@ -23,6 +28,7 @@ import static app.util.Views.*;
 public class AuthController {
 
     private final UserService userService;
+    private final AlbumService albumService;
 
     @GetMapping(URL_LOGIN)
     public ModelAndView getLoginPage(@RequestParam(value = "error", required = false) String errorParam) {
@@ -34,6 +40,14 @@ public class AuthController {
         if (errorParam != null) {
             modelAndView.addObject(MODEL_ERROR_MESSAGE, INCORRECT_USERNAME_OR_PASSWORD);
         }
+
+        List<Album> allAlbums = albumService.getAllAlbums();
+        Collections.shuffle(allAlbums);
+        List<Album> randomAlbums = allAlbums.stream()
+                .limit(6)
+                .toList();
+
+        modelAndView.addObject(MODEL_ALBUMS, randomAlbums);
 
         return modelAndView;
     }

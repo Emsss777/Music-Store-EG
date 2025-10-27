@@ -52,6 +52,12 @@ public class AlbumServiceImpl implements AlbumService {
     }
 
     @Override
+    public List<Album> getAllAlbums() {
+
+        return albumRepo.findAll();
+    }
+
+    @Override
     public Album getAlbumById(UUID albumId) {
 
         return albumRepo.findById(albumId).orElseThrow(() ->
