@@ -33,21 +33,20 @@ public class AuthController {
     @GetMapping(URL_LOGIN)
     public ModelAndView getLoginPage(@RequestParam(value = "error", required = false) String errorParam) {
 
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(VIEW_LOGIN);
-        modelAndView.addObject(MODEL_LOGIN_DTO, new LoginDTO());
-
-        if (errorParam != null) {
-            modelAndView.addObject(MODEL_ERROR_MESSAGE, INCORRECT_USERNAME_OR_PASSWORD);
-        }
-
         List<Album> allAlbums = albumService.getAllAlbums();
         Collections.shuffle(allAlbums);
         List<Album> randomAlbums = allAlbums.stream()
                 .limit(6)
                 .toList();
 
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName(VIEW_LOGIN);
+        modelAndView.addObject(MODEL_LOGIN_DTO, new LoginDTO());
         modelAndView.addObject(MODEL_ALBUMS, randomAlbums);
+
+        if (errorParam != null) {
+            modelAndView.addObject(MODEL_ERROR_MESSAGE, INCORRECT_USERNAME_OR_PASSWORD);
+        }
 
         return modelAndView;
     }
@@ -55,16 +54,15 @@ public class AuthController {
     @GetMapping(URL_REGISTER)
     public ModelAndView getRegisterPage() {
 
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(VIEW_REGISTER);
-        modelAndView.addObject(MODEL_REGISTER_DTO, new RegisterDTO());
-
         List<Album> allAlbums = albumService.getAllAlbums();
         Collections.shuffle(allAlbums);
         List<Album> randomAlbums = allAlbums.stream()
                 .limit(6)
                 .toList();
 
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName(VIEW_REGISTER);
+        modelAndView.addObject(MODEL_REGISTER_DTO, new RegisterDTO());
         modelAndView.addObject(MODEL_ALBUMS, randomAlbums);
 
         return modelAndView;
