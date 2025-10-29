@@ -2,8 +2,6 @@ package app.web.controller;
 
 import app.model.dto.CartItemDTO;
 import app.model.dto.CartSummaryDTO;
-import app.model.entity.Album;
-import app.service.AlbumService;
 import app.service.CartService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +30,6 @@ import static app.util.Views.VIEW_CART;
 public class CartController {
 
     private final CartService cartService;
-    private final AlbumService albumService;
 
     @GetMapping(URL_CART)
     public ModelAndView getCartPage(HttpSession session) {
@@ -53,10 +50,7 @@ public class CartController {
     public ModelAndView addToCart(@PathVariable UUID id, HttpSession session,
                                   RedirectAttributes redirectAttributes) {
 
-        initializeCart(session);
-
-        Album album = albumService.getAlbumById(id);
-        cartService.addToCart(session, album);
+        cartService.addToCart(session, id);
 
         redirectAttributes.addFlashAttribute(FLASH_MESSAGE, ALBUM_ADDED_TO_CART);
 

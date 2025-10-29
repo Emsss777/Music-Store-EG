@@ -3,9 +3,12 @@ package app.service.impl;
 import app.model.dto.CartItemDTO;
 import app.model.dto.CartSummaryDTO;
 import app.model.entity.Album;
+import app.service.AlbumService;
 import app.service.CartService;
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -15,31 +18,27 @@ import java.util.UUID;
 import static app.util.ModelAttributes.MODEL_CART;
 
 @Service
+@RequiredArgsConstructor
 public class CartServiceImpl implements CartService {
 
+    private final AlbumService albumService;
+
     @Override
-    public void addToCart(HttpSession session, Album album) {
+    @Transactional
+    public void addToCart(HttpSession session, UUID albumId) {
 
-        List<CartItemDTO> cartItems = getCartItems(session);
+        List<CartItemDTO> cartItems = getOrInitializeCart(session);
+        Album album = albumService.getAlbumById(albumId);
 
-        CartItemDTO existingItem = cartItems.stream()
+        cartItems.stream()
                 .filter(item -> item.getAlbumId().equals(album.getId()))
                 .findFirst()
-                .orElse(null);
+                .ifPresentOrElse(
+                        item -> item.setQuantity(item.getQuantity() + 1),
+                        () -> cartItems.add(createCartItem(album))
+                );
 
-        if (existingItem != null) {
-            existingItem.setQuantity(existingItem.getQuantity() + 1);
-        } else {
-            CartItemDTO newItem = CartItemDTO.builder()
-                    .albumId(album.getId())
-                    .title(album.getTitle())
-                    .artistName(album.getArtist().getArtistName())
-                    .coverUrl(album.getCoverUrl())
-                    .price(album.getPrice())
-                    .quantity(1)
-                    .build();
-            cartItems.add(newItem);
-        }
+        session.setAttribute(MODEL_CART, cartItems);
     }
 
     @Override
@@ -107,5 +106,17 @@ public class CartServiceImpl implements CartService {
 
         List<CartItemDTO> items = getOrInitializeCart(session);
         return CartSummaryDTO.of(items);
+    }
+
+    private CartItemDTO createCartItem(Album album) {
+
+        return CartItemDTO.builder()
+                .albumId(album.getId())
+                .title(album.getTitle())
+                .artistName(album.getArtist().getArtistName())
+                .coverUrl(album.getCoverUrl())
+                .price(album.getPrice())
+                .quantity(1)
+                .build();
     }
 }

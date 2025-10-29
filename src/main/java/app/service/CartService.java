@@ -2,7 +2,6 @@ package app.service;
 
 import app.model.dto.CartItemDTO;
 import app.model.dto.CartSummaryDTO;
-import app.model.entity.Album;
 import jakarta.servlet.http.HttpSession;
 
 import java.math.BigDecimal;
@@ -11,7 +10,7 @@ import java.util.UUID;
 
 public interface CartService {
 
-    void addToCart(HttpSession session, Album album);
+    void addToCart(HttpSession session, UUID albumId);
 
     void removeFromCart(HttpSession session, UUID albumId);
 
