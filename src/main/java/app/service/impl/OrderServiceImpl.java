@@ -73,12 +73,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getAllOrders() {
-
-        return orderRepo.findAll();
-    }
-
-    @Override
     public Order getOrderByOrderNumber(String orderNumber) {
 
         return orderRepo.findByOrderNumber(orderNumber).orElseThrow(() ->
@@ -101,6 +95,12 @@ public class OrderServiceImpl implements OrderService {
                         .quantity(item.getQuantity())
                         .build())
                 .toList();
+    }
+
+    @Override
+    public List<Order> getOrdersByUser(User user) {
+
+        return orderRepo.findByOwner(user);
     }
 
     private Order getOrderById(UUID orderId) {

@@ -2,8 +2,12 @@ package app.web.controller;
 
 import app.model.dto.OrderItemDTO;
 import app.model.entity.Order;
+import app.model.entity.User;
+import app.security.AuthenticationMetadata;
 import app.service.OrderService;
+import app.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +29,7 @@ import static app.util.Views.*;
 public class OrderController {
 
     private final OrderService orderService;
+    private final UserService userService;
 
     @GetMapping(URL_MADE_ORDER)
     public ModelAndView getMadeOrderPage(@RequestParam String orderNumber) {
@@ -41,9 +46,10 @@ public class OrderController {
     }
 
     @GetMapping(URL_MY_ORDERS)
-    public ModelAndView getOrderPage() {
+    public ModelAndView getOrderPage(@AuthenticationPrincipal AuthenticationMetadata authMetadata) {
 
-        List<Order> orders = orderService.getAllOrders();
+        User currentUser = userService.getUserById(authMetadata.getUserId());
+        List<Order> orders = orderService.getOrdersByUser(currentUser);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_MY_ORDERS);
