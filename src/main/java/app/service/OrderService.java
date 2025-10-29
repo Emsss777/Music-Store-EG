@@ -2,10 +2,12 @@ package app.service;
 
 import app.model.dto.CartItemDTO;
 import app.model.dto.CheckoutDTO;
+import app.model.dto.OrderItemDTO;
 import app.model.entity.Order;
 import app.model.entity.User;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface OrderService {
 
@@ -14,4 +16,6 @@ public interface OrderService {
     List<Order> getAllOrders();
 
     Order getOrderByOrderNumber(String orderNumber);
+
+    List<OrderItemDTO> getOrderItems(UUID orderId);
 }

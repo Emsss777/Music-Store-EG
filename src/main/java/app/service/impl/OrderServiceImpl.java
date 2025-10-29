@@ -3,6 +3,7 @@ package app.service.impl;
 import app.exception.DomainException;
 import app.model.dto.CartItemDTO;
 import app.model.dto.CheckoutDTO;
+import app.model.dto.OrderItemDTO;
 import app.model.entity.*;
 import app.model.enums.PaymentMethod;
 import app.model.enums.Status;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import static app.util.ExceptionMessages.ORDER_DOES_NOT_EXIST;
@@ -51,13 +53,20 @@ public class OrderServiceImpl implements OrderService {
         for (CartItemDTO cartItem : cartItems) {
             Album album = albumService.getAlbumById(cartItem.getAlbumId());
 
-            OrderItem orderItem = OrderItem.builder()
-                    .album(album)
-                    .order(savedOrder)
-                    .unitPrice(cartItem.getPrice())
-                    .build();
-
-            orderItemRepo.save(orderItem);
+            Optional<OrderItem> existingItem = orderItemRepo.findByOrderAndAlbum(savedOrder, album);
+            if (existingItem.isPresent()) {
+                OrderItem item = existingItem.get();
+                item.setQuantity(item.getQuantity() + cartItem.getQuantity());
+                orderItemRepo.save(item);
+            } else {
+                OrderItem orderItem = OrderItem.builder()
+                        .album(album)
+                        .order(savedOrder)
+                        .unitPrice(cartItem.getPrice())
+                        .quantity(cartItem.getQuantity())
+                        .build();
+                orderItemRepo.save(orderItem);
+            }
         }
 
         return savedOrder;
@@ -75,6 +84,31 @@ public class OrderServiceImpl implements OrderService {
         return orderRepo.findByOrderNumber(orderNumber).orElseThrow(() ->
                 new DomainException(ORDER_DOES_NOT_EXIST + orderNumber));
     }
+
+    @Override
+    public List<OrderItemDTO> getOrderItems(UUID orderId) {
+
+        Order order = getOrderById(orderId);
+
+        return order.getItems().stream()
+                .map(item -> OrderItemDTO.builder()
+                        .albumId(item.getAlbum().getId())
+                        .title(item.getAlbum().getTitle())
+                        .artistFirstName(item.getAlbum().getArtist().getFirstName())
+                        .artistLastName(item.getAlbum().getArtist().getLastName())
+                        .coverUrl(item.getAlbum().getCoverUrl())
+                        .unitPrice(item.getUnitPrice())
+                        .quantity(item.getQuantity())
+                        .build())
+                .toList();
+    }
+
+    private Order getOrderById(UUID orderId) {
+
+        return orderRepo.findById(orderId).orElseThrow(() ->
+                new DomainException(ORDER_DOES_NOT_EXIST + orderId));
+    }
+
 
     private String generateOrderNumber() {
 

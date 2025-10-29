@@ -48,11 +48,12 @@ public class UserController {
 
         User user = userService.getUserById(id);
         UserProfileDTO userProfileDTO = UserProfileMapper.toSafeDTO(user);
+        UserEditDTO userEditDTO = UserEditMapper.mapUserToUserEditDTO(user);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_EDIT_PROFILE);
         modelAndView.addObject(MODEL_USER, userProfileDTO);
-        modelAndView.addObject(MODEL_USER_EDIT_DTO, UserEditMapper.mapUserToUserEditDTO(user));
+        modelAndView.addObject(MODEL_USER_EDIT_DTO, userEditDTO);
 
         return modelAndView;
     }

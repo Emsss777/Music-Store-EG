@@ -20,6 +20,9 @@ public class OrderItem extends BaseEntity {
     @Column(name = "unit_price", nullable = false)
     private BigDecimal unitPrice;
 
+    @Column(nullable = false)
+    private int quantity = 1;
+
     @ManyToOne
     @JoinColumn(name = "album_id", nullable = false)
     private Album album;

@@ -61,8 +61,7 @@
                     <div class="order-items">
                         <div th:each="item : ${order.items}" class="order-item">
                             <div class="item-image">
-                                <img th:src="${item.album.coverUrl}" th:alt="${item.album.title}"
-                                     src="https://via.placeholder.com/80x80/746ab0/ffffff?text=Album">
+                                <img th:src="${item.album.coverUrl}" th:alt="${item.album.title}">
                             </div>
                             <div class="item-details">
                                 <h4 class="item-title" th:text="${item.album.title}"></h4>
@@ -99,7 +98,7 @@
                     <div class="no-orders-content">
                         <h3>No orders found</h3>
                         <p>You haven't placed any orders yet. Start shopping to see your orders here!</p>
-                        <a href="/catalog" class="btn btn-primary">Browse Albums</a>
+                        <a th:href="@{/catalog}" class="btn btn-primary">Browse Albums</a>
                     </div>
                 </div>
             </div>

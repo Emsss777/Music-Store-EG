@@ -86,19 +86,18 @@
             <div class="order-items-section">
                 <h2 class="section-title">Order Items</h2>
                 <div class="items-list">
-                    <div class="order-item" th:each="item : ${order.items}">
+                    <div class="order-item" th:each="item : ${orderItems}">
                         <div class="item-image">
-                            <img th:src="@{/images/album-covers/{imageName}(imageName=${item.album.coverUrl})}"
-                                 alt="Album Cover">
+                            <img th:src="${item.coverUrl}" alt="Album Cover">
                         </div>
                         <div class="item-details">
-                            <h3 class="item-title" th:text="${item.album.title}"></h3>
+                            <h3 class="item-title" th:text="${item.title}"></h3>
                             <p class="item-artist"
-                               th:text="${item.album.artist.firstName + ' ' + item.album.artist.lastName}"></p>
+                               th:text="${item.artistFirstName + ' ' + item.artistLastName}"></p>
                             <p class="item-format">Digital Download</p>
                         </div>
                         <div class="item-quantity">
-                            <span class="quantity">Qty: 1</span>
+                            <span th:text="'Qty: ' + ${item.quantity}"></span>
                         </div>
                         <div class="item-price">
                             <span class="summary-value"

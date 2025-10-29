@@ -31,4 +31,5 @@ public final class ModelAttributes {
     public static final String MODEL_ITEM_COUNT = "itemCount";
     public static final String MODEL_ORDERS = "orders";
     public static final String MODEL_ORDER = "order";
+    public static final String MODEL_ORDER_ITEMS = "orderItems";
 }

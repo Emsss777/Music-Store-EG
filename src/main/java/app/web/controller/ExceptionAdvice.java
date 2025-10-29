@@ -59,9 +59,11 @@ public class ExceptionAdvice {
     @ExceptionHandler(Exception.class)
     public ModelAndView handleAnyException(Exception exception) {
 
+        String errorMessage = exception.getClass().getSimpleName();
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_INTERNAL_SERVER_ERROR);
-        modelAndView.addObject(MODEL_ERROR_MESSAGE, exception.getClass().getSimpleName());
+        modelAndView.addObject(MODEL_ERROR_MESSAGE, errorMessage);
 
         return modelAndView;
     }
