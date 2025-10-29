@@ -66,6 +66,9 @@
                             <div class="item-details">
                                 <h4 class="item-title" th:text="${item.album.title}"></h4>
                                 <p class="item-artist" th:text="${item.album.artist.artistName}"></p>
+                                <div class="item-quantity">
+                                    <span th:text="'Qty: ' + ${item.quantity}"></span>
+                                </div>
                                 <span class="item-price"
                                       th:text="${#numbers.formatDecimal(item.unitPrice, 1, 2)} + ' €'">
                                 </span>
