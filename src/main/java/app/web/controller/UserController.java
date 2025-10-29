@@ -6,6 +6,7 @@ import app.model.dto.UserEditDTO;
 import app.model.dto.UserProfileDTO;
 import app.model.entity.User;
 import app.security.AuthenticationMetadata;
+import app.service.OrderService;
 import app.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -29,16 +30,21 @@ import static app.util.Views.*;
 public class UserController {
 
     private final UserService userService;
+    private final OrderService orderService;
 
     @GetMapping(URL_PROFILE)
     public ModelAndView getProfilePage(@AuthenticationPrincipal AuthenticationMetadata authMetadata) {
 
         User currentUser = userService.getUserById(authMetadata.getUserId());
+        int totalAlbumsPurchased = orderService.getTotalAlbumsPurchasedByUser(currentUser);
+        java.math.BigDecimal totalAmountSpent = orderService.getTotalAmountSpentByUser(currentUser);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_PROFILE);
         modelAndView.addObject(MODEL_PAGE, VIEW_PROFILE);
         modelAndView.addObject(MODEL_USER, currentUser);
+        modelAndView.addObject(MODEL_TOTAL_ALBUM_PURCHASED, totalAlbumsPurchased);
+        modelAndView.addObject(MODEL_TOTAL_AMOUNT_SPENT, totalAmountSpent);
 
         return modelAndView;
     }

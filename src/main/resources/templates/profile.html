@@ -128,28 +128,23 @@
                                 <div class="stat-icon">🎵</div>
                                 <div class="stat-content">
                                     <h3>Albums Purchased</h3>
-                                    <p class="stat-number">24</p>
+                                    <p class="stat-number" th:text="${totalAlbumsPurchased}">0</p>
                                 </div>
                             </div>
                             <div class="stat-item">
                                 <div class="stat-icon">💰</div>
                                 <div class="stat-content">
                                     <h3>Totally Spent</h3>
-                                    <p class="stat-number">$347.52</p>
-                                </div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-icon">⭐</div>
-                                <div class="stat-content">
-                                    <h3>Reviews Written</h3>
-                                    <p class="stat-number">12</p>
+                                    <p class="stat-number"
+                                       th:text="${#numbers.formatDecimal(totalAmountSpent, 1, 2)} + ' €'">
+                                    </p>
                                 </div>
                             </div>
                             <div class="stat-item">
                                 <div class="stat-icon">❤️</div>
                                 <div class="stat-content">
                                     <h3>Wishlist Items</h3>
-                                    <p class="stat-number">8</p>
+                                    <p class="stat-number">0</p>
                                 </div>
                             </div>
                         </div>

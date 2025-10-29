@@ -103,6 +103,27 @@ public class OrderServiceImpl implements OrderService {
         return orderRepo.findByOwner(user);
     }
 
+    @Override
+    public int getTotalAlbumsPurchasedByUser(User user) {
+
+        List<Order> userOrders = orderRepo.findByOwner(user);
+
+        return userOrders.stream()
+                .flatMap(order -> order.getItems().stream())
+                .mapToInt(OrderItem::getQuantity)
+                .sum();
+    }
+
+    @Override
+    public BigDecimal getTotalAmountSpentByUser(User user) {
+
+        List<Order> userOrders = orderRepo.findByOwner(user);
+
+        return userOrders.stream()
+                .map(Order::getTotalAmount)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
     private Order getOrderById(UUID orderId) {
 
         return orderRepo.findById(orderId).orElseThrow(() ->
