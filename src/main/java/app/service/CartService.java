@@ -1,6 +1,7 @@
 package app.service;
 
 import app.model.dto.CartItemDTO;
+import app.model.dto.CartSummaryDTO;
 import app.model.entity.Album;
 import jakarta.servlet.http.HttpSession;
 
@@ -21,4 +22,8 @@ public interface CartService {
     int getCartItemCount(HttpSession session);
 
     BigDecimal getCartTotal(HttpSession session);
+
+    List<CartItemDTO> getOrInitializeCart(HttpSession session);
+
+    CartSummaryDTO getCartSummary(HttpSession session);
 }

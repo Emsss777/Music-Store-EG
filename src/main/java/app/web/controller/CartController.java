@@ -1,6 +1,7 @@
 package app.web.controller;
 
 import app.model.dto.CartItemDTO;
+import app.model.dto.CartSummaryDTO;
 import app.model.entity.Album;
 import app.service.AlbumService;
 import app.service.CartService;
@@ -14,9 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 import static app.util.FlashAttributes.*;
@@ -38,18 +37,14 @@ public class CartController {
     @GetMapping(URL_CART)
     public ModelAndView getCartPage(HttpSession session) {
 
-        initializeCart(session);
-
-        List<CartItemDTO> cartItems = cartService.getCartItems(session);
-        BigDecimal cartTotal = cartService.getCartTotal(session);
-        int itemCount = cartService.getCartItemCount(session);
+        CartSummaryDTO cart = cartService.getCartSummary(session);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_CART);
         modelAndView.addObject(MODEL_PAGE, VIEW_CART);
-        modelAndView.addObject(MODEL_CART_ITEMS, cartItems);
-        modelAndView.addObject(MODEL_CART_TOTAL, cartTotal);
-        modelAndView.addObject(MODEL_ITEM_COUNT, itemCount);
+        modelAndView.addObject(MODEL_CART_ITEMS, cart.getItems());
+        modelAndView.addObject(MODEL_CART_TOTAL, cart.getTotal());
+        modelAndView.addObject(MODEL_ITEM_COUNT, cart.getItemCount());
 
         return modelAndView;
     }

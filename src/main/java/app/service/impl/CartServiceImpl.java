@@ -1,6 +1,7 @@
 package app.service.impl;
 
 import app.model.dto.CartItemDTO;
+import app.model.dto.CartSummaryDTO;
 import app.model.entity.Album;
 import app.service.CartService;
 import jakarta.servlet.http.HttpSession;
@@ -85,5 +86,26 @@ public class CartServiceImpl implements CartService {
         return cartItems.stream()
                 .map(CartItemDTO::getTotalPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<CartItemDTO> getOrInitializeCart(HttpSession session) {
+
+        List<CartItemDTO> cartItems = (List<CartItemDTO>) session.getAttribute(MODEL_CART);
+
+        if (cartItems == null) {
+            cartItems = new ArrayList<>();
+            session.setAttribute(MODEL_CART, cartItems);
+        }
+
+        return cartItems;
+    }
+
+    @Override
+    public CartSummaryDTO getCartSummary(HttpSession session) {
+
+        List<CartItemDTO> items = getOrInitializeCart(session);
+        return CartSummaryDTO.of(items);
     }
 }
