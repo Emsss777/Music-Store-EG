@@ -1,6 +1,5 @@
 package app.web.controller;
 
-import app.model.dto.CartItemDTO;
 import app.model.dto.CartSummaryDTO;
 import app.service.CartService;
 import jakarta.servlet.http.HttpSession;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.ArrayList;
 import java.util.UUID;
 
 import static app.util.FlashAttributes.*;
@@ -61,8 +59,6 @@ public class CartController {
     public ModelAndView removeFromCart(@PathVariable UUID id, HttpSession session,
                                        RedirectAttributes redirectAttributes) {
 
-        initializeCart(session);
-
         cartService.removeFromCart(session, id);
         redirectAttributes.addFlashAttribute(FLASH_MESSAGE, ALBUM_REMOVED_FROM_CART);
 
@@ -76,12 +72,5 @@ public class CartController {
         redirectAttributes.addFlashAttribute(FLASH_MESSAGE, CART_CLEARED);
 
         return new ModelAndView(REDIRECT_CART);
-    }
-
-    private void initializeCart(HttpSession session) {
-
-        if (session.getAttribute(VIEW_CART) == null) {
-            session.setAttribute(VIEW_CART, new ArrayList<CartItemDTO>());
-        }
     }
 }

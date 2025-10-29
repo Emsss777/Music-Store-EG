@@ -45,7 +45,11 @@ public class CartServiceImpl implements CartService {
     public void removeFromCart(HttpSession session, UUID albumId) {
 
         List<CartItemDTO> cartItems = getCartItems(session);
-        cartItems.removeIf(item -> item.getAlbumId().equals(albumId));
+        boolean removed = cartItems.removeIf(item -> item.getAlbumId().equals(albumId));
+
+        if (removed) {
+            session.setAttribute(MODEL_CART, cartItems);
+        }
     }
 
     @Override
