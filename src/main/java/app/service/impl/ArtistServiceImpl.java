@@ -5,8 +5,11 @@ import app.model.entity.Artist;
 import app.repository.ArtistRepo;
 import app.service.ArtistService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,6 +31,9 @@ public class ArtistServiceImpl implements ArtistService {
     @Override
     public void saveArtist(Artist artist) {
 
+        if (artist.getCreatedOn() == null) {
+            artist.setCreatedOn(LocalDateTime.now());
+        }
         artistRepo.save(artist);
     }
 
@@ -42,5 +48,13 @@ public class ArtistServiceImpl implements ArtistService {
 
         return artistRepo.findById(artistId).orElseThrow(() ->
                 new DomainException(ARTIST_DOES_NOT_EXIST.formatted(artistId)));
+    }
+
+    @Override
+    public List<Artist> getLatestArtists(int limit) {
+
+        return artistRepo.findAll(PageRequest.of(
+                0, limit, Sort.by("createdOn").descending()))
+                .getContent();
     }
 }

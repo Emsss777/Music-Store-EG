@@ -14,4 +14,6 @@ public interface ArtistService {
     List<Artist> getAllArtists();
 
     Artist getArtistById(UUID artistId);
+
+    List<Artist> getLatestArtists(int limit);
 }

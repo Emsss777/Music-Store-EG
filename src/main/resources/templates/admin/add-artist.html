@@ -220,31 +220,14 @@
                     <div class="recent-artists-card card">
                         <h3>Recent Artists</h3>
                         <div class="recent-list">
-                            <div class="recent-item">
+                            <div class="recent-item" th:each="artist : ${latestArtists}">
                                 <div class="recent-photo">
-                                    <img src="https://via.placeholder.com/40x40/746ab0/ffffff?text=1" alt="Artist">
+                                    <img alt="Artist"
+                                         th:src="'https://t4.ftcdn.net/jpg/09/43/48/93/360_F_943489384_zq3u5kkefFjPY3liE6t81KrX8W3lvxSz.jpg'">
                                 </div>
                                 <div class="recent-info">
-                                    <h5>The Night Owls</h5>
-                                    <p>Pop Rock</p>
-                                </div>
-                            </div>
-                            <div class="recent-item">
-                                <div class="recent-photo">
-                                    <img src="https://via.placeholder.com/40x40/6a61a4/ffffff?text=2" alt="Artist">
-                                </div>
-                                <div class="recent-info">
-                                    <h5>Digital Waves</h5>
-                                    <p>Electronic</p>
-                                </div>
-                            </div>
-                            <div class="recent-item">
-                                <div class="recent-photo">
-                                    <img src="https://via.placeholder.com/40x40/605899/ffffff?text=3" alt="Artist">
-                                </div>
-                                <div class="recent-info">
-                                    <h5>Folk Masters</h5>
-                                    <p>Folk</p>
+                                    <h5 th:text="${artist.artistName}"></h5>
+                                    <p th:text="${artist.primaryGenre}"></p>
                                 </div>
                             </div>
                         </div>

@@ -22,8 +22,12 @@ public final class ModelAttributes {
     public static final String MODEL_SUCCEEDED_NOTIFICATIONS_NUMBER = "succeededNotificationsNumber";
     public static final String MODEL_FAILED_NOTIFICATIONS_NUMBER = "failedNotificationsNumber";
     public static final String MODEL_ARTISTS = "artists";
+    public static final String MODEL_LATEST_ARTISTS = "latestArtists";
     public static final String MODEL_ALBUMS = "albums";
     public static final String MODEL_ALBUM = "album";
+    public static final String MODEL_TOTAL_ALBUMS = "totalAlbums";
+    public static final String MODEL_ALBUMS_THIS_MONTH = "albumsThisMonth";
+    public static final String MODEL_AVG_ALBUM_PRICE = "avgAlbumPrice";
     public static final String MODEL_SELECTED_GENRE = "selectedGenre";
     public static final String MODEL_GENRES = "genres";
     public static final String MODEL_SAVE_ALBUM_DTO = "saveAlbumDTO";
@@ -34,7 +38,4 @@ public final class ModelAttributes {
     public static final String MODEL_ORDERS = "orders";
     public static final String MODEL_ORDER = "order";
     public static final String MODEL_ORDER_ITEMS = "orderItems";
-    public static final String MODEL_TOTAL_ALBUMS = "totalAlbums";
-    public static final String MODEL_ALBUMS_THIS_MONTH = "albumsThisMonth";
-    public static final String MODEL_AVG_ALBUM_PRICE = "avgAlbumPrice";
 }

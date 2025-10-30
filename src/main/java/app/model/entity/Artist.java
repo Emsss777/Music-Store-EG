@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.Accessors;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,4 +42,7 @@ public class Artist extends BaseEntity {
     @Builder.Default
     @OneToMany(mappedBy = "artist", fetch = FetchType.EAGER)
     private List<Album> albums = new ArrayList<>();
+
+    @Column(name = "created_on", nullable = false)
+    private LocalDateTime createdOn;
 }

@@ -13,6 +13,8 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+
 import static app.util.ExceptionMessages.*;
 import static app.util.SuccessMessages.SEEDED_ARTIST;
 
@@ -59,7 +61,8 @@ public class ArtistDataSeeder implements DataSeeder {
                                 "famous for their conceptual albums, sonic experimentation, " +
                                 "and groundbreaking live shows."
                 )
-                .setPrimaryGenre(PrimaryGenre.ROCK);
+                .setPrimaryGenre(PrimaryGenre.ROCK)
+                .setCreatedOn(LocalDateTime.now());
 
         artistService.saveArtist(artist1);
         log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, SEEDED_ARTIST), artistName);
@@ -88,7 +91,8 @@ public class ArtistDataSeeder implements DataSeeder {
                                 "he’s won numerous Grammy Awards and is the first rapper to " +
                                 "receive the Pulitzer Prize for Music."
                 )
-                .setPrimaryGenre(PrimaryGenre.HIP_HOP);
+                .setPrimaryGenre(PrimaryGenre.HIP_HOP)
+                .setCreatedOn(LocalDateTime.now());
 
         artistService.saveArtist(artist2);
         log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, SEEDED_ARTIST), artistName);
@@ -118,7 +122,8 @@ public class ArtistDataSeeder implements DataSeeder {
                                 "acclaimed for his interpretations of J.S. Bach’s works, " +
                                 "performed with energy, precision, and authenticity."
                 )
-                .setPrimaryGenre(PrimaryGenre.CLASSICAL);
+                .setPrimaryGenre(PrimaryGenre.CLASSICAL)
+                .setCreatedOn(LocalDateTime.now());
 
         artistService.saveArtist(artist3);
         log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, SEEDED_ARTIST), artistName);
@@ -147,7 +152,8 @@ public class ArtistDataSeeder implements DataSeeder {
                                 "she has evolved from country roots to become one of the most " +
                                 "successful pop and indie artists in the world."
                 )
-                .setPrimaryGenre(PrimaryGenre.POP);
+                .setPrimaryGenre(PrimaryGenre.POP)
+                .setCreatedOn(LocalDateTime.now());
 
         artistService.saveArtist(artist4);
         log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, SEEDED_ARTIST), artistName);
@@ -176,7 +182,8 @@ public class ArtistDataSeeder implements DataSeeder {
                                 "they are known for their intense live performances and " +
                                 "enduring influence on the genre."
                 )
-                .setPrimaryGenre(PrimaryGenre.METAL);
+                .setPrimaryGenre(PrimaryGenre.METAL)
+                .setCreatedOn(LocalDateTime.now());
 
         artistService.saveArtist(artist5);
         log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, SEEDED_ARTIST), artistName);
@@ -204,7 +211,8 @@ public class ArtistDataSeeder implements DataSeeder {
                                 "Guy-Manuel de Homem-Christo. They revolutionized modern dance and " +
                                 "electronic music, known for their robotic helmets and mysterious persona."
                 )
-                .setPrimaryGenre(PrimaryGenre.ELECTRONIC);
+                .setPrimaryGenre(PrimaryGenre.ELECTRONIC)
+                .setCreatedOn(LocalDateTime.now());
 
         artistService.saveArtist(artist6);
         log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, SEEDED_ARTIST), artistName);
