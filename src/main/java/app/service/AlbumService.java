@@ -4,6 +4,7 @@ import app.model.dto.SaveAlbumDTO;
 import app.model.entity.Album;
 import app.model.enums.PrimaryGenre;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,4 +23,10 @@ public interface AlbumService {
     void saveAlbumFromDTO(SaveAlbumDTO saveAlbumDTO);
 
     void deleteAlbum(UUID albumId);
+
+    long getTotalAlbumCount();
+
+    long getAlbumsAddedThisMonth();
+
+    BigDecimal getAverageAlbumPrice();
 }

@@ -6,6 +6,7 @@ import lombok.*;
 import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -40,4 +41,7 @@ public class Album extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "artist_id", nullable = false)
     private Artist artist;
+
+    @Column(name = "created_on", nullable = false)
+    private LocalDateTime createdOn;
 }

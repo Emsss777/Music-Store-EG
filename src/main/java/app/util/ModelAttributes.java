@@ -34,4 +34,7 @@ public final class ModelAttributes {
     public static final String MODEL_ORDERS = "orders";
     public static final String MODEL_ORDER = "order";
     public static final String MODEL_ORDER_ITEMS = "orderItems";
+    public static final String MODEL_TOTAL_ALBUMS = "totalAlbums";
+    public static final String MODEL_ALBUMS_THIS_MONTH = "albumsThisMonth";
+    public static final String MODEL_AVG_ALBUM_PRICE = "avgAlbumPrice";
 }

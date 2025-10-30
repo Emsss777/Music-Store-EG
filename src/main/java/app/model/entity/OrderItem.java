@@ -20,7 +20,7 @@ public class OrderItem extends BaseEntity {
     @Column(name = "unit_price", nullable = false)
     private BigDecimal unitPrice;
 
-    @Column(nullable = false)
+    @Column(name = "quantity", nullable = false)
     private int quantity = 1;
 
     @ManyToOne

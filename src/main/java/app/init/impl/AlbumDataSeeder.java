@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import static app.util.ExceptionMessages.*;
 import static app.util.SuccessMessages.*;
@@ -66,7 +67,8 @@ public class AlbumDataSeeder implements DataSeeder {
                 )
                 .setCoverUrl("/images/album-covers/pink-floyd-dark-side.jpg")
                 .setPrice(BigDecimal.valueOf(12.99))
-                .setArtist(artist1);
+                .setArtist(artist1)
+                .setCreatedOn(LocalDateTime.now());
 
         artist1.getAlbums().add(album1);
 
@@ -99,7 +101,8 @@ public class AlbumDataSeeder implements DataSeeder {
                 )
                 .setCoverUrl("/images/album-covers/kendrick-lamar-butterfly.jpg")
                 .setPrice(BigDecimal.valueOf(19.99))
-                .setArtist(artist2);
+                .setArtist(artist2)
+                .setCreatedOn(LocalDateTime.now());
 
         artist2.getAlbums().add(album2);
 
@@ -133,7 +136,8 @@ public class AlbumDataSeeder implements DataSeeder {
                 )
                 .setCoverUrl("/images/album-covers/koopman-organ-works.jpg")
                 .setPrice(BigDecimal.valueOf(14.99))
-                .setArtist(artist3);
+                .setArtist(artist3)
+                .setCreatedOn(LocalDateTime.now());
 
         artist3.getAlbums().add(album3);
 
@@ -166,7 +170,8 @@ public class AlbumDataSeeder implements DataSeeder {
                 )
                 .setCoverUrl("/images/album-covers/taylor-swift-1989.jpg")
                 .setPrice(BigDecimal.valueOf(16.99))
-                .setArtist(artist4);
+                .setArtist(artist4)
+                .setCreatedOn(LocalDateTime.now());
 
         artist4.getAlbums().add(album4);
 
@@ -200,7 +205,8 @@ public class AlbumDataSeeder implements DataSeeder {
                 )
                 .setCoverUrl("/images/album-covers/metallica-master-of-puppets.jpg")
                 .setPrice(BigDecimal.valueOf(11.99))
-                .setArtist(artist5);
+                .setArtist(artist5)
+                .setCreatedOn(LocalDateTime.now());
 
         artist5.getAlbums().add(album5);
 
@@ -233,7 +239,8 @@ public class AlbumDataSeeder implements DataSeeder {
                 )
                 .setCoverUrl("/images/album-covers/daft-punk-discovery.jpg")
                 .setPrice(BigDecimal.valueOf(15.99))
-                .setArtist(artist6);
+                .setArtist(artist6)
+                .setCreatedOn(LocalDateTime.now());
 
         artist6.getAlbums().add(album6);
 

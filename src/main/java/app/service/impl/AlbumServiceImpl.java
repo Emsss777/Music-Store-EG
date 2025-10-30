@@ -14,6 +14,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.boot.ansi.AnsiColor;
 import org.springframework.boot.ansi.AnsiOutput;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -40,6 +43,9 @@ public class AlbumServiceImpl implements AlbumService {
     @Override
     public void saveAlbum(Album album) {
 
+        if (album.getCreatedOn() == null) {
+            album.setCreatedOn(LocalDateTime.now());
+        }
         albumRepo.save(album);
     }
 
@@ -83,6 +89,7 @@ public class AlbumServiceImpl implements AlbumService {
                 .coverUrl(saveAlbumDTO.getCoverUrl())
                 .price(saveAlbumDTO.getPrice())
                 .artist(artist)
+                .createdOn(LocalDateTime.now())
                 .build();
 
         albumRepo.save(album);
@@ -100,5 +107,29 @@ public class AlbumServiceImpl implements AlbumService {
                 album.getTitle(), deletedItems, deletedOrders);
 
         albumRepo.delete(album);
+    }
+
+    @Override
+    public long getTotalAlbumCount() {
+
+        return albumRepo.count();
+    }
+
+    @Override
+    public long getAlbumsAddedThisMonth() {
+
+        LocalDate firstDay = LocalDate.now().withDayOfMonth(1);
+        LocalDateTime start = firstDay.atStartOfDay();
+        LocalDateTime end = firstDay.plusMonths(1).atStartOfDay();
+
+        return albumRepo.countByCreatedOnBetween(start, end);
+    }
+
+    @Override
+    public BigDecimal getAverageAlbumPrice() {
+
+        Double avg = albumRepo.findAveragePrice();
+
+        return avg == null ? BigDecimal.ZERO : BigDecimal.valueOf(avg);
     }
 }
