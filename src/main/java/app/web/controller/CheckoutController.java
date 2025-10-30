@@ -77,9 +77,7 @@ public class CheckoutController {
         }
 
         User user = userService.getUserById(authMetadata.getUserId());
-
         Order order = orderService.createOrder(checkoutDTO, cartItems, user);
-
         cartService.clearCart(session);
 
         redirectAttributes.addFlashAttribute(FLASH_MESSAGE, ORDER_PLACED_SUCCESS + order.getOrderNumber());

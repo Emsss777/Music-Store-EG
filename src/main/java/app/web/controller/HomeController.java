@@ -3,13 +3,12 @@ package app.web.controller;
 import app.model.entity.Album;
 import app.model.enums.PrimaryGenre;
 import app.service.AlbumService;
+import app.service.GenreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static app.util.ModelAttributes.*;
@@ -22,21 +21,13 @@ import static app.util.Views.VIEW_HOME;
 public class HomeController {
 
     private final AlbumService albumService;
+    private final GenreService genreService;
 
     @GetMapping({URL_ROOT, URL_HOME})
     public ModelAndView getHomePage() {
 
-        List<Album> allAlbums = albumService.getAllAlbums();
-        Collections.shuffle(allAlbums);
-        List<Album> randomAlbums = allAlbums.stream()
-                .limit(4)
-                .toList();
-
-        List<PrimaryGenre> allGenres = new ArrayList<>(List.of(PrimaryGenre.values()));
-        Collections.shuffle(allGenres);
-        List<PrimaryGenre> randomGenres = allGenres.stream()
-                .limit(5)
-                .toList();
+        List<Album> randomAlbums = albumService.getRandomAlbums(4);
+        List<PrimaryGenre> randomGenres = genreService.getRandomGenres(5);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_HOME);

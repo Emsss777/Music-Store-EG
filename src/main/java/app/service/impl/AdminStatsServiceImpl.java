@@ -42,7 +42,7 @@ public class AdminStatsServiceImpl implements AdminStatsService {
         List<TopSellingAlbumDTO> topSelling = orderItemRepo.findTopSellingAlbums()
                 .stream()
                 .map(this::mapTopSelling)
-                .limit(5)
+                .limit(3)
                 .collect(Collectors.toList());
 
         return AdminStatsDTO.builder()
@@ -55,15 +55,15 @@ public class AdminStatsServiceImpl implements AdminStatsService {
                 .build();
     }
 
-    private TopSellingAlbumDTO mapTopSelling(TopSellingAlbumProjection p) {
+    private TopSellingAlbumDTO mapTopSelling(TopSellingAlbumProjection projection) {
 
         return TopSellingAlbumDTO.builder()
-                .albumId(p.getAlbumId())
-                .title(p.getTitle())
-                .artist(p.getArtist())
-                .unitsSold(p.getUnitsSold())
-                .revenue(p.getRevenue())
-                .coverUrl(p.getCoverUrl())
+                .albumId(projection.getAlbumId())
+                .title(projection.getTitle())
+                .artist(projection.getArtist())
+                .unitsSold(projection.getUnitsSold())
+                .revenue(projection.getRevenue())
+                .coverUrl(projection.getCoverUrl())
                 .build();
     }
 }

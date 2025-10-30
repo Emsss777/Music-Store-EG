@@ -4,6 +4,7 @@ import app.model.dto.AdminStatsDTO;
 import app.model.entity.User;
 import app.security.AuthenticationMetadata;
 import app.service.AdminStatsService;
+import app.service.OrderService;
 import app.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -32,6 +33,7 @@ public class AdminController {
 
     private final UserService userService;
     private final AdminStatsService adminStatsService;
+    private final OrderService orderService;
 
     @GetMapping(URL_USERS)
     @PreAuthorize("hasRole('ADMIN')")
@@ -63,6 +65,7 @@ public class AdminController {
         modelAndView.addObject(MODEL_ORDERS_TODAY, stats.getOrdersToday());
         modelAndView.addObject(MODEL_ALL_ORDERS, stats.getAllOrders());
         modelAndView.addObject(MODEL_TOP_SELLING_ALBUMS, stats.getTopSellingAlbums());
+        modelAndView.addObject(MODEL_ORDERS, orderService.getAllOrders());
 
         return modelAndView;
     }

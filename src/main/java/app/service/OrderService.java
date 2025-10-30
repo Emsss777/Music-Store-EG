@@ -23,4 +23,6 @@ public interface OrderService {
     int getTotalAlbumsPurchasedByUser(User user);
 
     BigDecimal getTotalAmountSpentByUser(User user);
+
+    List<Order> getAllOrders();
 }

@@ -81,10 +81,18 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td colspan="5" style="text-align:center;
-                                opacity:.7">Recent orders table wiring pending
+                            <tr th:each="order : ${orders}">
+                                <td th:text="${order.orderNumber}"></td>
+                                <td th:text="${order.owner.username}"></td>
+                                <td th:text="${#numbers.formatDecimal(order.totalAmount, 1, 2)} + ' €'"></td>
+                                <td>
+                                    <span class="status-badge" th:classappend="${order.status.name().toLowerCase()}"
+                                          th:text="${order.status.name()}"></span>
                                 </td>
+                                <td th:text="${#temporals.format(order.createdOn, 'dd MMM, yyyy')}">01 Jan, 2025</td>
+                            </tr>
+                            <tr th:if="${#lists.isEmpty(orders)}">
+                                <td colspan="5" style="text-align:center; opacity:.7">No orders found</td>
                             </tr>
                             </tbody>
                         </table>

@@ -18,6 +18,8 @@ public interface AlbumService {
 
     List<Album> getAllAlbums();
 
+    List<Album> getRandomAlbums(int limit);
+
     Album getAlbumById(UUID albumId);
 
     void saveAlbumFromDTO(SaveAlbumDTO saveAlbumDTO);

@@ -17,6 +17,7 @@ import org.springframework.boot.ansi.AnsiOutput;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -61,6 +62,22 @@ public class AlbumServiceImpl implements AlbumService {
     public List<Album> getAllAlbums() {
 
         return albumRepo.findAll();
+    }
+
+    @Override
+    public List<Album> getRandomAlbums(int limit) {
+
+        List<Album> allAlbums = getAllAlbums();
+
+        if (allAlbums.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        Collections.shuffle(allAlbums);
+
+        return allAlbums.stream()
+                .limit(limit)
+                .toList();
     }
 
     @Override

@@ -1,7 +1,6 @@
 package app.web.controller;
 
 import app.model.dto.SaveAlbumDTO;
-import app.model.entity.Artist;
 import app.service.AlbumService;
 import app.service.ArtistService;
 import app.web.util.PageBuilder;
@@ -15,8 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.math.BigDecimal;
-import java.util.List;
 import java.util.UUID;
 
 import static app.util.ExceptionMessages.ALBUM_FAILED_TO_DELETE;
@@ -48,20 +45,14 @@ public class AlbumController {
     @GetMapping(URL_ADMIN_ALBUMS + URL_ADD)
     public ModelAndView getAddAlbumPage() {
 
-        List<Artist> artists = artistService.getAllArtists();
-        PrimaryGenre[] genres = PrimaryGenre.values();
-        long totalAlbums = albumService.getTotalAlbumCount();
-        long albumsAddedThisMonth = albumService.getAlbumsAddedThisMonth();
-        BigDecimal avgAlbumPrice = albumService.getAverageAlbumPrice();
-
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_ADMIN_ADD_ALBUM);
-        modelAndView.addObject(MODEL_ARTISTS, artists);
-        modelAndView.addObject(MODEL_GENRES, genres);
+        modelAndView.addObject(MODEL_ARTISTS, artistService.getAllArtists());
+        modelAndView.addObject(MODEL_GENRES, PrimaryGenre.values());
         modelAndView.addObject(MODEL_SAVE_ALBUM_DTO, new SaveAlbumDTO());
-        modelAndView.addObject(MODEL_TOTAL_ALBUMS, totalAlbums);
-        modelAndView.addObject(MODEL_ALBUMS_THIS_MONTH, albumsAddedThisMonth);
-        modelAndView.addObject(MODEL_AVG_ALBUM_PRICE, avgAlbumPrice);
+        modelAndView.addObject(MODEL_TOTAL_ALBUMS, albumService.getTotalAlbumCount());
+        modelAndView.addObject(MODEL_ALBUMS_THIS_MONTH, albumService.getAlbumsAddedThisMonth());
+        modelAndView.addObject(MODEL_AVG_ALBUM_PRICE, albumService.getAverageAlbumPrice());
 
         return modelAndView;
     }
@@ -71,13 +62,10 @@ public class AlbumController {
     public ModelAndView addAlbum(@Valid @ModelAttribute SaveAlbumDTO saveAlbumDTO, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            List<Artist> artists = artistService.getAllArtists();
-            PrimaryGenre[] genres = PrimaryGenre.values();
-
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName(VIEW_ADMIN_ADD_ALBUM);
-            modelAndView.addObject(MODEL_ARTISTS, artists);
-            modelAndView.addObject(MODEL_GENRES, genres);
+            modelAndView.addObject(MODEL_ARTISTS, artistService.getAllArtists());
+            modelAndView.addObject(MODEL_GENRES, PrimaryGenre.values());
             modelAndView.addObject(MODEL_SAVE_ALBUM_DTO, saveAlbumDTO);
 
             return modelAndView;

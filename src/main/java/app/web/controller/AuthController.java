@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Collections;
 import java.util.List;
 
 import static app.util.ExceptionMessages.INCORRECT_USERNAME_OR_PASSWORD;
@@ -33,11 +32,7 @@ public class AuthController {
     @GetMapping(URL_LOGIN)
     public ModelAndView getLoginPage(@RequestParam(value = "error", required = false) String errorParam) {
 
-        List<Album> allAlbums = albumService.getAllAlbums();
-        Collections.shuffle(allAlbums);
-        List<Album> randomAlbums = allAlbums.stream()
-                .limit(6)
-                .toList();
+        List<Album> randomAlbums = albumService.getRandomAlbums(6);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_LOGIN);
@@ -54,11 +49,7 @@ public class AuthController {
     @GetMapping(URL_REGISTER)
     public ModelAndView getRegisterPage() {
 
-        List<Album> allAlbums = albumService.getAllAlbums();
-        Collections.shuffle(allAlbums);
-        List<Album> randomAlbums = allAlbums.stream()
-                .limit(6)
-                .toList();
+        List<Album> randomAlbums = albumService.getRandomAlbums(6);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_REGISTER);

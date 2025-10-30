@@ -12,6 +12,7 @@ import app.repository.OrderRepo;
 import app.service.AlbumService;
 import app.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -122,6 +123,12 @@ public class OrderServiceImpl implements OrderService {
         return userOrders.stream()
                 .map(Order::getTotalAmount)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    @Override
+    public List<Order> getAllOrders() {
+
+        return orderRepo.findAll(Sort.by(Sort.Direction.DESC, "createdOn"));
     }
 
     private Order getOrderById(UUID orderId) {
