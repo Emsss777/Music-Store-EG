@@ -38,4 +38,9 @@ public final class ModelAttributes {
     public static final String MODEL_ORDERS = "orders";
     public static final String MODEL_ORDER = "order";
     public static final String MODEL_ORDER_ITEMS = "orderItems";
+    public static final String MODEL_TOTAL_REVENUE = "totalRevenue";
+    public static final String MODEL_ACTIVE_USERS = "activeUsers";
+    public static final String MODEL_ORDERS_TODAY = "ordersToday";
+    public static final String MODEL_ALL_ORDERS = "allOrders";
+    public static final String MODEL_TOP_SELLING_ALBUMS = "topSellingAlbums";
 }

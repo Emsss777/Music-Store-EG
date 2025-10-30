@@ -33,7 +33,7 @@
                     <div class="stat-icon">🎵</div>
                     <div class="stat-content">
                         <h3>Total Albums</h3>
-                        <p class="stat-number">1,247</p>
+                        <p class="stat-number" th:text="${totalAlbums}">0</p>
                         <span class="stat-change positive">+12% this month</span>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                     <div class="stat-icon">💰</div>
                     <div class="stat-content">
                         <h3>Total Revenue</h3>
-                        <p class="stat-number">45,678 €</p>
+                        <p class="stat-number"><span th:text="${totalRevenue}">0</span> €</p>
                         <span class="stat-change positive">+8% this month</span>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                     <div class="stat-icon">👥</div>
                     <div class="stat-content">
                         <h3>Active Users</h3>
-                        <p class="stat-number">2,891</p>
+                        <p class="stat-number" th:text="${activeUsers}">0</p>
                         <span class="stat-change positive">+15% this month</span>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                     <div class="stat-icon">📦</div>
                     <div class="stat-content">
                         <h3>Orders Today</h3>
-                        <p class="stat-number">89</p>
+                        <p class="stat-number" th:text="${ordersToday}">0</p>
                         <span class="stat-change positive">+5% from yesterday</span>
                     </div>
                 </div>
@@ -67,6 +67,7 @@
                 <div class="recent-orders-card card">
                     <div class="card-header">
                         <h2>All Orders</h2>
+                        <div class="meta"><span>Total: </span><strong th:text="${allOrders}">0</strong></div>
                     </div>
                     <div class="orders-table">
                         <table>
@@ -81,25 +82,9 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td>#12345</td>
-                                <td>John Doe</td>
-                                <td>34,53 €</td>
-                                <td><span class="status completed">Completed</span></td>
-                                <td>15 jan, 2025</td>
-                            </tr>
-                            <tr>
-                                <td>#12344</td>
-                                <td>Jane Smith</td>
-                                <td>22,99 €</td>
-                                <td><span class="status pending">Pending</span></td>
-                                <td>15 jan, 2025</td>
-                            </tr>
-                            <tr>
-                                <td>#12343</td>
-                                <td>Mike Johnson</td>
-                                <td>45,67 €</td>
-                                <td><span class="status completed">Completed</span></td>
-                                <td>14 jan, 2025</td>
+                                <td colspan="5" style="text-align:center;
+                                opacity:.7">Recent orders table wiring pending
+                                </td>
                             </tr>
                             </tbody>
                         </table>
@@ -156,43 +141,17 @@
                     <a th:href="@{/admin/albums}" class="view-all-link">View All</a>
                 </div>
                 <div class="albums-list">
-                    <div class="album-item">
+                    <div class="album-item" th:each="album : ${topSellingAlbums}">
                         <div class="album-image">
-                            <img src="https://via.placeholder.com/60x60/746ab0/ffffff?text=1" alt="Album">
+                            <img th:src="${album.coverUrl}" alt="Album">
                         </div>
                         <div class="album-info">
-                            <h4>Midnight Dreams</h4>
-                            <p>The Night Owls</p>
+                            <h4 th:text="${album.title}">Title</h4>
+                            <p th:text="${album.artist}">Artist</p>
                         </div>
                         <div class="album-stats">
-                            <span class="sales-count">234 sales</span>
-                            <span class="revenue">3,042 €</span>
-                        </div>
-                    </div>
-                    <div class="album-item">
-                        <div class="album-image">
-                            <img src="https://via.placeholder.com/60x60/6a61a4/ffffff?text=2" alt="Album">
-                        </div>
-                        <div class="album-info">
-                            <h4>Electric Pulse</h4>
-                            <p>Digital Waves</p>
-                        </div>
-                        <div class="album-stats">
-                            <span class="sales-count">189 sales</span>
-                            <span class="revenue">1,889 €</span>
-                        </div>
-                    </div>
-                    <div class="album-item">
-                        <div class="album-image">
-                            <img src="https://via.placeholder.com/60x60/4c477f/ffffff?text=5" alt="Album">
-                        </div>
-                        <div class="album-info">
-                            <h4>Summer Vibes</h4>
-                            <p>Beach Boys Revival</p>
-                        </div>
-                        <div class="album-stats">
-                            <span class="sales-count">128 sales</span>
-                            <span class="revenue">1,536 €</span>
+                            <span class="sales-count"><span th:text="${album.unitsSold}">0</span> sales</span>
+                            <span class="revenue"><span th:text="${album.revenue}">0</span> €</span>
                         </div>
                     </div>
                 </div>
