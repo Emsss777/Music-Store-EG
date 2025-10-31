@@ -1,6 +1,7 @@
 package app.web.controller;
 
-import app.model.dto.OrderItemDTO;
+import app.mapper.OrderMapper;
+import app.model.dto.OrderDTO;
 import app.model.entity.Order;
 import app.model.entity.User;
 import app.security.AuthenticationMetadata;
@@ -25,7 +26,6 @@ import static app.util.Views.*;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping(URL_USERS)
-@SuppressWarnings("JvmTaintAnalysis")
 public class OrderController {
 
     private final OrderService orderService;
@@ -35,12 +35,12 @@ public class OrderController {
     public ModelAndView getMadeOrderPage(@RequestParam String orderNumber) {
 
         Order order = orderService.getOrderByOrderNumber(orderNumber);
-        List<OrderItemDTO> orderItems = orderService.getOrderItems(order.getId());
+        OrderDTO orderDTO = OrderMapper.toDTO(order);
 
         ModelAndView modelAndView = new ModelAndView(VIEW_MADE_ORDER);
         modelAndView.addObject(MODEL_PAGE, VIEW_MADE_ORDER);
-        modelAndView.addObject(MODEL_ORDER, order);
-        modelAndView.addObject(MODEL_ORDER_ITEMS, orderItems);
+        modelAndView.addObject(MODEL_ORDER, orderDTO);
+        modelAndView.addObject(MODEL_ORDER_ITEMS, orderDTO.getItems());
 
         return modelAndView;
     }
@@ -50,11 +50,12 @@ public class OrderController {
 
         User currentUser = userService.getUserById(authMetadata.getUserId());
         List<Order> orders = orderService.getOrdersByUser(currentUser);
+        List<OrderDTO> orderDTOs = OrderMapper.toDTOList(orders);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_MY_ORDERS);
         modelAndView.addObject(MODEL_PAGE, VIEW_MY_ORDERS);
-        modelAndView.addObject(MODEL_ORDERS, orders);
+        modelAndView.addObject(MODEL_ORDERS, orderDTOs);
 
         return modelAndView;
     }
@@ -63,11 +64,12 @@ public class OrderController {
     public ModelAndView getOrderDetailsPage(@PathVariable String orderNumber) {
 
         Order order = orderService.getOrderByOrderNumber(orderNumber);
+        OrderDTO orderDTO = OrderMapper.toDTO(order);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_ORDER_DETAILS);
         modelAndView.addObject(MODEL_PAGE, VIEW_ORDER_DETAILS);
-        modelAndView.addObject(MODEL_ORDER, order);
+        modelAndView.addObject(MODEL_ORDER, orderDTO);
 
         return modelAndView;
     }

@@ -88,12 +88,12 @@
                 <div class="items-list">
                     <div class="order-item" th:each="item : ${orderItems}">
                         <div class="item-image">
-                            <img th:src="${item.coverUrl}" alt="Album Cover">
+                            <img th:src="${item.album.coverUrl}" alt="Album Cover">
                         </div>
                         <div class="item-details">
-                            <h3 class="item-title" th:text="${item.title}"></h3>
+                            <h3 class="item-title" th:text="${item.album.title}"></h3>
                             <p class="item-artist"
-                               th:text="${item.artistFirstName + ' ' + item.artistLastName}"></p>
+                               th:text="${item.album.artist.firstName + ' ' + item.album.artist.lastName}"></p>
                             <p class="item-format">Digital Download</p>
                         </div>
                         <div class="item-quantity">
