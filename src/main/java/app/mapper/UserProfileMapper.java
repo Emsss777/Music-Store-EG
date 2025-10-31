@@ -19,7 +19,9 @@ public class UserProfileMapper {
                 esc(user.getEmail()),
                 esc(user.getBio()),
                 user.getProfilePicture(),
-                esc(String.valueOf(user.getCountry()))
+                esc(String.valueOf(user.getCountry())),
+                user.isActive(),
+                user.getBirthDate()
         );
     }
 }

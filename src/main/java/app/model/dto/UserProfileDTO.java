@@ -5,6 +5,8 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.validator.constraints.URL;
 
+import java.time.LocalDate;
+
 import static app.util.ExceptionMessages.*;
 
 @Builder
@@ -35,4 +37,8 @@ public class UserProfileDTO {
     String profilePicture;
 
     private String country;
+
+    private boolean isActive;
+
+    private LocalDate birthDate;
 }

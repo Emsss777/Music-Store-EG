@@ -42,7 +42,7 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_PROFILE);
         modelAndView.addObject(MODEL_PAGE, VIEW_PROFILE);
-        modelAndView.addObject(MODEL_USER, currentUser);
+        modelAndView.addObject(MODEL_USER, UserProfileMapper.toSafeDTO(currentUser));
         modelAndView.addObject(MODEL_TOTAL_ALBUM_PURCHASED, totalAlbumsPurchased);
         modelAndView.addObject(MODEL_TOTAL_AMOUNT_SPENT, totalAmountSpent);
 

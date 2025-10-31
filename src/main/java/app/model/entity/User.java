@@ -66,6 +66,5 @@ public class User extends BaseEntity {
     private LocalDateTime updatedOn;
 
     @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
-    @OrderBy("createdOn DESC")
     private List<Order> orders = new ArrayList<>();
 }
