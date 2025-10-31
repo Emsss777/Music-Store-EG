@@ -227,7 +227,9 @@
                                 </div>
                                 <div class="recent-info">
                                     <h5 th:text="${artist.artistName}"></h5>
-                                    <p th:text="${artist.primaryGenre}"></p>
+                                    <p th:text="${#strings.capitalize(
+                                       #strings.replace(#strings.toLowerCase(artist.primaryGenre), '_', ' '))}">
+                                    </p>
                                 </div>
                             </div>
                         </div>
