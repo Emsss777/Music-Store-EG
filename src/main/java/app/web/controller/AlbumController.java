@@ -1,6 +1,9 @@
 package app.web.controller;
 
+import app.mapper.ArtistMapper;
+import app.model.dto.ArtistDTO;
 import app.model.dto.SaveAlbumDTO;
+import app.model.entity.Artist;
 import app.service.AlbumService;
 import app.service.ArtistService;
 import app.web.util.PageBuilder;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
 import java.util.UUID;
 
 import static app.util.ExceptionMessages.ALBUM_FAILED_TO_DELETE;
@@ -45,9 +49,12 @@ public class AlbumController {
     @GetMapping(URL_ADMIN_ALBUMS + URL_ADD)
     public ModelAndView getAddAlbumPage() {
 
+        List<Artist> artists = artistService.getAllArtists();
+        List<ArtistDTO> artistDTOs = ArtistMapper.toDTOList(artists);
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_ADMIN_ADD_ALBUM);
-        modelAndView.addObject(MODEL_ARTISTS, artistService.getAllArtists());
+        modelAndView.addObject(MODEL_ARTISTS, artistDTOs);
         modelAndView.addObject(MODEL_GENRES, PrimaryGenre.values());
         modelAndView.addObject(MODEL_SAVE_ALBUM_DTO, new SaveAlbumDTO());
         modelAndView.addObject(MODEL_TOTAL_ALBUMS, albumService.getTotalAlbumCount());
@@ -61,10 +68,13 @@ public class AlbumController {
     @PostMapping(URL_ADMIN_ALBUMS + URL_ADD)
     public ModelAndView addAlbum(@Valid @ModelAttribute SaveAlbumDTO saveAlbumDTO, BindingResult bindingResult) {
 
+        List<Artist> artists = artistService.getAllArtists();
+        List<ArtistDTO> artistDTOs = ArtistMapper.toDTOList(artists);
+
         if (bindingResult.hasErrors()) {
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName(VIEW_ADMIN_ADD_ALBUM);
-            modelAndView.addObject(MODEL_ARTISTS, artistService.getAllArtists());
+            modelAndView.addObject(MODEL_ARTISTS, artistDTOs);
             modelAndView.addObject(MODEL_GENRES, PrimaryGenre.values());
             modelAndView.addObject(MODEL_SAVE_ALBUM_DTO, saveAlbumDTO);
 
