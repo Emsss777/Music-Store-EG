@@ -1,5 +1,7 @@
 package app.web.controller;
 
+import app.mapper.AlbumMapper;
+import app.model.dto.AlbumDTO;
 import app.model.entity.Album;
 import app.model.enums.PrimaryGenre;
 import app.service.AlbumService;
@@ -27,12 +29,14 @@ public class HomeController {
     public ModelAndView getHomePage() {
 
         List<Album> randomAlbums = albumService.getRandomAlbums(4);
+        List<AlbumDTO> albumDTOs = AlbumMapper.toDTOList(randomAlbums);
+
         List<PrimaryGenre> randomGenres = genreService.getRandomGenres(5);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_HOME);
         modelAndView.addObject(MODEL_PAGE, VIEW_HOME);
-        modelAndView.addObject(MODEL_ALBUMS, randomAlbums);
+        modelAndView.addObject(MODEL_ALBUMS, albumDTOs);
         modelAndView.addObject(MODEL_GENRES, randomGenres);
 
         return modelAndView;

@@ -1,5 +1,6 @@
 package app.web.controller;
 
+import app.mapper.UserMapper;
 import app.model.entity.User;
 import app.model.enums.NotificationStatus;
 import app.notification.client.dto.Notification;
@@ -49,7 +50,7 @@ public class NotificationController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_NOTIFICATIONS);
-        modelAndView.addObject(MODEL_USER, currentUser);
+        modelAndView.addObject(MODEL_USER, UserMapper.toBasicDTO(currentUser));
         modelAndView.addObject(MODEL_NOTIFICATIONS_PREFERENCE, notificationPreference);
         modelAndView.addObject(MODEL_NOTIFICATION_HISTORY, notificationHistory);
         modelAndView.addObject(MODEL_SUCCEEDED_NOTIFICATIONS_NUMBER, succeededNotificationsNumber);
