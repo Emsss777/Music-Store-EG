@@ -1,6 +1,11 @@
 package app.web.controller;
 
+import app.mapper.OrderMapper;
+import app.mapper.UserMapper;
 import app.model.dto.AdminStatsDTO;
+import app.model.dto.OrderDTO;
+import app.model.dto.UserListDTO;
+import app.model.entity.Order;
 import app.model.entity.User;
 import app.security.AuthenticationMetadata;
 import app.service.AdminStatsService;
@@ -19,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 import java.util.UUID;
 
+import static app.mapper.UserMapper.toBasicDTO;
 import static app.util.ModelAttributes.*;
 import static app.util.Redirects.REDIRECT_USERS;
 import static app.util.UrlParams.PARAM_ID;
@@ -40,10 +46,11 @@ public class AdminController {
     public ModelAndView getAllUsers() {
 
         List<User> users = userService.getAllUsers();
+        List<UserListDTO> userDTOs = UserMapper.toListDTOList(users);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_USERS);
-        modelAndView.addObject(MODEL_USERS, users);
+        modelAndView.addObject(MODEL_USERS, userDTOs);
 
         return modelAndView;
     }
@@ -54,18 +61,20 @@ public class AdminController {
 
         User currentUser = userService.getUserById(authMetadata.getUserId());
         AdminStatsDTO stats = adminStatsService.getCurrentStats();
+        List<Order> orders = orderService.getAllOrders();
+        List<OrderDTO> orderDTOs = OrderMapper.toDTOList(orders);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_ADMIN_DASHBOARD);
         modelAndView.addObject(MODEL_PAGE, VIEW_ADMIN_DASHBOARD);
-        modelAndView.addObject(MODEL_USER, currentUser);
+        modelAndView.addObject(MODEL_USER, toBasicDTO(currentUser));
         modelAndView.addObject(MODEL_TOTAL_ALBUMS, stats.getTotalAlbums());
         modelAndView.addObject(MODEL_TOTAL_REVENUE, stats.getTotalRevenue());
         modelAndView.addObject(MODEL_ACTIVE_USERS, stats.getActiveUsers());
         modelAndView.addObject(MODEL_ORDERS_TODAY, stats.getOrdersToday());
         modelAndView.addObject(MODEL_ALL_ORDERS, stats.getAllOrders());
         modelAndView.addObject(MODEL_TOP_SELLING_ALBUMS, stats.getTopSellingAlbums());
-        modelAndView.addObject(MODEL_ORDERS, orderService.getAllOrders());
+        modelAndView.addObject(MODEL_ORDERS, orderDTOs);
 
         return modelAndView;
     }
