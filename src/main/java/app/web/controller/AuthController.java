@@ -1,5 +1,7 @@
 package app.web.controller;
 
+import app.mapper.AlbumMapper;
+import app.model.dto.AlbumDTO;
 import app.model.dto.LoginDTO;
 import app.model.dto.RegisterDTO;
 import app.model.entity.Album;
@@ -33,11 +35,12 @@ public class AuthController {
     public ModelAndView getLoginPage(@RequestParam(value = "error", required = false) String errorParam) {
 
         List<Album> randomAlbums = albumService.getRandomAlbums(6);
+        List<AlbumDTO> albumDTOs = AlbumMapper.toDTOList(randomAlbums);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_LOGIN);
         modelAndView.addObject(MODEL_LOGIN_DTO, new LoginDTO());
-        modelAndView.addObject(MODEL_ALBUMS, randomAlbums);
+        modelAndView.addObject(MODEL_ALBUMS, albumDTOs);
 
         if (errorParam != null) {
             modelAndView.addObject(MODEL_ERROR_MESSAGE, INCORRECT_USERNAME_OR_PASSWORD);
@@ -50,11 +53,12 @@ public class AuthController {
     public ModelAndView getRegisterPage() {
 
         List<Album> randomAlbums = albumService.getRandomAlbums(6);
+        List<AlbumDTO> albumDTOs = AlbumMapper.toDTOList(randomAlbums);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_REGISTER);
         modelAndView.addObject(MODEL_REGISTER_DTO, new RegisterDTO());
-        modelAndView.addObject(MODEL_ALBUMS, randomAlbums);
+        modelAndView.addObject(MODEL_ALBUMS, albumDTOs);
 
         return modelAndView;
     }
