@@ -4,24 +4,23 @@ import app.model.dto.AlbumDTO;
 import app.model.entity.Album;
 import lombok.experimental.UtilityClass;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @UtilityClass
 public class AlbumMapper {
 
     public static AlbumDTO toDTO(Album album) {
 
-        if (album == null) {
-            return null;
-        }
+        if (album == null) return null;
 
         return AlbumDTO.builder()
                 .id(album.getId())
                 .title(album.getTitle())
                 .genre(album.getGenre())
                 .year(album.getYear())
-                .description(album.getDescription())
+                .description(Optional.ofNullable(album.getDescription()).orElse(""))
                 .coverUrl(album.getCoverUrl())
                 .price(album.getPrice())
                 .artist(ArtistMapper.toDTO(album.getArtist()))
@@ -31,12 +30,10 @@ public class AlbumMapper {
 
     public static List<AlbumDTO> toDTOList(List<Album> albums) {
 
-        if (albums == null) {
-            return List.of();
-        }
+        if (albums == null) return Collections.emptyList();
 
         return albums.stream()
                 .map(AlbumMapper::toDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

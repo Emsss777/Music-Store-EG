@@ -42,7 +42,7 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_PROFILE);
         modelAndView.addObject(MODEL_PAGE, VIEW_PROFILE);
-        modelAndView.addObject(MODEL_USER, UserProfileMapper.toSafeDTO(currentUser));
+        modelAndView.addObject(MODEL_USER, UserProfileMapper.toDTO(currentUser));
         modelAndView.addObject(MODEL_TOTAL_ALBUM_PURCHASED, totalAlbumsPurchased);
         modelAndView.addObject(MODEL_TOTAL_AMOUNT_SPENT, totalAmountSpent);
 
@@ -53,7 +53,7 @@ public class UserController {
     public ModelAndView showEditProfile(@PathVariable UUID id) {
 
         User user = userService.getUserById(id);
-        UserProfileDTO userProfileDTO = UserProfileMapper.toSafeDTO(user);
+        UserProfileDTO userProfileDTO = UserProfileMapper.toDTO(user);
         UserEditDTO userEditDTO = UserEditMapper.mapUserToUserEditDTO(user);
 
         ModelAndView modelAndView = new ModelAndView();
@@ -69,7 +69,7 @@ public class UserController {
                                           @Valid UserEditDTO userEditDTO, BindingResult bindingResult) {
 
         User user = userService.getUserById(id);
-        UserProfileDTO userProfileDTO = UserProfileMapper.toSafeDTO(user);
+        UserProfileDTO userProfileDTO = UserProfileMapper.toDTO(user);
 
         if (bindingResult.hasErrors()) {
 

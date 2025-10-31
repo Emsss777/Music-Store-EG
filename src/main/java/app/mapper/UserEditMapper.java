@@ -9,6 +9,8 @@ public class UserEditMapper {
 
     public static UserEditDTO mapUserToUserEditDTO(User user) {
 
+        if (user == null) return null;
+
         return UserEditDTO.builder()
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())

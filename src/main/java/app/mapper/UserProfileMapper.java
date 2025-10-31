@@ -4,24 +4,24 @@ import app.model.dto.UserProfileDTO;
 import app.model.entity.User;
 import lombok.NoArgsConstructor;
 
-import static app.util.HtmlSafe.esc;
-
 @NoArgsConstructor
 public class UserProfileMapper {
 
-    public static UserProfileDTO toSafeDTO(User user) {
+    public static UserProfileDTO toDTO(User user) {
 
-        return new UserProfileDTO(
-                user.getId() != null ? user.getId().toString() : null,
-                esc(user.getFirstName()),
-                esc(user.getLastName()),
-                esc(user.getUsername()),
-                esc(user.getEmail()),
-                esc(user.getBio()),
-                user.getProfilePicture(),
-                esc(String.valueOf(user.getCountry())),
-                user.isActive(),
-                user.getBirthDate()
-        );
+        if (user == null) return null;
+
+        return UserProfileDTO.builder()
+                .id(String.valueOf(user.getId()))
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .bio(user.getBio())
+                .profilePicture(user.getProfilePicture())
+                .country(String.valueOf(user.getCountry()))
+                .isActive(user.isActive())
+                .birthDate(user.getBirthDate())
+                .build();
     }
 }

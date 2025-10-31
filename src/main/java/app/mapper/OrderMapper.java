@@ -5,28 +5,27 @@ import app.model.dto.OrderItemDetailDTO;
 import app.model.entity.Order;
 import lombok.experimental.UtilityClass;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @UtilityClass
 public class OrderMapper {
 
     public static OrderDTO toDTO(Order order) {
 
-        if (order == null) {
-            return null;
-        }
+        if (order == null) return null;
 
-        List<OrderItemDetailDTO> itemDTOs = order.getItems() != null
-                ? order.getItems().stream()
+        List<OrderItemDetailDTO> itemDTOs = Optional.ofNullable(order.getItems())
+                .orElse(Collections.emptyList())
+                .stream()
                 .map(item -> OrderItemDetailDTO.builder()
                         .id(item.getId())
                         .unitPrice(item.getUnitPrice())
                         .quantity(item.getQuantity())
                         .album(AlbumMapper.toDTO(item.getAlbum()))
                         .build())
-                .collect(Collectors.toList())
-                : List.of();
+                .toList();
 
         return OrderDTO.builder()
                 .id(order.getId())
@@ -36,18 +35,18 @@ public class OrderMapper {
                 .paymentMethod(order.getPaymentMethod())
                 .totalAmount(order.getTotalAmount())
                 .items(itemDTOs)
-                .owner(UserMapper.toBasicDTO(order.getOwner()))
+                .owner(order.getOwner() != null
+                        ? UserMapper.toBasicDTO(order.getOwner())
+                        : null)
                 .build();
     }
 
     public static List<OrderDTO> toDTOList(List<Order> orders) {
 
-        if (orders == null) {
-            return List.of();
-        }
+        if (orders == null) return Collections.emptyList();
 
         return orders.stream()
                 .map(OrderMapper::toDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

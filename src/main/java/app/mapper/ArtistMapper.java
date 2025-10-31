@@ -4,22 +4,21 @@ import app.model.dto.ArtistDTO;
 import app.model.entity.Artist;
 import lombok.experimental.UtilityClass;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @UtilityClass
 public class ArtistMapper {
 
     public static ArtistDTO toDTO(Artist artist) {
 
-        if (artist == null) {
-            return null;
-        }
+        if (artist == null) return null;
 
         return ArtistDTO.builder()
                 .id(artist.getId())
                 .artistName(artist.getArtistName())
-                .stageName(artist.getStageName())
+                .stageName(Optional.ofNullable(artist.getStageName()).orElse(""))
                 .firstName(artist.getFirstName())
                 .lastName(artist.getLastName())
                 .artistBio(artist.getArtistBio())
@@ -30,12 +29,10 @@ public class ArtistMapper {
 
     public static List<ArtistDTO> toDTOList(List<Artist> artists) {
 
-        if (artists == null) {
-            return List.of();
-        }
+        if (artists == null) return Collections.emptyList();
 
         return artists.stream()
                 .map(ArtistMapper::toDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

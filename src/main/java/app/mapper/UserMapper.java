@@ -5,17 +5,15 @@ import app.model.dto.UserListDTO;
 import app.model.entity.User;
 import lombok.experimental.UtilityClass;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @UtilityClass
 public class UserMapper {
 
     public static UserBasicDTO toBasicDTO(User user) {
 
-        if (user == null) {
-            return null;
-        }
+        if (user == null) return null;
 
         return UserBasicDTO.builder()
                 .id(user.getId())
@@ -32,9 +30,7 @@ public class UserMapper {
 
     public static UserListDTO toListDTO(User user) {
 
-        if (user == null) {
-            return null;
-        }
+        if (user == null) return null;
 
         return UserListDTO.builder()
                 .id(user.getId())
@@ -49,12 +45,10 @@ public class UserMapper {
 
     public static List<UserListDTO> toListDTOList(List<User> users) {
 
-        if (users == null) {
-            return List.of();
-        }
+        if (users == null) return Collections.emptyList();
 
         return users.stream()
                 .map(UserMapper::toListDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 }
