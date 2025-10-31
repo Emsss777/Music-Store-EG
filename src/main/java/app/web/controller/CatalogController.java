@@ -1,5 +1,7 @@
 package app.web.controller;
 
+import app.mapper.AlbumMapper;
+import app.model.dto.AlbumDTO;
 import app.web.util.PageBuilder;
 import app.model.entity.Album;
 import app.model.enums.PrimaryGenre;
@@ -38,11 +40,12 @@ public class CatalogController {
     public ModelAndView getAlbumDetailsPage(@PathVariable UUID id) {
 
         Album album = albumService.getAlbumById(id);
+        AlbumDTO albumDTO = AlbumMapper.toDTO(album);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_ALBUM);
         modelAndView.addObject(MODEL_PAGE, VIEW_ALBUM);
-        modelAndView.addObject(MODEL_ALBUM, album);
+        modelAndView.addObject(MODEL_ALBUM, albumDTO);
 
         return modelAndView;
     }
