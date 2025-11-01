@@ -1,5 +1,6 @@
 package app.service.impl;
 
+import app.mapper.CartItemMapper;
 import app.model.dto.CartItemDTO;
 import app.model.dto.CartSummaryDTO;
 import app.model.entity.Album;
@@ -35,7 +36,7 @@ public class CartServiceImpl implements CartService {
                 .findFirst()
                 .ifPresentOrElse(
                         item -> item.setQuantity(item.getQuantity() + 1),
-                        () -> cartItems.add(createCartItem(album))
+                        () -> cartItems.add(CartItemMapper.fromAlbum(album))
                 );
 
         session.setAttribute(MODEL_CART, cartItems);
@@ -110,17 +111,5 @@ public class CartServiceImpl implements CartService {
 
         List<CartItemDTO> items = getOrInitializeCart(session);
         return CartSummaryDTO.of(items);
-    }
-
-    private CartItemDTO createCartItem(Album album) {
-
-        return CartItemDTO.builder()
-                .albumId(album.getId())
-                .title(album.getTitle())
-                .artistName(album.getArtist().getArtistName())
-                .coverUrl(album.getCoverUrl())
-                .price(album.getPrice())
-                .quantity(1)
-                .build();
     }
 }
