@@ -1,8 +1,8 @@
 package app.service.impl;
 
+import app.mapper.TopSellingAlbumMapper;
 import app.model.dto.AdminStatsDTO;
 import app.model.dto.TopSellingAlbumDTO;
-import app.model.projection.TopSellingAlbumProjection;
 import app.repository.OrderItemRepo;
 import app.repository.OrderRepo;
 import app.repository.UserRepo;
@@ -41,7 +41,7 @@ public class AdminStatsServiceImpl implements AdminStatsService {
 
         List<TopSellingAlbumDTO> topSelling = orderItemRepo.findTopSellingAlbums()
                 .stream()
-                .map(this::mapTopSelling)
+                .map(TopSellingAlbumMapper::toDTO)
                 .limit(3)
                 .collect(Collectors.toList());
 
@@ -52,18 +52,6 @@ public class AdminStatsServiceImpl implements AdminStatsService {
                 .ordersToday(ordersToday)
                 .allOrders(allOrders)
                 .topSellingAlbums(topSelling)
-                .build();
-    }
-
-    private TopSellingAlbumDTO mapTopSelling(TopSellingAlbumProjection projection) {
-
-        return TopSellingAlbumDTO.builder()
-                .albumId(projection.getAlbumId())
-                .title(projection.getTitle())
-                .artist(projection.getArtist())
-                .unitsSold(projection.getUnitsSold())
-                .revenue(projection.getRevenue())
-                .coverUrl(projection.getCoverUrl())
                 .build();
     }
 }
