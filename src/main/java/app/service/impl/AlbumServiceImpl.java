@@ -32,7 +32,7 @@ public class AlbumServiceImpl implements AlbumService {
 
     private final AlbumRepo albumRepo;
     private final ArtistService artistService;
-    private final OrderItemManagerService orderItemManager;
+    private final OrderItemService orderItemManager;
 
     @Override
     public Album getAlbumByAlbumTitle(String albumTitle) {

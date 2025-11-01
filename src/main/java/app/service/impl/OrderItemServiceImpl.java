@@ -4,7 +4,7 @@ import app.model.entity.Order;
 import app.model.entity.OrderItem;
 import app.repository.OrderItemRepo;
 import app.repository.OrderRepo;
-import app.service.OrderItemManagerService;
+import app.service.OrderItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class OrderItemManagerServiceImpl implements OrderItemManagerService {
+public class OrderItemServiceImpl implements OrderItemService {
 
     private final OrderItemRepo orderItemRepo;
     private final OrderRepo orderRepo;
