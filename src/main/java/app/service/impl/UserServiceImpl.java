@@ -6,10 +6,10 @@ import app.event.payload.UserRegisteredEvent;
 import app.exception.DomainException;
 import app.exception.PasswordMismatchException;
 import app.exception.UsernameAlreadyExistException;
+import app.mapper.UserMapper;
 import app.model.dto.RegisterDTO;
 import app.model.dto.UserEditDTO;
 import app.model.entity.User;
-import app.model.enums.Country;
 import app.model.enums.UserRole;
 import app.notification.services.NotificationService;
 import app.repository.UserRepo;
@@ -28,9 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.boot.ansi.AnsiColor;
 import org.springframework.boot.ansi.AnsiOutput;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import static app.util.ExceptionMessages.*;
@@ -58,18 +56,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @CacheEvict(value = "users", allEntries = true)
     public void registerUser(RegisterDTO registerDTO) {
 
-        Optional<User> existingUser = userRepo.findByUsername(registerDTO.getUsername());
-
-        if (existingUser.isPresent()) {
-            throw new UsernameAlreadyExistException(
-                    USERNAME_ALREADY_EXISTS.formatted(registerDTO.getUsername()));
-        }
+        userRepo.findByUsername(registerDTO.getUsername())
+                .ifPresent(user -> {
+                    throw new UsernameAlreadyExistException(
+                            USERNAME_ALREADY_EXISTS.formatted(registerDTO.getUsername()));
+                });
 
         if (!registerDTO.getPassword().equals(registerDTO.getConfirmPassword())) {
             throw new PasswordMismatchException(PASSWORD_DO_NOT_MATCH);
         }
 
-        User user = userRepo.save(initializeUser(registerDTO));
+        User user = userRepo.save(UserMapper.fromRegisterDTO(registerDTO, passwordEncoder));
 
         UserRegisteredEvent event = UserRegisteredEvent.builder()
                 .userId(user.getId())
@@ -79,19 +76,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
         log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, USER_CREATED), user.getUsername(), user.getId());
 
-    }
-
-    private User initializeUser(RegisterDTO registerDTO) {
-
-        return User.builder()
-                .username(registerDTO.getUsername())
-                .password(passwordEncoder.encode(registerDTO.getPassword()))
-                .country(registerDTO.getCountry())
-                .role(UserRole.USER)
-                .isActive(true)
-                .createdOn(LocalDateTime.now())
-                .updatedOn(LocalDateTime.now())
-                .build();
     }
 
     @Override
@@ -114,40 +98,31 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public void editUserDetails(UUID userId, UserEditDTO userEditDTO) {
 
         User user = getUserById(userId);
-
-        user.setFirstName(userEditDTO.getFirstName());
-        user.setLastName(userEditDTO.getLastName());
-        user.setUsername(userEditDTO.getUsername());
-        user.setEmail(userEditDTO.getEmail());
-        user.setBio(userEditDTO.getBio());
-        user.setProfilePicture(userEditDTO.getProfilePicture());
-        user.setCountry(Country.valueOf(userEditDTO.getCountry()));
+        UserMapper.updateUserFromEditDTO(user, userEditDTO);
 
         if (!userEditDTO.getEmail().isBlank()) {
             notificationService.saveNotificationPreference(userId, true, userEditDTO.getEmail());
         } else {
             notificationService.saveNotificationPreference(userId, false, null);
         }
-
         userRepo.save(user);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        User user = userRepo.findByUsername(username)
+        return userRepo.findByUsername(username)
+                .map(user -> AuthenticationMetadata.builder()
+                        .username(user.getUsername())
+                        .userId(user.getId())
+                        .password(user.getPassword())
+                        .role(user.getRole())
+                        .isActive(user.isActive())
+                        .build())
                 .orElseThrow(() -> {
                     log.warn(USERNAME_DOES_NOT_EXIST, username);
                     return new UsernameNotFoundException(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, BAD_CREDENTIALS));
                 });
-
-        return AuthenticationMetadata.builder()
-                .username(user.getUsername())
-                .userId(user.getId())
-                .password(user.getPassword())
-                .role(user.getRole())
-                .isActive(user.isActive())
-                .build();
     }
 
     @Override
