@@ -3,7 +3,6 @@ package app.service.impl;
 import app.exception.DomainException;
 import app.model.dto.CartItemDTO;
 import app.model.dto.CheckoutDTO;
-import app.model.dto.OrderItemDTO;
 import app.model.entity.*;
 import app.model.enums.PaymentMethod;
 import app.model.enums.Status;
@@ -81,24 +80,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderItemDTO> getOrderItems(UUID orderId) {
-
-        Order order = getOrderById(orderId);
-
-        return order.getItems().stream()
-                .map(item -> OrderItemDTO.builder()
-                        .albumId(item.getAlbum().getId())
-                        .title(item.getAlbum().getTitle())
-                        .artistFirstName(item.getAlbum().getArtist().getFirstName())
-                        .artistLastName(item.getAlbum().getArtist().getLastName())
-                        .coverUrl(item.getAlbum().getCoverUrl())
-                        .unitPrice(item.getUnitPrice())
-                        .quantity(item.getQuantity())
-                        .build())
-                .toList();
-    }
-
-    @Override
     public List<Order> getOrdersByUser(User user) {
 
         return orderRepo.findByOwner(user);
@@ -130,13 +111,6 @@ public class OrderServiceImpl implements OrderService {
 
         return orderRepo.findAll(Sort.by(Sort.Direction.DESC, "createdOn"));
     }
-
-    private Order getOrderById(UUID orderId) {
-
-        return orderRepo.findById(orderId).orElseThrow(() ->
-                new DomainException(ORDER_DOES_NOT_EXIST + orderId));
-    }
-
 
     private String generateOrderNumber() {
 

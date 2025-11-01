@@ -101,7 +101,9 @@
                         </div>
                         <div class="item-price">
                             <span class="summary-value"
-                                  th:text="${#numbers.formatDecimal(item.unitPrice, 1, 2)} + ' €'">
+                                  th:text="${item.quantity == 1}
+                                  ? ${#numbers.formatDecimal(item.unitPrice, 1, 2)} + ' €'
+                                  : ${#numbers.formatDecimal(item.totalPrice, 1, 2)} + ' €'">
                             </span>
                         </div>
                     </div>
