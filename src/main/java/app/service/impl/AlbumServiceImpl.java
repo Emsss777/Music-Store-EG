@@ -2,6 +2,7 @@ package app.service.impl;
 
 import app.exception.DomainException;
 import app.exception.TitleAlreadyExistException;
+import app.mapper.AlbumMapper;
 import app.model.dto.SaveAlbumDTO;
 import app.model.entity.Album;
 import app.model.entity.Artist;
@@ -98,17 +99,7 @@ public class AlbumServiceImpl implements AlbumService {
                     TITLE_ALREADY_EXISTS.formatted(saveAlbumDTO.getTitle()));
         }
 
-        Album album = Album.builder()
-                .title(saveAlbumDTO.getTitle())
-                .genre(saveAlbumDTO.getGenre())
-                .year(saveAlbumDTO.getYear())
-                .description(saveAlbumDTO.getDescription())
-                .coverUrl(saveAlbumDTO.getCoverUrl())
-                .price(saveAlbumDTO.getPrice())
-                .artist(artist)
-                .createdOn(LocalDateTime.now())
-                .build();
-
+        Album album = AlbumMapper.fromSaveDTO(saveAlbumDTO, artist);
         albumRepo.save(album);
     }
 
