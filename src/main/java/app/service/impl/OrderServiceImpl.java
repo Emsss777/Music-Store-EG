@@ -1,11 +1,11 @@
 package app.service.impl;
 
 import app.exception.DomainException;
+import app.mapper.OrderItemMapper;
+import app.mapper.OrderMapper;
 import app.model.dto.CartItemDTO;
 import app.model.dto.CheckoutDTO;
 import app.model.entity.*;
-import app.model.enums.PaymentMethod;
-import app.model.enums.Status;
 import app.repository.OrderItemRepo;
 import app.repository.OrderRepo;
 import app.service.AlbumService;
@@ -16,10 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 import static app.util.ExceptionMessages.ORDER_DOES_NOT_EXIST;
 
@@ -39,36 +36,21 @@ public class OrderServiceImpl implements OrderService {
                 .map(CartItemDTO::getTotalPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-        Order order = Order.builder()
-                .orderNumber(generateOrderNumber())
-                .status(Status.PENDING)
-                .paymentMethod(PaymentMethod.CREDIT_CARD)
-                .totalAmount(totalAmount)
-                .owner(user)
-                .createdOn(LocalDateTime.now())
-                .build();
-
+        Order order = OrderMapper.fromCheckoutDTO(checkoutDTO, user, totalAmount);
         Order savedOrder = orderRepo.save(order);
 
         for (CartItemDTO cartItem : cartItems) {
             Album album = albumService.getAlbumById(cartItem.getAlbumId());
 
-            Optional<OrderItem> existingItem = orderItemRepo.findByOrderAndAlbum(savedOrder, album);
-            if (existingItem.isPresent()) {
-                OrderItem item = existingItem.get();
-                item.setQuantity(item.getQuantity() + cartItem.getQuantity());
-                orderItemRepo.save(item);
-            } else {
-                OrderItem orderItem = OrderItem.builder()
-                        .album(album)
-                        .order(savedOrder)
-                        .unitPrice(cartItem.getPrice())
-                        .quantity(cartItem.getQuantity())
-                        .build();
-                orderItemRepo.save(orderItem);
-            }
+            orderItemRepo.findByOrderAndAlbum(savedOrder, album)
+                    .ifPresentOrElse(
+                            item -> {
+                                item.setQuantity(item.getQuantity() + cartItem.getQuantity());
+                                orderItemRepo.save(item);
+                            },
+                            () -> orderItemRepo.save(OrderItemMapper.fromCartItem(cartItem, savedOrder, album))
+                    );
         }
-
         return savedOrder;
     }
 
@@ -110,10 +92,5 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getAllOrders() {
 
         return orderRepo.findAll(Sort.by(Sort.Direction.DESC, "createdOn"));
-    }
-
-    private String generateOrderNumber() {
-
-        return "ORD-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
     }
 }
