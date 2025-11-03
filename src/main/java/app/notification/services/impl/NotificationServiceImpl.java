@@ -2,6 +2,7 @@ package app.notification.services.impl;
 
 import app.notification.client.dto.Notification;
 import app.notification.client.dto.NotificationPreference;
+import app.notification.client.dto.NotificationRequest;
 import app.notification.services.NotificationService;
 import app.notification.client.NotificationClient;
 import app.notification.client.dto.UpsertNotificationPreference;
@@ -84,5 +85,21 @@ public class NotificationServiceImpl implements NotificationService {
             log.error(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_GET_HISTORY_UNEXPECTED), userId, ex);
         }
         return Notification.defaultHistory();
+    }
+
+    @Override
+    public void sendNotification(UUID userId, String emailSubject, String emailBody) {
+
+        NotificationRequest notificationRequest = NotificationRequest.defaultFor(userId, emailSubject, emailBody);
+
+        ResponseEntity<Void> httpResponse;
+        try {
+            httpResponse = notificationClient.sendNotification(notificationRequest);
+            if (!httpResponse.getStatusCode().is2xxSuccessful()) {
+                log.error(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_SEND_EMAIL_ERROR), userId);
+            }
+        } catch (Exception e) {
+            log.warn(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_SEND_EMAIL_NON_2XX), userId);
+        }
     }
 }

@@ -6,6 +6,7 @@ import app.mapper.OrderMapper;
 import app.model.dto.CartItemDTO;
 import app.model.dto.CheckoutDTO;
 import app.model.entity.*;
+import app.notification.services.NotificationService;
 import app.repository.OrderItemRepo;
 import app.repository.OrderRepo;
 import app.service.AlbumService;
@@ -27,6 +28,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepo orderRepo;
     private final OrderItemRepo orderItemRepo;
     private final AlbumService albumService;
+    private final NotificationService notificationService;
 
     @Override
     @Transactional
@@ -51,6 +53,14 @@ public class OrderServiceImpl implements OrderService {
                             () -> orderItemRepo.save(OrderItemMapper.fromCartItem(cartItem, savedOrder, album))
                     );
         }
+
+        notificationService.sendNotification(
+                user.getId(),
+                "Order Confirmation",
+                "Dear %s, your order #%s has been successfully created! Total amount: %s"
+                        .formatted(user.getUsername(), savedOrder.getId(), totalAmount)
+        );
+
         return savedOrder;
     }
 

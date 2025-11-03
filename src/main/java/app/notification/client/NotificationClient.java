@@ -2,6 +2,7 @@ package app.notification.client;
 
 import app.notification.client.dto.Notification;
 import app.notification.client.dto.NotificationPreference;
+import app.notification.client.dto.NotificationRequest;
 import app.notification.client.dto.UpsertNotificationPreference;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
@@ -28,4 +29,7 @@ public interface NotificationClient {
 
     @GetMapping
     ResponseEntity<List<Notification>> getNotificationHistory(@RequestParam(name = "userId") UUID userId);
+
+    @PostMapping
+    ResponseEntity<Void> sendNotification(@RequestBody NotificationRequest notificationRequest);
 }

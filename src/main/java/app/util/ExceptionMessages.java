@@ -57,4 +57,8 @@ public class ExceptionMessages {
             "[notification-svc] error on 'getNotificationHistory' for user [{}]: status={}, msg={}";
     public static final String NOTIFICATION_GET_HISTORY_UNEXPECTED =
             "[notification-svc] unexpected error on 'getNotificationHistory' for user [{}]";
+    public static final String NOTIFICATION_SEND_EMAIL_ERROR =
+            "[notification-svc] error on 'sendEmail' for user [{}]";
+    public static final String NOTIFICATION_SEND_EMAIL_NON_2XX =
+            "[notification-svc] non-2xx on 'sendEmail' for user [{}]: 500 Internal Server Error";
 }
