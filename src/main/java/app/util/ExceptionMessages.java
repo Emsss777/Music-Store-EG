@@ -39,30 +39,4 @@ public class ExceptionMessages {
     public static final String ALBUM_YEAR_TOO_HIGH = "Release year must not exceed 2025";
     public static final String ALBUM_DESCRIPTION_TOO_LONG = "Description must not exceed 1000 characters!";
     public static final String ALBUM_COVER_URL_INVALID = "Cover URL must be a valid HTTP/HTTPS URL!";
-    public static final String NOTIFICATION_SAVE_PREF_NON_2XX =
-            "[notification-svc] non-2xx on 'saveNotificationPreference' for user [{}]: {}";
-    public static final String NOTIFICATION_SAVE_PREF_ERROR =
-            "[notification-svc] error on 'saveNotificationPreference' for user [{}]: status={}, msg={}";
-    public static final String NOTIFICATION_SAVE_PREF_UNEXPECTED =
-            "[notification-svc] unexpected error on 'saveNotificationPreference' for user [{}]";
-    public static final String NOTIFICATION_GET_PREF_NON_2XX =
-            "[notification-svc] non-2xx on 'getNotificationPreference' for user [{}]: {}";
-    public static final String NOTIFICATION_GET_PREF_ERROR =
-            "[notification-svc] error on 'getNotificationPreference' for user [{}]: status={}, msg={}";
-    public static final String NOTIFICATION_GET_PREF_UNEXPECTED =
-            "[notification-svc] unexpected error on 'getNotificationPreference' for user [{}]";
-    public static final String NOTIFICATION_GET_HISTORY_NON_2XX =
-            "[notification-svc] non-2xx on 'getNotificationHistory' for user [{}]: {}";
-    public static final String NOTIFICATION_GET_HISTORY_ERROR =
-            "[notification-svc] error on 'getNotificationHistory' for user [{}]: status={}, msg={}";
-    public static final String NOTIFICATION_GET_HISTORY_UNEXPECTED =
-            "[notification-svc] unexpected error on 'getNotificationHistory' for user [{}]";
-    public static final String NOTIFICATION_SEND_EMAIL_ERROR =
-            "[notification-svc] error on 'sendEmail' for user [{}]";
-    public static final String NOTIFICATION_SEND_EMAIL_NON_2XX =
-            "[notification-svc] non-2xx on 'sendEmail' for user [{}]: 500 Internal Server Error";
-    public static final String NOTIFICATION_UPDATE_PREF_ERROR =
-            "[notification-svc] error on 'updateNotificationPreference' for user [{}]";
-    public static final String NOTIFICATION_CLEAR_HISTORY_ERROR =
-            "[notification-svc] error on 'clearNotificationHistory' for user [{}]";
 }

@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static app.util.ExceptionMessages.*;
-import static app.util.SuccessMessages.USER_CREATED;
+import static app.util.LogMessages.USER_CREATED;
 
 @Slf4j
 @Service

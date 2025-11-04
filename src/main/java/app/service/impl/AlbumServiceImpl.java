@@ -24,7 +24,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static app.util.ExceptionMessages.*;
-import static app.util.SuccessMessages.ALBUM_DELETED_WITH_DETAILS;
+import static app.util.LogMessages.ALBUM_DELETED_WITH_DETAILS;
 
 @Slf4j
 @Service

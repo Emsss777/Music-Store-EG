@@ -9,7 +9,7 @@ import org.springframework.boot.ansi.AnsiColor;
 import org.springframework.boot.ansi.AnsiOutput;
 import org.springframework.stereotype.Component;
 
-import static app.util.SuccessMessages.*;
+import static app.util.LogMessages.*;
 
 @Slf4j
 @Aspect

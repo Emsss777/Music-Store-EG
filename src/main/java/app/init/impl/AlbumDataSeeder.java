@@ -19,7 +19,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import static app.util.ExceptionMessages.*;
-import static app.util.SuccessMessages.*;
+import static app.util.LogMessages.SEEDED_ALBUM;
 
 @Slf4j
 @Profile("dev")

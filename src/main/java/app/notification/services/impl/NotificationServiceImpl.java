@@ -19,7 +19,7 @@ import org.springframework.boot.ansi.AnsiOutput;
 import java.util.List;
 import java.util.UUID;
 
-import static app.util.ExceptionMessages.*;
+import static app.util.LogMessages.*;
 
 @Slf4j
 @Service

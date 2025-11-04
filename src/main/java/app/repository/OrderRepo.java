@@ -2,6 +2,7 @@ package app.repository;
 
 import app.model.entity.Order;
 import app.model.entity.User;
+import app.model.enums.Status;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -22,4 +23,6 @@ public interface OrderRepo extends JpaRepository<Order, UUID> {
     java.math.BigDecimal findTotalRevenue();
 
     long countByCreatedOnBetween(LocalDateTime start, LocalDateTime end);
+
+    List<Order> findByStatusAndCreatedOnBefore(Status status, LocalDateTime dateTime);
 }

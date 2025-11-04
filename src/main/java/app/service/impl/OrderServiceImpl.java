@@ -6,6 +6,7 @@ import app.mapper.OrderMapper;
 import app.model.dto.CartItemDTO;
 import app.model.dto.CheckoutDTO;
 import app.model.entity.*;
+import app.model.enums.Status;
 import app.notification.services.NotificationService;
 import app.repository.OrderItemRepo;
 import app.repository.OrderRepo;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static app.util.ExceptionMessages.ORDER_DOES_NOT_EXIST;
@@ -101,5 +103,19 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getAllOrders() {
 
         return orderRepo.findAll(Sort.by(Sort.Direction.DESC, "createdOn"));
+    }
+
+    @Override
+    public List<Order> getOrdersReadyForStatusUpdate(Status status, LocalDateTime beforeDateTime) {
+
+        return orderRepo.findByStatusAndCreatedOnBefore(status, beforeDateTime);
+    }
+
+    @Override
+    @Transactional
+    public void updateOrderStatus(Order order, Status newStatus) {
+
+        order.setStatus(newStatus);
+        orderRepo.save(order);
     }
 }

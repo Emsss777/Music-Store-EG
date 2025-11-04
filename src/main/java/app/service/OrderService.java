@@ -4,8 +4,10 @@ import app.model.dto.CartItemDTO;
 import app.model.dto.CheckoutDTO;
 import app.model.entity.Order;
 import app.model.entity.User;
+import app.model.enums.Status;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface OrderService {
@@ -21,4 +23,8 @@ public interface OrderService {
     BigDecimal getTotalAmountSpentByUser(User user);
 
     List<Order> getAllOrders();
+
+    List<Order> getOrdersReadyForStatusUpdate(Status status, LocalDateTime beforeDateTime);
+
+    void updateOrderStatus(Order order, Status newStatus);
 }

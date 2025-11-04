@@ -9,7 +9,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 import static app.util.KafkaTopics.USER_REGISTERED_EVENT_V1;
-import static app.util.SuccessMessages.USER_REGISTERED_EVENT_PUBLISHED;
+import static app.util.LogMessages.USER_REGISTERED_EVENT_PUBLISHED;
 
 @Slf4j
 @Component

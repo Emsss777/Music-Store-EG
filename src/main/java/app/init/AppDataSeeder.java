@@ -10,7 +10,7 @@ import org.springframework.boot.ansi.AnsiOutput;
 
 import java.util.List;
 
-import static app.util.SuccessMessages.*;
+import static app.util.LogMessages.*;
 
 @Slf4j
 @Profile("dev")
