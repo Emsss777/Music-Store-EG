@@ -1,17 +1,18 @@
 package app;
 
-import app.config.NotificationServiceProperties;
 import jakarta.annotation.PostConstruct;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.ansi.AnsiOutput;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
-@EnableConfigurationProperties(NotificationServiceProperties.class)
-@EnableFeignClients
+@EnableAsync
 @EnableCaching
+@EnableScheduling
+@EnableFeignClients
 @SpringBootApplication
 public class Application {
 

@@ -25,4 +25,7 @@ public class SuccessMessages {
             "Deleted album [%s] with %d order items and %d empty orders removed!";
     public static final String CART_CLEARED = "Cart cleared!";
     public static final String ORDER_PLACED_SUCCESS = "Order placed successfully! Order Number: ";
+    public static final String ORDER_CONFIRMATION = "Order Confirmation";
+    public static final String NOTIFICATION_ORDER_CONFIRMATION =
+            "Dear %s, your order #%s has been successfully created! Total amount: %s";
 }

@@ -15,4 +15,10 @@ public interface NotificationService {
     List<Notification> getNotificationHistory(UUID userId);
 
     void sendNotification(UUID userId, String emailSubject, String emailBody);
+
+    void updateNotificationPreference(UUID userId, boolean enabled);
+
+    void clearHistory(UUID userId);
+
+    void retryFailed(UUID userId);
 }

@@ -11,15 +11,15 @@ import app.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.UUID;
 
 import static app.util.ModelAttributes.*;
-import static app.util.UrlPaths.URL_ADMIN;
-import static app.util.UrlPaths.URL_NOTIFICATIONS;
+import static app.util.Redirects.REDIRECT_NOTIFICATIONS;
+import static app.util.UrlPaths.*;
 import static app.util.Views.VIEW_NOTIFICATIONS;
 
 @Controller
@@ -57,5 +57,34 @@ public class NotificationController {
         modelAndView.addObject(MODEL_FAILED_NOTIFICATIONS_NUMBER, failedNotificationsNumber);
 
         return modelAndView;
+    }
+
+    @PutMapping(URL_USER_PREFERENCE)
+    public ModelAndView updateUserPreference(@RequestParam(name = "enabled") boolean enabled,
+                                             @AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
+
+        notificationService.updateNotificationPreference(authenticationMetadata.getUserId(), enabled);
+
+        return new ModelAndView(REDIRECT_NOTIFICATIONS);
+    }
+
+    @DeleteMapping
+    public ModelAndView deleteNotificationHistory(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
+
+        UUID userId = authenticationMetadata.getUserId();
+
+        notificationService.clearHistory(userId);
+
+        return new ModelAndView(REDIRECT_NOTIFICATIONS);
+    }
+
+    @PutMapping
+    public ModelAndView retryFailedNotifications(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
+
+        UUID userId = authenticationMetadata.getUserId();
+
+        notificationService.retryFailed(userId);
+
+        return new ModelAndView(REDIRECT_NOTIFICATIONS);
     }
 }

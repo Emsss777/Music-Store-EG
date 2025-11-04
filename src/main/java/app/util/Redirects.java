@@ -12,4 +12,5 @@ public final class Redirects {
     public static final String REDIRECT_CART = "redirect:/cart";
     public static final String REDIRECT_MADE_ORDER = "redirect:/users/made-order";
     public static final String REDIRECT_ADMIN_ALBUMS = "redirect:/admin/albums";
+    public static final String REDIRECT_NOTIFICATIONS = "redirect:/notifications";
 }

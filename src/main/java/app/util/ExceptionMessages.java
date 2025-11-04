@@ -61,4 +61,8 @@ public class ExceptionMessages {
             "[notification-svc] error on 'sendEmail' for user [{}]";
     public static final String NOTIFICATION_SEND_EMAIL_NON_2XX =
             "[notification-svc] non-2xx on 'sendEmail' for user [{}]: 500 Internal Server Error";
+    public static final String NOTIFICATION_UPDATE_PREF_ERROR =
+            "[notification-svc] error on 'updateNotificationPreference' for user [{}]";
+    public static final String NOTIFICATION_CLEAR_HISTORY_ERROR =
+            "[notification-svc] error on 'clearNotificationHistory' for user [{}]";
 }

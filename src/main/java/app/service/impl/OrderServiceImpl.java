@@ -20,6 +20,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import static app.util.ExceptionMessages.ORDER_DOES_NOT_EXIST;
+import static app.util.SuccessMessages.*;
 
 @Service
 @RequiredArgsConstructor
@@ -55,10 +56,8 @@ public class OrderServiceImpl implements OrderService {
         }
 
         notificationService.sendNotification(
-                user.getId(),
-                "Order Confirmation",
-                "Dear %s, your order #%s has been successfully created! Total amount: %s"
-                        .formatted(user.getUsername(), savedOrder.getId(), totalAmount)
+                user.getId(), ORDER_CONFIRMATION, NOTIFICATION_ORDER_CONFIRMATION.formatted(
+                        user.getUsername(), savedOrder.getId(), totalAmount)
         );
 
         return savedOrder;
