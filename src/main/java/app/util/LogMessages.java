@@ -60,4 +60,12 @@ public class LogMessages {
             "Processed {} shipped orders for completion.";
     public static final String ORDER_NO_STATUS_UPDATES =
             "No orders found for status update.";
+    public static final String CART_ALBUM_QUANTITY_INCREASED =
+            "Increased quantity for album [{}] in cart. New quantity: {}";
+    public static final String CART_ALBUM_ADDED =
+            "Album [{}] added to cart successfully!";
+    public static final String CART_ALBUM_REMOVED =
+            "Album [{}] removed from cart!";
+    public static final String CART_CLEARED =
+            "Cart cleared! Removed {} item(s)!";
 }

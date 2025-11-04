@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.boot.ansi.AnsiColor;
+import org.springframework.boot.ansi.AnsiOutput;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -32,9 +34,9 @@ public class OrderStatusUpdateScheduler {
         if (!pendingOrders.isEmpty()) {
             for (Order order : pendingOrders) {
                 orderService.updateOrderStatus(order, Status.CANCELED);
-                log.info(ORDER_AUTO_CANCELLED, order.getOrderNumber());
+                log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN,ORDER_AUTO_CANCELLED), order.getOrderNumber());
             }
-            log.info(ORDER_AUTO_CANCELLED_COUNT, pendingOrders.size());
+            log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN,ORDER_AUTO_CANCELLED_COUNT), pendingOrders.size());
         }
 
         // Process PAID orders older than 2 hours - move to SHIPPED
@@ -44,9 +46,9 @@ public class OrderStatusUpdateScheduler {
         if (!paidOrders.isEmpty()) {
             for (Order order : paidOrders) {
                 orderService.updateOrderStatus(order, Status.SHIPPED);
-                log.info(ORDER_AUTO_SHIPPED, order.getOrderNumber());
+                log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN,ORDER_AUTO_SHIPPED), order.getOrderNumber());
             }
-            log.info(ORDER_AUTO_SHIPPED_COUNT, paidOrders.size());
+            log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN,ORDER_AUTO_SHIPPED_COUNT), paidOrders.size());
         }
 
         // Process SHIPPED orders older than 72 hours - move to COMPLETED
@@ -56,13 +58,13 @@ public class OrderStatusUpdateScheduler {
         if (!shippedOrders.isEmpty()) {
             for (Order order : shippedOrders) {
                 orderService.updateOrderStatus(order, Status.COMPLETED);
-                log.info(ORDER_AUTO_COMPLETED, order.getOrderNumber());
+                log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN,ORDER_AUTO_COMPLETED), order.getOrderNumber());
             }
-            log.info(ORDER_AUTO_COMPLETED_COUNT, shippedOrders.size());
+            log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN,ORDER_AUTO_COMPLETED_COUNT), shippedOrders.size());
         }
 
         if (pendingOrders.isEmpty() && paidOrders.isEmpty() && shippedOrders.isEmpty()) {
-            log.info(ORDER_NO_STATUS_UPDATES);
+            log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN,ORDER_NO_STATUS_UPDATES));
         }
     }
 }

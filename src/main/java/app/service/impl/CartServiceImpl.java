@@ -8,16 +8,21 @@ import app.service.AlbumService;
 import app.service.CartService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.boot.ansi.AnsiColor;
+import org.springframework.boot.ansi.AnsiOutput;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import static app.util.LogMessages.*;
 import static app.util.ModelAttributes.MODEL_CART;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CartServiceImpl implements CartService {
@@ -35,8 +40,17 @@ public class CartServiceImpl implements CartService {
                 .filter(item -> item.getAlbumId().equals(album.getId()))
                 .findFirst()
                 .ifPresentOrElse(
-                        item -> item.setQuantity(item.getQuantity() + 1),
-                        () -> cartItems.add(CartItemMapper.fromAlbum(album))
+                        item -> {
+                            item.setQuantity(item.getQuantity() + 1);
+                            log.info(AnsiOutput.toString(
+                                    AnsiColor.BRIGHT_GREEN, CART_ALBUM_QUANTITY_INCREASED),
+                                    album.getTitle(), item.getQuantity());
+                        },
+                        () -> {
+                            cartItems.add(CartItemMapper.fromAlbum(album));
+                            log.info(AnsiOutput.toString(
+                                    AnsiColor.BRIGHT_GREEN, CART_ALBUM_ADDED), album.getTitle());
+                        }
                 );
 
         session.setAttribute(MODEL_CART, cartItems);
@@ -50,6 +64,7 @@ public class CartServiceImpl implements CartService {
 
         if (removed) {
             session.setAttribute(MODEL_CART, cartItems);
+            log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, CART_ALBUM_REMOVED), albumId);
         }
     }
 
@@ -63,7 +78,11 @@ public class CartServiceImpl implements CartService {
     @Override
     public void clearCart(HttpSession session) {
 
+        List<CartItemDTO> cartItems = getCartItems(session);
+        int itemCount = cartItems != null ? cartItems.size() : 0;
+
         session.setAttribute(MODEL_CART, new ArrayList<CartItemDTO>());
+        log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, CART_CLEARED), itemCount);
     }
 
     @Override
