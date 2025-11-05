@@ -18,8 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import static app.util.ExceptionMessages.*;
-import static app.util.LogMessages.SEEDED_ALBUM;
+import static app.util.LogMessages.*;
 
 @Slf4j
 @Profile("dev")

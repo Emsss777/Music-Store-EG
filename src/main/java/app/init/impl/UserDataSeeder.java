@@ -18,7 +18,6 @@ import org.springframework.boot.ansi.AnsiOutput;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import static app.util.ExceptionMessages.*;
 import static app.util.LogMessages.*;
 
 @Slf4j

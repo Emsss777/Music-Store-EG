@@ -9,6 +9,15 @@ public class LogMessages {
             "Successfully created new User account for username [{}] and ID [{}]!";
     public static final String USER_REGISTERED_EVENT_PUBLISHED =
             "Successfully published registered event for user [{}]!";
+    public static final String USERNAME_DOES_NOT_EXIST = "Username [{}] does NOT Exist!";
+    public static final String ADMIN_ALREADY_EXISTS = "Admin User [{}] Already Exists! Skipping Seeding!";
+    public static final String ADMIN_NOT_FOUND = "Admin User [{}] NOT Found! Creating new...";
+    public static final String ARTIST_ALREADY_EXISTS = "Artist [{}] Already Exists! Skipping Seeding!";
+    public static final String ARTIST_NOT_FOUND = "Artist [{}] NOT Found! Creating new...";
+    public static final String ALBUM_ALREADY_EXISTS = "Album [{}] Already Exists! Skipping Seeding!";
+    public static final String ALBUM_NOT_FOUND = "Album [{}] NOT Found! Creating new...";
+    public static final String TEST_USER_ALREADY_EXISTS = "Test User [{}] Already Exists! Skipping Seeding!";
+    public static final String TEST_USER_NOT_FOUND = "Test User [{}] NOT Found! Creating new...";
     public static final String SEEDED_ADMIN_USER = "Seeded Admin User [{}]!";
     public static final String SEEDED_TEST_USER = "Seeded Test User [{}]!";
     public static final String SEEDED_ARTIST = "Seeded Artist [{}]!";

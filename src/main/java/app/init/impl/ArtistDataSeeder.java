@@ -15,8 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
-import static app.util.ExceptionMessages.*;
-import static app.util.LogMessages.SEEDED_ARTIST;
+import static app.util.LogMessages.*;
 
 @Slf4j
 @Profile("dev")
