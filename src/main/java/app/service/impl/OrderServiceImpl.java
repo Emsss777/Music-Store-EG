@@ -13,17 +13,22 @@ import app.repository.OrderRepo;
 import app.service.AlbumService;
 import app.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.boot.ansi.AnsiColor;
+import org.springframework.boot.ansi.AnsiOutput;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import static app.util.ExceptionMessages.ORDER_DOES_NOT_EXIST;
+import static app.util.LogMessages.ORDER_CREATED;
 import static app.util.SuccessMessages.*;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
@@ -61,6 +66,9 @@ public class OrderServiceImpl implements OrderService {
                 user.getId(), ORDER_CONFIRMATION, NOTIFICATION_ORDER_CONFIRMATION.formatted(
                         user.getUsername(), savedOrder.getId(), totalAmount)
         );
+
+        log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, ORDER_CREATED),
+                savedOrder.getOrderNumber(), user.getUsername(), totalAmount, cartItems.size());
 
         return savedOrder;
     }
