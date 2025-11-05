@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static app.util.ExceptionMessages.*;
-import static app.util.LogMessages.USER_CREATED;
+import static app.util.LogMessages.*;
 
 @Slf4j
 @Service
@@ -74,7 +74,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .build();
         userRegisteredEventProducer.sendEvent(event);
 
-        log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, USER_CREATED), user.getUsername(), user.getId());
+        log.info(AnsiOutput.toString(
+                AnsiColor.BRIGHT_GREEN, USER_CREATED),user.getUsername(), user.getId());
 
     }
 
@@ -106,6 +107,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             notificationService.saveNotificationPreference(userId, false, null);
         }
         userRepo.save(user);
+        log.info(AnsiOutput.toString(
+                AnsiColor.BRIGHT_GREEN, USER_DETAILS_UPDATED), user.getUsername(), userId);
     }
 
     @Override
@@ -121,7 +124,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                         .build())
                 .orElseThrow(() -> {
                     log.warn(USERNAME_DOES_NOT_EXIST, username);
-                    return new UsernameNotFoundException(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, BAD_CREDENTIALS));
+                    return new UsernameNotFoundException(
+                            AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, BAD_CREDENTIALS));
                 });
     }
 
@@ -136,8 +140,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public void changeStatus(UUID id) {
 
         User user = getUserById(id);
+        boolean oldStatus = user.isActive();
         user.setActive(!user.isActive());
         userRepo.save(user);
+        log.info(AnsiOutput.toString(
+                AnsiColor.BRIGHT_GREEN, USER_STATUS_CHANGED), user.getUsername(), oldStatus, user.isActive());
     }
 
     @Override
@@ -145,6 +152,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public void changeRole(UUID id) {
 
         User user = getUserById(id);
+        UserRole oldRole = user.getRole();
 
         if (user.getRole() == UserRole.USER) {
             user.setRole(UserRole.ADMIN);
@@ -153,5 +161,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
 
         userRepo.save(user);
+        log.info(AnsiOutput.toString(
+                AnsiColor.BRIGHT_GREEN, USER_ROLE_CHANGED), user.getUsername(), oldRole, user.getRole());
     }
 }
