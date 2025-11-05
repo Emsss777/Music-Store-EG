@@ -70,4 +70,8 @@ public class LogMessages {
             "Cart cleared! Removed {} item(s)!";
     public static final String ORDER_CREATED =
             "Order created successfully! Order Number: [{}], User: [{}], Total Amount: [{}], Items: [{}]";
+    public static final String ORDER_ITEMS_DELETED =
+            "Deleted {} order item(s) for album [{}]";
+    public static final String ORDERS_EMPTY_DELETED =
+            "Deleted {} empty order(s)";
 }

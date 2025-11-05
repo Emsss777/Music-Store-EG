@@ -6,11 +6,17 @@ import app.repository.OrderItemRepo;
 import app.repository.OrderRepo;
 import app.service.OrderItemService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.boot.ansi.AnsiColor;
+import org.springframework.boot.ansi.AnsiOutput;
 
 import java.util.List;
 import java.util.UUID;
 
+import static app.util.LogMessages.*;
+
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class OrderItemServiceImpl implements OrderItemService {
@@ -25,6 +31,8 @@ public class OrderItemServiceImpl implements OrderItemService {
 
         if (!items.isEmpty()) {
             orderItemRepo.deleteAll(items);
+            log.info(AnsiOutput.toString(
+                    AnsiColor.BRIGHT_GREEN, ORDER_ITEMS_DELETED), items.size(), albumId);
         }
 
         return items.size();
@@ -39,6 +47,8 @@ public class OrderItemServiceImpl implements OrderItemService {
 
         if (!emptyOrders.isEmpty()) {
             orderRepo.deleteAll(emptyOrders);
+            log.info(AnsiOutput.toString(
+                    AnsiColor.BRIGHT_GREEN, ORDERS_EMPTY_DELETED), emptyOrders.size());
         }
 
         return emptyOrders.size();

@@ -42,12 +42,14 @@ public class CartServiceImpl implements CartService {
                 .ifPresentOrElse(
                         item -> {
                             item.setQuantity(item.getQuantity() + 1);
-                            log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, CART_ALBUM_QUANTITY_INCREASED),
+                            log.info(AnsiOutput.toString(
+                                    AnsiColor.BRIGHT_GREEN, CART_ALBUM_QUANTITY_INCREASED),
                                     album.getTitle(), item.getQuantity());
                         },
                         () -> {
                             cartItems.add(CartItemMapper.fromAlbum(album));
-                            log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, CART_ALBUM_ADDED), album.getTitle());
+                            log.info(AnsiOutput.toString(
+                                    AnsiColor.BRIGHT_GREEN, CART_ALBUM_ADDED), album.getTitle());
                         }
                 );
 
