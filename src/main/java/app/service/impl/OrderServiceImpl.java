@@ -23,6 +23,7 @@ import org.springframework.boot.ansi.AnsiOutput;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import static app.util.ExceptionMessages.ORDER_DOES_NOT_EXIST;
 import static app.util.LogMessages.ORDER_CREATED;
@@ -71,6 +72,13 @@ public class OrderServiceImpl implements OrderService {
                 savedOrder.getOrderNumber(), user.getUsername(), totalAmount, cartItems.size());
 
         return savedOrder;
+    }
+
+    @Override
+    public Order getOrderById(UUID orderId) {
+
+        return orderRepo.findById(orderId).orElseThrow(() ->
+                new DomainException(ORDER_DOES_NOT_EXIST + orderId));
     }
 
     @Override

@@ -9,10 +9,13 @@ import app.model.enums.Status;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 public interface OrderService {
 
     Order createOrder(CheckoutDTO checkoutDTO, List<CartItemDTO> cartItems, User user);
+
+    Order getOrderById(UUID orderId);
 
     Order getOrderByOrderNumber(String orderNumber);
 

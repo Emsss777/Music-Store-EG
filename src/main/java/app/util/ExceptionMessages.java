@@ -30,4 +30,5 @@ public class ExceptionMessages {
     public static final String ALBUM_YEAR_TOO_HIGH = "Release year must not exceed 2025";
     public static final String ALBUM_DESCRIPTION_TOO_LONG = "Description must not exceed 1000 characters!";
     public static final String ALBUM_COVER_URL_INVALID = "Cover URL must be a valid HTTP/HTTPS URL!";
+    public static final String ORDER_ID_CANNOT_BE_NULL = "Order ID cannot be null!";
 }
