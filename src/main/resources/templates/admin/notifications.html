@@ -104,36 +104,28 @@
 <script>
     function enableNotifications() {
         if (confirm('Are you sure you want to enable notifications?')) {
-            // In a real application, this would make an API call
             alert('Notifications enabled successfully!');
-            // Reload the page to update the status
             window.location.reload();
         }
     }
 
     function disableNotifications() {
         if (confirm('Are you sure you want to disable notifications?')) {
-            // In a real application, this would make an API call
             alert('Notifications disabled successfully!');
-            // Reload the page to update the status
             window.location.reload();
         }
     }
 
     function clearHistory() {
         if (confirm('Are you sure you want to clear the notification history? This action cannot be undone.')) {
-            // In a real application, this would make an API call
             alert('Notification history cleared successfully!');
-            // Reload the page to update the counts
             window.location.reload();
         }
     }
 
     function retryFailed() {
         if (confirm('Are you sure you want to retry all failed notifications?')) {
-            // In a real application, this would make an API call
             alert('Retrying failed notifications...');
-            // Reload the page to update the counts
             window.location.reload();
         }
     }

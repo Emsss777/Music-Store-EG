@@ -23,7 +23,7 @@ public interface NotificationClient {
     @GetMapping(URL_PREFERENCES)
     ResponseEntity<NotificationPreference> getUserPreference(@RequestParam(name = "userId") UUID userId);
 
-    @GetMapping
+    @GetMapping("/plain")
     ResponseEntity<List<Notification>> getNotificationHistory(@RequestParam(name = "userId") UUID userId);
 
     @PostMapping
