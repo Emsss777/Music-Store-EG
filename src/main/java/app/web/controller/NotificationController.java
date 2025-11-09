@@ -24,13 +24,13 @@ import static app.util.Views.VIEW_NOTIFICATIONS;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping(URL_ADMIN)
+@RequestMapping(URL_NOTIFICATIONS)
 public class NotificationController {
 
     private final UserService userService;
     private final NotificationService notificationService;
 
-    @GetMapping(URL_NOTIFICATIONS)
+    @GetMapping
     public ModelAndView getNotificationPage(@AuthenticationPrincipal AuthenticationMetadata authMetadata) {
 
         User currentUser = userService.getUserById(authMetadata.getUserId());
@@ -69,12 +69,19 @@ public class NotificationController {
     }
 
     @DeleteMapping
-    public ModelAndView deleteNotificationHistory(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
+    public ModelAndView clearUserHistory(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
 
         UUID userId = authenticationMetadata.getUserId();
 
         notificationService.clearHistory(userId);
 
+        return new ModelAndView(REDIRECT_NOTIFICATIONS);
+    }
+
+    @DeleteMapping(URL_CLEAR)
+    public ModelAndView clearAllNotifications() {
+
+        notificationService.clearAllHistory();
         return new ModelAndView(REDIRECT_NOTIFICATIONS);
     }
 

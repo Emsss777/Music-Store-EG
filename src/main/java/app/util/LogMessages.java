@@ -89,5 +89,6 @@ public class LogMessages {
             "User [{}] status changed from [{}] to [{}]!";
     public static final String USER_ROLE_CHANGED =
             "User [{}] role changed from [{}] to [{}]!";
-
+    public static final String NOTIFICATION_CLEAR_HISTORY_FAILED =
+            "Failed to clear all notification history!";
 }

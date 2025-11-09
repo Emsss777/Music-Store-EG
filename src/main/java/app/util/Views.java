@@ -21,7 +21,7 @@ public final class Views {
     public static final String VIEW_ADMIN_ALBUMS = "admin/admin-albums";
     public static final String VIEW_ADMIN_ADD_ALBUM = "admin/add-album";
     public static final String VIEW_ADMIN_ADD_ARTIST = "admin/add-artist";
-    public static final String VIEW_NOTIFICATIONS = "admin/notifications";
+    public static final String VIEW_NOTIFICATIONS = "notifications";
     public static final String VIEW_USERS = "admin/users";
     public static final String VIEW_PAGE_NOT_FOUND = "error/not-found";
     public static final String VIEW_INTERNAL_SERVER_ERROR = "error/internal-server-error";

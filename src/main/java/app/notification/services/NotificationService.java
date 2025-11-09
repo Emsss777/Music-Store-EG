@@ -20,5 +20,7 @@ public interface NotificationService {
 
     void clearHistory(UUID userId);
 
+    void clearAllHistory();
+
     void retryFailed(UUID userId);
 }

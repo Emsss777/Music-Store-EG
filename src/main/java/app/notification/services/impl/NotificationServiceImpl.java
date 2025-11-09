@@ -103,7 +103,7 @@ public class NotificationServiceImpl implements NotificationService {
             if (!httpResponse.getStatusCode().is2xxSuccessful()) {
                 log.error(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_SEND_EMAIL_ERROR), userId);
             }
-        } catch (Exception e) {
+        } catch (Exception ex) {
             log.warn(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_SEND_EMAIL_NON_2XX), userId);
         }
     }
@@ -113,7 +113,7 @@ public class NotificationServiceImpl implements NotificationService {
 
         try {
             notificationClient.updateNotificationPreference(userId, enabled);
-        } catch (Exception e) {
+        } catch (Exception ex) {
             log.warn(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_UPDATE_PREF_ERROR), userId);
         }
     }
@@ -123,9 +123,19 @@ public class NotificationServiceImpl implements NotificationService {
 
         try {
             notificationClient.clearHistory(userId);
-        } catch (Exception e) {
+        } catch (Exception ex) {
             log.error(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_CLEAR_HISTORY_ERROR), userId);
             throw new NotificationServiceFeignCallException(clearHistoryFailedMessage);
+        }
+    }
+
+    @Override
+    public void clearAllHistory() {
+
+        try {
+            notificationClient.clearAllHistory();
+        } catch (Exception ex) {
+            log.error(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA,NOTIFICATION_CLEAR_HISTORY_FAILED), ex);
         }
     }
 
@@ -134,7 +144,7 @@ public class NotificationServiceImpl implements NotificationService {
 
         try {
             notificationClient.retryFailedNotifications(userId);
-        } catch (Exception e) {
+        } catch (Exception ex) {
             log.error(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_CLEAR_HISTORY_ERROR), userId);
             throw new NotificationServiceFeignCallException(clearHistoryFailedMessage);
         }

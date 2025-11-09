@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
-import static app.util.UrlPaths.URL_PREFERENCES;
+import static app.util.UrlPaths.*;
 
 @FeignClient(name = "notification-svc", url = "${notification-svc.base-url}")
 public interface NotificationClient {
@@ -23,7 +23,7 @@ public interface NotificationClient {
     @GetMapping(URL_PREFERENCES)
     ResponseEntity<NotificationPreference> getUserPreference(@RequestParam(name = "userId") UUID userId);
 
-    @GetMapping("/plain")
+    @GetMapping(URL_PLAIN)
     ResponseEntity<List<Notification>> getNotificationHistory(@RequestParam(name = "userId") UUID userId);
 
     @PostMapping
@@ -35,6 +35,9 @@ public interface NotificationClient {
 
     @DeleteMapping
     ResponseEntity<Void> clearHistory(@RequestParam(name = "userId") UUID userId);
+
+    @DeleteMapping(URL_CLEAR)
+    ResponseEntity<Void> clearAllHistory();
 
     @PutMapping
     ResponseEntity<Void> retryFailedNotifications(@RequestParam(name = "userId") UUID userId);

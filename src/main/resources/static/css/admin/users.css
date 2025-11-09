@@ -1,174 +1,174 @@
 /* Users Management Page Styles */
 .admin-header {
-  background: linear-gradient(135deg, rgba(116, 106, 176, 0.2) 0%, rgba(106, 97, 164, 0.1) 100%);
-  padding: 60px 0;
-  text-align: center;
+    background: linear-gradient(135deg, rgba(116, 106, 176, 0.2) 0%, rgba(106, 97, 164, 0.1) 100%);
+    padding: 60px 0;
+    text-align: center;
 }
 
 .page-title {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 16px;
-  color: #ffffff;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #ffffff;
 }
 
 .page-subtitle {
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.8);
-  margin: 0;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
 }
 
 /* Users Section */
 .users-section {
-  padding: 60px 0;
+    padding: 60px 0;
 }
 
 .users-card {
-  padding: 0;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
 /* Table Container */
 .users-table-container {
-  overflow-x: auto;
-  width: 100%;
+    overflow-x: auto;
+    width: 100%;
 }
 
 /* Users Table */
 .users-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
 }
 
 /* Table Header */
 .table-header {
-  background: rgba(116, 106, 176, 0.2);
-  border-bottom: 2px solid rgba(116, 106, 176, 0.4);
+    background: rgba(116, 106, 176, 0.2);
+    border-bottom: 2px solid rgba(116, 106, 176, 0.4);
 }
 
 .table-header th {
-  padding: 20px 16px;
-  text-align: left;
-  font-weight: 600;
-  color: #ffffff;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  font-size: 12px;
-  white-space: nowrap;
+    padding: 20px 16px;
+    text-align: left;
+    font-weight: 600;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 12px;
+    white-space: nowrap;
 }
 
 /* Table Body */
 .user-row {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
 }
 
 .user-row:hover {
-  background: rgba(116, 106, 176, 0.08);
+    background: rgba(116, 106, 176, 0.08);
 }
 
 .user-row td {
-  padding: 16px;
-  color: rgba(255, 255, 255, 0.9);
-  vertical-align: middle;
+    padding: 16px;
+    color: rgba(255, 255, 255, 0.9);
+    vertical-align: middle;
 }
 
 /* User ID */
 .user-id {
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 13px;
 }
 
 /* User Username */
 .user-username {
-  font-weight: 600;
-  color: #ffffff;
+    font-weight: 600;
+    color: #ffffff;
 }
 
 /* User Email */
 .user-email {
-  color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.8);
 }
 
 /* User Role */
 .user-role {
-  text-align: center;
+    text-align: center;
 }
 
 .role-badge {
-  padding: 6px 12px;
-  border-radius: 16px;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  display: inline-block;
-  white-space: nowrap;
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    display: inline-block;
+    white-space: nowrap;
 }
 
 .role-badge.user-badge {
-  background: rgba(33, 150, 243, 0.2);
-  color: #2196f3;
-  border: 1px solid rgba(33, 150, 243, 0.3);
+    background: rgba(33, 150, 243, 0.2);
+    color: #2196f3;
+    border: 1px solid rgba(33, 150, 243, 0.3);
 }
 
 .role-badge.admin-badge {
-  background: rgba(156, 39, 176, 0.2);
-  color: #9c27b0;
-  border: 1px solid rgba(156, 39, 176, 0.3);
+    background: rgba(156, 39, 176, 0.2);
+    color: #9c27b0;
+    border: 1px solid rgba(156, 39, 176, 0.3);
 }
 
 /* User Country */
 .user-country {
-  color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.8);
 }
 
 /* User Status */
 .user-status {
-  text-align: center;
+    text-align: center;
 }
 
 .status-badge {
-  padding: 6px 12px;
-  border-radius: 16px;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  display: inline-block;
-  white-space: nowrap;
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    display: inline-block;
+    white-space: nowrap;
 }
 
 .status-badge.active {
-  background: rgba(76, 175, 80, 0.2);
-  color: #4caf50;
-  border: 1px solid rgba(76, 175, 80, 0.3);
-  box-shadow: 0 0 8px rgba(76, 175, 80, 0.1);
+    background: rgba(76, 175, 80, 0.2);
+    color: #4caf50;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.1);
 }
 
 .status-badge.inactive {
-  background: rgba(244, 67, 54, 0.2);
-  color: #f44336;
-  border: 1px solid rgba(244, 67, 54, 0.3);
-  box-shadow: 0 0 8px rgba(244, 67, 54, 0.1);
+    background: rgba(244, 67, 54, 0.2);
+    color: #f44336;
+    border: 1px solid rgba(244, 67, 54, 0.3);
+    box-shadow: 0 0 8px rgba(244, 67, 54, 0.1);
 }
 
 /* User Created Date */
 .user-created {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 13px;
 }
 
 /* User Actions */
 .user-action {
-  text-align: center;
+    text-align: center;
 }
 
 /* Toggle Switch Styles */
@@ -235,225 +235,225 @@
 
 /* Action Button Styles */
 .action-button {
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .action-button.status-toggle {
-  background: rgba(255, 152, 0, 0.2);
-  color: #ff9800;
-  border: 1px solid rgba(255, 152, 0, 0.3);
+    background: rgba(255, 152, 0, 0.2);
+    color: #ff9800;
+    border: 1px solid rgba(255, 152, 0, 0.3);
 }
 
 .action-button.status-toggle:hover {
-  background: rgba(255, 152, 0, 0.3);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.2);
+    background: rgba(255, 152, 0, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.2);
 }
 
 .action-button.role-change {
-  background: rgba(116, 106, 176, 0.2);
-  color: #a095e6;
-  border: 1px solid rgba(116, 106, 176, 0.3);
+    background: rgba(116, 106, 176, 0.2);
+    color: #a095e6;
+    border: 1px solid rgba(116, 106, 176, 0.3);
 }
 
 .action-button.role-change:hover {
-  background: rgba(116, 106, 176, 0.3);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(116, 106, 176, 0.2);
+    background: rgba(116, 106, 176, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(116, 106, 176, 0.2);
 }
 
 /* Separator Row */
 .separator-row {
-  height: 32px;
-  background: transparent;
-  border: none;
+    height: 32px;
+    background: transparent;
+    border: none;
 }
 
 .separator-row:hover {
-  background: transparent;
+    background: transparent;
 }
 
 .separator-line {
-  height: 3px;
-  background: linear-gradient(90deg, transparent 0%, rgba(116, 106, 176, 0.6) 50%, transparent 100%);
-  margin: 14px 0;
-  border-radius: 2px;
-  box-shadow: 0 0 10px rgba(116, 106, 176, 0.3);
+    height: 3px;
+    background: linear-gradient(90deg, transparent 0%, rgba(116, 106, 176, 0.6) 50%, transparent 100%);
+    margin: 14px 0;
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(116, 106, 176, 0.3);
 }
 
 /* Responsive Design */
 @media (max-width: 1200px) {
-  .users-table {
-    font-size: 13px;
-  }
-  
-  .table-header th {
-    padding: 16px 12px;
-    font-size: 11px;
-  }
-  
-  .user-row td {
-    padding: 14px 12px;
-  }
-  
-  .action-button {
-    padding: 6px 12px;
-    font-size: 11px;
-  }
+    .users-table {
+        font-size: 13px;
+    }
+
+    .table-header th {
+        padding: 16px 12px;
+        font-size: 11px;
+    }
+
+    .user-row td {
+        padding: 14px 12px;
+    }
+
+    .action-button {
+        padding: 6px 12px;
+        font-size: 11px;
+    }
 }
 
 @media (max-width: 1024px) {
-  .users-table {
-    font-size: 12px;
-  }
-  
-  .table-header th {
-    padding: 14px 10px;
-    font-size: 10px;
-  }
-  
-  .user-row td {
-    padding: 12px 10px;
-  }
-  
-  .role-badge,
-  .status-badge {
-    padding: 4px 8px;
-    font-size: 10px;
-  }
-  
-  .action-button {
-    padding: 6px 10px;
-    font-size: 10px;
-  }
+    .users-table {
+        font-size: 12px;
+    }
+
+    .table-header th {
+        padding: 14px 10px;
+        font-size: 10px;
+    }
+
+    .user-row td {
+        padding: 12px 10px;
+    }
+
+    .role-badge,
+    .status-badge {
+        padding: 4px 8px;
+        font-size: 10px;
+    }
+
+    .action-button {
+        padding: 6px 10px;
+        font-size: 10px;
+    }
 }
 
 @media (max-width: 768px) {
-  .admin-header {
-    padding: 40px 0;
-  }
-  
-  .page-title {
-    font-size: 2.5rem;
-  }
-  
-  .users-section {
-    padding: 40px 0;
-  }
-  
-  .users-table-container {
-    overflow-x: scroll;
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  .users-table {
-    min-width: 1000px;
-  }
+    .admin-header {
+        padding: 40px 0;
+    }
+
+    .page-title {
+        font-size: 2.5rem;
+    }
+
+    .users-section {
+        padding: 40px 0;
+    }
+
+    .users-table-container {
+        overflow-x: scroll;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .users-table {
+        min-width: 1000px;
+    }
 }
 
 @media (max-width: 480px) {
-  .page-title {
-    font-size: 2rem;
-  }
-  
-  .users-table {
-    min-width: 900px;
-    font-size: 11px;
-  }
-  
-  .table-header th {
-    padding: 12px 8px;
-    font-size: 9px;
-  }
-  
-  .user-row td {
-    padding: 10px 8px;
-  }
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .users-table {
+        min-width: 900px;
+        font-size: 11px;
+    }
+
+    .table-header th {
+        padding: 12px 8px;
+        font-size: 9px;
+    }
+
+    .user-row td {
+        padding: 10px 8px;
+    }
 }
 
 /* Animation */
 .users-card {
-  animation: fadeInUp 0.8s ease-out;
+    animation: fadeInUp 0.8s ease-out;
 }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Focus states for accessibility */
 .action-button:focus {
-  outline: 2px solid #746ab0;
-  outline-offset: 2px;
+    outline: 2px solid #746ab0;
+    outline-offset: 2px;
 }
 
 /* Loading states */
 .action-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none !important;
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
 }
 
 .action-button:disabled:hover {
-  transform: none !important;
-  box-shadow: none !important;
+    transform: none !important;
+    box-shadow: none !important;
 }
 
 /* Table striping (optional alternative) */
 .user-row:nth-child(even) {
-  background: rgba(255, 255, 255, 0.02);
+    background: rgba(255, 255, 255, 0.02);
 }
 
 .user-row:nth-child(even):hover {
-  background: rgba(116, 106, 176, 0.08);
+    background: rgba(116, 106, 176, 0.08);
 }
 
 /* Scrollbar styling for webkit browsers */
 .users-table-container::-webkit-scrollbar {
-  height: 8px;
+    height: 8px;
 }
 
 .users-table-container::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
 }
 
 .users-table-container::-webkit-scrollbar-thumb {
-  background: rgba(116, 106, 176, 0.3);
-  border-radius: 4px;
+    background: rgba(116, 106, 176, 0.3);
+    border-radius: 4px;
 }
 
 .users-table-container::-webkit-scrollbar-thumb:hover {
-  background: rgba(116, 106, 176, 0.5);
+    background: rgba(116, 106, 176, 0.5);
 }
 
 /* Empty state (if no users) */
 .empty-state {
-  padding: 60px 20px;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.6);
+    padding: 60px 20px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .empty-state h3 {
-  font-size: 1.5rem;
-  color: #ffffff;
-  margin-bottom: 12px;
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 12px;
 }
 
 .empty-state p {
-  font-size: 1rem;
-  margin: 0;
+    font-size: 1rem;
+    margin: 0;
 }
