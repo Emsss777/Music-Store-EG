@@ -2,7 +2,9 @@ package app.service.impl;
 
 import app.aspect.VeryImportant;
 import app.event.UserRegisteredEventProducer;
+import app.event.UserUpdatedEventProducer;
 import app.event.payload.UserRegisteredEvent;
+import app.event.payload.UserUpdatedEvent;
 import app.exception.DomainException;
 import app.exception.PasswordMismatchException;
 import app.exception.UsernameAlreadyExistException;
@@ -43,6 +45,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private final PasswordEncoder passwordEncoder;
     private final NotificationService notificationService;
     private final UserRegisteredEventProducer userRegisteredEventProducer;
+    private final UserUpdatedEventProducer userUpdatedEventProducer;
 
     @Override
     @Cacheable("users")
@@ -70,6 +73,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
         UserRegisteredEvent event = UserRegisteredEvent.builder()
                 .userId(user.getId())
+                .email(user.getEmail())
                 .createdOn(user.getCreatedOn())
                 .build();
         userRegisteredEventProducer.sendEvent(event);
@@ -106,7 +110,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         } else {
             notificationService.saveNotificationPreference(userId, false, null);
         }
-        userRepo.save(user);
+
+        User saveUser = userRepo.save(user);
+
+        UserUpdatedEvent event = UserUpdatedEvent.builder()
+                .userId(saveUser.getId())
+                .email(saveUser.getEmail())
+                .updatedOn(saveUser.getCreatedOn())
+                .build();
+        userUpdatedEventProducer.sendEvent(event);
+
         log.info(AnsiOutput.toString(
                 AnsiColor.BRIGHT_GREEN, USER_DETAILS_UPDATED), user.getUsername(), userId);
     }

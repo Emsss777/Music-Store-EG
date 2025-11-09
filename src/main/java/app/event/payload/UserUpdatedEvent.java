@@ -10,9 +10,9 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserRegisteredEvent {
+public class UserUpdatedEvent {
 
     private UUID userId;
     private String email;
-    private LocalDateTime createdOn;
+    private LocalDateTime updatedOn;
 }

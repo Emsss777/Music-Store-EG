@@ -9,6 +9,8 @@ public class LogMessages {
             "Successfully created new User account for username [{}] and ID [{}]!";
     public static final String USER_REGISTERED_EVENT_PUBLISHED =
             "Successfully published registered event for user [{}]!";
+    public static final String USER_UPDATED_EVENT_PUBLISHED =
+            "Successfully published updated event for user [{}]!";
     public static final String USERNAME_DOES_NOT_EXIST = "Username [{}] does NOT Exist!";
     public static final String ADMIN_ALREADY_EXISTS = "Admin User [{}] Already Exists! Skipping Seeding!";
     public static final String ADMIN_NOT_FOUND = "Admin User [{}] NOT Found! Creating new...";
