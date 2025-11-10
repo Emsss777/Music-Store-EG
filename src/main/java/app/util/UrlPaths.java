@@ -24,6 +24,7 @@ public final class UrlPaths {
     public static final String URL_USERS = "/users";
     public static final String URL_ADMIN = "/admin";
     public static final String URL_PREFERENCES = "/preferences";
+    public static final String URL_UPDATE_STATUS = "/update-status";
     public static final String URL_PLAIN = "/plain";
     public static final String URL_USER_PREFERENCE = "/user-preference";
     public static final String URL_NOTIFICATIONS = "/notifications";

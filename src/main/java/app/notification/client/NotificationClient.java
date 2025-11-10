@@ -29,7 +29,7 @@ public interface NotificationClient {
     @PostMapping
     ResponseEntity<Void> sendNotification(@RequestBody NotificationRequest notificationRequest);
 
-    @PutMapping(URL_PREFERENCES)
+    @PutMapping(URL_PREFERENCES + URL_UPDATE_STATUS)
     ResponseEntity<Void> updateNotificationPreference(@RequestParam("userId") UUID userId,
                                                       @RequestParam("enabled") boolean enabled);
 

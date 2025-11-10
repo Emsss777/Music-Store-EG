@@ -2,6 +2,8 @@ package app.web.controller;
 
 import app.exception.PasswordMismatchException;
 import app.exception.UsernameAlreadyExistException;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MissingRequestValueException;
@@ -19,6 +21,7 @@ import static app.util.Views.VIEW_INTERNAL_SERVER_ERROR;
 import static app.util.Views.VIEW_PAGE_NOT_FOUND;
 
 @ControllerAdvice
+@Order(Ordered.HIGHEST_PRECEDENCE)
 public class ExceptionAdvice {
 
     @ExceptionHandler(UsernameAlreadyExistException.class)

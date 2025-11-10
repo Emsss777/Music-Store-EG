@@ -73,12 +73,18 @@
                                 <div class="section">
                                     <h2 class="section-title">Change State:</h2>
                                     <div class="button-group">
-                                        <button class="button secondary"
-                                                onclick="disableNotifications()">Disable Notifications
-                                        </button>
-                                        <button class="button primary"
-                                                onclick="enableNotifications()">Enable Notifications
-                                        </button>
+                                        <form th:action="@{'/notifications/user-preference?enabled=false'}"
+                                              th:method="PUT" th:if="${notificationPreference.enabled}">
+                                            <button class="button secondary"
+                                                    onclick="disableNotifications()">Disable Notifications
+                                            </button>
+                                        </form>
+                                        <form th:action="@{'/notifications/user-preference?enabled=true'}"
+                                              th:method="PUT" th:unless="${notificationPreference.enabled}">
+                                            <button class="button primary"
+                                                    onclick="enableNotifications()">Enable Notifications
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
 
@@ -109,7 +115,8 @@
                                 <!-- Warning Message -->
                                 <div class="warning-section">
                                     <p class="warning-text">
-                                        Any action that you take will affect the notification mechanism for your account!
+                                        Any action that you take will affect the notification mechanism for your
+                                        account!
                                     </p>
                                 </div>
                             </div>
@@ -121,7 +128,7 @@
                     <div class="notifications-history-card notifications-card card">
                         <div class="notification-history-header">
                             <h2 class="section-title">Notification History</h2>
-                            <p class="history-subtitle">Your last 5 notifications from us:</p>
+                            <p class="history-subtitle">Your last 7 notifications from us:</p>
                         </div>
 
                         <div class="history-table-wrapper" th:if="${!#lists.isEmpty(notificationHistory)}">
@@ -136,7 +143,7 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="notification, iterStat : ${notificationHistory}"
-                                    th:if="${iterStat.index < 5}">
+                                    th:if="${iterStat.index < 7}">
                                     <td data-label="SUBJECT" th:text="${notification.subject}"></td>
                                     <td data-label="DATE"
                                         th:text="${#temporals.format(notification.createdOn, 'dd MMM, yyyy')}">
