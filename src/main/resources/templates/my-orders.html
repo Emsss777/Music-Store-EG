@@ -41,6 +41,11 @@
                     <button class="search-btn">🔍</button>
                 </div>
             </div>
+            <div class="orders-actions">
+                <a class="btn btn-secondary export-pdf-btn" th:href="@{/users/my-orders/export/pdf}">
+                    Export PDF
+                </a>
+            </div>
 
             <div class="orders-list">
                 <div th:each="order : ${orders}" class="order-card card">

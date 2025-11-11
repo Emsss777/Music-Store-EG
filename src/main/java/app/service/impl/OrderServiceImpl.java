@@ -1,6 +1,7 @@
 package app.service.impl;
 
 import app.exception.DomainException;
+import app.export.ExporterPDF;
 import app.mapper.OrderItemMapper;
 import app.mapper.OrderMapper;
 import app.model.dto.CartItemDTO;
@@ -12,6 +13,7 @@ import app.repository.OrderItemRepo;
 import app.repository.OrderRepo;
 import app.service.AlbumService;
 import app.service.OrderService;
+import app.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
@@ -38,6 +40,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderItemRepo orderItemRepo;
     private final AlbumService albumService;
     private final NotificationService notificationService;
+    private final UserService userService;
 
     @Override
     @Transactional
@@ -133,5 +136,14 @@ public class OrderServiceImpl implements OrderService {
 
         order.setStatus(newStatus);
         orderRepo.save(order);
+    }
+
+    @Override
+    public byte[] exportToPDF(UUID userId) {
+
+        User currentUser = userService.getUserById(userId);
+        List<Order> orders = orderRepo.findByOwner(currentUser);
+
+        return ExporterPDF.exportOrders(orders);
     }
 }

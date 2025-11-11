@@ -33,4 +33,6 @@ public final class UrlPaths {
     public static final String URL_ADMIN_ARTISTS = "/admin/artists";
     public static final String URL_STATUS = "/status";
     public static final String URL_ROLE = "/role";
+    public static final String URL_EXPORT = "/export";
+    public static final String URL_PDF = "/pdf";
 }

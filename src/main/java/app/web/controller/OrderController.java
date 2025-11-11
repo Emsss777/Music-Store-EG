@@ -8,6 +8,9 @@ import app.security.AuthenticationMetadata;
 import app.service.OrderService;
 import app.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -72,5 +75,16 @@ public class OrderController {
         modelAndView.addObject(MODEL_ORDER, orderDTO);
 
         return modelAndView;
+    }
+
+    @GetMapping(URL_MY_ORDERS + URL_EXPORT + URL_PDF)
+    public ResponseEntity<byte[]> exportOrdersToPDF(@AuthenticationPrincipal AuthenticationMetadata authMetadata) {
+
+        byte[] pdfBytes = orderService.exportToPDF(authMetadata.getUserId());
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=my-orders.pdf")
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(pdfBytes);
     }
 }

@@ -28,9 +28,28 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
     flex-wrap: wrap;
     gap: 20px;
+}
+
+.orders-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 24px;
+}
+
+.orders-actions .export-pdf-btn {
+    display: inline-flex;
+    color: #a095e6;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    align-items: center;
+    gap: 8px;
+}
+
+.orders-actions .export-pdf-btn:hover {
+    color: #bcb6e5;
 }
 
 .filter-tabs {

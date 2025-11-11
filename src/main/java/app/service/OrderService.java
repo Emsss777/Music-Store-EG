@@ -30,4 +30,6 @@ public interface OrderService {
     List<Order> getOrdersReadyForStatusUpdate(Status status, LocalDateTime beforeDateTime);
 
     void updateOrderStatus(Order order, Status newStatus);
+
+    byte[] exportToPDF(UUID userId);
 }
