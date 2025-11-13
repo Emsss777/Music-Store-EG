@@ -52,8 +52,10 @@ class CheckoutControllerApiTest {
 
     @MockitoBean
     private CartService cartService;
+
     @MockitoBean
     private OrderService orderService;
+
     @MockitoBean
     private UserService userService;
 

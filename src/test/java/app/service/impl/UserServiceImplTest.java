@@ -37,12 +37,16 @@ class UserServiceImplTest {
 
     @Mock
     private UserRepo userRepo;
+
     @Mock
     private PasswordEncoder passwordEncoder;
+
     @Mock
     private NotificationService notificationService;
+
     @Mock
     private UserRegisteredEventProducer userRegisteredEventProducer;
+
     @Mock
     private UserUpdatedEventProducer userUpdatedEventProducer;
 
