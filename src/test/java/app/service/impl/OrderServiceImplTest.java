@@ -1,19 +1,18 @@
 package app.service.impl;
 
+import app.event.payload.OrderCreatedEvent;
 import app.exception.DomainException;
 import app.export.ExporterPDF;
-import app.mapper.OrderItemMapper;
 import app.mapper.OrderMapper;
 import app.model.dto.CartItemDTO;
 import app.model.dto.CheckoutDTO;
+import app.model.dto.OrderDTO;
 import app.model.entity.Album;
 import app.model.entity.Order;
 import app.model.entity.OrderItem;
 import app.model.entity.User;
 import app.model.enums.PaymentMethod;
 import app.model.enums.Status;
-import app.notification.services.NotificationService;
-import app.repository.OrderItemRepo;
 import app.repository.OrderRepo;
 import app.service.AlbumService;
 import app.service.UserService;
@@ -22,15 +21,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.context.ApplicationEventPublisher;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import static app.TestDataFactory.*;
-import static app.util.SuccessMessages.ORDER_CONFIRMATION;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.*;
@@ -43,16 +43,13 @@ class OrderServiceImplTest {
     private OrderRepo orderRepo;
 
     @Mock
-    private OrderItemRepo orderItemRepo;
-
-    @Mock
     private AlbumService albumService;
 
     @Mock
-    private NotificationService notificationService;
+    private UserService userService;
 
     @Mock
-    private UserService userService;
+    private ApplicationEventPublisher publisher;
 
     @InjectMocks
     private OrderServiceImpl orderService;
@@ -73,60 +70,183 @@ class OrderServiceImplTest {
     void createOrder_withNewCartItems_shouldPersistOrderItemsAndNotifyUser() {
 
         CheckoutDTO checkoutDTO = aCheckoutDTO();
-        CartItemDTO firstItem = aCartItem(album);
-        firstItem.setQuantity(2);
-        CartItemDTO secondItem = aCartItem(album);
-        secondItem.setAlbumId(UUID.randomUUID());
-        secondItem.setQuantity(1);
-        Album secondAlbum = anAlbum(anArtist());
-        secondAlbum.setId(secondItem.getAlbumId());
+        CartItemDTO cartItem1 = aCartItem(album);
+        cartItem1.setQuantity(2);
+        CartItemDTO cartItem2 = aCartItem(anAlbum(anArtist()));
+        cartItem2.setAlbumId(UUID.randomUUID());
+        cartItem2.setQuantity(1);
 
-        when(orderRepo.save(any(Order.class))).thenAnswer(invocation -> {
-            Order orderToSave = invocation.getArgument(0, Order.class);
-            orderToSave.setId(UUID.randomUUID());
-            orderToSave.setOrderNumber("ORD-12345678");
-            orderToSave.setCreatedOn(LocalDateTime.now());
-            return orderToSave;
-        });
-        when(albumService.getAlbumById(firstItem.getAlbumId())).thenReturn(album);
-        when(albumService.getAlbumById(secondItem.getAlbumId())).thenReturn(secondAlbum);
-        when(orderItemRepo.findByOrderAndAlbum(any(), any())).thenReturn(Optional.empty());
+        List<CartItemDTO> cartItems = List.of(cartItem1, cartItem2);
+        Album album2 = anAlbum(anArtist());
+        album2.setId(cartItem2.getAlbumId());
 
-        Order savedOrder = orderService.createOrder(checkoutDTO, List.of(firstItem, secondItem), user);
+        when(albumService.getAlbumById(cartItem1.getAlbumId())).thenReturn(album);
+        when(albumService.getAlbumById(cartItem2.getAlbumId())).thenReturn(album2);
 
-        assertThat(savedOrder.getOwner()).isEqualTo(user);
-        assertThat(savedOrder.getTotalAmount()).isEqualByComparingTo(new BigDecimal("59.97"));
-        verify(orderRepo, times(1)).save(any(Order.class));
-        verify(orderItemRepo, times(2)).save(any(OrderItem.class));
-        ArgumentCaptor<String> messageCaptor = ArgumentCaptor.forClass(String.class);
-        verify(notificationService, times(1))
-                .sendNotification(eq(user.getId()), eq(ORDER_CONFIRMATION), messageCaptor.capture());
-        String notificationBody = messageCaptor.getValue();
-        assertThat(notificationBody).contains(savedOrder.getId().toString());
-        assertThat(notificationBody).contains("59.97");
+        Order savedOrder = Order.builder()
+                .id(UUID.randomUUID())
+                .orderNumber("ORD-TEST123")
+                .status(Status.PENDING)
+                .owner(user)
+                .totalAmount(cartItem1.getTotalPrice().add(cartItem2.getTotalPrice()))
+                .items(new ArrayList<>())
+                .createdOn(LocalDateTime.now())
+                .build();
+
+        try (MockedStatic<OrderMapper> orderMapperMock = Mockito.mockStatic(OrderMapper.class)) {
+            Order newOrder = Order.builder()
+                    .orderNumber("ORD-TEMP")
+                    .status(Status.PENDING)
+                    .owner(user)
+                    .totalAmount(cartItem1.getTotalPrice().add(cartItem2.getTotalPrice()))
+                    .items(new ArrayList<>())
+                    .createdOn(LocalDateTime.now())
+                    .build();
+
+            orderMapperMock.when(() -> OrderMapper.fromCheckoutDTO(any(CheckoutDTO.class), eq(user), any(BigDecimal.class)))
+                    .thenReturn(newOrder);
+
+            when(orderRepo.save(any(Order.class))).thenAnswer(invocation -> {
+                Order order = invocation.getArgument(0);
+                order.setId(savedOrder.getId());
+                order.setOrderNumber(savedOrder.getOrderNumber());
+                return order;
+            });
+
+            orderMapperMock.when(() -> OrderMapper.toDTO(any(Order.class))).thenAnswer(invocation -> {
+                Order order = invocation.getArgument(0);
+                return OrderDTO.builder()
+                        .id(order.getId())
+                        .orderNumber(order.getOrderNumber())
+                        .status(order.getStatus())
+                        .totalAmount(order.getTotalAmount())
+                        .createdOn(order.getCreatedOn())
+                        .items(order.getItems().stream()
+                                .map(item -> app.model.dto.OrderItemDetailDTO.builder()
+                                        .id(item.getId())
+                                        .unitPrice(item.getUnitPrice())
+                                        .quantity(item.getQuantity())
+                                        .build())
+                                .toList())
+                        .build();
+            });
+
+            OrderDTO result = orderService.createOrder(checkoutDTO, cartItems, user);
+
+            ArgumentCaptor<Order> orderCaptor = ArgumentCaptor.forClass(Order.class);
+            verify(orderRepo, times(1)).save(orderCaptor.capture());
+
+            Order capturedOrder = orderCaptor.getValue();
+            assertThat(capturedOrder.getItems()).hasSize(2);
+            assertThat(capturedOrder.getItems()).extracting(OrderItem::getQuantity)
+                    .containsExactly(2, 1);
+            assertThat(capturedOrder.getOwner()).isEqualTo(user);
+            assertThat(capturedOrder.getTotalAmount()).isEqualTo(
+                    cartItem1.getTotalPrice().add(cartItem2.getTotalPrice()));
+
+            ArgumentCaptor<OrderCreatedEvent> eventCaptor = ArgumentCaptor.forClass(OrderCreatedEvent.class);
+            verify(publisher, times(1)).publishEvent(eventCaptor.capture());
+
+            OrderCreatedEvent capturedEvent = eventCaptor.getValue();
+            assertThat(capturedEvent.getUserId()).isEqualTo(user.getId());
+            assertThat(capturedEvent.getUsername()).isEqualTo(user.getUsername());
+            assertThat(capturedEvent.getOrderNumber()).isNotNull();
+            assertThat(capturedEvent.getTotalAmount()).isEqualTo(capturedOrder.getTotalAmount());
+
+            assertThat(result).isNotNull();
+            assertThat(result.getItems()).hasSize(2);
+        }
     }
 
     @Test
     void createOrder_whenOrderItemAlreadyExists_shouldIncreaseQuantity() {
 
         CheckoutDTO checkoutDTO = aCheckoutDTO();
-        CartItemDTO cartItem = aCartItem(album);
-        cartItem.setQuantity(3);
 
-        when(orderRepo.save(any(Order.class))).thenAnswer(invocation -> invocation.getArgument(0));
-        when(albumService.getAlbumById(cartItem.getAlbumId())).thenReturn(album);
-        Order existingOrder = OrderMapper.fromCheckoutDTO(checkoutDTO, user, cartItem.getTotalPrice());
-        existingOrder.setId(UUID.randomUUID());
-        OrderItem existingOrderItem = OrderItemMapper.fromCartItem(cartItem, existingOrder, album);
-        existingOrderItem.setQuantity(1);
+        CartItemDTO cartItem1 = aCartItem(album);
+        cartItem1.setQuantity(3);
+        CartItemDTO cartItem2 = aCartItem(album);
+        cartItem2.setQuantity(2);
 
-        when(orderItemRepo.findByOrderAndAlbum(any(Order.class), eq(album)))
-                .thenReturn(Optional.of(existingOrderItem));
+        List<CartItemDTO> cartItems = List.of(cartItem1, cartItem2);
 
-        orderService.createOrder(checkoutDTO, List.of(cartItem), user);
+        when(albumService.getAlbumById(album.getId())).thenReturn(album);
 
-        assertThat(existingOrderItem.getQuantity()).isEqualTo(4);
-        verify(orderItemRepo, times(1)).save(existingOrderItem);
+        Order savedOrder = Order.builder()
+                .id(UUID.randomUUID())
+                .orderNumber("ORD-TEST456")
+                .status(Status.PENDING)
+                .owner(user)
+                .totalAmount(BigDecimal.ZERO)
+                .items(new ArrayList<>())
+                .createdOn(LocalDateTime.now())
+                .build();
+
+        try (MockedStatic<OrderMapper> orderMapperMock = Mockito.mockStatic(OrderMapper.class)) {
+            Order newOrder = Order.builder()
+                    .orderNumber("ORD-TEMP")
+                    .status(Status.PENDING)
+                    .owner(user)
+                    .totalAmount(BigDecimal.ZERO)
+                    .items(new ArrayList<>())
+                    .createdOn(LocalDateTime.now())
+                    .build();
+
+            orderMapperMock.when(() -> OrderMapper.fromCheckoutDTO(any(CheckoutDTO.class), eq(user), any(BigDecimal.class)))
+                    .thenReturn(newOrder);
+
+            when(orderRepo.save(any(Order.class))).thenAnswer(invocation -> {
+                Order order = invocation.getArgument(0);
+                order.setId(savedOrder.getId());
+                order.setOrderNumber(savedOrder.getOrderNumber());
+
+                if (order.getItems() != null && !order.getItems().isEmpty()) {
+                    OrderItem item = order.getItems().get(0);
+                    BigDecimal newTotal = item.getUnitPrice().multiply(BigDecimal.valueOf(item.getQuantity()));
+                    order.setTotalAmount(newTotal);
+                }
+
+                return order;
+            });
+
+            orderMapperMock.when(() -> OrderMapper.toDTO(any(Order.class))).thenAnswer(invocation -> {
+                Order order = invocation.getArgument(0);
+                return OrderDTO.builder()
+                        .id(order.getId())
+                        .orderNumber(order.getOrderNumber())
+                        .status(order.getStatus())
+                        .totalAmount(order.getTotalAmount())
+                        .createdOn(order.getCreatedOn())
+                        .items(order.getItems() != null ? order.getItems().stream()
+                                .map(item -> app.model.dto.OrderItemDetailDTO.builder()
+                                        .id(item.getId())
+                                        .unitPrice(item.getUnitPrice())
+                                        .quantity(item.getQuantity())
+                                        .build())
+                                .toList() : List.of())
+                        .build();
+            });
+
+            OrderDTO result = orderService.createOrder(checkoutDTO, cartItems, user);
+
+            ArgumentCaptor<Order> orderCaptor = ArgumentCaptor.forClass(Order.class);
+            verify(orderRepo, times(1)).save(orderCaptor.capture());
+
+            Order capturedOrder = orderCaptor.getValue();
+            assertThat(capturedOrder.getItems()).hasSize(1);
+
+            OrderItem finalItem = capturedOrder.getItems().get(0);
+            assertThat(finalItem.getQuantity()).isEqualTo(5);
+            assertThat(finalItem.getAlbum().getId()).isEqualTo(album.getId());
+            assertThat(finalItem.getUnitPrice()).isEqualTo(album.getPrice());
+
+            ArgumentCaptor<OrderCreatedEvent> eventCaptor = ArgumentCaptor.forClass(OrderCreatedEvent.class);
+            verify(publisher, times(1)).publishEvent(eventCaptor.capture());
+
+            assertThat(result).isNotNull();
+            assertThat(result.getItems()).hasSize(1);
+            assertThat(result.getItems().get(0).getQuantity()).isEqualTo(5);
+        }
     }
 
     @Test
@@ -151,10 +271,12 @@ class OrderServiceImplTest {
                 .totalAmount(BigDecimal.TEN)
                 .createdOn(LocalDateTime.now())
                 .build();
+
         when(userService.getUserById(userId)).thenReturn(user);
         when(orderRepo.findByOwner(user)).thenReturn(List.of(order));
 
         byte[] expectedBytes = "pdf-content".getBytes();
+
         try (MockedStatic<ExporterPDF> exporter = Mockito.mockStatic(ExporterPDF.class)) {
             exporter.when(() -> ExporterPDF.exportOrders(List.of(order))).thenReturn(expectedBytes);
 

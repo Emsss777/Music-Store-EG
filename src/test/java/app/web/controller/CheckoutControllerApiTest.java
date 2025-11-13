@@ -2,9 +2,8 @@ package app.web.controller;
 
 import app.config.WebMvcConfig;
 import app.model.dto.CartItemDTO;
-import app.model.entity.Order;
+import app.model.dto.OrderDTO;
 import app.model.entity.User;
-import app.model.enums.PaymentMethod;
 import app.model.enums.Status;
 import app.security.AuthenticationMetadata;
 import app.service.CartService;
@@ -52,10 +51,8 @@ class CheckoutControllerApiTest {
 
     @MockitoBean
     private CartService cartService;
-
     @MockitoBean
     private OrderService orderService;
-
     @MockitoBean
     private UserService userService;
 
@@ -121,18 +118,18 @@ class CheckoutControllerApiTest {
         cartItem.setAlbumId(UUID.randomUUID());
         User user = aUser();
         user.setId(UUID.randomUUID());
-        Order order = Order.builder()
+
+        // 🟢 OrderDTO вместо Order
+        OrderDTO orderDTO = OrderDTO.builder()
                 .id(UUID.randomUUID())
                 .orderNumber("ORD-12345678")
-                .status(Status.PENDING)
-                .paymentMethod(PaymentMethod.CREDIT_CARD)
                 .totalAmount(new BigDecimal("19.99"))
-                .owner(user)
+                .status(Status.valueOf(Status.PENDING.name()))
                 .build();
 
         given(cartService.getCartItems(any())).willReturn(List.of(cartItem));
         given(userService.getUserById(user.getId())).willReturn(user);
-        given(orderService.createOrder(any(), anyList(), eq(user))).willReturn(order);
+        given(orderService.createOrder(any(), anyList(), eq(user))).willReturn(orderDTO);
 
         MockHttpServletRequestBuilder request = post(URL_CHECKOUT)
                 .session(session)
@@ -144,9 +141,9 @@ class CheckoutControllerApiTest {
 
         mockMvc.perform(request)
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/users/made-order" + URL_ORDER_NUMBER + order.getOrderNumber()))
-                .andExpect(flash().attribute(FLASH_MESSAGE, ORDER_PLACED_SUCCESS + order.getOrderNumber()))
-                .andExpect(flash().attribute(FLASH_ORDER_NUMBER, order.getOrderNumber()));
+                .andExpect(redirectedUrl("/users/made-order" + URL_ORDER_NUMBER + orderDTO.getOrderNumber()))
+                .andExpect(flash().attribute(FLASH_MESSAGE, ORDER_PLACED_SUCCESS + orderDTO.getOrderNumber()))
+                .andExpect(flash().attribute(FLASH_ORDER_NUMBER, orderDTO.getOrderNumber()));
 
         verify(cartService, times(1)).clearCart(any());
     }

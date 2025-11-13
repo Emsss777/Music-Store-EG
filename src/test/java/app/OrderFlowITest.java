@@ -4,6 +4,7 @@ import app.event.UserRegisteredEventProducer;
 import app.event.UserUpdatedEventProducer;
 import app.model.dto.CartItemDTO;
 import app.model.dto.CheckoutDTO;
+import app.model.dto.OrderDTO;
 import app.model.entity.*;
 import app.notification.services.NotificationService;
 import app.repository.AlbumRepo;
@@ -27,11 +28,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static app.TestDataFactory.*;
-import static app.util.SuccessMessages.ORDER_CONFIRMATION;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.ArgumentMatchers.contains;
-import static org.mockito.Mockito.verify;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -75,37 +72,83 @@ class OrderFlowITest {
     @Transactional
     void placeOrder_happyPath_shouldPersistOrderAndOrderItems() {
 
-        // Given
-        Artist artist = artistRepo.save(anArtist());
-        Album album = albumRepo.save(anAlbum(artist));
-        User user = userRepo.save(aUser());
+        Artist artist = anArtist();
+        artistRepo.save(artist);
+        entityManager.flush();
+
+        Album album1 = anAlbum(artist);
+        Album album2 = anAlbum(artist);
+        album2.setTitle("Test Album 2");
+        albumRepo.save(album1);
+        albumRepo.save(album2);
+        entityManager.flush();
+
+        User user = aUser();
+        userRepo.save(user);
+        entityManager.flush();
 
         MockHttpSession session = new MockHttpSession();
-        cartService.addToCart(session, album.getId());
+
+        cartService.addToCart(session, album1.getId());
+        cartService.addToCart(session, album1.getId());
+        cartService.addToCart(session, album2.getId());
+
         List<CartItemDTO> cartItems = cartService.getCartItems(session);
+        assertThat(cartItems).hasSize(2);
+        assertThat(cartItems.stream()
+                .filter(item -> item.getAlbumId().equals(album1.getId()))
+                .findFirst()
+                .orElseThrow()
+                .getQuantity()).isEqualTo(2);
+        assertThat(cartItems.stream()
+                .filter(item -> item.getAlbumId().equals(album2.getId()))
+                .findFirst()
+                .orElseThrow()
+                .getQuantity()).isEqualTo(1);
+
         CheckoutDTO checkoutDTO = aCheckoutDTO();
 
-        // When
-        Order order = orderService.createOrder(checkoutDTO, cartItems, user);
+        long ordersCountBefore = orderRepo.count();
+        long orderItemsCountBefore = orderItemRepo.count();
+
+        OrderDTO orderDTO = orderService.createOrder(checkoutDTO, cartItems, user);
+
+        cartService.clearCart(session);
 
         entityManager.flush();
         entityManager.clear();
 
-        // Then
-        Order actualOrder = orderRepo.findById(order.getId()).orElseThrow();
-        assertThat(actualOrder.getTotalAmount()).isEqualByComparingTo(cartItems.get(0).getTotalPrice());
+        assertThat(orderDTO).isNotNull();
+        assertThat(orderDTO.getOrderNumber()).isNotNull();
+        assertThat(orderDTO.getItems()).hasSize(2);
+        assertThat(orderDTO.getTotalAmount()).isPositive();
 
-        Optional<OrderItem> orderItemOpt = orderItemRepo.findByOrderAndAlbum(actualOrder, album);
-        assertThat(orderItemOpt).isPresent();
+        assertThat(orderRepo.count()).isEqualTo(ordersCountBefore + 1);
+        assertThat(orderItemRepo.count()).isEqualTo(orderItemsCountBefore + 2);
 
-        OrderItem orderItem = orderItemOpt.get();
-        assertThat(orderItem.getQuantity()).isEqualTo(cartItems.get(0).getQuantity());
-        assertThat(orderItem.getUnitPrice()).isEqualByComparingTo(cartItems.get(0).getTotalPrice());
+        Optional<Order> savedOrderOpt = orderRepo.findByOrderNumber(orderDTO.getOrderNumber());
+        assertThat(savedOrderOpt).isPresent();
 
-        verify(notificationService).sendNotification(
-                eq(user.getId()),
-                eq(ORDER_CONFIRMATION),
-                contains(order.getId().toString())
-        );
+        Order savedOrder = savedOrderOpt.get();
+        assertThat(savedOrder.getOwner().getId()).isEqualTo(user.getId());
+        assertThat(savedOrder.getTotalAmount()).isEqualTo(orderDTO.getTotalAmount());
+        assertThat(savedOrder.getItems()).hasSize(2);
+
+        OrderItem item1 = savedOrder.getItems().stream()
+                .filter(item -> item.getAlbum().getId().equals(album1.getId()))
+                .findFirst()
+                .orElseThrow();
+        assertThat(item1.getQuantity()).isEqualTo(2);
+        assertThat(item1.getUnitPrice()).isEqualTo(album1.getPrice());
+
+        OrderItem item2 = savedOrder.getItems().stream()
+                .filter(item -> item.getAlbum().getId().equals(album2.getId()))
+                .findFirst()
+                .orElseThrow();
+        assertThat(item2.getQuantity()).isEqualTo(1);
+        assertThat(item2.getUnitPrice()).isEqualTo(album2.getPrice());
+
+        List<CartItemDTO> cartItemsAfter = cartService.getCartItems(session);
+        assertThat(cartItemsAfter).isEmpty();
     }
 }

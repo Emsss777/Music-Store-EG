@@ -11,10 +11,7 @@ import lombok.experimental.UtilityClass;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @UtilityClass
 public class OrderMapper {
@@ -68,6 +65,7 @@ public class OrderMapper {
                 .totalAmount(totalAmount)
                 .owner(user)
                 .createdOn(LocalDateTime.now())
+                .items(new ArrayList<>())
                 .build();
     }
 

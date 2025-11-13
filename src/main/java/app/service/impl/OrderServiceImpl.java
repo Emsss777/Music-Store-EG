@@ -1,21 +1,22 @@
 package app.service.impl;
 
+import app.event.payload.OrderCreatedEvent;
 import app.exception.DomainException;
 import app.export.ExporterPDF;
 import app.mapper.OrderItemMapper;
 import app.mapper.OrderMapper;
 import app.model.dto.CartItemDTO;
 import app.model.dto.CheckoutDTO;
+import app.model.dto.OrderDTO;
 import app.model.entity.*;
 import app.model.enums.Status;
-import app.notification.services.NotificationService;
-import app.repository.OrderItemRepo;
 import app.repository.OrderRepo;
 import app.service.AlbumService;
 import app.service.OrderService;
 import app.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,7 +30,6 @@ import java.util.UUID;
 
 import static app.util.ExceptionMessages.ORDER_DOES_NOT_EXIST;
 import static app.util.LogMessages.ORDER_CREATED;
-import static app.util.SuccessMessages.*;
 
 @Slf4j
 @Service
@@ -37,44 +37,49 @@ import static app.util.SuccessMessages.*;
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepo orderRepo;
-    private final OrderItemRepo orderItemRepo;
     private final AlbumService albumService;
-    private final NotificationService notificationService;
     private final UserService userService;
+    private final ApplicationEventPublisher publisher;
 
     @Override
     @Transactional
-    public Order createOrder(CheckoutDTO checkoutDTO, List<CartItemDTO> cartItems, User user) {
+    public OrderDTO createOrder(CheckoutDTO checkoutDTO, List<CartItemDTO> cartItems, User user) {
 
         BigDecimal totalAmount = cartItems.stream()
                 .map(CartItemDTO::getTotalPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         Order order = OrderMapper.fromCheckoutDTO(checkoutDTO, user, totalAmount);
-        Order savedOrder = orderRepo.save(order);
 
         for (CartItemDTO cartItem : cartItems) {
             Album album = albumService.getAlbumById(cartItem.getAlbumId());
 
-            orderItemRepo.findByOrderAndAlbum(savedOrder, album)
-                    .ifPresentOrElse(
-                            item -> {
-                                item.setQuantity(item.getQuantity() + cartItem.getQuantity());
-                                orderItemRepo.save(item);
-                            },
-                            () -> orderItemRepo.save(OrderItemMapper.fromCartItem(cartItem, savedOrder, album))
-                    );
+            OrderItem existingItem = order.getItems().stream()
+                    .filter(i -> i.getAlbum().getId().equals(album.getId()))
+                    .findFirst()
+                    .orElse(null);
+
+            if (existingItem != null) {
+                existingItem.setQuantity(existingItem.getQuantity() + cartItem.getQuantity());
+            } else {
+                OrderItem newItem = OrderItemMapper.fromCartItem(cartItem, order, album);
+                order.getItems().add(newItem);
+            }
         }
 
-        notificationService.sendNotification(
-                user.getId(), ORDER_CONFIRMATION, NOTIFICATION_ORDER_CONFIRMATION.formatted(
-                        user.getUsername(), savedOrder.getId(), totalAmount)
-        );
+        Order savedOrder = orderRepo.save(order);
+
+        publisher.publishEvent(new OrderCreatedEvent(
+                user.getId(),
+                user.getUsername(),
+                savedOrder.getOrderNumber(),
+                savedOrder.getTotalAmount()
+        ));
 
         log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, ORDER_CREATED),
-                savedOrder.getOrderNumber(), user.getUsername(), totalAmount, cartItems.size());
+                savedOrder.getOrderNumber(), user.getUsername(), totalAmount, savedOrder.getItems().size());
 
-        return savedOrder;
+        return OrderMapper.toDTO(savedOrder);
     }
 
     @Override

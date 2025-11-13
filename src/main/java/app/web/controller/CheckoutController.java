@@ -2,7 +2,7 @@ package app.web.controller;
 
 import app.model.dto.CartItemDTO;
 import app.model.dto.CheckoutDTO;
-import app.model.entity.Order;
+import app.model.dto.OrderDTO;
 import app.model.entity.User;
 import app.security.AuthenticationMetadata;
 import app.service.CartService;
@@ -69,20 +69,20 @@ public class CheckoutController {
                                         RedirectAttributes redirectAttributes) {
 
         List<CartItemDTO> cartItems = cartService.getCartItems(session);
-
         if (cartItems == null || cartItems.isEmpty()) {
             redirectAttributes.addFlashAttribute(FLASH_ERROR, CART_IS_EMPTY);
-
             return new ModelAndView(REDIRECT_CART);
         }
 
         User user = userService.getUserById(authMetadata.getUserId());
-        Order order = orderService.createOrder(checkoutDTO, cartItems, user);
+        OrderDTO orderDTO = orderService.createOrder(checkoutDTO, cartItems, user);
+
         cartService.clearCart(session);
 
-        redirectAttributes.addFlashAttribute(FLASH_MESSAGE, ORDER_PLACED_SUCCESS + order.getOrderNumber());
-        redirectAttributes.addFlashAttribute(FLASH_ORDER_NUMBER, order.getOrderNumber());
+        redirectAttributes.addFlashAttribute(FLASH_MESSAGE,
+                ORDER_PLACED_SUCCESS + orderDTO.getOrderNumber());
+        redirectAttributes.addFlashAttribute(FLASH_ORDER_NUMBER, orderDTO.getOrderNumber());
 
-        return new ModelAndView(REDIRECT_MADE_ORDER + URL_ORDER_NUMBER + order.getOrderNumber());
+        return new ModelAndView(REDIRECT_MADE_ORDER + URL_ORDER_NUMBER + orderDTO.getOrderNumber());
     }
 }
