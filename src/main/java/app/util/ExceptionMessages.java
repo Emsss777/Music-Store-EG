@@ -32,4 +32,6 @@ public class ExceptionMessages {
     public static final String ALBUM_COVER_URL_INVALID = "Cover URL must be a valid HTTP/HTTPS URL!";
     public static final String ORDER_ID_CANNOT_BE_NULL = "Order ID cannot be null!";
     public static final String ERROR_GENERATING_PDF = "Error generating PDF!";
+    public static final String VALIDATION_FAILED = "Validation failed!";
+    public static final String UNEXPECTED_SERVER_ERROR = "Unexpected server error!";
 }

@@ -9,6 +9,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import static app.util.UrlPaths.*;
+
 @Configuration
 @EnableMethodSecurity
 public class WebMvcConfig implements WebMvcConfigurer {
@@ -19,18 +21,18 @@ public class WebMvcConfig implements WebMvcConfigurer {
         http
                 .authorizeHttpRequests(matchers -> matchers
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                        .requestMatchers("/", "/register", "/home", "/catalog").permitAll()
+                        .requestMatchers(URL_ROOT, URL_REGISTER, URL_HOME, URL_CATALOG).permitAll()
                         .anyRequest().authenticated()
                 )
 
                 .formLogin(form -> form
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/users/profile", true)
-                        .failureUrl("/login?error")
+                        .loginPage(URL_LOGIN)
+                        .defaultSuccessUrl(URL_USERS + URL_PROFILE, true)
+                        .failureUrl(URL_LOGIN + URL_ERROR)
                         .permitAll())
                 .logout(logout -> logout
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
-                        .logoutSuccessUrl("/")
+                        .logoutRequestMatcher(new AntPathRequestMatcher(URL_LOGOUT, "GET"))
+                        .logoutSuccessUrl(URL_ROOT)
                 );
 
         return http.build();

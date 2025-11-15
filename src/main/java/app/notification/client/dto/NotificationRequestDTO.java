@@ -9,15 +9,15 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class NotificationRequest {
+public class NotificationRequestDTO {
 
     private UUID userId;
     private String subject;
     private String body;
 
-    public static NotificationRequest defaultFor(UUID userId, String subject, String body) {
+    public static NotificationRequestDTO defaultFor(UUID userId, String subject, String body) {
 
-        return NotificationRequest.builder()
+        return NotificationRequestDTO.builder()
                 .userId(userId)
                 .subject(subject)
                 .body(body)

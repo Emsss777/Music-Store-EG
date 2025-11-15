@@ -1,7 +1,7 @@
 package app.notification.services;
 
-import app.notification.client.dto.Notification;
-import app.notification.client.dto.NotificationPreference;
+import app.notification.client.dto.NotificationDTO;
+import app.notification.client.dto.NotificationPreferenceDTO;
 
 import java.util.List;
 import java.util.UUID;
@@ -10,9 +10,9 @@ public interface NotificationService {
 
     void saveNotificationPreference(UUID userId, boolean isEmailEnabled, String email);
 
-    NotificationPreference getNotificationPreference(UUID userId);
+    NotificationPreferenceDTO getNotificationPreference(UUID userId);
 
-    List<Notification> getNotificationHistory(UUID userId);
+    List<NotificationDTO> getNotificationHistory(UUID userId);
 
     void sendNotification(UUID userId, String emailSubject, String emailBody);
 

@@ -9,20 +9,20 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class NotificationPreference {
+public class UpsertNotificationDTO {
 
     private UUID userId;
     private String type;
     private boolean enabled;
     private String contactInfo;
 
-    public static NotificationPreference defaultFor(UUID userId) {
+    public static UpsertNotificationDTO toUpsert(UUID userId, boolean isEmailEnabled, String email) {
 
-        return NotificationPreference.builder()
+        return UpsertNotificationDTO.builder()
                 .userId(userId)
-                .type("UNKNOWN")
-                .enabled(false)
-                .contactInfo("Service Unavailable!")
+                .type("EMAIL")
+                .enabled(isEmailEnabled)
+                .contactInfo(email)
                 .build();
     }
 }

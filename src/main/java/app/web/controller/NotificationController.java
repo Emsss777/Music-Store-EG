@@ -3,8 +3,8 @@ package app.web.controller;
 import app.mapper.UserMapper;
 import app.model.entity.User;
 import app.model.enums.NotificationStatus;
-import app.notification.client.dto.Notification;
-import app.notification.client.dto.NotificationPreference;
+import app.notification.client.dto.NotificationDTO;
+import app.notification.client.dto.NotificationPreferenceDTO;
 import app.notification.services.NotificationService;
 import app.security.AuthenticationMetadata;
 import app.service.UserService;
@@ -35,10 +35,10 @@ public class NotificationController {
 
         User currentUser = userService.getUserById(authMetadata.getUserId());
 
-        NotificationPreference notificationPreference =
+        NotificationPreferenceDTO notificationPrefDTO =
                 notificationService.getNotificationPreference(currentUser.getId());
 
-        List<Notification> notificationHistory = notificationService.getNotificationHistory(currentUser.getId());
+        List<NotificationDTO> notificationHistory = notificationService.getNotificationHistory(currentUser.getId());
 
         long succeededNotificationsNumber = notificationHistory.stream()
                 .filter(notification -> notification.getStatus().equals(NotificationStatus.SUCCEEDED.name()))
@@ -51,7 +51,7 @@ public class NotificationController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_NOTIFICATIONS);
         modelAndView.addObject(MODEL_USER, UserMapper.toBasicDTO(currentUser));
-        modelAndView.addObject(MODEL_NOTIFICATIONS_PREFERENCE, notificationPreference);
+        modelAndView.addObject(MODEL_NOTIFICATIONS_PREFERENCE, notificationPrefDTO);
         modelAndView.addObject(MODEL_NOTIFICATION_HISTORY, notificationHistory);
         modelAndView.addObject(MODEL_SUCCEEDED_NOTIFICATIONS_NUMBER, succeededNotificationsNumber);
         modelAndView.addObject(MODEL_FAILED_NOTIFICATIONS_NUMBER, failedNotificationsNumber);

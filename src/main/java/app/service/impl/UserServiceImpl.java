@@ -136,7 +136,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                         .isActive(user.isActive())
                         .build())
                 .orElseThrow(() -> {
-                    log.warn(USERNAME_DOES_NOT_EXIST, username);
+                    log.warn(AnsiOutput.toString(AnsiColor.BRIGHT_YELLOW, USERNAME_DOES_NOT_EXIST), username);
                     return new UsernameNotFoundException(
                             AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, BAD_CREDENTIALS));
                 });

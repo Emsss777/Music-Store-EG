@@ -1,12 +1,12 @@
 package app.notification.services.impl;
 
 import app.exception.NotificationServiceFeignCallException;
-import app.notification.client.dto.Notification;
-import app.notification.client.dto.NotificationPreference;
-import app.notification.client.dto.NotificationRequest;
+import app.notification.client.dto.NotificationDTO;
+import app.notification.client.dto.NotificationPreferenceDTO;
+import app.notification.client.dto.NotificationRequestDTO;
 import app.notification.services.NotificationService;
 import app.notification.client.NotificationClient;
-import app.notification.client.dto.UpsertNotificationPreference;
+import app.notification.client.dto.UpsertNotificationDTO;
 import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,8 +34,8 @@ public class NotificationServiceImpl implements NotificationService {
     @Override
     public void saveNotificationPreference(UUID userId, boolean isEmailEnabled, String email) {
 
-        UpsertNotificationPreference upsert =
-                UpsertNotificationPreference.toUpsert(userId, isEmailEnabled, email);
+        UpsertNotificationDTO upsert =
+                UpsertNotificationDTO.toUpsert(userId, isEmailEnabled, email);
 
         try {
             ResponseEntity<Void> httpResponse = notificationClient.upsertNotificationPreference(upsert);
@@ -44,7 +44,7 @@ public class NotificationServiceImpl implements NotificationService {
                         userId, httpResponse.getStatusCode());
             }
         } catch (FeignException ex) {
-            log.warn(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_SAVE_PREF_ERROR),
+            log.warn(AnsiOutput.toString(AnsiColor.BRIGHT_YELLOW, NOTIFICATION_SAVE_PREF_ERROR),
                     userId, ex.status(), ex.getMessage());
         } catch (Exception ex) {
             log.error(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_SAVE_PREF_UNEXPECTED), userId, ex);
@@ -52,50 +52,50 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
     @Override
-    public NotificationPreference getNotificationPreference(UUID userId) {
+    public NotificationPreferenceDTO getNotificationPreference(UUID userId) {
 
         try {
-            ResponseEntity<NotificationPreference> httpResponse = notificationClient.getUserPreference(userId);
+            ResponseEntity<NotificationPreferenceDTO> httpResponse = notificationClient.getUserPreference(userId);
             if (httpResponse.getStatusCode().is2xxSuccessful() && httpResponse.getBody() != null) {
                 return httpResponse.getBody();
             }
-            log.warn(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_GET_PREF_NON_2XX),
+            log.warn(AnsiOutput.toString(AnsiColor.BRIGHT_YELLOW, NOTIFICATION_GET_PREF_NON_2XX),
                     userId, httpResponse.getStatusCode());
 
         } catch (FeignException ex) {
-            log.warn(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_GET_PREF_ERROR),
+            log.warn(AnsiOutput.toString(AnsiColor.BRIGHT_YELLOW, NOTIFICATION_GET_PREF_ERROR),
                     userId, ex.status(), ex.getMessage());
         } catch (Exception ex) {
             log.error(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_GET_PREF_UNEXPECTED), userId, ex);
         }
-        return NotificationPreference.defaultFor(userId);
+        return NotificationPreferenceDTO.defaultFor(userId);
     }
 
     @Override
-    public List<Notification> getNotificationHistory(UUID userId) {
+    public List<NotificationDTO> getNotificationHistory(UUID userId) {
 
         try {
-            ResponseEntity<List<Notification>> httpResponse = notificationClient.getNotificationHistory(userId);
+            ResponseEntity<List<NotificationDTO>> httpResponse = notificationClient.getNotificationHistory(userId);
 
             if (httpResponse.getStatusCode().is2xxSuccessful() && httpResponse.getBody() != null) {
                 return httpResponse.getBody();
             }
-            log.warn(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_GET_HISTORY_NON_2XX),
+            log.warn(AnsiOutput.toString(AnsiColor.BRIGHT_YELLOW, NOTIFICATION_GET_HISTORY_NON_2XX),
                     userId, httpResponse.getStatusCode());
 
         } catch (FeignException ex) {
-            log.warn(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_GET_HISTORY_ERROR),
+            log.warn(AnsiOutput.toString(AnsiColor.BRIGHT_YELLOW, NOTIFICATION_GET_HISTORY_ERROR),
                     userId, ex.status(), ex.getMessage());
         } catch (Exception ex) {
             log.error(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_GET_HISTORY_UNEXPECTED), userId, ex);
         }
-        return Notification.defaultHistory();
+        return NotificationDTO.defaultHistory();
     }
 
     @Override
     public void sendNotification(UUID userId, String emailSubject, String emailBody) {
 
-        NotificationRequest notificationRequest = NotificationRequest.defaultFor(userId, emailSubject, emailBody);
+        NotificationRequestDTO notificationRequest = NotificationRequestDTO.defaultFor(userId, emailSubject, emailBody);
 
         ResponseEntity<Void> httpResponse;
         try {
@@ -104,7 +104,7 @@ public class NotificationServiceImpl implements NotificationService {
                 log.error(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_SEND_EMAIL_ERROR), userId);
             }
         } catch (Exception ex) {
-            log.warn(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_SEND_EMAIL_NON_2XX), userId);
+            log.warn(AnsiOutput.toString(AnsiColor.BRIGHT_YELLOW, NOTIFICATION_SEND_EMAIL_NON_2XX), userId);
         }
     }
 
@@ -114,7 +114,7 @@ public class NotificationServiceImpl implements NotificationService {
         try {
             notificationClient.updateNotificationPreference(userId, enabled);
         } catch (Exception ex) {
-            log.warn(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, NOTIFICATION_UPDATE_PREF_ERROR), userId);
+            log.warn(AnsiOutput.toString(AnsiColor.BRIGHT_YELLOW, NOTIFICATION_UPDATE_PREF_ERROR), userId);
         }
     }
 

@@ -55,6 +55,8 @@ public class LogMessages {
             "[notification-svc] error on 'updateNotificationPreference' for user [{}]!";
     public static final String NOTIFICATION_CLEAR_HISTORY_ERROR =
             "[notification-svc] error on 'clearNotificationHistory' for user [{}]!";
+    public static final String NOTIFICATION_IS_UNREACHABLE =
+            "[notification-svc] is unreachable: {}";
     public static final String ALBUM_DELETED_WITH_DETAILS =
             "Deleted album [%s] with %d order items and %d empty orders removed!";
     public static final String ORDER_AUTO_CANCELLED =
@@ -95,4 +97,6 @@ public class LogMessages {
             "Failed to clear all notification history!";
     public static final String NOTIFICATION_ORDER_CONFIRMATION_SENDING =
             "Sending confirmation notification for order {}";
+    public static final String UNEXPECTED_ERROR = "Unexpected error!";
+    public static final String DOMAIN_EXCEPTION = "Domain exception: {}";
 }
