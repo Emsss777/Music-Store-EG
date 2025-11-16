@@ -22,6 +22,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.data.domain.Sort;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -250,12 +251,197 @@ class OrderServiceImplTest {
     }
 
     @Test
+    void getOrderById_whenPresent_shouldReturnOrder() {
+
+        UUID orderId = UUID.randomUUID();
+        Order order = Order.builder()
+                .id(orderId)
+                .orderNumber("ORD-OK")
+                .status(Status.PENDING)
+                .owner(user)
+                .totalAmount(BigDecimal.ONE)
+                .createdOn(LocalDateTime.now())
+                .build();
+
+        when(orderRepo.findById(orderId)).thenReturn(Optional.of(order));
+
+        Order result = orderService.getOrderById(orderId);
+
+        assertThat(result).isEqualTo(order);
+    }
+
+    @Test
     void getOrderById_whenMissing_shouldThrowDomainException() {
 
         UUID orderId = UUID.randomUUID();
         when(orderRepo.findById(orderId)).thenReturn(Optional.empty());
 
         assertThrows(DomainException.class, () -> orderService.getOrderById(orderId));
+    }
+
+    @Test
+    void getOrderByOrderNumber_whenPresent_shouldReturnOrder() {
+
+        String orderNumber = "ORD-123";
+        Order order = Order.builder()
+                .id(UUID.randomUUID())
+                .orderNumber(orderNumber)
+                .status(Status.PENDING)
+                .owner(user)
+                .totalAmount(BigDecimal.TEN)
+                .createdOn(LocalDateTime.now())
+                .build();
+
+        when(orderRepo.findByOrderNumber(orderNumber)).thenReturn(Optional.of(order));
+
+        Order result = orderService.getOrderByOrderNumber(orderNumber);
+        assertThat(result).isEqualTo(order);
+    }
+
+    @Test
+    void getOrderByOrderNumber_whenMissing_shouldThrowDomainException() {
+
+        String orderNumber = "ORD-MISSING";
+        when(orderRepo.findByOrderNumber(orderNumber)).thenReturn(Optional.empty());
+
+        assertThrows(DomainException.class, () -> orderService.getOrderByOrderNumber(orderNumber));
+    }
+
+    @Test
+    void getOrdersByUser_shouldReturnListFromRepo() {
+
+        Order order1 = Order.builder()
+                .id(UUID.randomUUID())
+                .orderNumber("ORD-1")
+                .status(Status.PENDING)
+                .owner(user)
+                .totalAmount(BigDecimal.ONE)
+                .createdOn(LocalDateTime.now())
+                .build();
+        Order order2 = Order.builder()
+                .id(UUID.randomUUID())
+                .orderNumber("ORD-2")
+                .status(Status.COMPLETED)
+                .owner(user)
+                .totalAmount(BigDecimal.TEN)
+                .createdOn(LocalDateTime.now())
+                .build();
+
+        when(orderRepo.findByOwner(user)).thenReturn(List.of(order1, order2));
+
+        List<Order> result = orderService.getOrdersByUser(user);
+        assertThat(result).containsExactly(order1, order2);
+    }
+
+    @Test
+    void getTotalAlbumsPurchasedByUser_shouldSumQuantities() {
+
+        Order order1 = Order.builder()
+                .id(UUID.randomUUID())
+                .orderNumber("ORD-A")
+                .status(Status.PENDING)
+                .owner(user)
+                .totalAmount(BigDecimal.ZERO)
+                .createdOn(LocalDateTime.now())
+                .items(new ArrayList<>())
+                .build();
+        Order order2 = Order.builder()
+                .id(UUID.randomUUID())
+                .orderNumber("ORD-B")
+                .status(Status.PENDING)
+                .owner(user)
+                .totalAmount(BigDecimal.ZERO)
+                .createdOn(LocalDateTime.now())
+                .items(new ArrayList<>())
+                .build();
+
+        order1.getItems().add(OrderItem.builder().order(order1).album(album).unitPrice(BigDecimal.ONE).quantity(2).build());
+        order1.getItems().add(OrderItem.builder().order(order1).album(album).unitPrice(BigDecimal.ONE).quantity(3).build());
+        order2.getItems().add(OrderItem.builder().order(order2).album(album).unitPrice(BigDecimal.ONE).quantity(5).build());
+
+        when(orderRepo.findByOwner(user)).thenReturn(List.of(order1, order2));
+
+        int total = orderService.getTotalAlbumsPurchasedByUser(user);
+        assertThat(total).isEqualTo(10);
+    }
+
+    @Test
+    void getTotalAmountSpentByUser_shouldSumTotals() {
+
+        Order order1 = Order.builder()
+                .id(UUID.randomUUID())
+                .orderNumber("ORD-A")
+                .status(Status.PENDING)
+                .owner(user)
+                .totalAmount(new BigDecimal("12.50"))
+                .createdOn(LocalDateTime.now())
+                .build();
+        Order order2 = Order.builder()
+                .id(UUID.randomUUID())
+                .orderNumber("ORD-B")
+                .status(Status.PENDING)
+                .owner(user)
+                .totalAmount(new BigDecimal("7.50"))
+                .createdOn(LocalDateTime.now())
+                .build();
+
+        when(orderRepo.findByOwner(user)).thenReturn(List.of(order1, order2));
+
+        BigDecimal total = orderService.getTotalAmountSpentByUser(user);
+        assertThat(total).isEqualByComparingTo(new BigDecimal("20.00"));
+    }
+
+    @Test
+    void getAllOrders_shouldRequestSortedByCreatedOnDesc() {
+
+        List<Order> orders = List.of(
+                Order.builder().id(UUID.randomUUID()).orderNumber("ORD-1").status(Status.PENDING).owner(user).totalAmount(BigDecimal.ONE).createdOn(LocalDateTime.now()).build(),
+                Order.builder().id(UUID.randomUUID()).orderNumber("ORD-2").status(Status.COMPLETED).owner(user).totalAmount(BigDecimal.valueOf(2)).createdOn(LocalDateTime.now()).build()
+        );
+
+        when(orderRepo.findAll(any(Sort.class))).thenReturn(orders);
+
+        List<Order> result = orderService.getAllOrders();
+
+        assertThat(result).isEqualTo(orders);
+
+        ArgumentCaptor<Sort> sortCaptor = ArgumentCaptor.forClass(Sort.class);
+        verify(orderRepo).findAll(sortCaptor.capture());
+        Sort sort = sortCaptor.getValue();
+        assertThat(sort).isEqualTo(Sort.by(Sort.Direction.DESC, "createdOn"));
+    }
+
+    @Test
+    void getOrdersReadyForStatusUpdate_shouldDelegateToRepo() {
+
+        LocalDateTime before = LocalDateTime.now().minusDays(1);
+        Status status = Status.PENDING;
+        List<Order> expected = List.of(
+                Order.builder().id(UUID.randomUUID()).orderNumber("ORD-X").status(status).owner(user).totalAmount(BigDecimal.ONE).createdOn(before.minusHours(1)).build()
+        );
+
+        when(orderRepo.findByStatusAndCreatedOnBefore(status, before)).thenReturn(expected);
+
+        List<Order> result = orderService.getOrdersReadyForStatusUpdate(status, before);
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
+    void updateOrderStatus_shouldSetStatusAndPersist() {
+
+        Order order = Order.builder()
+                .id(UUID.randomUUID())
+                .orderNumber("ORD-U")
+                .status(Status.PENDING)
+                .owner(user)
+                .totalAmount(BigDecimal.ZERO)
+                .createdOn(LocalDateTime.now())
+                .build();
+
+        orderService.updateOrderStatus(order, Status.COMPLETED);
+
+        assertThat(order.getStatus()).isEqualTo(Status.COMPLETED);
+        verify(orderRepo).save(order);
     }
 
     @Test
