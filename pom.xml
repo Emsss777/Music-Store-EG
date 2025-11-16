@@ -12,11 +12,11 @@
         <relativePath/>
     </parent>
 
-    <groupId>music-store</groupId>
+    <groupId>app</groupId>
     <artifactId>music-store-app</artifactId>
     <version>1.0.1</version>
     <name>Music Store App</name>
-    <description>Music Store Application</description>
+    <description>Music Store – Main Spring Boot Application</description>
 
     <properties>
         <java.version>17</java.version>
