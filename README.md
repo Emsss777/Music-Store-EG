@@ -33,6 +33,21 @@ The project uses Thymeleaf for server-side rendering, MySQL (dev/prod) or H2 (te
 ### **View Layer**
 - Thymeleaf + `thymeleaf-extras-springsecurity6`
 
+### **Redis Caching**
+The application uses Redis as a cache backend to improve performance and reduce load on MySQL.
+
+Start Redis via Docker:
+```
+docker run --name Spring-Redis -p 6379:6379 -d redis:latest
+```
+
+Configuration (dev):
+```
+spring.cache.type=redis
+spring.data.redis.host=localhost
+spring.data.redis.port=6379
+```
+
 ### **PDF Export**
 - OpenPDF (librepdf)
 
@@ -240,4 +255,4 @@ The test profile uses H2 in-memory DB and mocks external services when needed.
 
 ## 📄 License
 
-Educational / demo project.
+Educational project.
