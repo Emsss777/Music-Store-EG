@@ -27,7 +27,6 @@ public class OrderStatusUpdateScheduler {
 
         LocalDateTime now = LocalDateTime.now();
 
-        // Process PENDING orders older than 24 hours - auto-cancel them
         List<Order> pendingOrders = orderService.getOrdersReadyForStatusUpdate(
                 Status.PENDING, now.minusHours(24));
 
@@ -39,7 +38,6 @@ public class OrderStatusUpdateScheduler {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN,ORDER_AUTO_CANCELLED_COUNT), pendingOrders.size());
         }
 
-        // Process PAID orders older than 2 hours - move to SHIPPED
         List<Order> paidOrders = orderService.getOrdersReadyForStatusUpdate(
                 Status.PAID, now.minusHours(2));
 
@@ -51,7 +49,6 @@ public class OrderStatusUpdateScheduler {
             log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN,ORDER_AUTO_SHIPPED_COUNT), paidOrders.size());
         }
 
-        // Process SHIPPED orders older than 72 hours - move to COMPLETED
         List<Order> shippedOrders = orderService.getOrdersReadyForStatusUpdate(
                 Status.SHIPPED, now.minusHours(72));
 

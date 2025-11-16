@@ -19,15 +19,15 @@ public class LoggingAspect {
     @After("bean(userController)")
     public void logIndexControllerMethods() {
 
-        System.out.println(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, ANOTHER_METHOD_EXEC));
+        log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, ANOTHER_METHOD_EXEC));
     }
 
     @Around(value = "@annotation(app.aspect.VeryImportant)")
     public Object logVeryImportantMethodExecution(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
 
-        System.out.println(AnsiOutput.toString(AnsiColor.BRIGHT_BLUE, BEFORE_METHOD_EXEC));
+        log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, BEFORE_METHOD_EXEC));
         Object methodResult = proceedingJoinPoint.proceed();
-        System.out.println(AnsiOutput.toString(AnsiColor.BRIGHT_WHITE, AFTER_METHOD_EXEC));
+        log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, AFTER_METHOD_EXEC));
 
         return methodResult;
     }

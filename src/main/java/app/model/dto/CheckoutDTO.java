@@ -9,7 +9,6 @@ import lombok.*;
 @NoArgsConstructor
 public class CheckoutDTO {
 
-    // Billing Information
     private String firstName;
     private String lastName;
     private String email;
@@ -19,7 +18,6 @@ public class CheckoutDTO {
     private String zipCode;
     private String country;
 
-    // Payment Information
     private String cardNumber;
     private String expiryDate;
     private String cvv;

@@ -36,9 +36,9 @@ public class AlbumServiceImpl implements AlbumService {
     private final OrderItemService orderItemManager;
 
     @Override
-    public Album getAlbumByAlbumTitle(String albumTitle) {
+    public void getAlbumByAlbumTitle(String albumTitle) {
 
-        return albumRepo.findByTitle(albumTitle).orElseThrow(() ->
+        albumRepo.findByTitle(albumTitle).orElseThrow(() ->
                 new DomainException(ALBUM_DOES_NOT_EXIST.formatted(albumTitle)));
     }
 

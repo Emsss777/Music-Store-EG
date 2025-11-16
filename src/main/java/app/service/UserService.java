@@ -13,7 +13,7 @@ public interface UserService {
 
     User getUserById(UUID userId);
 
-    User getUserByUsername(String username);
+    void getUserByUsername(String username);
 
     void editUserDetails(UUID userId, UserEditDTO userEditDTO);
 

@@ -92,9 +92,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public User getUserByUsername(String username) {
+    public void getUserByUsername(String username) {
 
-        return userRepo.findByUsername(username).orElseThrow(() ->
+        userRepo.findByUsername(username).orElseThrow(() ->
                 new DomainException(USER_DOES_NOT_EXIST.formatted(username)));
     }
 

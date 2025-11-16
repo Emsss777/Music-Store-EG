@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public interface AlbumService {
 
-    Album getAlbumByAlbumTitle(String albumTitle);
+    void getAlbumByAlbumTitle(String albumTitle);
 
     void saveAlbum(Album album);
 

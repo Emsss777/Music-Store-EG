@@ -28,7 +28,7 @@ public class LogMessages {
     public static final String SEEDING = "Seeding {}!";
     public static final String BEFORE_METHOD_EXEC = "Before method execution!";
     public static final String AFTER_METHOD_EXEC = "After method execution!";
-    public static final String ANOTHER_METHOD_EXEC = "Hey, another method in UserController was executed!";
+    public static final String ANOTHER_METHOD_EXEC = "Another method in UserController was executed!";
     public static final String NOTIFICATION_SAVE_PREF_NON_2XX =
             "[notification-svc] non-2xx on 'saveNotificationPreference' for user [{}]: {}!";
     public static final String NOTIFICATION_SAVE_PREF_ERROR =
