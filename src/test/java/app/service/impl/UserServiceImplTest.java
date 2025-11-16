@@ -2,6 +2,7 @@ package app.service.impl;
 
 import app.event.UserRegisteredEventProducer;
 import app.event.UserUpdatedEventProducer;
+import app.exception.DomainException;
 import app.exception.PasswordMismatchException;
 import app.exception.UsernameAlreadyExistException;
 import app.model.dto.RegisterDTO;
@@ -23,6 +24,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -113,6 +115,59 @@ class UserServiceImplTest {
     }
 
     @Test
+    void getAllUsers_shouldReturnUsersFromRepo() {
+
+        User u1 = aUser();
+        User u2 = aUser();
+        when(userRepo.findAll()).thenReturn(List.of(u1, u2));
+
+        List<User> result = userService.getAllUsers();
+
+        assertThat(result).containsExactly(u1, u2);
+        verify(userRepo).findAll();
+    }
+
+    @Test
+    void getUserById_whenPresent_shouldReturnUser() {
+
+        UUID userId = UUID.randomUUID();
+        User user = aUser();
+        user.setId(userId);
+        when(userRepo.findById(userId)).thenReturn(Optional.of(user));
+
+        User result = userService.getUserById(userId);
+        assertThat(result).isEqualTo(user);
+    }
+
+    @Test
+    void getUserById_whenMissing_shouldThrowDomainException() {
+
+        UUID userId = UUID.randomUUID();
+        when(userRepo.findById(userId)).thenReturn(Optional.empty());
+
+        assertThrows(DomainException.class, () -> userService.getUserById(userId));
+    }
+
+    @Test
+    void getUserByUsername_whenExisting_shouldNotThrow() {
+
+        String username = "qa-user";
+        when(userRepo.findByUsername(username)).thenReturn(Optional.of(aUser()));
+
+        userService.getUserByUsername(username);
+        verify(userRepo).findByUsername(username);
+    }
+
+    @Test
+    void getUserByUsername_whenMissing_shouldThrowDomainException() {
+
+        String username = "missing";
+        when(userRepo.findByUsername(username)).thenReturn(Optional.empty());
+
+        assertThrows(DomainException.class, () -> userService.getUserByUsername(username));
+    }
+
+    @Test
     void editUserDetails_withEmail_shouldUpdateNotificationPreferenceAndPublishEvent() {
 
         UUID userId = UUID.randomUUID();
@@ -166,6 +221,14 @@ class UserServiceImplTest {
     }
 
     @Test
+    void saveUser_shouldDelegateToRepo() {
+
+        User user = aUser();
+        userService.saveUser(user);
+        verify(userRepo).save(user);
+    }
+
+    @Test
     void changeRole_whenCurrentRoleIsUser_shouldAssignAdmin() {
 
         UUID userId = UUID.randomUUID();
@@ -177,6 +240,36 @@ class UserServiceImplTest {
         userService.changeRole(userId);
 
         assertThat(user.getRole()).isEqualTo(UserRole.ADMIN);
+        verify(userRepo).save(user);
+    }
+
+    @Test
+    void changeRole_whenCurrentRoleIsAdmin_shouldAssignUser() {
+
+        UUID userId = UUID.randomUUID();
+        User user = aUser();
+        user.setId(userId);
+        user.setRole(UserRole.ADMIN);
+        when(userRepo.findById(userId)).thenReturn(Optional.of(user));
+
+        userService.changeRole(userId);
+
+        assertThat(user.getRole()).isEqualTo(UserRole.USER);
+        verify(userRepo).save(user);
+    }
+
+    @Test
+    void changeStatus_shouldToggleAndSave() {
+
+        UUID userId = UUID.randomUUID();
+        User user = aUser();
+        user.setId(userId);
+        user.setActive(true);
+        when(userRepo.findById(userId)).thenReturn(Optional.of(user));
+
+        userService.changeStatus(userId);
+
+        assertThat(user.isActive()).isFalse();
         verify(userRepo).save(user);
     }
 
