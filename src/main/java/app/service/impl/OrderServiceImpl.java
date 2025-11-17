@@ -144,6 +144,13 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<OrderDTO> getAllOrdersDTO() {
+
+        List<Order> orders = this.getAllOrders();
+        return OrderMapper.toDTOList(orders);
+    }
+
+    @Override
     public List<Order> getOrdersReadyForStatusUpdate(Status status, LocalDateTime beforeDateTime) {
 
         return orderRepo.findByStatusAndCreatedOnBefore(status, beforeDateTime);

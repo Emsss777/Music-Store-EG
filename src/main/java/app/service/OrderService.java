@@ -32,6 +32,8 @@ public interface OrderService {
 
     List<Order> getAllOrders();
 
+    List<OrderDTO> getAllOrdersDTO();
+
     List<Order> getOrdersReadyForStatusUpdate(Status status, LocalDateTime beforeDateTime);
 
     void updateOrderStatus(Order order, Status newStatus);

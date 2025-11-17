@@ -1,10 +1,8 @@
 package app.web.controller;
 
-import app.mapper.OrderMapper;
 import app.model.dto.AdminStatsDTO;
 import app.model.dto.OrderDTO;
 import app.model.dto.UserListDTO;
-import app.model.entity.Order;
 import app.model.entity.User;
 import app.security.AuthenticationMetadata;
 import app.service.AdminStatsService;
@@ -59,8 +57,7 @@ public class AdminController {
 
         User currentUser = userService.getUserById(authMetadata.getUserId());
         AdminStatsDTO stats = adminStatsService.getCurrentStats();
-        List<Order> orders = orderService.getAllOrders();
-        List<OrderDTO> orderDTOs = OrderMapper.toDTOList(orders);
+        List<OrderDTO> orderDTOs = orderService.getAllOrdersDTO();
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_ADMIN_DASHBOARD);

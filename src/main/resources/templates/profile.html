@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -50,7 +50,8 @@
                                 <span class="menu-icon">🧠</span>
                                 Notifications
                             </a>
-                            <a th:href="@{/users/my-orders}" class="profile-menu-item">
+                            <a sec:authorize="hasRole('USER')"
+                               th:href="@{/users/my-orders}" class="profile-menu-item">
                                 <span class="menu-icon">📦</span>
                                 My Orders
                             </a>
