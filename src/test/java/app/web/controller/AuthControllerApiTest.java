@@ -1,6 +1,8 @@
 package app.web.controller;
 
 import app.config.WebMvcConfig;
+import app.mapper.AlbumMapper;
+import app.model.dto.AlbumDTO;
 import app.model.entity.Album;
 import app.service.AlbumService;
 import app.service.CartService;
@@ -63,7 +65,8 @@ class AuthControllerApiTest {
                 anAlbum(anArtist())
         );
 
-        given(albumService.getRandomAlbums(6)).willReturn(randomAlbums);
+        List<AlbumDTO> randomAlbumDTOs = AlbumMapper.toDTOList(randomAlbums);
+        given(albumService.getRandomAlbumsDTO(6)).willReturn(randomAlbumDTOs);
 
         MockHttpServletRequestBuilder request = get(URL_LOGIN);
 
@@ -81,7 +84,8 @@ class AuthControllerApiTest {
 
         List<Album> randomAlbums = List.of(anAlbum(anArtist()));
 
-        given(albumService.getRandomAlbums(6)).willReturn(randomAlbums);
+        List<AlbumDTO> randomAlbumDTOs = AlbumMapper.toDTOList(randomAlbums);
+        given(albumService.getRandomAlbumsDTO(6)).willReturn(randomAlbumDTOs);
 
         MockHttpServletRequestBuilder request = get(URL_LOGIN)
                 .param("error", "true");
@@ -103,7 +107,8 @@ class AuthControllerApiTest {
                 anAlbum(anArtist())
         );
 
-        given(albumService.getRandomAlbums(6)).willReturn(randomAlbums);
+        List<AlbumDTO> randomAlbumDTOs = AlbumMapper.toDTOList(randomAlbums);
+        given(albumService.getRandomAlbumsDTO(6)).willReturn(randomAlbumDTOs);
 
         MockHttpServletRequestBuilder request = get(URL_REGISTER);
 

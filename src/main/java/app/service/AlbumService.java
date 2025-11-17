@@ -1,5 +1,6 @@
 package app.service;
 
+import app.model.dto.AlbumDTO;
 import app.model.dto.SaveAlbumDTO;
 import app.model.entity.Album;
 import app.model.enums.PrimaryGenre;
@@ -19,6 +20,8 @@ public interface AlbumService {
     List<Album> getAllAlbums();
 
     List<Album> getRandomAlbums(int limit);
+
+    List<AlbumDTO> getRandomAlbumsDTO(int limit);
 
     Album getAlbumById(UUID albumId);
 

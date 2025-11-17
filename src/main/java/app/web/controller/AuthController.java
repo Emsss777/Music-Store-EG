@@ -1,10 +1,8 @@
 package app.web.controller;
 
-import app.mapper.AlbumMapper;
 import app.model.dto.AlbumDTO;
 import app.model.dto.LoginDTO;
 import app.model.dto.RegisterDTO;
-import app.model.entity.Album;
 import app.service.AlbumService;
 import app.service.UserService;
 import jakarta.validation.Valid;
@@ -34,8 +32,7 @@ public class AuthController {
     @GetMapping(URL_LOGIN)
     public ModelAndView getLoginPage(@RequestParam(value = "error", required = false) String errorParam) {
 
-        List<Album> randomAlbums = albumService.getRandomAlbums(6);
-        List<AlbumDTO> albumDTOs = AlbumMapper.toDTOList(randomAlbums);
+        List<AlbumDTO> albumDTOs = albumService.getRandomAlbumsDTO(6);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_LOGIN);
@@ -52,8 +49,7 @@ public class AuthController {
     @GetMapping(URL_REGISTER)
     public ModelAndView getRegisterPage() {
 
-        List<Album> randomAlbums = albumService.getRandomAlbums(6);
-        List<AlbumDTO> albumDTOs = AlbumMapper.toDTOList(randomAlbums);
+        List<AlbumDTO> albumDTOs = albumService.getRandomAlbumsDTO(6);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_REGISTER);

@@ -3,6 +3,7 @@ package app.service.impl;
 import app.exception.DomainException;
 import app.exception.TitleAlreadyExistException;
 import app.mapper.AlbumMapper;
+import app.model.dto.AlbumDTO;
 import app.model.dto.SaveAlbumDTO;
 import app.model.entity.Album;
 import app.model.entity.Artist;
@@ -79,6 +80,13 @@ public class AlbumServiceImpl implements AlbumService {
         return allAlbums.stream()
                 .limit(limit)
                 .toList();
+    }
+
+    @Override
+    public List<AlbumDTO> getRandomAlbumsDTO(int limit) {
+
+        List<Album> randomAlbums = getRandomAlbums(limit);
+        return AlbumMapper.toDTOList(randomAlbums);
     }
 
     @Override
