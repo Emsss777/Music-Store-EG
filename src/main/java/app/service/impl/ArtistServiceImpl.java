@@ -7,6 +7,7 @@ import app.model.entity.Artist;
 import app.repository.ArtistRepo;
 import app.service.ArtistService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -46,6 +47,7 @@ public class ArtistServiceImpl implements ArtistService {
     }
 
     @Override
+    @Cacheable("artists")
     public List<ArtistDTO> getAllArtistsDTO() {
 
         List<Artist> artists = this.getAllArtists();

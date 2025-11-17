@@ -12,6 +12,7 @@ import app.repository.AlbumRepo;
 import app.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.boot.ansi.AnsiColor;
 import org.springframework.boot.ansi.AnsiOutput;
@@ -61,6 +62,14 @@ public class AlbumServiceImpl implements AlbumService {
     }
 
     @Override
+    @Cacheable("albumCatalog")
+    public List<AlbumDTO> getAllAlbumsDTO(PrimaryGenre genre) {
+
+        List<Album> albums = this.getAllAlbums(genre);
+        return AlbumMapper.toDTOList(albums);
+    }
+
+    @Override
     public List<Album> getAllAlbums() {
 
         return albumRepo.findAll();
@@ -97,6 +106,7 @@ public class AlbumServiceImpl implements AlbumService {
     }
 
     @Override
+    @Cacheable(value = "albumDetails", key = "#albumId")
     public AlbumDTO getAlbumByIdDTO(UUID albumId) {
 
         Album album = this.getAlbumById(albumId);

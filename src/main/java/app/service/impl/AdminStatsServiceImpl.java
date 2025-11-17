@@ -9,7 +9,6 @@ import app.repository.UserRepo;
 import app.service.AdminStatsService;
 import app.service.AlbumService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -28,7 +27,6 @@ public class AdminStatsServiceImpl implements AdminStatsService {
     private final OrderItemRepo orderItemRepo;
 
     @Override
-    @Cacheable("adminStats")
     public AdminStatsDTO getCurrentStats() {
 
         long totalAlbums = albumService.getTotalAlbumCount();

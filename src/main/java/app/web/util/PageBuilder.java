@@ -20,7 +20,7 @@ public class PageBuilder {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(viewName);
         modelAndView.addObject(MODEL_PAGE, viewName);
-        modelAndView.addObject(MODEL_ALBUMS, albumService.getAllAlbums(genre));
+        modelAndView.addObject(MODEL_ALBUMS, albumService.getAllAlbumsDTO(genre));
         modelAndView.addObject(MODEL_SELECTED_GENRE, genre);
         modelAndView.addObject(MODEL_GENRES, PrimaryGenre.values());
 

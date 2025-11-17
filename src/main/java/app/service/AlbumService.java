@@ -17,6 +17,8 @@ public interface AlbumService {
 
     List<Album> getAllAlbums(PrimaryGenre genre);
 
+    List<AlbumDTO> getAllAlbumsDTO(PrimaryGenre genre);
+
     List<Album> getAllAlbums();
 
     List<Album> getRandomAlbums(int limit);
