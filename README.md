@@ -33,19 +33,24 @@ The project uses Thymeleaf for server-side rendering, MySQL (dev/prod) or H2 (te
 ### **View Layer**
 - Thymeleaf + `thymeleaf-extras-springsecurity6`
 
-### **Redis Caching**
-The application uses Redis as a cache backend to improve performance and reduce load on MySQL.
+## ⚡ Redis Caching (Short Summary)
 
-Start Redis via Docker:
-```
-docker run --name Spring-Redis -p 6379:6379 -d redis:latest
-```
+The application uses **Redis** as a caching backend to improve performance of frequently accessed read-only data.
 
-Configuration (dev):
-```
-spring.cache.type=redis
-spring.data.redis.host=localhost
-spring.data.redis.port=6379
+### ✔ Cached data
+- **Album catalog** – `getAllAlbumsDTO()`
+- **Album details** – `getAlbumByIdDTO(UUID id)`
+- **Artist list** – `getAllArtistsDTO()`
+
+These values change rarely and are ideal for caching.
+
+### ✔ Automatic cache invalidation
+Caches are cleared whenever albums or artists are created, edited, or deleted.
+
+### ✔ Docker Redis (optional)
+Start Redis locally:
+```bash
+docker run -d --name Spring-Redis -p 6379:6379 redis:latest
 ```
 
 ### **PDF Export**
