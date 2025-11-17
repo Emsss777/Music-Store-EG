@@ -19,8 +19,6 @@ import app.security.AuthenticationMetadata;
 import app.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -48,7 +46,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private final UserUpdatedEventProducer userUpdatedEventProducer;
 
     @Override
-    @Cacheable("users")
     public List<User> getAllUsers() {
 
         return userRepo.findAll();
@@ -56,7 +53,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional
-    @CacheEvict(value = "users", allEntries = true)
     public void registerUser(RegisterDTO registerDTO) {
 
         userRepo.findByUsername(registerDTO.getUsername())
@@ -99,7 +95,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    @CacheEvict(value = "users", allEntries = true)
     public void editUserDetails(UUID userId, UserEditDTO userEditDTO) {
 
         User user = getUserById(userId);
@@ -149,7 +144,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    @CacheEvict(value = "users", allEntries = true)
     public void changeStatus(UUID id) {
 
         User user = getUserById(id);
@@ -161,7 +155,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    @CacheEvict(value = "users", allEntries = true)
     public void changeRole(UUID id) {
 
         User user = getUserById(id);
