@@ -1,6 +1,8 @@
 package app.service.impl;
 
 import app.exception.DomainException;
+import app.mapper.ArtistMapper;
+import app.model.dto.ArtistDTO;
 import app.model.entity.Artist;
 import app.repository.ArtistRepo;
 import app.service.ArtistService;
@@ -41,6 +43,13 @@ public class ArtistServiceImpl implements ArtistService {
     public List<Artist> getAllArtists() {
 
         return artistRepo.findAll();
+    }
+
+    @Override
+    public List<ArtistDTO> getAllArtistsDTO() {
+
+        List<Artist> artists = getAllArtists();
+        return ArtistMapper.toDTOList(artists);
     }
 
     @Override

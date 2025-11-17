@@ -1,9 +1,7 @@
 package app.web.controller;
 
-import app.mapper.ArtistMapper;
 import app.model.dto.ArtistDTO;
 import app.model.dto.SaveAlbumDTO;
-import app.model.entity.Artist;
 import app.service.AlbumService;
 import app.service.ArtistService;
 import app.web.util.PageBuilder;
@@ -49,8 +47,7 @@ public class AlbumController {
     @GetMapping(URL_ADMIN_ALBUMS + URL_ADD)
     public ModelAndView getAddAlbumPage() {
 
-        List<Artist> artists = artistService.getAllArtists();
-        List<ArtistDTO> artistDTOs = ArtistMapper.toDTOList(artists);
+        List<ArtistDTO> artistDTOs = artistService.getAllArtistsDTO();
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_ADMIN_ADD_ALBUM);
@@ -68,8 +65,7 @@ public class AlbumController {
     @PostMapping(URL_ADMIN_ALBUMS + URL_ADD)
     public ModelAndView addAlbum(@Valid @ModelAttribute SaveAlbumDTO saveAlbumDTO, BindingResult bindingResult) {
 
-        List<Artist> artists = artistService.getAllArtists();
-        List<ArtistDTO> artistDTOs = ArtistMapper.toDTOList(artists);
+        List<ArtistDTO> artistDTOs = artistService.getAllArtistsDTO();
 
         if (bindingResult.hasErrors()) {
             ModelAndView modelAndView = new ModelAndView();

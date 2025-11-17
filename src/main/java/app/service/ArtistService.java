@@ -1,5 +1,6 @@
 package app.service;
 
+import app.model.dto.ArtistDTO;
 import app.model.entity.Artist;
 
 import java.util.List;
@@ -12,6 +13,8 @@ public interface ArtistService {
     void saveArtist(Artist artist);
 
     List<Artist> getAllArtists();
+
+    List<ArtistDTO> getAllArtistsDTO();
 
     Artist getArtistById(UUID artistId);
 
