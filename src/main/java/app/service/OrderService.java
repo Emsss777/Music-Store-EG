@@ -20,7 +20,11 @@ public interface OrderService {
 
     Order getOrderByOrderNumber(String orderNumber);
 
+    OrderDTO getOrderByOrderNumberDTO(String orderNumber);
+
     List<Order> getOrdersByUser(User user);
+
+    List<OrderDTO> getOrdersByUserDTO(User user);
 
     int getTotalAlbumsPurchasedByUser(User user);
 

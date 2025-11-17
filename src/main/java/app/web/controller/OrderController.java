@@ -1,8 +1,6 @@
 package app.web.controller;
 
-import app.mapper.OrderMapper;
 import app.model.dto.OrderDTO;
-import app.model.entity.Order;
 import app.model.entity.User;
 import app.security.AuthenticationMetadata;
 import app.service.OrderService;
@@ -35,10 +33,10 @@ public class OrderController {
     private final UserService userService;
 
     @GetMapping(URL_MADE_ORDER)
+    @SuppressWarnings("JvmTaintAnalysis")
     public ModelAndView getMadeOrderPage(@RequestParam String orderNumber) {
 
-        Order order = orderService.getOrderByOrderNumber(orderNumber);
-        OrderDTO orderDTO = OrderMapper.toDTO(order);
+        OrderDTO orderDTO = orderService.getOrderByOrderNumberDTO(orderNumber);
 
         ModelAndView modelAndView = new ModelAndView(VIEW_MADE_ORDER);
         modelAndView.addObject(MODEL_PAGE, VIEW_MADE_ORDER);
@@ -52,8 +50,7 @@ public class OrderController {
     public ModelAndView getOrderPage(@AuthenticationPrincipal AuthenticationMetadata authMetadata) {
 
         User currentUser = userService.getUserById(authMetadata.getUserId());
-        List<Order> orders = orderService.getOrdersByUser(currentUser);
-        List<OrderDTO> orderDTOs = OrderMapper.toDTOList(orders);
+        List<OrderDTO> orderDTOs = orderService.getOrdersByUserDTO(currentUser);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_MY_ORDERS);
@@ -63,11 +60,11 @@ public class OrderController {
         return modelAndView;
     }
 
+    @SuppressWarnings("JvmTaintAnalysis")
     @GetMapping(URL_ORDER_DETAILS + PARAM_ORDER_NUMBER)
     public ModelAndView getOrderDetailsPage(@PathVariable String orderNumber) {
 
-        Order order = orderService.getOrderByOrderNumber(orderNumber);
-        OrderDTO orderDTO = OrderMapper.toDTO(order);
+        OrderDTO orderDTO = orderService.getOrderByOrderNumberDTO(orderNumber);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_ORDER_DETAILS);

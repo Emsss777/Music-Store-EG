@@ -97,9 +97,23 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public OrderDTO getOrderByOrderNumberDTO(String orderNumber) {
+
+        Order order = this.getOrderByOrderNumber(orderNumber);
+        return OrderMapper.toDTO(order);
+    }
+
+    @Override
     public List<Order> getOrdersByUser(User user) {
 
         return orderRepo.findByOwner(user);
+    }
+
+    @Override
+    public List<OrderDTO> getOrdersByUserDTO(User user) {
+
+        List<Order> orders = this.getOrdersByUser(user);
+        return OrderMapper.toDTOList(orders);
     }
 
     @Override
