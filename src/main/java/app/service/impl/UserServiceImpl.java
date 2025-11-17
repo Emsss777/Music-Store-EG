@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public List<UserListDTO> getAllUsersDTO() {
 
-        List<User> users = getAllUsers();
+        List<User> users = this.getAllUsers();
         return UserMapper.toListDTOList(users);
     }
 
@@ -122,7 +122,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public void editUserDetails(UUID userId, UserEditDTO userEditDTO) {
 
-        User user = getUserById(userId);
+        User user = this.getUserById(userId);
         UserMapper.updateUserFromEditDTO(user, userEditDTO);
 
         if (!userEditDTO.getEmail().isBlank()) {
@@ -171,7 +171,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public void changeStatus(UUID id) {
 
-        User user = getUserById(id);
+        User user = this.getUserById(id);
         boolean oldStatus = user.isActive();
         user.setActive(!user.isActive());
         userRepo.save(user);
@@ -182,7 +182,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public void changeRole(UUID id) {
 
-        User user = getUserById(id);
+        User user = this.getUserById(id);
         UserRole oldRole = user.getRole();
 
         if (user.getRole() == UserRole.USER) {

@@ -33,7 +33,7 @@ public class CartServiceImpl implements CartService {
     @Transactional
     public void addToCart(HttpSession session, UUID albumId) {
 
-        List<CartItemDTO> cartItems = getOrInitializeCart(session);
+        List<CartItemDTO> cartItems = this.getOrInitializeCart(session);
         Album album = albumService.getAlbumById(albumId);
 
         cartItems.stream()
@@ -59,7 +59,7 @@ public class CartServiceImpl implements CartService {
     @Override
     public void removeFromCart(HttpSession session, UUID albumId) {
 
-        List<CartItemDTO> cartItems = getCartItems(session);
+        List<CartItemDTO> cartItems = this.getCartItems(session);
         boolean removed = cartItems.removeIf(item -> item.getAlbumId().equals(albumId));
 
         if (removed) {
@@ -78,7 +78,7 @@ public class CartServiceImpl implements CartService {
     @Override
     public void clearCart(HttpSession session) {
 
-        List<CartItemDTO> cartItems = getCartItems(session);
+        List<CartItemDTO> cartItems = this.getCartItems(session);
         int itemCount = cartItems != null ? cartItems.size() : 0;
 
         session.setAttribute(MODEL_CART, new ArrayList<CartItemDTO>());
@@ -88,7 +88,7 @@ public class CartServiceImpl implements CartService {
     @Override
     public int getCartItemCount(HttpSession session) {
 
-        List<CartItemDTO> cartItems = getCartItems(session);
+        List<CartItemDTO> cartItems = this.getCartItems(session);
         if (cartItems == null) {
             return 0;
         }
@@ -101,7 +101,7 @@ public class CartServiceImpl implements CartService {
     @Override
     public BigDecimal getCartTotal(HttpSession session) {
 
-        List<CartItemDTO> cartItems = getCartItems(session);
+        List<CartItemDTO> cartItems = this.getCartItems(session);
         if (cartItems == null) {
             return BigDecimal.ZERO;
         }
@@ -128,7 +128,7 @@ public class CartServiceImpl implements CartService {
     @Override
     public CartSummaryDTO getCartSummary(HttpSession session) {
 
-        List<CartItemDTO> items = getOrInitializeCart(session);
+        List<CartItemDTO> items = this.getOrInitializeCart(session);
         return CartSummaryDTO.of(items);
     }
 }

@@ -48,7 +48,7 @@ public class ArtistServiceImpl implements ArtistService {
     @Override
     public List<ArtistDTO> getAllArtistsDTO() {
 
-        List<Artist> artists = getAllArtists();
+        List<Artist> artists = this.getAllArtists();
         return ArtistMapper.toDTOList(artists);
     }
 
