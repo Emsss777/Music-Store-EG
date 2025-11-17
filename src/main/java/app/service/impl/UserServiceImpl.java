@@ -11,6 +11,7 @@ import app.exception.UsernameAlreadyExistException;
 import app.mapper.UserMapper;
 import app.model.dto.RegisterDTO;
 import app.model.dto.UserEditDTO;
+import app.model.dto.UserListDTO;
 import app.model.entity.User;
 import app.model.enums.UserRole;
 import app.notification.services.NotificationService;
@@ -49,6 +50,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public List<User> getAllUsers() {
 
         return userRepo.findAll();
+    }
+
+    @Override
+    public List<UserListDTO> getAllUsersDTO() {
+
+        List<User> users = getAllUsers();
+        return UserMapper.toListDTOList(users);
     }
 
     @Override

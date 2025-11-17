@@ -2,6 +2,7 @@ package app.service;
 
 import app.model.dto.RegisterDTO;
 import app.model.dto.UserEditDTO;
+import app.model.dto.UserListDTO;
 import app.model.entity.User;
 
 import java.util.List;
@@ -20,6 +21,8 @@ public interface UserService {
     void saveUser(User user);
 
     List<User> getAllUsers();
+
+    List<UserListDTO> getAllUsersDTO();
 
     void changeStatus(UUID id);
 

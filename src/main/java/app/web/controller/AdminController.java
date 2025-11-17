@@ -1,7 +1,6 @@
 package app.web.controller;
 
 import app.mapper.OrderMapper;
-import app.mapper.UserMapper;
 import app.model.dto.AdminStatsDTO;
 import app.model.dto.OrderDTO;
 import app.model.dto.UserListDTO;
@@ -45,8 +44,7 @@ public class AdminController {
     @PreAuthorize("hasRole('ADMIN')")
     public ModelAndView getAllUsers() {
 
-        List<User> users = userService.getAllUsers();
-        List<UserListDTO> userDTOs = UserMapper.toListDTOList(users);
+        List<UserListDTO> userDTOs = userService.getAllUsersDTO();
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_USERS);
