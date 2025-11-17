@@ -25,6 +25,8 @@ public interface AlbumService {
 
     Album getAlbumById(UUID albumId);
 
+    AlbumDTO getAlbumByIdDTO(UUID albumId);
+
     void saveAlbumFromDTO(SaveAlbumDTO saveAlbumDTO);
 
     void deleteAlbum(UUID albumId);

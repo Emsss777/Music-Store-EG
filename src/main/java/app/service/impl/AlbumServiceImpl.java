@@ -69,7 +69,7 @@ public class AlbumServiceImpl implements AlbumService {
     @Override
     public List<Album> getRandomAlbums(int limit) {
 
-        List<Album> allAlbums = getAllAlbums();
+        List<Album> allAlbums = this.getAllAlbums();
 
         if (allAlbums.isEmpty()) {
             return Collections.emptyList();
@@ -85,7 +85,7 @@ public class AlbumServiceImpl implements AlbumService {
     @Override
     public List<AlbumDTO> getRandomAlbumsDTO(int limit) {
 
-        List<Album> randomAlbums = getRandomAlbums(limit);
+        List<Album> randomAlbums = this.getRandomAlbums(limit);
         return AlbumMapper.toDTOList(randomAlbums);
     }
 
@@ -94,6 +94,13 @@ public class AlbumServiceImpl implements AlbumService {
 
         return albumRepo.findById(albumId).orElseThrow(() ->
                 new DomainException(ALBUM_DOES_NOT_EXIST.formatted(albumId)));
+    }
+
+    @Override
+    public AlbumDTO getAlbumByIdDTO(UUID albumId) {
+
+        Album album = this.getAlbumById(albumId);
+        return AlbumMapper.toDTO(album);
     }
 
     @Override
@@ -114,7 +121,7 @@ public class AlbumServiceImpl implements AlbumService {
     @Override
     public void deleteAlbum(UUID albumId) {
 
-        Album album = getAlbumById(albumId);
+        Album album = this.getAlbumById(albumId);
 
         int deletedItems = orderItemManager.deleteAllItemsByAlbumId(albumId);
         int deletedOrders = orderItemManager.deleteEmptyOrders();

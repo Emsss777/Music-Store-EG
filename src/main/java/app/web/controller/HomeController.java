@@ -1,8 +1,6 @@
 package app.web.controller;
 
-import app.mapper.AlbumMapper;
 import app.model.dto.AlbumDTO;
-import app.model.entity.Album;
 import app.model.enums.PrimaryGenre;
 import app.service.AlbumService;
 import app.service.GenreService;
@@ -28,8 +26,7 @@ public class HomeController {
     @GetMapping({URL_ROOT, URL_HOME})
     public ModelAndView getHomePage() {
 
-        List<Album> randomAlbums = albumService.getRandomAlbums(4);
-        List<AlbumDTO> albumDTOs = AlbumMapper.toDTOList(randomAlbums);
+        List<AlbumDTO> albumDTOs = albumService.getRandomAlbumsDTO(4);
 
         List<PrimaryGenre> randomGenres = genreService.getRandomGenres(5);
 
