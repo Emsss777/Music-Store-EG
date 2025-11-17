@@ -8,10 +8,13 @@ import app.event.payload.UserUpdatedEvent;
 import app.exception.DomainException;
 import app.exception.PasswordMismatchException;
 import app.exception.UsernameAlreadyExistException;
+import app.mapper.UserEditMapper;
 import app.mapper.UserMapper;
+import app.mapper.UserProfileMapper;
 import app.model.dto.RegisterDTO;
 import app.model.dto.UserEditDTO;
 import app.model.dto.UserListDTO;
+import app.model.dto.UserProfileDTO;
 import app.model.entity.User;
 import app.model.enums.UserRole;
 import app.notification.services.NotificationService;
@@ -93,6 +96,20 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
         return userRepo.findById(userId).orElseThrow(() ->
                 new DomainException(USER_DOES_NOT_EXIST.formatted(userId)));
+    }
+
+    @Override
+    public UserProfileDTO getUserProfileDTO(UUID userId) {
+
+        User user = this.getUserById(userId);
+        return UserProfileMapper.toDTO(user);
+    }
+
+    @Override
+    public UserEditDTO getUserEditDTO(UUID userId) {
+
+        User user = this.getUserById(userId);
+        return UserEditMapper.mapUserToUserEditDTO(user);
     }
 
     @Override

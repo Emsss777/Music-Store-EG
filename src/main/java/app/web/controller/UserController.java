@@ -1,6 +1,4 @@
 package app.web.controller;
-
-import app.mapper.UserEditMapper;
 import app.mapper.UserProfileMapper;
 import app.model.dto.UserEditDTO;
 import app.model.dto.UserProfileDTO;
@@ -16,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import static app.util.ModelAttributes.*;
@@ -37,7 +36,7 @@ public class UserController {
 
         User currentUser = userService.getUserById(authMetadata.getUserId());
         int totalAlbumsPurchased = orderService.getTotalAlbumsPurchasedByUser(currentUser);
-        java.math.BigDecimal totalAmountSpent = orderService.getTotalAmountSpentByUser(currentUser);
+        BigDecimal totalAmountSpent = orderService.getTotalAmountSpentByUser(currentUser);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_PROFILE);
@@ -49,12 +48,12 @@ public class UserController {
         return modelAndView;
     }
 
+    @SuppressWarnings("JvmTaintAnalysis")
     @GetMapping(PARAM_ID + URL_PROFILE)
     public ModelAndView showEditProfile(@PathVariable UUID id) {
 
-        User user = userService.getUserById(id);
-        UserProfileDTO userProfileDTO = UserProfileMapper.toDTO(user);
-        UserEditDTO userEditDTO = UserEditMapper.mapUserToUserEditDTO(user);
+        UserProfileDTO userProfileDTO = userService.getUserProfileDTO(id);
+        UserEditDTO userEditDTO = userService.getUserEditDTO(id);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(VIEW_EDIT_PROFILE);
@@ -64,12 +63,12 @@ public class UserController {
         return modelAndView;
     }
 
+    @SuppressWarnings("JvmTaintAnalysis")
     @PutMapping(PARAM_ID + URL_PROFILE)
     public ModelAndView updateUserProfile(@PathVariable UUID id,
                                           @Valid UserEditDTO userEditDTO, BindingResult bindingResult) {
 
-        User user = userService.getUserById(id);
-        UserProfileDTO userProfileDTO = UserProfileMapper.toDTO(user);
+        UserProfileDTO userProfileDTO = userService.getUserProfileDTO(id);
 
         if (bindingResult.hasErrors()) {
 

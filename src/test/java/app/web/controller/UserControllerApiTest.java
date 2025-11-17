@@ -1,6 +1,8 @@
 package app.web.controller;
 
 import app.config.WebMvcConfig;
+import app.model.dto.UserEditDTO;
+import app.model.dto.UserProfileDTO;
 import app.model.entity.User;
 import app.security.AuthenticationMetadata;
 import app.service.CartService;
@@ -86,13 +88,16 @@ class UserControllerApiTest {
     void showEditProfile_shouldReturnEditProfileViewWithUserData() throws Exception {
 
         UUID userId = UUID.randomUUID();
-        User user = aUser();
-        user.setId(userId);
 
-        given(userService.getUserById(userId)).willReturn(user);
+        UserProfileDTO profileDTO = new UserProfileDTO();
+        UserEditDTO editDTO = new UserEditDTO();
 
-        MockHttpServletRequestBuilder request = get(URL_USERS + PARAM_ID + URL_PROFILE, userId)
-                .with(user(authenticatedUser()));
+        given(userService.getUserProfileDTO(userId)).willReturn(profileDTO);
+        given(userService.getUserEditDTO(userId)).willReturn(editDTO);
+
+        MockHttpServletRequestBuilder request =
+                get(URL_USERS + PARAM_ID + URL_PROFILE, userId)
+                        .with(user(authenticatedUser()));
 
         mockMvc.perform(request)
                 .andExpect(status().isOk())
@@ -129,10 +134,12 @@ class UserControllerApiTest {
     void updateUserProfile_withInvalidUsername_shouldReturnEditProfileViewWithoutUpdating() throws Exception {
 
         UUID userId = UUID.randomUUID();
-        User user = aUser();
-        user.setId(userId);
 
-        given(userService.getUserById(userId)).willReturn(user);
+        UserProfileDTO profileDTO = new UserProfileDTO();
+        UserEditDTO editDTO = new UserEditDTO();
+
+        given(userService.getUserProfileDTO(userId)).willReturn(profileDTO);
+        given(userService.getUserEditDTO(userId)).willReturn(editDTO);
 
         MockHttpServletRequestBuilder request = put(URL_USERS + PARAM_ID + URL_PROFILE, userId)
                 .with(user(authenticatedUser()))
@@ -155,10 +162,12 @@ class UserControllerApiTest {
     void updateUserProfile_withInvalidEmail_shouldReturnEditProfileViewWithoutUpdating() throws Exception {
 
         UUID userId = UUID.randomUUID();
-        User user = aUser();
-        user.setId(userId);
 
-        given(userService.getUserById(userId)).willReturn(user);
+        UserProfileDTO profileDTO = new UserProfileDTO();
+        UserEditDTO editDTO = new UserEditDTO();
+
+        given(userService.getUserProfileDTO(userId)).willReturn(profileDTO);
+        given(userService.getUserEditDTO(userId)).willReturn(editDTO);
 
         MockHttpServletRequestBuilder request = put(URL_USERS + PARAM_ID + URL_PROFILE, userId)
                 .with(user(authenticatedUser()))
@@ -181,10 +190,12 @@ class UserControllerApiTest {
     void updateUserProfile_withTooLongFirstName_shouldReturnEditProfileViewWithoutUpdating() throws Exception {
 
         UUID userId = UUID.randomUUID();
-        User user = aUser();
-        user.setId(userId);
 
-        given(userService.getUserById(userId)).willReturn(user);
+        UserProfileDTO profileDTO = new UserProfileDTO();
+        UserEditDTO editDTO = new UserEditDTO();
+
+        given(userService.getUserProfileDTO(userId)).willReturn(profileDTO);
+        given(userService.getUserEditDTO(userId)).willReturn(editDTO);
 
         String tooLongFirstName = "A".repeat(21);
 
