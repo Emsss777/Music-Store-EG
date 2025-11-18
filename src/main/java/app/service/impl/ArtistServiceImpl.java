@@ -7,6 +7,7 @@ import app.model.entity.Artist;
 import app.repository.ArtistRepo;
 import app.service.ArtistService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -32,6 +33,7 @@ public class ArtistServiceImpl implements ArtistService {
     }
 
     @Override
+    @CacheEvict(value = {"artists", "albumCatalog"}, allEntries = true)
     public void saveArtist(Artist artist) {
 
         if (artist.getCreatedOn() == null) {

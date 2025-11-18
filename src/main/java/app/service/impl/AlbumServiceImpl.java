@@ -12,6 +12,7 @@ import app.repository.AlbumRepo;
 import app.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.boot.ansi.AnsiColor;
@@ -114,6 +115,7 @@ public class AlbumServiceImpl implements AlbumService {
     }
 
     @Override
+    @CacheEvict(value = {"albumCatalog"}, allEntries = true)
     public void saveAlbumFromDTO(SaveAlbumDTO saveAlbumDTO) {
 
         Artist artist = artistService.getArtistById(saveAlbumDTO.getArtistId());
@@ -129,6 +131,7 @@ public class AlbumServiceImpl implements AlbumService {
     }
 
     @Override
+    @CacheEvict(value = {"albumCatalog", "albumDetails"}, allEntries = true)
     public void deleteAlbum(UUID albumId) {
 
         Album album = this.getAlbumById(albumId);
