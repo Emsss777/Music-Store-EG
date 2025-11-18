@@ -104,7 +104,8 @@ class OrderServiceImplTest {
                     .createdOn(LocalDateTime.now())
                     .build();
 
-            orderMapperMock.when(() -> OrderMapper.fromCheckoutDTO(any(CheckoutDTO.class), eq(user), any(BigDecimal.class)))
+            orderMapperMock.when(() -> OrderMapper
+                            .fromCheckoutDTO(any(CheckoutDTO.class), eq(user), any(BigDecimal.class)))
                     .thenReturn(newOrder);
 
             when(orderRepo.save(any(Order.class))).thenAnswer(invocation -> {
@@ -114,7 +115,8 @@ class OrderServiceImplTest {
                 return order;
             });
 
-            orderMapperMock.when(() -> OrderMapper.toDTO(any(Order.class))).thenAnswer(invocation -> {
+            orderMapperMock.when(() -> OrderMapper
+                    .toDTO(any(Order.class))).thenAnswer(invocation -> {
                 Order order = invocation.getArgument(0);
                 return OrderDTO.builder()
                         .id(order.getId())
@@ -193,7 +195,8 @@ class OrderServiceImplTest {
                     .createdOn(LocalDateTime.now())
                     .build();
 
-            orderMapperMock.when(() -> OrderMapper.fromCheckoutDTO(any(CheckoutDTO.class), eq(user), any(BigDecimal.class)))
+            orderMapperMock.when(() -> OrderMapper
+                            .fromCheckoutDTO(any(CheckoutDTO.class), eq(user), any(BigDecimal.class)))
                     .thenReturn(newOrder);
 
             when(orderRepo.save(any(Order.class))).thenAnswer(invocation -> {
@@ -210,7 +213,8 @@ class OrderServiceImplTest {
                 return order;
             });
 
-            orderMapperMock.when(() -> OrderMapper.toDTO(any(Order.class))).thenAnswer(invocation -> {
+            orderMapperMock.when(() -> OrderMapper
+                    .toDTO(any(Order.class))).thenAnswer(invocation -> {
                 Order order = invocation.getArgument(0);
                 return OrderDTO.builder()
                         .id(order.getId())
@@ -318,6 +322,7 @@ class OrderServiceImplTest {
                 .totalAmount(BigDecimal.ONE)
                 .createdOn(LocalDateTime.now())
                 .build();
+
         Order order2 = Order.builder()
                 .id(UUID.randomUUID())
                 .orderNumber("ORD-2")
@@ -345,6 +350,7 @@ class OrderServiceImplTest {
                 .createdOn(LocalDateTime.now())
                 .items(new ArrayList<>())
                 .build();
+
         Order order2 = Order.builder()
                 .id(UUID.randomUUID())
                 .orderNumber("ORD-B")
@@ -355,9 +361,12 @@ class OrderServiceImplTest {
                 .items(new ArrayList<>())
                 .build();
 
-        order1.getItems().add(OrderItem.builder().order(order1).album(album).unitPrice(BigDecimal.ONE).quantity(2).build());
-        order1.getItems().add(OrderItem.builder().order(order1).album(album).unitPrice(BigDecimal.ONE).quantity(3).build());
-        order2.getItems().add(OrderItem.builder().order(order2).album(album).unitPrice(BigDecimal.ONE).quantity(5).build());
+        order1.getItems().add(OrderItem.builder()
+                .order(order1).album(album).unitPrice(BigDecimal.ONE).quantity(2).build());
+        order1.getItems().add(OrderItem.builder()
+                .order(order1).album(album).unitPrice(BigDecimal.ONE).quantity(3).build());
+        order2.getItems().add(OrderItem.builder()
+                .order(order2).album(album).unitPrice(BigDecimal.ONE).quantity(5).build());
 
         when(orderRepo.findByOwner(user)).thenReturn(List.of(order1, order2));
 
@@ -376,6 +385,7 @@ class OrderServiceImplTest {
                 .totalAmount(new BigDecimal("12.50"))
                 .createdOn(LocalDateTime.now())
                 .build();
+
         Order order2 = Order.builder()
                 .id(UUID.randomUUID())
                 .orderNumber("ORD-B")
@@ -395,8 +405,10 @@ class OrderServiceImplTest {
     void getAllOrders_shouldRequestSortedByCreatedOnDesc() {
 
         List<Order> orders = List.of(
-                Order.builder().id(UUID.randomUUID()).orderNumber("ORD-1").status(Status.PENDING).owner(user).totalAmount(BigDecimal.ONE).createdOn(LocalDateTime.now()).build(),
-                Order.builder().id(UUID.randomUUID()).orderNumber("ORD-2").status(Status.COMPLETED).owner(user).totalAmount(BigDecimal.valueOf(2)).createdOn(LocalDateTime.now()).build()
+                Order.builder().id(UUID.randomUUID()).orderNumber("ORD-1").status(Status.PENDING)
+                        .owner(user).totalAmount(BigDecimal.ONE).createdOn(LocalDateTime.now()).build(),
+                Order.builder().id(UUID.randomUUID()).orderNumber("ORD-2").status(Status.COMPLETED)
+                        .owner(user).totalAmount(BigDecimal.valueOf(2)).createdOn(LocalDateTime.now()).build()
         );
 
         when(orderRepo.findAll(any(Sort.class))).thenReturn(orders);
@@ -417,7 +429,8 @@ class OrderServiceImplTest {
         LocalDateTime before = LocalDateTime.now().minusDays(1);
         Status status = Status.PENDING;
         List<Order> expected = List.of(
-                Order.builder().id(UUID.randomUUID()).orderNumber("ORD-X").status(status).owner(user).totalAmount(BigDecimal.ONE).createdOn(before.minusHours(1)).build()
+                Order.builder().id(UUID.randomUUID()).orderNumber("ORD-X").status(status)
+                        .owner(user).totalAmount(BigDecimal.ONE).createdOn(before.minusHours(1)).build()
         );
 
         when(orderRepo.findByStatusAndCreatedOnBefore(status, before)).thenReturn(expected);

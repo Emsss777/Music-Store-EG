@@ -54,7 +54,7 @@ class OrderEventListenerTest {
     void handleOrderCreated_sendsNotificationWithExpectedSubjectAndBody_andLogsInfo() {
 
         UUID userId = UUID.randomUUID();
-        String username = "john";
+        String username = "testUser";
         String orderNumber = "ORD-123";
         BigDecimal totalAmount = new BigDecimal("42.50");
 

@@ -47,10 +47,10 @@ public class TestDataFactory {
     public static User aUser() {
 
         return User.builder()
-                .username("qa-user")
+                .username("testUser")
                 .firstName("Quality")
                 .lastName("Assurance")
-                .email("qa@example.com")
+                .email("test@example.com")
                 .password("encoded-password")
                 .country(Country.BULGARIA)
                 .role(UserRole.USER)
@@ -65,7 +65,7 @@ public class TestDataFactory {
         return CheckoutDTO.builder()
                 .firstName("Quality")
                 .lastName("Assurance")
-                .email("qa@example.com")
+                .email("test@example.com")
                 .address("42 Test Lane")
                 .city("Sofia")
                 .state("SO")

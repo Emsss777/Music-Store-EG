@@ -119,7 +119,6 @@ class CheckoutControllerApiTest {
         User user = aUser();
         user.setId(UUID.randomUUID());
 
-        // 🟢 OrderDTO вместо Order
         OrderDTO orderDTO = OrderDTO.builder()
                 .id(UUID.randomUUID())
                 .orderNumber("ORD-12345678")
@@ -157,8 +156,8 @@ class CheckoutControllerApiTest {
 
         return AuthenticationMetadata.builder()
                 .userId(userId)
-                .username("qa-user")
-                .password("password")
+                .username("testUser")
+                .password("pass123")
                 .role(app.model.enums.UserRole.USER)
                 .isActive(true)
                 .build();

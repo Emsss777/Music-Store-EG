@@ -68,6 +68,7 @@ class CartServiceImplTest {
         Artist artist = anArtist();
         Album album = anAlbum(artist);
         album.setId(albumId);
+
         CartItemDTO existingItem = CartItemDTO.builder()
                 .albumId(albumId)
                 .title(album.getTitle())
@@ -76,6 +77,7 @@ class CartServiceImplTest {
                 .price(album.getPrice())
                 .quantity(1)
                 .build();
+
         session.setAttribute(MODEL_CART, new ArrayList<>(List.of(existingItem)));
         when(albumService.getAlbumById(albumId)).thenReturn(album);
 

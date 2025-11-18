@@ -34,6 +34,7 @@ class LoggingAspectTest {
 
     @BeforeEach
     void setUp() {
+
         aspectLogger = (Logger) LoggerFactory.getLogger(LoggingAspect.class);
         listAppender = new ListAppender<>();
         listAppender.start();
@@ -99,8 +100,6 @@ class LoggingAspectTest {
 
     static class UserControllerStub {
 
-        public void ping() {
-            // no-op
-        }
+        public void ping() {}
     }
 }

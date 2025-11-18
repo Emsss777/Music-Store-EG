@@ -225,8 +225,8 @@ class UserControllerApiTest {
 
         return AuthenticationMetadata.builder()
                 .userId(userId)
-                .username("qa-user")
-                .password("password")
+                .username("testUser")
+                .password("pass123")
                 .role(app.model.enums.UserRole.USER)
                 .isActive(true)
                 .build();

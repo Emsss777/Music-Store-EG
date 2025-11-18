@@ -81,8 +81,8 @@ class UserServiceImplTest {
     void registerUser_whenPasswordsDoNotMatch_shouldThrowException() {
 
         RegisterDTO invalid = RegisterDTO.builder()
-                .username("qa-user")
-                .password("password")
+                .username("testUser")
+                .password("testPass")
                 .confirmPassword("different")
                 .country(Country.BULGARIA)
                 .build();
@@ -151,7 +151,7 @@ class UserServiceImplTest {
     @Test
     void getUserByUsername_whenExisting_shouldNotThrow() {
 
-        String username = "qa-user";
+        String username = "testUser";
         when(userRepo.findByUsername(username)).thenReturn(Optional.of(aUser()));
 
         userService.getUserByUsername(username);
@@ -180,9 +180,9 @@ class UserServiceImplTest {
         UserEditDTO editDTO = UserEditDTO.builder()
                 .firstName("Test")
                 .lastName("User")
-                .username("qa-user")
-                .email("qa@example.com")
-                .bio("QA bio")
+                .username("testUser")
+                .email("test@example.com")
+                .bio("Test bio")
                 .profilePicture("https://example.com/pic.png")
                 .country(Country.BULGARIA.name())
                 .build();
@@ -207,9 +207,9 @@ class UserServiceImplTest {
         UserEditDTO editDTO = UserEditDTO.builder()
                 .firstName("Test")
                 .lastName("User")
-                .username("qa-user")
+                .username("testUser")
                 .email("")
-                .bio("QA bio")
+                .bio("Test bio")
                 .profilePicture("https://example.com/pic.png")
                 .country(Country.BULGARIA.name())
                 .build();
@@ -287,7 +287,7 @@ class UserServiceImplTest {
         UUID userId = UUID.randomUUID();
         User user = User.builder()
                 .id(userId)
-                .username("qa-user")
+                .username("testUser")
                 .password("hashed")
                 .country(Country.BULGARIA)
                 .role(UserRole.ADMIN)

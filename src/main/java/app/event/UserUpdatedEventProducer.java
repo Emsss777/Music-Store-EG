@@ -19,6 +19,7 @@ public class UserUpdatedEventProducer {
     private final KafkaTemplate<String, UserUpdatedEvent> kafkaTemplate;
 
     public void sendEvent(UserUpdatedEvent event) {
+
         kafkaTemplate.send(USER_UPDATED_EVENT_V1, event);
         log.info(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, USER_UPDATED_EVENT_PUBLISHED), event.getUserId());
     }
