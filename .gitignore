@@ -19,13 +19,11 @@ target/
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
-*.iws
+.idea/
 *.iml
+*.iws
 *.ipr
+out/
 
 # Environment & config
 .env
