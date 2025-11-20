@@ -1,10 +1,16 @@
 # Maven
 target/
-.mvn/wrapper/maven-wrapper.jar
-.mvn/wrapper/maven-wrapper.properties
-.mvn/wrapper/maven-wrapperDownloader.java
 !**/src/main/**/target/
 !**/src/test/**/target/
+
+# Maven Wrapper (commit these files)
+!mvnw
+!mvnw.cmd
+!.mvn/wrapper/maven-wrapper.jar
+!.mvn/wrapper/maven-wrapper.properties
+
+# Ignore only the unnecessary downloader file
+.mvn/wrapper/maven-wrapperDownloader.java
 
 # Logs
 *.log
