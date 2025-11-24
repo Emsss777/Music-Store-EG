@@ -64,7 +64,7 @@ public class AlbumDataSeeder implements DataSeeder {
                                 "known for its philosophical themes, flawless sound engineering, " +
                                 "and seamless transitions between songs."
                 )
-                .setCoverUrl("/images/album-covers/pink-floyd-dark-side.jpg")
+                .setCoverUrl("https://res.cloudinary.com/dzshqqius/image/upload/v1764023147/pink-floyd-dark-side_opotmn.jpg")
                 .setPrice(BigDecimal.valueOf(12.99))
                 .setArtist(artist1)
                 .setCreatedOn(LocalDateTime.now());
@@ -98,7 +98,7 @@ public class AlbumDataSeeder implements DataSeeder {
                                 "jazz, soul, and funk. It’s regarded as a modern masterpiece " +
                                 "exploring identity and racial inequality in America."
                 )
-                .setCoverUrl("/images/album-covers/kendrick-lamar-butterfly.jpg")
+                .setCoverUrl("https://res.cloudinary.com/dzshqqius/image/upload/v1764023147/kendrick-lamar-butterfly_b8cng6.jpg")
                 .setPrice(BigDecimal.valueOf(19.99))
                 .setArtist(artist2)
                 .setCreatedOn(LocalDateTime.now());
@@ -133,7 +133,7 @@ public class AlbumDataSeeder implements DataSeeder {
                                 "Recorded on historic baroque organs, the album highlights " +
                                 "the rich tonal colors and spiritual power of Bach’s music."
                 )
-                .setCoverUrl("/images/album-covers/koopman-organ-works.jpg")
+                .setCoverUrl("https://res.cloudinary.com/dzshqqius/image/upload/v1764023147/koopman-organ-works_ifgenf.jpg")
                 .setPrice(BigDecimal.valueOf(14.99))
                 .setArtist(artist3)
                 .setCreatedOn(LocalDateTime.now());
@@ -167,7 +167,7 @@ public class AlbumDataSeeder implements DataSeeder {
                                 "It features an 80s-inspired synth sound and " +
                                 "introspective lyrics about love, fame, and self-discovery."
                 )
-                .setCoverUrl("/images/album-covers/taylor-swift-1989.jpg")
+                .setCoverUrl("https://res.cloudinary.com/dzshqqius/image/upload/v1764023147/taylor-swift-1989_dlvq6g.jpg")
                 .setPrice(BigDecimal.valueOf(16.99))
                 .setArtist(artist4)
                 .setCreatedOn(LocalDateTime.now());
@@ -202,7 +202,7 @@ public class AlbumDataSeeder implements DataSeeder {
                                 "It explores themes of control and addiction and " +
                                 "was the last record to feature bassist Cliff Burton."
                 )
-                .setCoverUrl("/images/album-covers/metallica-master-of-puppets.jpg")
+                .setCoverUrl("https://res.cloudinary.com/dzshqqius/image/upload/v1764023147/metallica-master-of-puppets_yq0uur.jpg")
                 .setPrice(BigDecimal.valueOf(11.99))
                 .setArtist(artist5)
                 .setCreatedOn(LocalDateTime.now());
@@ -236,7 +236,7 @@ public class AlbumDataSeeder implements DataSeeder {
                                 "disco, and funk influences. It’s known for its catchy melodies, " +
                                 "robotic vocals, and hits like “One More Time” and “Harder, Better, Faster, Stronger."
                 )
-                .setCoverUrl("/images/album-covers/daft-punk-discovery.jpg")
+                .setCoverUrl("https://res.cloudinary.com/dzshqqius/image/upload/v1764023147/daft-punk-discovery_cbjiv7.jpg")
                 .setPrice(BigDecimal.valueOf(15.99))
                 .setArtist(artist6)
                 .setCreatedOn(LocalDateTime.now());
