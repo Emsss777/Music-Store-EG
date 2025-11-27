@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<!--@thymesVar id="message" type="java.lang.String" -->
 
 <head>
     <meta charset="UTF-8">
@@ -10,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/cart.css}">
-    <title>Shopping Cart | Music Store</title>
+    <title th:text="#{cart.title} + ' | ' + #{header.music.store}"></title>
 </head>
 
 <body>
@@ -20,8 +21,8 @@
 <main>
     <div class="cart-header">
         <div class="container">
-            <h1 class="page-title">Shopping Cart</h1>
-            <p class="page-subtitle">Review your selected items before checkout</p>
+            <h1 class="page-title" th:text="#{cart.title}"></h1>
+            <p class="page-subtitle" th:text="#{cart.subtitle}"></p>
         </div>
     </div>
 
@@ -36,9 +37,9 @@
 
             <div class="empty-cart" style="text-align: center; padding: 3rem;"
                  th:if="${cartItems.isEmpty()}">
-                <h2>Your cart is empty</h2>
-                <p style="margin: 1rem 0;">Start adding some albums to your cart!</p>
-                <a class="button primary" th:href="@{/catalog}">Browse Catalog</a>
+                <h2 th:text="#{cart.empty}"></h2>
+                <p style="margin: 1rem 0;" th:text="#{cart.empty.message}"></p>
+                <a class="button primary" th:href="@{/catalog}" th:text="#{home.browse.catalog}"></a>
             </div>
 
             <div class="cart-layout" th:unless="${cartItems.isEmpty()}">
@@ -51,8 +52,8 @@
                             <h3 class="item-title" th:text="${item.title}"></h3>
                             <p class="item-artist" th:text="${item.artistName}"></p>
                             <div class="item-format">
-                                <span class="format-badge">Digital Download</span>
-                                <span class="quality-badge">320 kbps MP3</span>
+                                <span class="format-badge" th:text="#{cart.digital.download}"></span>
+                                <span class="quality-badge" th:text="#{cart.quality}"></span>
                             </div>
                         </div>
                         <div class="item-price">
@@ -71,7 +72,7 @@
                         <div class="item-actions">
                             <form th:action="@{/cart/remove/{id}(id=${item.albumId})}"
                                   method="post" style="display: inline;">
-                                <button type="submit" class="remove-btn" title="Remove item">🗑️</button>
+                                <button type="submit" class="remove-btn" th:title="#{cart.remove.item}">🗑️</button>
                             </form>
                         </div>
                     </div>
@@ -79,47 +80,48 @@
 
                 <div class="cart-summary">
                     <div class="summary-card card">
-                        <h2 class="summary-title">Order Summary</h2>
+                        <h2 class="summary-title" th:text="#{cart.order.summary}"></h2>
 
                         <div class="summary-row">
-                            <span class="summary-label" th:text="'Subtotal (' + ${itemCount} + ' items)'"></span>
+                            <span class="summary-label" th:text="#{cart.subtotal(${itemCount})}"></span>
                             <span class="summary-value" th:text="'$' + ${cartTotal}"></span>
                         </div>
 
                         <div class="summary-divider"></div>
 
                         <div class="summary-row total-row">
-                            <span class="summary-label">Total</span>
+                            <span class="summary-label" th:text="#{cart.total}"></span>
                             <span class="summary-value total"
                                   th:text="${#numbers.formatDecimal(cartTotal, 1, 2)} + ' €'">
                             </span>
                         </div>
 
                         <div class="promo-code">
-                            <h3>Promo Code</h3>
+                            <h3 th:text="#{cart.promo.code}"></h3>
                             <div class="promo-input-group">
-                                <label for="promoCode" class="sr-only">Promo code</label>
+                                <label for="promoCode" class="sr-only" th:text="#{cart.promo.code.label}"></label>
                                 <input type="text" id="promoCode"
+                                       th:placeholder="#{cart.promo.code.placeholder}"
                                        placeholder="Enter promo code" class="promo-input">
-                                <button class="promo-btn">Apply</button>
+                                <button class="promo-btn" th:text="#{cart.apply}"></button>
                             </div>
-                            <p class="promo-note">You saved $6.00 with current discounts!</p>
+                            <p class="promo-note" th:text="#{cart.saved}"></p>
                         </div>
 
                         <a class="checkout-btn button primary" th:href="@{/checkout}"
-                                style="text-decoration: none; text-align: center; display: block;">
-                            Proceed to Checkout
+                           style="text-decoration: none; text-align: center; display: block;"
+                           th:text="#{cart.proceed.checkout}">
                         </a>
 
                         <form method="post" style="margin-top: 1rem;" th:action="@{/cart/clear}">
                             <button type="submit" class="button" style="width: 100%;"
-                                    onclick="return confirm('Are you sure you want to clear your cart?');">
-                                Clear Cart
+                                    th:onclick="'return confirm(\'' + #{cart.clear.confirm} + '\');'">
+                                <span th:text="#{cart.clear}"></span>
                             </button>
                         </form>
 
                         <div class="payment-methods">
-                            <h4>We Accept</h4>
+                            <h4 th:text="#{cart.we.accept}"></h4>
                             <div class="payment-icons">
                                 <span class="payment-icon">💳</span>
                                 <span class="payment-icon">🏦</span>
@@ -130,12 +132,12 @@
                     </div>
 
                     <div class="security-info card">
-                        <h3>🛡️ Secure Checkout</h3>
+                        <h3 th:text="'🛡️ ' + #{cart.secure.checkout}"></h3>
                         <ul>
-                            <li>✅ SSL Encrypted</li>
-                            <li>✅ Secure Payment Processing</li>
-                            <li>✅ 30-Day Money-Back Guarantee</li>
-                            <li>✅ Instant Download</li>
+                            <li th:text="'✅ ' + #{cart.ssl.encrypted}"></li>
+                            <li th:text="'✅ ' + #{cart.secure.payment}"></li>
+                            <li th:text="'✅ ' + #{cart.money.back}"></li>
+                            <li th:text="'✅ ' + #{cart.instant.download}"></li>
                         </ul>
                     </div>
                 </div>

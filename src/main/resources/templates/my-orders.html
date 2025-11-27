@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/my-orders.css}">
-    <title>My Orders | Music Store</title>
+    <title th:text="#{orders.title} + ' | ' + #{header.music.store}"></title>
 </head>
 
 <body>
@@ -20,8 +20,8 @@
 <main>
     <div class="orders-header">
         <div class="container">
-            <h1 class="page-title">My Orders</h1>
-            <p class="page-subtitle">Track your music purchases and downloads</p>
+            <h1 class="page-title" th:text="#{orders.title}"></h1>
+            <p class="page-subtitle" th:text="#{orders.subtitle}"></p>
         </div>
     </div>
 
@@ -29,35 +29,35 @@
         <div class="container">
             <div class="orders-filter">
                 <div class="filter-tabs">
-                    <button class="filter-tab active" data-filter="all">All Orders</button>
-                    <button class="filter-tab" data-filter="completed">Completed</button>
-                    <button class="filter-tab" data-filter="pending">Pending</button>
-                    <button class="filter-tab" data-filter="cancelled">Cancelled</button>
+                    <button class="filter-tab active" data-filter="all" th:text="#{orders.all.orders}"></button>
+                    <button class="filter-tab" data-filter="completed" th:text="#{orders.completed}"></button>
+                    <button class="filter-tab" data-filter="pending" th:text="#{orders.pending}"></button>
+                    <button class="filter-tab" data-filter="cancelled" th:text="#{orders.cancelled}"></button>
                 </div>
                 <div class="search-orders">
-                    <label for="searchOrders" class="sr-only">Search Orders</label>
+                    <label for="searchOrders" class="sr-only" th:text="#{orders.search.orders}"></label>
                     <input type="text" id="searchOrders"
+                           th:placeholder="#{orders.search.placeholder}"
                            placeholder="Search orders..." class="search-input">
                     <button class="search-btn">🔍</button>
                 </div>
             </div>
             <div class="orders-actions">
-                <a class="btn btn-secondary export-pdf-btn" th:href="@{/users/my-orders/export/pdf}">
-                    Export PDF
-                </a>
+                <a class="btn btn-secondary export-pdf-btn"
+                   th:href="@{/users/my-orders/export/pdf}" th:text="#{orders.export.pdf}"></a>
             </div>
 
             <div class="orders-list">
                 <div th:each="order : ${orders}" class="order-card card">
                     <div class="order-header">
                         <div class="order-info">
-                            <h3 class="order-id" th:text="'Order #' + ${order.orderNumber}"></h3>
+                            <h3 class="order-id" th:text="#{orders.order.number} + ${order.orderNumber}"></h3>
                             <span class="order-date"
                                   th:text="${#temporals.format(order.createdOn, 'dd MMM, yyyy')}"></span>
                         </div>
                         <div class="order-status">
                             <span class="status-badge" th:classappend="${order.status.name().toLowerCase()}"
-                                  th:text="${order.status.name()}">Completed</span>
+                                  th:text="${order.status.name()}"></span>
                             <span class="order-total"
                                   th:text="${#numbers.formatDecimal(order.totalAmount, 1, 2)} + ' €'">
                             </span>
@@ -72,7 +72,7 @@
                                 <h4 class="item-title" th:text="${item.album.title}"></h4>
                                 <p class="item-artist" th:text="${item.album.artist.artistName}"></p>
                                 <div class="item-quantity">
-                                    <span th:text="'Qty: ' + ${item.quantity}"></span>
+                                    <span th:text="#{orders.quantity} + ' ' + ${item.quantity}"></span>
                                 </div>
                                 <span class="item-price"
                                       th:text="${item.quantity == 1}
@@ -82,45 +82,45 @@
                             </div>
                             <div class="item-actions">
                                 <button class="download-btn"
-                                        th:if="${order.status.name() == 'COMPLETED'}">Download
+                                        th:if="${order.status.name() == 'COMPLETED'}" th:text="#{orders.download}">
                                 </button>
                                 <button class="download-btn" disabled
-                                        th:if="${order.status.name() == 'PENDING'}">Processing
+                                        th:if="${order.status.name() == 'PENDING'}" th:text="#{orders.processing}">
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div class="order-footer">
                         <a class="view-details-btn"
-                           th:href="@{/users/order-details/{orderNumber}(orderNumber=${order.orderNumber})}">
-                            View Details
+                           th:href="@{/users/order-details/{orderNumber}(orderNumber=${order.orderNumber})}"
+                           th:text="#{orders.view.details}">
                         </a>
                         <button class="reorder-btn"
-                                th:if="${order.status.name() == 'COMPLETED'}">Reorder
+                                th:if="${order.status.name() == 'COMPLETED'}" th:text="#{orders.reorder}">
                         </button>
                         <button class="cancel-btn"
-                                th:if="${order.status.name() == 'PENDING'}">Cancel Order
+                                th:if="${order.status.name() == 'PENDING'}" th:text="#{orders.cancel.order}">
                         </button>
                     </div>
                 </div>
 
                 <div th:if="${#lists.isEmpty(orders)}" class="no-orders">
                     <div class="no-orders-content">
-                        <h3>No orders found</h3>
-                        <p>You haven't placed any orders yet. Start shopping to see your orders here!</p>
-                        <a th:href="@{/catalog}" class="btn btn-primary">Browse Albums</a>
+                        <h3 th:text="#{orders.no.orders}"></h3>
+                        <p th:text="#{orders.no.orders.message}"></p>
+                        <a th:href="@{/catalog}" class="btn btn-primary" th:text="#{orders.browse.albums}"></a>
                     </div>
                 </div>
             </div>
 
             <div class="pagination">
-                <button class="pagination-btn prev" disabled>Previous</button>
+                <button class="pagination-btn prev" disabled th:text="#{catalog.previous}"></button>
                 <div class="pagination-pages">
                     <button class="pagination-btn active">1</button>
                     <button class="pagination-btn">2</button>
                     <button class="pagination-btn">3</button>
                 </div>
-                <button class="pagination-btn next">Next</button>
+                <button class="pagination-btn next" th:text="#{catalog.next}"></button>
             </div>
         </div>
     </section>

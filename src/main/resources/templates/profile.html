@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/profile.css}">
-    <title>My Profile | Music Store</title>
+    <title th:text="#{profile.title} + ' | ' + #{header.music.store}"></title>
 </head>
 
 <body>
@@ -20,8 +20,8 @@
 <main>
     <div class="profile-header">
         <div class="container">
-            <h1 class="page-title">My Profile</h1>
-            <p class="page-subtitle">Manage your account and preferences</p>
+            <h1 class="page-title" th:text="#{profile.title}"></h1>
+            <p class="page-subtitle" th:text="#{profile.subtitle}"></p>
         </div>
     </div>
 
@@ -38,26 +38,28 @@
                             </div>
                             <h3 class="profile-name" th:text="${user.username}"></h3>
                             <p class="profile-email" th:text="${user.email}"></p>
-                            <button class="status-button active" th:if="${user.isActive()}">ACTIVE</button>
-                            <button class="status-button inactive" th:if="${!user.isActive()}">INACTIVE</button>
+                            <button class="status-button active" th:if="${user.isActive()}"
+                                    th:text="#{profile.status.active}"></button>
+                            <button class="status-button inactive" th:if="${!user.isActive()}"
+                                    th:text="#{profile.status.inactive}"></button>
                         </div>
                         <nav class="profile-menu">
                             <a th:href="@{/users/profile}" class="profile-menu-item active">
                                 <span class="menu-icon">👤</span>
-                                Personal Info
+                                <span th:text="#{profile.menu.personal.info}"></span>
                             </a>
                             <a th:href="@{/notifications}" class="profile-menu-item">
                                 <span class="menu-icon">🧠</span>
-                                Notifications
+                                <span th:text="#{profile.menu.notifications}"></span>
                             </a>
                             <a sec:authorize="hasRole('USER')"
                                th:href="@{/users/my-orders}" class="profile-menu-item">
                                 <span class="menu-icon">📦</span>
-                                My Orders
+                                <span th:text="#{profile.menu.my.orders}"></span>
                             </a>
                             <a href="/settings" class="profile-menu-item">
                                 <span class="menu-icon">⚙️</span>
-                                Settings
+                                <span th:text="#{profile.menu.settings}"></span>
                             </a>
                         </nav>
                     </div>
@@ -66,55 +68,66 @@
                 <div class="profile-content">
                     <div class="profile-info-card card">
                         <div class="card-header">
-                            <h2>Personal Information</h2>
+                            <h2 th:text="#{profile.personal.information}"></h2>
                             <form th:action="@{'/users/' + ${user.id} + '/profile'}"
                                   method="GET" th:object="${user}">
-                                <button class="edit-button">Edit</button>
+                                <button class="edit-button" th:text="#{profile.edit}"></button>
                             </form>
                         </div>
 
                         <div class="profile-info-grid">
                             <div class="info-group">
-                                <label>First Name</label>
-                                <p th:text="${#strings.isEmpty(user.firstName)
-                                    ? 'Edit your profile and add your first name'
-                                    : user.firstName}">
+                                <label th:text="#{profile.first.name}"></label>
+                                <p th:if="${#strings.isEmpty(user.firstName)}"
+                                   th:text="#{profile.edit.add.first.name}">
+                                </p>
+                                <p th:unless="${#strings.isEmpty(user.firstName)}"
+                                   th:text="${user.firstName}">
                                 </p>
                             </div>
                             <div class="info-group">
-                                <label>Last Name</label>
-                                <p th:text="${#strings.isEmpty(user.lastName)
-                                    ? 'Edit your profile and add your last name'
-                                    : user.lastName}">
+                                <label th:text="#{profile.last.name}"></label>
+                                <p th:if="${#strings.isEmpty(user.lastName)}"
+                                   th:text="#{profile.edit.add.last.name}">
+                                </p>
+                                <p th:unless="${#strings.isEmpty(user.lastName)}"
+                                   th:text="${user.lastName}">
                                 </p>
                             </div>
                             <div class="info-group">
-                                <label>Email Address</label>
-                                <p th:text="${#strings.isEmpty(user.email)
-                                    ? 'Edit your profile and add your email'
-                                    : user.email}">
+                                <label th:text="#{profile.email.address}"></label>
+                                <p th:if="${#strings.isEmpty(user.email)}"
+                                   th:text="#{profile.edit.add.email}">
+                                </p>
+                                <p th:unless="${#strings.isEmpty(user.email)}"
+                                   th:text="${user.email}">
                                 </p>
                             </div>
                             <div class="info-group">
-                                <label>Username</label>
+                                <label th:text="#{profile.username}"></label>
                                 <p th:text="${user.username}"></p>
                             </div>
                             <div class="info-group">
-                                <label>Date of Birth</label>
-                                <p th:text="${#strings.isEmpty(user.birthDate)
-                                    ? 'Edit your profile and add your date of birth'
-                                    : #temporals.format(user.birthDate, 'dd MMM, yyyy')}">
+                                <label th:text="#{profile.date.of.birth}"></label>
+                                <p th:if="${#strings.isEmpty(user.birthDate)}"
+                                   th:text="#{profile.edit.add.birth.date}">
+                                </p>
+
+                                <p th:unless="${#strings.isEmpty(user.birthDate)}"
+                                   th:text="${#temporals.format(user.birthDate, 'dd MMM, yyyy')}">
                                 </p>
                             </div>
                             <div class="info-group">
-                                <label>Country</label>
+                                <label th:text="#{profile.country}"></label>
                                 <p th:text="${#strings.capitalize(#strings.toLowerCase(user.country))}"></p>
                             </div>
                             <div class="info-group full-width">
-                                <label>Bio</label>
-                                <p th:text="${#strings.isEmpty(user.bio)
-                                    ? 'Edit your profile and write your biography'
-                                    : user.bio}">
+                                <label th:text="#{profile.bio}"></label>
+                                <p th:if="${#strings.isEmpty(user.bio)}"
+                                   th:text="#{profile.edit.write.bio}">
+                                </p>
+                                <p th:unless="${#strings.isEmpty(user.bio)}"
+                                   th:text="${user.bio}">
                                 </p>
                             </div>
                         </div>
@@ -122,20 +135,20 @@
 
                     <div class="stats-card card">
                         <div class="card-header">
-                            <h2>Account Statistics</h2>
+                            <h2 th:text="#{profile.account.statistics}"></h2>
                         </div>
                         <div class="stats-grid">
                             <div class="stat-item">
                                 <div class="stat-icon">🎵</div>
                                 <div class="stat-content">
-                                    <h3>Albums Purchased</h3>
+                                    <h3 th:text="#{profile.albums.purchased}"></h3>
                                     <p class="stat-number" th:text="${totalAlbumsPurchased}">0</p>
                                 </div>
                             </div>
                             <div class="stat-item">
                                 <div class="stat-icon">💰</div>
                                 <div class="stat-content">
-                                    <h3>Totally Spent</h3>
+                                    <h3 th:text="#{profile.totally.spent}"></h3>
                                     <p class="stat-number"
                                        th:text="${#numbers.formatDecimal(totalAmountSpent, 1, 2)} + ' €'">
                                     </p>
@@ -144,7 +157,7 @@
                             <div class="stat-item">
                                 <div class="stat-icon">❤️</div>
                                 <div class="stat-content">
-                                    <h3>Wishlist Items</h3>
+                                    <h3 th:text="#{profile.wishlist.items}"></h3>
                                     <p class="stat-number">0</p>
                                 </div>
                             </div>
@@ -153,40 +166,40 @@
 
                     <div class="recent-activity-card card">
                         <div class="card-header">
-                            <h2>Recent Activity</h2>
-                            <a href="/my-orders" class="view-all-link">View All</a>
+                            <h2 th:text="#{profile.recent.activity}"></h2>
+                            <a href="/my-orders" class="view-all-link" th:text="#{profile.view.all}"></a>
                         </div>
                         <div class="activity-list">
                             <div class="activity-item">
                                 <div class="activity-icon">🛒</div>
                                 <div class="activity-content">
-                                    <h4>Purchase Completed</h4>
+                                    <h4 th:text="#{profile.purchase.completed}"></h4>
                                     <p>Midnight Dreams by The Night Owls</p>
-                                    <span class="activity-date">2 days ago</span>
+                                    <span class="activity-date" th:text="#{profile.days.ago}"></span>
                                 </div>
                             </div>
                             <div class="activity-item">
                                 <div class="activity-icon">⭐</div>
                                 <div class="activity-content">
-                                    <h4>Review Added</h4>
-                                    <p>Rated "Electric Pulse" 5 stars</p>
-                                    <span class="activity-date">1 week ago</span>
+                                    <h4 th:text="#{profile.review.added}"></h4>
+                                    <p th:text="#{profile.rated}"></p>
+                                    <span class="activity-date" th:text="#{profile.week.ago}"></span>
                                 </div>
                             </div>
                             <div class="activity-item">
                                 <div class="activity-icon">❤️</div>
                                 <div class="activity-content">
-                                    <h4>Added to Wishlist</h4>
+                                    <h4 th:text="#{profile.added.to.wishlist}"></h4>
                                     <p>Jazz Fusion by Modern Jazz Collective</p>
-                                    <span class="activity-date">2 weeks ago</span>
+                                    <span class="activity-date" th:text="#{profile.weeks.ago}"></span>
                                 </div>
                             </div>
                             <div class="activity-item">
                                 <div class="activity-icon">🎵</div>
                                 <div class="activity-content">
-                                    <h4>Download Completed</h4>
+                                    <h4 th:text="#{profile.download.completed}"></h4>
                                     <p>Acoustic Stories by Folk Masters</p>
-                                    <span class="activity-date">3 weeks ago</span>
+                                    <span class="activity-date" th:text="#{profile.weeks.ago}"></span>
                                 </div>
                             </div>
                         </div>
