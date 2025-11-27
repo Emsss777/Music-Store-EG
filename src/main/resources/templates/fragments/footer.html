@@ -1,29 +1,32 @@
 <footer class="footer" th:fragment="site-footer" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <div class="footer-content">
         <div class="footer-section">
-            <h3>Music Store</h3>
-            <p>Your Ultimate Destination for Digital Music</p>
+            <h3 th:text="#{header.music.store}"></h3>
+            <p th:text="#{footer.tagline}"></p>
         </div>
         <div class="footer-section">
-            <h4>Quick Links</h4>
+            <h4 th:text="#{footer.quick.links}"></h4>
             <ul>
-                <li><a th:href="@{/home}">Home</a></li>
-                <li><a th:href="@{/catalog}">Catalog</a></li>
-                <li><a th:href="@{/cart}" sec:authorize="isAuthenticated()">Shopping Cart</a></li>
-                <li><a th:href="@{/users/profile}" sec:authorize="isAuthenticated()">Profile</a></li>
-                <li><a th:href="@{/register}" sec:authorize="isAnonymous()">Register</a></li>
+                <li><a th:href="@{/home}" th:text="#{header.home}"></a></li>
+                <li><a th:href="@{/catalog}" th:text="#{header.catalog}"></a></li>
+                <li><a th:href="@{/users/profile}" sec:authorize="isAuthenticated()"
+                       th:text="#{header.profile}"></a></li>
+                <li><a th:href="@{/cart}" sec:authorize="isAuthenticated()"
+                       th:text="#{header.shopping.cart}"></a></li>
+                <li><a th:href="@{/register}" sec:authorize="isAnonymous()"
+                       th:text="#{header.register}"></a></li>
             </ul>
         </div>
         <div class="footer-section">
-            <h4>Support</h4>
+            <h4 th:text="#{footer.support}"></h4>
             <ul>
-                <li><a href="/">Contact Us</a></li>
-                <li><a href="/">Help Center</a></li>
-                <li><a href="/">Terms of Service</a></li>
+                <li><a href="/" th:text="#{footer.contact.us}"></a></li>
+                <li><a href="/" th:text="#{footer.help.center}"></a></li>
+                <li><a href="/" th:text="#{footer.terms.of.service}"></a></li>
             </ul>
         </div>
         <div class="footer-section">
-            <h4>Connect</h4>
+            <h4 th:text="#{footer.connect}"></h4>
             <div class="social-links">
                 <a class="social-link" href="https://www.facebook.com/"
                    target="_blank" rel="noopener noreferrer">Facebook</a>
@@ -37,6 +40,6 @@
         </div>
     </div>
     <div class="footer-bottom">
-        <p>&copy; 2025 Music Store. All rights reserved.</p>
+        <p th:utext="#{footer.copyright}"></p>
     </div>
 </footer>

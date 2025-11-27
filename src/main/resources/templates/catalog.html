@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/catalog.css}">
-    <title>Music Catalog | Music Store</title>
+    <title th:text="#{catalog.title} + ' | ' + #{header.music.store}"></title>
 </head>
 
 <body>
@@ -23,8 +23,8 @@
 <main>
     <div class="catalog-header">
         <div class="container">
-            <h1 class="page-title">Music Catalog</h1>
-            <p class="page-subtitle">Browse our complete collection of albums and singles</p>
+            <h1 class="page-title" th:text="#{catalog.title}"></h1>
+            <p class="page-subtitle" th:text="#{catalog.subtitle}"></p>
         </div>
     </div>
 
@@ -33,10 +33,10 @@
             <div class="catalog-layout">
                 <aside class="filters-sidebar">
                     <div class="filters-card card">
-                        <h3 class="filters-title">Filters</h3>
+                        <h3 class="filters-title" th:text="#{catalog.filters}"></h3>
 
                         <div class="filter-group">
-                            <h4>Genre</h4>
+                            <h4 th:text="#{catalog.genre}"></h4>
                             <div class="filter-options">
                                 <label class="checkbox-container">
                                     <a style="text-decoration: none; color: inherit; display: flex;
@@ -44,7 +44,7 @@
                                         <input type="checkbox" name="genre" value="all"
                                                th:checked="${selectedGenre == null}">
                                         <span class="checkmark"></span>
-                                        All Genres
+                                        <span th:text="#{catalog.all.genres}"></span>
                                     </a>
                                 </label>
                                 <label class="checkbox-container" th:each="genre : ${genres}">
@@ -63,9 +63,9 @@
                         </div>
 
                         <div class="filter-group">
-                            <h4>Price Range</h4>
+                            <h4 th:text="#{catalog.price.range}"></h4>
                             <div class="price-range">
-                                <label for="priceRange" class="sr-only">Price Range</label>
+                                <label for="priceRange" class="sr-only" th:text="#{catalog.price.range}"></label>
                                 <input type="range" id="priceRange"
                                        min="0" max="50" value="25" class="price-slider">
                                 <div class="price-labels">
@@ -77,40 +77,40 @@
                         </div>
 
                         <div class="filter-group">
-                            <h4>Release Year</h4>
+                            <h4 th:text="#{catalog.release.year}"></h4>
                             <div class="year-filter">
                                 <label>
                                     <select class="year-select">
-                                        <option value="">Any Year</option>
+                                        <option value="" th:text="#{catalog.any.year}"></option>
                                         <option value="2024">2024</option>
                                         <option value="2023">2023</option>
                                         <option value="2022">2022</option>
                                         <option value="2021">2021</option>
                                         <option value="2020">2020</option>
-                                        <option value="older">Older</option>
+                                        <option value="older" th:text="#{catalog.older}"></option>
                                     </select>
                                 </label>
                             </div>
                         </div>
 
                         <div class="filter-group">
-                            <h4>Format</h4>
+                            <h4 th:text="#{catalog.format}"></h4>
                             <div class="filter-options">
                                 <label class="checkbox-container">
                                     <input type="checkbox" name="format" value="album">
                                     <span class="checkmark"></span>
-                                    Albums
+                                    <span th:text="#{catalog.albums}"></span>
                                 </label>
                                 <label class="checkbox-container">
                                     <input type="checkbox" name="format" value="single">
                                     <span class="checkmark"></span>
-                                    Singles
+                                    <span th:text="#{catalog.singles}"></span>
                                 </label>
                             </div>
                         </div>
 
                         <a class="clear-filters-btn" style="text-decoration: none; text-align: center;
-                        display: block;" th:href="@{/catalog}">Clear All Filters</a>
+                        display: block;" th:href="@{/catalog}" th:text="#{catalog.clear.filters}"></a>
                     </div>
                 </aside>
 
@@ -118,20 +118,20 @@
                     <div class="catalog-toolbar">
                         <div class="results-info">
                             <span class="results-count" th:if="${selectedGenre == null}"
-                                  th:text="'Showing ' + ${albums.size()} + ' results'"></span>
+                                  th:text="#{catalog.showing.results(${albums.size()})}"></span>
                             <span class="results-count" th:if="${selectedGenre != null}"
-                                  th:text="'Showing ' + ${albums.size()} + ' ' + ${#strings.capitalize(
-                                  #strings.replace(#strings.toLowerCase(selectedGenre), '_', ' '))} + ' albums'">
+                                  th:text="#{catalog.showing.albums(${albums.size()}, ${#strings.capitalize(
+                                  #strings.replace(#strings.toLowerCase(selectedGenre), '_', ' '))})}">
                             </span>
                         </div>
                         <div class="sort-options">
-                            <label for="sort">Sort by:</label>
+                            <label for="sort" th:text="#{catalog.sort.by}"></label>
                             <select id="sort" class="sort-select">
-                                <option value="newest">Newest First</option>
-                                <option value="oldest">Oldest First</option>
-                                <option value="price-low">Price: Low to High</option>
-                                <option value="price-high">Price: High to Low</option>
-                                <option value="name">Name A-Z</option>
+                                <option value="newest" th:text="#{catalog.sort.newest}"></option>
+                                <option value="oldest" th:text="#{catalog.sort.oldest}"></option>
+                                <option value="price-low" th:text="#{catalog.sort.price.low}"></option>
+                                <option value="price-high" th:text="#{catalog.sort.price.high}"></option>
+                                <option value="name" th:text="#{catalog.sort.name}"></option>
                             </select>
                         </div>
                     </div>
@@ -157,13 +157,14 @@
                                           th:text="${#numbers.formatDecimal(album.price, 1, 2)} + ' €'">
                                     </span>
                                 </div>
-                                <a class="button primary" th:href="@{/album/{id}(id=${album.id})}">View Details</a>
+                                <a class="button primary" th:href="@{/album/{id}(id=${album.id})}"
+                                   th:text="#{home.view.details}"></a>
                             </div>
                         </div>
                     </div>
 
                     <div class="pagination">
-                        <button class="pagination-btn prev" disabled>Previous</button>
+                        <button class="pagination-btn prev" disabled th:text="#{catalog.previous}"></button>
                         <div class="pagination-pages">
                             <button class="pagination-btn active">1</button>
                             <button class="pagination-btn">2</button>
@@ -171,7 +172,7 @@
                             <span class="pagination-ellipsis">...</span>
                             <button class="pagination-btn">13</button>
                         </div>
-                        <button class="pagination-btn next">Next</button>
+                        <button class="pagination-btn next" th:text="#{catalog.next}"></button>
                     </div>
                 </div>
             </div>

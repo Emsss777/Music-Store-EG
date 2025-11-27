@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}">
-    <title>Music Store - Home</title>
+    <title th:text="#{header.music.store} + ' - ' + #{header.home}"></title>
 </head>
 
 <body>
@@ -21,11 +21,13 @@
     <div class="hero-section">
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title">Discover Your Next Favorite Song</h1>
-                <p class="hero-subtitle">Explore thousands of albums and singles from your favorite artists</p>
+                <h1 class="hero-title" th:text="#{home.hero.title}"></h1>
+                <p class="hero-subtitle" th:text="#{home.hero.subtitle}"></p>
                 <div class="hero-actions">
-                    <a class="button primary" th:href="@{/catalog}">Browse Catalog</a>
-                    <a class="button" th:href="@{/register}" sec:authorize="isAnonymous()">Join Now</a>
+                    <a class="button primary" th:href="@{/catalog}"
+                       th:text="#{home.browse.catalog}"></a>
+                    <a class="button" th:href="@{/register}" sec:authorize="isAnonymous()"
+                       th:text="#{home.join.now}"></a>
                 </div>
             </div>
         </div>
@@ -33,7 +35,7 @@
 
     <section class="featured-section">
         <div class="container">
-            <h2 class="section-title">Featured Albums</h2>
+            <h2 class="section-title" th:text="#{home.featured.albums}"></h2>
             <div class="album-grid grid grid-4">
                 <div class="album-card card" th:each="album : ${albums}">
                     <div class="album-image">
@@ -48,7 +50,8 @@
                         <div class="album-price">
                             <span class="price" th:text="'$' + ${#numbers.formatDecimal(album.price, 1, 2)}"></span>
                         </div>
-                        <a th:href="@{'/album/' + ${album.id}}" class="button primary">View Details</a>
+                        <a th:href="@{'/album/' + ${album.id}}" class="button primary"
+                           th:text="#{home.view.details}"></a>
                     </div>
                 </div>
             </div>
@@ -57,7 +60,7 @@
 
     <section class="categories-section">
         <div class="container">
-            <h2 class="section-title">Browse by Genre</h2>
+            <h2 class="section-title" th:text="#{home.browse.by.genre}"></h2>
             <div class="category-grid grid grid-4">
                 <div class="category-card card" th:each="genre : ${genres}">
                     <div class="category-icon" th:switch="${genre}">
@@ -70,8 +73,8 @@
                         <span th:case="*">🎶</span>
                     </div>
                     <h3 th:text="${#strings.capitalize(#strings.toLowerCase(genre))}"></h3>
-                    <p th:text="${'Discover ' + #strings.toLowerCase(genre) + ' music and artists'}"></p>
-                    <a th:href="@{'/catalog?genre=' + ${genre}}" class="button">Explore</a>
+                    <p th:text="#{home.discover.genre(${#strings.toLowerCase(genre)})}"></p>
+                    <a th:href="@{'/catalog?genre=' + ${genre}}" class="button" th:text="#{home.explore}"></a>
                 </div>
             </div>
         </div>

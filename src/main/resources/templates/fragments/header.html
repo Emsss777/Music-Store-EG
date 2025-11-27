@@ -18,29 +18,29 @@
     <div class="header-inner">
         <div class="logo-container">
             <a href="/" class="logo">
-                <h1 th:text="#{header.music.store}">Music Store</h1>
+                <h1 th:text="#{header.music.store}"></h1>
             </a>
         </div>
         <nav class="nav">
             <a class="nav-link" th:href="@{/home}" th:classappend="${page == 'home'} ? ' active'"
-               th:text="#{header.home}">Home</a>
+               th:text="#{header.home}"></a>
             <a class="nav-link" th:href="@{/catalog}" th:classappend="${page == 'catalog'} ? ' active'"
-               th:text="#{header.catalog}">Catalog</a>
+               th:text="#{header.catalog}"></a>
 
             <a class="nav-link" th:href="@{/users/my-orders}" th:classappend="${page == 'my-orders'} ? ' active'"
-               sec:authorize="hasRole('USER')" th:text="#{header.my.orders}">My Orders</a>
+               sec:authorize="hasRole('USER')" th:text="#{header.my.orders}"></a>
 
             <a class="nav-link" th:href="@{/users/profile}" th:classappend="${page == 'profile'} ? ' active'"
-               sec:authorize="isAuthenticated()" th:text="#{header.profile}">Profile</a>
+               sec:authorize="isAuthenticated()" th:text="#{header.profile}"></a>
 
             <a class="nav-link" th:href="@{/admin/admin-dashboard}"
                th:classappend="${page == 'admin/admin-dashboard'} ? ' active'"
-               sec:authorize="hasRole('ADMIN')" th:text="#{header.admin}">Admin</a>
+               sec:authorize="hasRole('ADMIN')" th:text="#{header.admin}"></a>
 
             <!--@thymesVar id="itemCount" type="java.lang.Integer"-->
             <a class="nav-link" th:href="@{/cart}" th:classappend="${page == 'cart'} ? ' active'"
                sec:authorize="hasRole('USER')">
-                <span th:text="#{header.shopping.cart}">Shopping Cart</span>
+                <span th:text="#{header.shopping.cart}"></span>
                 <span class="cart-count" th:if="${itemCount > 0}" th:text="'( ' + ${itemCount} + ' )'"></span>
             </a>
 
@@ -52,12 +52,12 @@
             </div>
 
             <a class="button login" th:href="@{/login}" sec:authorize="isAnonymous()"
-               th:text="#{header.login}">Login</a>
+               th:text="#{header.login}"></a>
             <a class="button register" th:href="@{/register}" sec:authorize="isAnonymous()"
-               th:text="#{header.register}">Register</a>
+               th:text="#{header.register}"></a>
 
             <a class="button login" href="/logout" sec:authorize="isAuthenticated()"
-               th:text="#{header.logout}">Logout</a>
+               th:text="#{header.logout}"></a>
         </nav>
     </div>
 </header>
