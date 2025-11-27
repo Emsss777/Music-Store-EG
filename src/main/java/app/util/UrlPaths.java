@@ -37,4 +37,5 @@ public final class UrlPaths {
     public static final String URL_EXPORT = "/export";
     public static final String URL_PDF = "/pdf";
     public static final String URL_LOGOUT = "/logout";
+    public static final String URL_CHANGE_LANGUAGE = "/change-language";
 }

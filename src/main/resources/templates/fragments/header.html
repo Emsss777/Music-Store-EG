@@ -18,34 +18,46 @@
     <div class="header-inner">
         <div class="logo-container">
             <a href="/" class="logo">
-                <h1>Music Store</h1>
+                <h1 th:text="#{header.music.store}">Music Store</h1>
             </a>
         </div>
         <nav class="nav">
-            <a class="nav-link" th:href="@{/home}" th:classappend="${page == 'home'} ? ' active'">Home</a>
-            <a class="nav-link" th:href="@{/catalog}" th:classappend="${page == 'catalog'} ? ' active'">Catalog</a>
+            <a class="nav-link" th:href="@{/home}" th:classappend="${page == 'home'} ? ' active'"
+               th:text="#{header.home}">Home</a>
+            <a class="nav-link" th:href="@{/catalog}" th:classappend="${page == 'catalog'} ? ' active'"
+               th:text="#{header.catalog}">Catalog</a>
+
+            <a class="nav-link" th:href="@{/users/my-orders}" th:classappend="${page == 'my-orders'} ? ' active'"
+               sec:authorize="hasRole('USER')" th:text="#{header.my.orders}">My Orders</a>
+
+            <a class="nav-link" th:href="@{/users/profile}" th:classappend="${page == 'profile'} ? ' active'"
+               sec:authorize="isAuthenticated()" th:text="#{header.profile}">Profile</a>
+
+            <a class="nav-link" th:href="@{/admin/admin-dashboard}"
+               th:classappend="${page == 'admin/admin-dashboard'} ? ' active'"
+               sec:authorize="hasRole('ADMIN')" th:text="#{header.admin}">Admin</a>
 
             <!--@thymesVar id="itemCount" type="java.lang.Integer"-->
             <a class="nav-link" th:href="@{/cart}" th:classappend="${page == 'cart'} ? ' active'"
                sec:authorize="hasRole('USER')">
-                Shopping Cart
+                <span th:text="#{header.shopping.cart}">Shopping Cart</span>
                 <span class="cart-count" th:if="${itemCount > 0}" th:text="'( ' + ${itemCount} + ' )'"></span>
             </a>
 
-            <a class="nav-link" th:href="@{/users/profile}" th:classappend="${page == 'profile'} ? ' active'"
-               sec:authorize="isAuthenticated()">Profile</a>
+            <div class="language-switcher">
+                <a class="lang-button" th:href="@{/change-language(lang='en')}"
+                   th:classappend="${#locale.language == 'en'} ? 'active'">EN</a>
+                <a class="lang-button" th:href="@{/change-language(lang='bg')}"
+                   th:classappend="${#locale.language == 'bg'} ? 'active'">BG</a>
+            </div>
 
-            <a class="nav-link" th:href="@{/users/my-orders}" th:classappend="${page == 'my-orders'} ? ' active'"
-               sec:authorize="hasRole('USER')">My Orders</a>
+            <a class="button login" th:href="@{/login}" sec:authorize="isAnonymous()"
+               th:text="#{header.login}">Login</a>
+            <a class="button register" th:href="@{/register}" sec:authorize="isAnonymous()"
+               th:text="#{header.register}">Register</a>
 
-            <a class="nav-link" th:href="@{/admin/admin-dashboard}"
-               th:classappend="${page == 'admin/admin-dashboard'} ? ' active'"
-               sec:authorize="hasRole('ADMIN')">Admin</a>
-
-            <a class="button login" th:href="@{/login}" sec:authorize="isAnonymous()">Login</a>
-            <a class="button register" th:href="@{/register}" sec:authorize="isAnonymous()">Register</a>
-
-            <a class="button login" href="/logout" sec:authorize="isAuthenticated()">Logout</a>
+            <a class="button login" href="/logout" sec:authorize="isAuthenticated()"
+               th:text="#{header.logout}">Logout</a>
         </nav>
     </div>
 </header>
