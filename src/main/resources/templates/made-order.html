@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/made-order.css}">
-    <title>Order Confirmation | Music Store</title>
+    <title th:text="#{made.order.title} + ' | ' + #{header.music.store}"></title>
 </head>
 
 <body>
@@ -26,36 +26,33 @@
                 <div class="success-icon">
                     <i class="fas fa-check-circle"></i>
                 </div>
-                <h1>Order Placed Successfully!</h1>
-                <p class="order-subtitle">
-                    Thank you for your purchase. Your order has been confirmed
-                    and will be processed shortly.
-                </p>
+                <h1 th:text="#{made.order.placed.successfully}"></h1>
+                <p class="order-subtitle" th:text="#{made.order.thank.you}"></p>
             </div>
 
             <div class="order-details-grid">
                 <div class="order-info-card card">
-                    <h2 class="card-title">Order Information</h2>
+                    <h2 class="card-title" th:text="#{made.order.information}"></h2>
                     <div class="info-grid">
                         <div class="info-item">
-                            <span class="info-label">Order Number:</span>
+                            <span class="info-label" th:text="#{made.order.number}"></span>
                             <span class="info-value" th:text="${order.orderNumber}"></span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Order Date:</span>
+                            <span class="info-label" th:text="#{made.order.date}"></span>
                             <span class="info-value"
                                   th:text="${#temporals.format(order.createdOn, 'dd MMM, yyyy - HH:mm')}"></span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Order Status:</span>
+                            <span class="info-label" th:text="#{made.order.status}"></span>
                             <span class="info-value status-confirmed" th:text="${order.status}"></span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Payment Method:</span>
+                            <span class="info-label" th:text="#{made.order.payment.method}"></span>
                             <span class="info-value" th:text="${order.paymentMethod}"></span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Total Amount:</span>
+                            <span class="info-label" th:text="#{made.order.total.amount}"></span>
                             <span class="info-value total-amount"
                                   th:text="${#numbers.formatDecimal(order.totalAmount, 1, 2)} + ' €'">
                             </span>
@@ -64,27 +61,27 @@
                 </div>
 
                 <div class="shipping-info-card card">
-                    <h2 class="card-title">Shipping Information</h2>
+                    <h2 class="card-title" th:text="#{made.order.shipping.information}"></h2>
                     <div class="shipping-address">
                         <p class="address-name"
                            th:text="${order.owner.firstName + ' ' + order.owner.lastName}"></p>
                         <p class="address-line" th:text="${order.owner.email}"></p>
-                        <p class="address-line">Digital Download</p>
-                        <p class="address-line">No physical shipping required</p>
+                        <p class="address-line" th:text="#{made.order.digital.download}"></p>
+                        <p class="address-line" th:text="#{made.order.no.physical.shipping}"></p>
                     </div>
                     <div class="shipping-method">
-                        <span class="shipping-label">Delivery Method:</span>
-                        <span class="shipping-value">Digital Download (Instant)</span>
+                        <span class="shipping-label" th:text="#{made.order.delivery.method}"></span>
+                        <span class="shipping-value" th:text="#{made.order.delivery.method.value}"></span>
                     </div>
                     <div class="estimated-delivery">
-                        <span class="delivery-label">Delivery Status:</span>
-                        <span class="delivery-value">Available immediately after purchase</span>
+                        <span class="delivery-label" th:text="#{made.order.delivery.status}"></span>
+                        <span class="delivery-value" th:text="#{made.order.delivery.status.value}"></span>
                     </div>
                 </div>
             </div>
 
             <div class="order-items-section">
-                <h2 class="section-title">Order Items</h2>
+                <h2 class="section-title" th:text="#{made.order.items}"></h2>
                 <div class="items-list">
                     <div class="order-item" th:each="item : ${orderItems}">
                         <div class="item-image">
@@ -94,10 +91,10 @@
                             <h3 class="item-title" th:text="${item.album.title}"></h3>
                             <p class="item-artist"
                                th:text="${item.album.artist.firstName + ' ' + item.album.artist.lastName}"></p>
-                            <p class="item-format">Digital Download</p>
+                            <p class="item-format" th:text="#{made.order.digital.download}">D</p>
                         </div>
                         <div class="item-quantity">
-                            <span th:text="'Qty: ' + ${item.quantity}"></span>
+                            <span th:text="#{orders.quantity} + ' ' + ${item.quantity}"></span>
                         </div>
                         <div class="item-price">
                             <span class="summary-value"
@@ -111,21 +108,21 @@
 
                 <div class="order-summary">
                     <div class="summary-row">
-                        <span class="summary-label">Subtotal:</span>
+                        <span class="summary-label" th:text="#{made.order.subtotal}"></span>
                         <span class="summary-value"
                               th:text="${#numbers.formatDecimal(order.totalAmount, 1, 2)} + ' €'">
                         </span>
                     </div>
                     <div class="summary-row">
-                        <span class="summary-label">Shipping:</span>
+                        <span class="summary-label" th:text="#{made.order.shipping}"></span>
                         <span class="summary-value">0,00 €</span>
                     </div>
                     <div class="summary-row">
-                        <span class="summary-label">Tax:</span>
+                        <span class="summary-label" th:text="#{made.order.tax}"></span>
                         <span class="summary-value">0,00 €</span>
                     </div>
                     <div class="summary-row total-row">
-                        <span class="summary-label">Total:</span>
+                        <span class="summary-label" th:text="#{cart.total}"></span>
                         <span class="summary-value"
                               th:text="${#numbers.formatDecimal(order.totalAmount, 1, 2)} + ' €'">
                         </span>
@@ -135,22 +132,25 @@
 
             <div class="order-actions">
                 <div class="action-buttons">
-                    <a th:href="@{/users/my-orders}" class="button primary">View My Orders</a>
-                    <a th:href="@{/catalog}" class="button secondary">Continue Shopping</a>
-                    <button class="button download-receipt" onclick="downloadReceipt()">Download Receipt</button>
+                    <a th:href="@{/users/my-orders}" class="button primary"
+                       th:text="#{made.order.view.my.orders}"></a>
+                    <a th:href="@{/catalog}" class="button secondary"
+                       th:text="#{made.order.continue.shopping}"></a>
+                    <button class="button download-receipt" onclick="downloadReceipt()"
+                            th:text="#{made.order.download.receipt}"></button>
                 </div>
             </div>
 
             <div class="order-timeline">
-                <h2 class="section-title">Order Timeline</h2>
+                <h2 class="section-title" th:text="#{made.order.timeline}"></h2>
                 <div class="timeline">
                     <div class="timeline-item completed">
                         <div class="timeline-icon">
                             <i class="fas fa-shopping-cart"></i>
                         </div>
                         <div class="timeline-content">
-                            <h4>Order Placed</h4>
-                            <p>Your order has been successfully placed</p>
+                            <h4 th:text="#{made.order.timeline.placed}"></h4>
+                            <p th:text="#{made.order.timeline.placed.desc}"></p>
                             <span class="timeline-date"
                                   th:text="${#temporals.format(order.createdOn, 'dd MMM, yyyy - HH:mm')}"></span>
                         </div>
@@ -161,8 +161,8 @@
                             <i class="fas fa-credit-card"></i>
                         </div>
                         <div class="timeline-content">
-                            <h4>Payment Processed</h4>
-                            <p>Payment has been successfully processed</p>
+                            <h4 th:text="#{made.order.timeline.payment}"></h4>
+                            <p th:text="#{made.order.timeline.payment.desc}"></p>
                             <span class="timeline-date"
                                   th:text="${#temporals.format(order.createdOn, 'dd MMM, yyyy - HH:mm')}"></span>
                         </div>
@@ -173,9 +173,9 @@
                             <i class="fas fa-box"></i>
                         </div>
                         <div class="timeline-content">
-                            <h4>Processing</h4>
-                            <p>Your order is being prepared for shipment</p>
-                            <span class="timeline-date">In Progress</span>
+                            <h4 th:text="#{made.order.timeline.processing}"></h4>
+                            <p th:text="#{made.order.timeline.processing.desc}"></p>
+                            <span class="timeline-date" th:text="#{made.order.timeline.in.progress}"></span>
                         </div>
                     </div>
 
@@ -184,9 +184,10 @@
                             <i class="fas fa-shipping-fast"></i>
                         </div>
                         <div class="timeline-content">
-                            <h4>Shipped</h4>
-                            <p>Your order has been shipped</p>
-                            <span class="timeline-date">Estimated: 17 jan, 2025</span>
+                            <h4 th:text="#{made.order.timeline.shipped}"></h4>
+                            <p th:text="#{made.order.timeline.shipped.desc}"></p>
+                            <span class="timeline-date"
+                                  th:text="#{made.order.timeline.estimated} + ' 17 jan, 2025'"></span>
                         </div>
                     </div>
 
@@ -195,9 +196,10 @@
                             <i class="fas fa-home"></i>
                         </div>
                         <div class="timeline-content">
-                            <h4>Delivered</h4>
-                            <p>Your order has been delivered</p>
-                            <span class="timeline-date">Estimated: 22–24 jan, 2025</span>
+                            <h4 th:text="#{made.order.timeline.delivered}"></h4>
+                            <p th:text="#{made.order.timeline.delivered.desc}"></p>
+                            <span class="timeline-date"
+                                  th:text="#{made.order.timeline.estimated} + ' 22–24 jan, 2025'"></span>
                         </div>
                     </div>
                 </div>
@@ -205,11 +207,11 @@
 
             <div class="support-section">
                 <div class="support-card card">
-                    <h3>Need Help?</h3>
-                    <p>If you have any questions about your order, our customer support team is here to help.</p>
+                    <h3 th:text="#{checkout.need.help}"></h3>
+                    <p th:text="#{checkout.customer.support.message}"></p>
                     <div class="support-actions">
-                        <a href="/contact" class="button support-button">Contact Support</a>
-                        <a href="/help" class="button support-button">Help Center</a>
+                        <a href="/contact" class="button support-button" th:text="#{checkout.contact.support}"></a>
+                        <a href="/help" class="button support-button" th:text="#{footer.help.center}"></a>
                     </div>
                 </div>
             </div>
@@ -273,7 +275,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-        // Animate timeline items on scroll
+
         const timelineItems = document.querySelectorAll('.timeline-item');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {

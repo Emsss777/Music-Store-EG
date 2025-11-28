@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/album.css}">
-    <title th:text="${album.title} + ' - ' + ${album.artist.artistName} + ' | Music Store'"></title>
+    <title th:text="${album.title} + ' - ' + ${album.artist.artistName} + ' | ' + #{header.music.store}"></title>
 </head>
 
 <body>
@@ -20,9 +20,9 @@
 <main>
     <div class="breadcrumb">
         <div class="container">
-            <a th:href="@{/}">Home</a> /
-            <a th:href="@{/catalog}">Catalog</a> /
-            <span th:text="${album.title}">Midnight Dreams</span>
+            <a th:href="@{/}" th:text="#{header.home}"></a> /
+            <a th:href="@{/catalog}" th:text="#{header.catalog}"></a> /
+            <span th:text="${album.title}"></span>
         </div>
     </div>
 
@@ -41,10 +41,10 @@
 
                 <div class="album-info-container">
                     <div class="album-header">
-                        <h1 class="album-title" th:text="${album.title}">Midnight Dreams</h1>
-                        <p class="album-artist" th:text="${album.artist.artistName}">The Night Owls</p>
+                        <h1 class="album-title" th:text="${album.title}"></h1>
+                        <p class="album-artist" th:text="${album.artist.artistName}"></p>
                         <div class="album-meta">
-                            <span class="album-year" th:text="${album.year}">2024</span>
+                            <span class="album-year" th:text="${album.year}"></span>
                             <span class="album-genre"
                                   th:text="${#strings.capitalize(
                                   #strings.replace(#strings.toLowerCase(album.genre), '_', ' '))}">
@@ -62,7 +62,7 @@
                                   th:text="${#numbers.formatDecimal(album.price, 1, 2)} + ' €'">
                             </span>
                         </div>
-                        <p class="price-note">Digital Download • High-Quality MP3</p>
+                        <p class="price-note" th:text="#{album.digital.download.high.quality}"></p>
                     </div>
 
                     <div class="album-actions">
@@ -70,12 +70,12 @@
                               th:action="@{/cart/add/{id}(id=${album.id})}">
                             <button type="submit" class="button primary add-to-cart" style="width: 100%;">
                                 <span class="button-icon">🛒</span>
-                                Add to Cart
+                                <span th:text="#{album.add.to.cart}"></span>
                             </button>
                         </form>
                         <button class="button wishlist">
                             <span class="button-icon">❤️</span>
-                            Add to Wishlist
+                            <span th:text="#{album.add.to.wishlist}"></span>
                         </button>
                     </div>
 
@@ -83,17 +83,17 @@
                         <a class="button" style="width: 100%; text-align: center;
                         text-decoration: none;" th:href="@{/catalog}">
                             <span class="button-icon">←</span>
-                            Back to Catalog
+                            <span th:text="#{album.back.to.catalog}"></span>
                         </a>
                     </div>
 
                     <div class="album-features">
-                        <h3>What's Included:</h3>
+                        <h3 th:text="#{album.whats.included}">What's Included:</h3>
                         <ul class="features-list">
-                            <li>✅ High-quality MP3 files (320 kbps)</li>
-                            <li>✅ Digital booklet with lyrics</li>
-                            <li>✅ Instant download after purchase</li>
-                            <li>✅ Compatible with all devices</li>
+                            <li th:text="'✅ ' + #{album.high.quality.mp3}"></li>
+                            <li th:text="'✅ ' + #{album.digital.booklet}"></li>
+                            <li th:text="'✅ ' + #{album.instant.download.purchase}"></li>
+                            <li th:text="'✅ ' + #{album.compatible.devices}"></li>
                         </ul>
                     </div>
                 </div>

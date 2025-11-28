@@ -48,7 +48,7 @@
                         <h3 class="album-title" th:text="${album.title}"></h3>
                         <p class="album-artist" th:text="${album.artist.artistName}"></p>
                         <div class="album-price">
-                            <span class="price" th:text="'$' + ${#numbers.formatDecimal(album.price, 1, 2)}"></span>
+                            <span class="price" th:text="${#numbers.formatDecimal(album.price, 1, 2)} + ' €'"></span>
                         </div>
                         <a th:href="@{'/album/' + ${album.id}}" class="button primary"
                            th:text="#{home.view.details}"></a>

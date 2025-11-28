@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/checkout.css}">
-    <title>Checkout | Music Store</title>
+    <title th:text="#{checkout.title} + ' | ' + #{header.music.store}">Checkout | Music Store</title>
 </head>
 
 <body>
@@ -20,8 +20,8 @@
 <main>
     <div class="checkout-header">
         <div class="container">
-            <h1 class="page-title">Secure Checkout</h1>
-            <p class="page-subtitle">Complete your purchase securely</p>
+            <h1 class="page-title" th:text="#{checkout.title}"></h1>
+            <p class="page-subtitle" th:text="#{checkout.subtitle}"></p>
         </div>
     </div>
 
@@ -33,41 +33,41 @@
                           class="checkout-form-content">
                         <!-- Billing Information -->
                         <div class="form-section">
-                            <h2 class="section-title">Billing Information</h2>
+                            <h2 class="section-title" th:text="#{checkout.billing.information}"></h2>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="firstName">First Name</label>
+                                    <label for="firstName" th:text="#{profile.first.name}"></label>
                                     <input type="text" id="firstName" th:field="*{firstName}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="lastName">Last Name</label>
+                                    <label for="lastName" th:text="#{profile.last.name}"></label>
                                     <input type="text" id="lastName" th:field="*{lastName}">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="email">Email Address</label>
+                                <label for="email" th:text="#{profile.email.address}"></label>
                                 <input type="email" id="email" th:field="*{email}">
                             </div>
                             <div class="form-group">
-                                <label for="address">Street Address</label>
+                                <label for="address" th:text="#{checkout.street.address}"></label>
                                 <input type="text" id="address" th:field="*{address}">
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="city">City</label>
+                                    <label for="city" th:text="#{checkout.city}"></label>
                                     <input type="text" id="city" th:field="*{city}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="state">State/Province</label>
+                                    <label for="state" th:text="#{checkout.state.province}"></label>
                                     <input type="text" id="state" th:field="*{state}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="zipCode">ZIP/Postal Code</label>
+                                    <label for="zipCode" th:text="#{checkout.zip.postal.code}"></label>
                                     <input type="text" id="zipCode" th:field="*{zipCode}">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="country">Country</label>
+                                <label for="country" th:text="#{profile.country}"></label>
                                 <select id="country" th:field="*{country}">
                                     <option th:each="country : ${T(app.model.enums.Country).values()}"
                                             th:value="${country}"
@@ -78,37 +78,39 @@
                         </div>
 
                         <div class="form-section">
-                            <h2 class="section-title">Payment Information</h2>
+                            <h2 class="section-title" th:text="#{checkout.payment.information}"></h2>
                             <div class="form-group">
-                                <label for="cardNumber">Card Number</label>
+                                <label for="cardNumber" th:text="#{checkout.card.number}"></label>
                                 <input type="text" id="cardNumber" th:field="*{cardNumber}"
-                                       placeholder="1234 5678 9012 3456">
+                                       th:placeholder="#{checkout.card.number.placeholder}">
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="expiryDate">Expiry Date</label>
+                                    <label for="expiryDate" th:text="#{checkout.expiry.date}"></label>
                                     <input type="text" id="expiryDate" th:field="*{expiryDate}"
-                                           placeholder="MM/YY">
+                                           th:placeholder="#{checkout.expiry.date.placeholder}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="cvv">CVV</label>
-                                    <input type="text" id="cvv" placeholder="123" th:field="*{cvv}">
+                                    <label for="cvv" th:text="#{checkout.cvv}">CVV</label>
+                                    <input type="text" id="cvv" th:placeholder="#{checkout.cvv.placeholder}"
+                                           th:field="*{cvv}">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="cardName">Name on Card</label>
+                                <label for="cardName" th:text="#{checkout.name.on.card}"></label>
                                 <input type="text" id="cardName" th:field="*{cardName}">
                             </div>
                         </div>
 
                         <div class="form-section">
-                            <h2 class="section-title">Order Summary</h2>
+                            <h2 class="section-title" th:text="#{cart.order.summary}"></h2>
                             <div class="order-items">
                                 <div class="order-item" th:each="item : ${cartItems}">
                                     <div class="item-info">
                                         <h4 th:text="${item.title}"></h4>
                                         <p th:text="${item.artistName}"></p>
-                                        <p th:if="${item.quantity > 1}" th:text="'Quantity: ' + ${item.quantity}"></p>
+                                        <p th:if="${item.quantity > 1}"
+                                           th:text="#{checkout.quantity} + ${item.quantity}"></p>
                                     </div>
                                     <div class="item-price"
                                          th:text="${#numbers.formatDecimal(item.totalPrice, 1, 2)} + ' €'">
@@ -117,18 +119,18 @@
                             </div>
                             <div class="order-totals">
                                 <div class="total-row">
-                                    <span th:text="'Subtotal (' + ${itemCount} + ' items)'"></span>
+                                    <span th:text="#{cart.subtotal(${itemCount})}"></span>
                                     <span th:text="${#numbers.formatDecimal(cartTotal, 1, 2)} + ' €'"></span>
                                 </div>
                                 <div class="total-row final-total">
-                                    <span>Total</span>
+                                    <span th:text="#{cart.total}"></span>
                                     <span th:text="${#numbers.formatDecimal(cartTotal, 1, 2)} + ' €'"></span>
                                 </div>
                             </div>
                         </div>
 
                         <button type="submit" class="checkout-button">
-                            <span th:utext="'Complete Purchase &nbsp;&nbsp;–&nbsp;&nbsp;' +
+                            <span th:utext="#{checkout.complete.purchase} + ' &nbsp;&nbsp;–&nbsp;&nbsp;' +
                                   ${#numbers.formatDecimal(cartTotal, 1, 2)} + ' €'">
                             </span>
                         </button>
@@ -137,17 +139,17 @@
 
                 <div class="checkout-sidebar">
                     <div class="security-info card">
-                        <h3>🛡️ Secure Checkout</h3>
+                        <h3 th:text="'🛡️ ' + #{cart.secure.checkout}"></h3>
                         <ul>
-                            <li>✅ SSL Encrypted</li>
-                            <li>✅ Secure Payment Processing</li>
-                            <li>✅ 30-Day Money-Back Guarantee</li>
-                            <li>✅ Instant Download</li>
+                            <li th:text="'✅ ' + #{cart.ssl.encrypted}"></li>
+                            <li th:text="'✅ ' + #{cart.secure.payment}"></li>
+                            <li th:text="'✅ ' + #{cart.money.back}"></li>
+                            <li th:text="'✅ ' + #{cart.instant.download}"></li>
                         </ul>
                     </div>
 
                     <div class="payment-methods-info card">
-                        <h3>💳 We Accept</h3>
+                        <h3 th:text="'💳 ' + #{cart.we.accept}"></h3>
                         <div class="payment-icons">
                             <span class="payment-icon">💳</span>
                             <span class="payment-icon">🏦</span>
@@ -157,9 +159,9 @@
                     </div>
 
                     <div class="customer-support card">
-                        <h3>📞 Need Help?</h3>
-                        <p>Our customer support team is available 24/7 to help you with your purchase.</p>
-                        <a href="/contact" class="support-link">Contact Support</a>
+                        <h3 th:text="'📞 ' + #{checkout.need.help}"></h3>
+                        <p th:text="#{checkout.customer.support.message}"></p>
+                        <a href="/contact" class="support-link" th:text="#{checkout.contact.support}"></a>
                     </div>
                 </div>
             </div>

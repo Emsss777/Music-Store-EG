@@ -79,7 +79,8 @@
                             <div class="info-group">
                                 <label th:text="#{profile.first.name}"></label>
                                 <p th:if="${#strings.isEmpty(user.firstName)}"
-                                   th:text="#{profile.edit.add.first.name}">
+                                   th:text="#{profile.edit.add.first.name}"
+                                   class="placeholder">
                                 </p>
                                 <p th:unless="${#strings.isEmpty(user.firstName)}"
                                    th:text="${user.firstName}">
@@ -88,7 +89,8 @@
                             <div class="info-group">
                                 <label th:text="#{profile.last.name}"></label>
                                 <p th:if="${#strings.isEmpty(user.lastName)}"
-                                   th:text="#{profile.edit.add.last.name}">
+                                   th:text="#{profile.edit.add.last.name}"
+                                   class="placeholder">
                                 </p>
                                 <p th:unless="${#strings.isEmpty(user.lastName)}"
                                    th:text="${user.lastName}">
@@ -97,7 +99,8 @@
                             <div class="info-group">
                                 <label th:text="#{profile.email.address}"></label>
                                 <p th:if="${#strings.isEmpty(user.email)}"
-                                   th:text="#{profile.edit.add.email}">
+                                   th:text="#{profile.edit.add.email}"
+                                   class="placeholder">
                                 </p>
                                 <p th:unless="${#strings.isEmpty(user.email)}"
                                    th:text="${user.email}">
@@ -110,7 +113,8 @@
                             <div class="info-group">
                                 <label th:text="#{profile.date.of.birth}"></label>
                                 <p th:if="${#strings.isEmpty(user.birthDate)}"
-                                   th:text="#{profile.edit.add.birth.date}">
+                                   th:text="#{profile.edit.add.birth.date}"
+                                   class="placeholder">
                                 </p>
 
                                 <p th:unless="${#strings.isEmpty(user.birthDate)}"
@@ -124,7 +128,8 @@
                             <div class="info-group full-width">
                                 <label th:text="#{profile.bio}"></label>
                                 <p th:if="${#strings.isEmpty(user.bio)}"
-                                   th:text="#{profile.edit.write.bio}">
+                                   th:text="#{profile.edit.write.bio}"
+                                   class="placeholder">
                                 </p>
                                 <p th:unless="${#strings.isEmpty(user.bio)}"
                                    th:text="${user.bio}">
